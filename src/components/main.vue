@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="firstView">
     <logo></logo>
   </div>
 </template>
@@ -15,5 +15,15 @@
       }
     }
   }
+
   Vue.component('logo', Logo);
 </script>
+
+<style lang="scss">
+  .firstView{
+    background: url(/dist/img/topBg.jpg) no-repeat center center;
+    background-size: cover;
+    height:100vh;
+    width: 100%;
+  }
+</style>

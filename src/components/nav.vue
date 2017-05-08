@@ -1,7 +1,6 @@
 <template>
-  <nav>
-    <p class="text">{{text}}</p>
-    <img src="/dist/img/mainLogo.svg" alt="Masayuki Suzuki">
+  <nav class="gNav">
+    <p class="text">{{ text }}</p>
   </nav>
 </template>
 
