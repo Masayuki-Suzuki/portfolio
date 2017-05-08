@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="16px" viewBox="0 0 24 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41 (35326) - http://www.bohemiancoding.com/sketch -->
+    <title>quoteRight</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Blog-detail" transform="translate(-762.000000, -1446.000000)" fill="#CCCCCC">
+            <g id="blockquote" transform="translate(240.000000, 1312.000000)">
+                <path d="M523.745,149.305 L525.305,142.61 L522.965,142.61 L522.965,134.68 L529.4,134.68 L529.4,142.61 L527.125,149.305 L523.745,149.305 Z M540.11,149.305 L541.67,142.61 L539.33,142.61 L539.33,134.68 L545.765,134.68 L545.765,142.61 L543.49,149.305 L540.11,149.305 Z" id="quoteRight"></path>
+            </g>
+        </g>
+    </g>
+</svg>
