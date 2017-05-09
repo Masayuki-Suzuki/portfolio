@@ -17,7 +17,7 @@ let config = {
       },
       {
         test:/\.css/,
-        loaders:['style-loader','css-loader']
+        loaders:['style-loader']
       },
       {
         test:/\.js/,

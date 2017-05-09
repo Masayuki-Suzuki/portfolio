@@ -19,6 +19,9 @@
 </script>
 
 <style lang="scss">
+  .logo{
+    padding: 20px;
+  }
   .logoWhite {
     fill: #fff;
     stroke: #fff;

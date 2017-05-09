@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", Meiryo, "Yu Gothic", YuGothic, Verdana, "M+ 1p", sans-serif;
+  font-weight: 500;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dt, dd {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.sp {
+  display: none;
+}
+
+@media (max-width: 740px) {
+  .sp {
+    display: block;
+  }
+}

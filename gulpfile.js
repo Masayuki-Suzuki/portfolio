@@ -21,9 +21,9 @@ const webpackStream = require("webpack-stream"),
 const source    = ["public/**/*"],
       js        = "assets/js/*.js",
       ImgPath   = "public/dist/img",
-      builtCss  = "assets/build/css",
+      builtCss  = "assets/build/sass",
       distJs    = "public/dist/js",
-      vuePath   = "assets/vue/*.vue";
+      vuePath   = "src/**/*.vue";
 
 gulp.task("sass", function() {
   //var processors = [
@@ -32,7 +32,7 @@ gulp.task("sass", function() {
     //autoprefixer(),
     //flexibility()
   //];
-  gulp.src("assets/sass/**/*scss")
+  gulp.src("assets/sass/**/*.scss")
     .pipe(plumber())
     .pipe(sass({outputStyle: 'expanded'}))
     //.pipe(postcss(processors))
@@ -69,7 +69,7 @@ gulp.task("webpackMain",function(){
 
 gulp.task("webpackCss",function(){
   return gulp
-    .src(["assets/build/css/*.css"])
+    .src(["assets/build/sass/*.css"])
     .pipe(plumber())
     .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest("assets/bundle"))
@@ -99,7 +99,7 @@ function reload() {
 gulp.task('server',['browserSync'],function() {
   nodemon({
     script: 'app.js',
-    ext: 'js html css',
+    ext: 'js html sass',
     ignore: [
       'node_modules',
       'bin',
@@ -136,7 +136,7 @@ gulp.task('browserSync', function () {
   });
   gulp.watch('assets/sass/**/*.scss', ['sass']);
   gulp.watch(js,['webpackJs']);
-  gulp.watch('assets/build/css/*.css',['webpackCss']);
+  gulp.watch('assets/build/sass/*.css',['webpackCss']);
   gulp.watch('assets/bundle/bundle.js', ['uglify']);
   gulp.watch('assets/img/**/*', ['imagemin']);
   gulp.watch('src/**/*.vue', ['webpackVue']);

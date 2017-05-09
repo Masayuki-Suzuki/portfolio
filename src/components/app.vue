@@ -15,3 +15,13 @@
   Vue.component('main-frame', mainFrame);
   Vue.component('nav-frame', navFrame);
 </script>
+
+<style lang="scss">
+  .container{
+    background: #fff;
+    overflow: hidden;
+    padding: 20px;
+    position: relative;
+    width: 100%;
+  }
+</style>
