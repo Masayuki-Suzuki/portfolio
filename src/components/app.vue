@@ -12,6 +12,7 @@
 
   export default {
   }
+
   Vue.component('main-frame', mainFrame);
   Vue.component('nav-frame', navFrame);
 </script>
@@ -19,6 +20,7 @@
 <style lang="scss">
   .container{
     background: #fff;
+    height: 100vh;
     overflow: hidden;
     padding: 20px;
     position: relative;
