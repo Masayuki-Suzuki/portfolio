@@ -15,7 +15,10 @@
 
 <style lang="scss">
   .logo{
+    left:20px;
     padding: 20px;
+    position: absolute;
+    top:20px;
   }
   .logoWhite {
     fill: #fff;

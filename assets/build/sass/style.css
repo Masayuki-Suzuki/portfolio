@@ -3,12 +3,13 @@
 }
 
 html {
+  -webkit-font-smoothing: antialiased;
   font-size: 62.5%;
   height: 100%;
 }
 
 body {
-  font-family: "Open Sans", "Helvetica Neue", Meiryo, "Yu Gothic", YuGothic, Verdana, "M+ 1p", sans-serif;
+  font-family: Lato;
   font-weight: 500;
   height: 100%;
   margin: 0;

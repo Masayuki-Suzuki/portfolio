@@ -21,12 +21,13 @@
 }
 
 html{
+  -webkit-font-smoothing: antialiased;
   font-size:$base-font-size * 1%; //For rem size(1rem = 10px);
   height: 100%;
 }
 
 body{
-  font-family: $font-setting;
+  font-family: Lato;
   font-weight: $font-weight-origin;
   //-webkit-font-smoothing:antialiased;
   //-webkit-text-size-adjust:100%;

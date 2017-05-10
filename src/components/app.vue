@@ -22,7 +22,7 @@
     background: #fff;
     height: 100vh;
     overflow: hidden;
-    padding: 20px;
+    padding: 25px;
     position: relative;
     width: 100%;
   }

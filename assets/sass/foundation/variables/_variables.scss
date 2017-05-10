@@ -3,19 +3,13 @@
 //******************************
 $base-font-size: 62.5;    //for html tag font size
 $main-width:1181px;       //Contents base width
-$bg-color:#fff;           //Background color
-$main-color:#b47e43;      //Most use color
-$main-text-color:#555;    //Base text color
-$sub-color:#c0a688;       //Second most use color
-$sub-color2:#441d00;      //Third most use color
-$accent-color: #d23037;   //Accent color
-$font-color:#443f27;      //another font color
+$bg-color:#E8E8E0;           //Background color
+$main-color:#3c3c3c;      //Most use color
+$main-text-color:#3c3c3c;    //Base text color
+$accent-color: #E00606;   //Accent color
 
 //Font family initialize
-$font-setting: "Open Sans", "Helvetica Neue", Meiryo,
-               "Yu Gothic", YuGothic, Verdana, "M+ 1p", sans-serif;
-$serif-font-setting: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3",
-         "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+$font-setting: Lato, "Helvetica Neue", Arial, sans-serif;
 
 $font-weight-origin: 500;  //Base font weight
 $link-color:#09667c;       //Anchor color
