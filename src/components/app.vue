@@ -18,11 +18,12 @@
 </script>
 
 <style lang="scss">
+  @import '../../assets/sass/foundation/variables/variables';
   .container{
     background: #fff;
     height: 100vh;
     overflow: hidden;
-    padding: 25px;
+    padding: $FrameWidth;
     position: relative;
     width: 100%;
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="firstView">
+  <section class="firstView">
     <logo :isColorClass="isColorClass"></logo>
     <main-logo></main-logo>
     <div class="scroll-icon">
@@ -7,7 +7,7 @@
       <p class="scroll-icon__text">Scroll</p>
     </div>
     <pagination></pagination>
-  </div>
+  </section>
 </template>
 
 <script>

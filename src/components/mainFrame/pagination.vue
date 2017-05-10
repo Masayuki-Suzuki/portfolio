@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination">
+  <div class="pagination" :class="{'pagination--first': isFirst}">
     <div class="pagination__list active">01.</div>
     <div class="pagination__list">02.</div>
     <div class="pagination__list">03.</div>
@@ -10,6 +10,11 @@
 
 <script>
   export default {
+    data: function () {
+      return {
+        isFirst: true
+      }
+    }
   }
 </script>
 
@@ -21,11 +26,17 @@
     position: absolute;
     top: 50%;
     &__list{
-      color: #FFFFFF;
-      font-family: Lato-Light;
+      color: #3c3c3c;
+      font-weight: 300;
       @include rem(20);
       letter-spacing: 0.25px;
       margin:0 0 30px;
+    }
+    &--first{
+      z-index: 0;
+      .pagination__list{
+          color:#fff;
+      }
     }
   }
 

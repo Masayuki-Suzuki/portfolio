@@ -14,11 +14,12 @@
 </script>
 
 <style lang="scss">
+  @import '../../../assets/sass/foundation/variables/variables';
   .logo{
-    left:20px;
+    left: $FrameWidth;
     padding: 20px;
     position: absolute;
-    top:20px;
+    top:$FrameWidth;
   }
   .logoWhite {
     fill: #fff;
