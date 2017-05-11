@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination" :class="{'pagination--first': isFirst}">
+  <div class="pagination" :class="{'pagination--first': isColorClass}">
     <div class="pagination__list active">01.</div>
     <div class="pagination__list">02.</div>
     <div class="pagination__list">03.</div>
@@ -10,11 +10,7 @@
 
 <script>
   export default {
-    data: function () {
-      return {
-        isFirst: true
-      }
-    }
+    props: ['isColorClass']
   }
 </script>
 

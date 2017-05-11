@@ -23,7 +23,6 @@
     background: #fff;
     height: 100vh;
     overflow: hidden;
-    padding: $FrameWidth;
     position: relative;
     width: 100%;
   }

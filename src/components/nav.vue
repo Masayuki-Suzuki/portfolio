@@ -84,6 +84,7 @@
     top: 12px;
     transition: all 0.3s ease 0s;
     width: 84px;
+    z-index: 11;
     &--active{
       height: 100%;
       right: 0;
