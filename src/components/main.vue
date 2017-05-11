@@ -7,7 +7,7 @@
       <first-view v-show="show[0]"></first-view>
     </transition>
     <transition name="scroll">
-      <about v-show="show[0]"></about>
+      <about v-show="show[1]"></about>
     </transition>
   </article>
 </template>
@@ -23,7 +23,7 @@
     data: function () {
       return {
         isColorClass: true,
-        scrollControl: 0,
+        scrollControl: 20,
         test: true,
         show: [true,false,false,false,false]
       }
@@ -32,6 +32,9 @@
       scrollEvent(e){
         e.preventDefault();
         e.stopPropagation();
+        let prevPage = this.scrollControl / 20 - 2;
+        let thisPage = this.scrollControl / 20 - 1;
+        let nextPage = this.scrollControl / 20;
         console.dir(thisPage);
         var delta = e.deltaY;
         console.log(delta)
@@ -40,17 +43,21 @@
             Vue.set(this.show, thisPage, !this.show[thisPage]);
             Vue.set(this.show, nextPage, !this.show[nextPage]);
             this.scrollControl += 20;
+            if(this.scrollControl >= this.show.length * 20){
+              this.scrollControl = this.show.length * 20;
+            }
           }
         } else if (delta < -20) {
           if (thisPage >= 0) {
             Vue.set(this.show, thisPage, !this.show[thisPage]);
             Vue.set(this.show, prevPage, !this.show[prevPage]);
             this.scrollControl -= 20;
-            if(this.scrollControl <= 0){
+            if(this.scrollControl < 20 ){
               this.scrollControl = 20;
             }
           }
         }
+        console.log(this.show);
       }
     }
   }
@@ -86,7 +93,9 @@
     &-leave-active{
       transition: all 0.5s ease 0s;
     }
-    &-enter,
+    &-enter{
+
+    }
     &-leave-to{
       transform: translateY(-100vh);
     }
