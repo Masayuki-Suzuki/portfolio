@@ -6,6 +6,7 @@
     <first-view></first-view>
     <about></about>
     <works1></works1>
+    <blogs></blogs>
   </article>
 </template>
 
@@ -15,7 +16,9 @@
   import pagination from './mainFrame/pagination.vue';
   import firstView from './mainFrame/firstView.vue';
   import about from './mainFrame/about.vue';
-  import works1 from './mainFrame/works-ballet.vue';
+  import works1 from './mainFrame/works-yelpcamp.vue';
+  import works3 from './mainFrame/works-ballet.vue';
+  import blogs from './mainFrame/blog.vue';
 
   export default {
     data: function () {
@@ -79,6 +82,7 @@
   Vue.component('first-view', firstView);
   Vue.component('about', about);
   Vue.component('works1', works1);
+  Vue.component('blogs', blogs);
 </script>
 
 <style lang="scss">

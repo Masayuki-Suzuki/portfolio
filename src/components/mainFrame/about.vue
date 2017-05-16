@@ -138,6 +138,7 @@
     position: absolute;
     transform: rotateZ(-45deg);
     text-align: center;
+    z-index: 5;
     a{
       border: solid 1px #979797;
       border-top: 0;
