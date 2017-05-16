@@ -18,8 +18,9 @@
   .logo{
     left: $FrameWidth;
     padding: 20px;
-    position: absolute;
+    position: fixed;
     top:$FrameWidth;
+    z-index: 10;
   }
   .logoWhite {
     fill: #fff;

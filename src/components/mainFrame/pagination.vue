@@ -21,6 +21,7 @@
     margin: -120px 0 0;
     position: absolute;
     top: 50%;
+    z-index: 10;
     &__list{
       color: #3c3c3c;
       font-weight: 300;
@@ -29,7 +30,6 @@
       margin:0 0 30px;
     }
     &--first{
-      z-index: 0;
       .pagination__list{
           color:#fff;
       }
