@@ -66,7 +66,7 @@
       font-weight:300;
       letter-spacing: 0.02em;
       line-height: (72/60);
-      margin: 70px 0 0;
+      margin: 120px 0 0;
       text-align: center;
       text-transform: uppercase;
     }
@@ -132,7 +132,7 @@
     }
   }
   .scrollNav{
-    bottom: 80px;
+    bottom: 55px;
     left: 50%;
     margin: 0 0 0 -15px;
     position: absolute;

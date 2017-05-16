@@ -96,7 +96,7 @@
       z-index: 2;
       a{
         border: solid 1px $main-color;
-        border-radius: 4px;
+        //border-radius: 4px;
         color: $main-text-color;
         display: block;
         @include rem(14);
