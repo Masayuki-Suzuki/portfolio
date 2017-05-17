@@ -14,6 +14,9 @@
       </div>
       <% } %>
     </div>
+    <div class="more">
+      <a href="">read more post</a>
+    </div>
     <div class="scrollNav">
       <a href=""></a>
     </div>
@@ -54,7 +57,7 @@
     &__container{
       display: flex;
       justify-content: space-between;
-      margin: 80px auto;
+      margin: 70px auto;
       max-width: 1180px;
       width: 80%;
     }
@@ -115,6 +118,21 @@
         text-transform: uppercase;
         @include pseudo($main-text-color);
       }
+    }
+  }
+  .more{
+    a{
+      border: solid 1px $main-color;
+      //border-radius: 4px;
+      color: $main-text-color;
+      display: block;
+      @include rem(14);
+      line-height: 1;
+      margin: 30px auto 0;
+      padding: 12px 0 11px;
+      text-align: center;
+      text-transform: uppercase;
+      width: 160px;
     }
   }
 </style>
