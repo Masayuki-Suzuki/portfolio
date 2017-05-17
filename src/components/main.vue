@@ -7,6 +7,7 @@
     <about></about>
     <works1></works1>
     <blogs></blogs>
+    <contact></contact>
   </article>
 </template>
 
@@ -19,6 +20,7 @@
   import works1 from './mainFrame/works-yelpcamp.vue';
   import works3 from './mainFrame/works-ballet.vue';
   import blogs from './mainFrame/blog.vue';
+  import contact from './mainFrame/contact.vue';
 
   export default {
     data: function () {
@@ -74,8 +76,6 @@
     }
   }
 
-
-
   // Create components
   Vue.component('logo', Logo);
   Vue.component('pagination', pagination);
@@ -83,6 +83,8 @@
   Vue.component('about', about);
   Vue.component('works1', works1);
   Vue.component('blogs', blogs);
+  Vue.component('contact',contact)
+
 </script>
 
 <style lang="scss">
@@ -100,6 +102,7 @@
     background: url(/dist/img/topBg.jpg) no-repeat center center;
     background-size: cover;
     height:100%;
+    overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
   }
