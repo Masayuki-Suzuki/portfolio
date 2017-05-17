@@ -66,7 +66,7 @@
       font-weight:300;
       letter-spacing: 0.02em;
       line-height: (72/60);
-      margin: 120px 0 0;
+      margin: 90px 0 0;
       text-align: center;
       text-transform: uppercase;
     }
@@ -76,7 +76,7 @@
       font-weight: 300;
       letter-spacing: 0.15em;
       line-height: 1.5;
-      margin: 30px auto 80px;
+      margin: 30px auto 60px;
       max-width: 1024px;
       text-align: center;
       width: 95%;

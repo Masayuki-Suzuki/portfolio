@@ -6,8 +6,8 @@
       <div class="blogs__list">
         <img src="/dist/img/dummy1.jpg" alt="dummy">
         <time>January / 30 / 2017 - coding</time>
-        <h2 class="title">Lorem ipsum dolor sit amet</h2>
-        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
+        <h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h2>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur, eos error eveniet facilis incidunt laboriosam maxime molestiae odio omnis possimus quaerat, quis quos rem repellat suscipit tempora.</p>
         <div class="viewPost">
           <a href="">Read the post</a>
         </div>
@@ -54,7 +54,7 @@
     &__container{
       display: flex;
       justify-content: space-between;
-      margin: 100px auto;
+      margin: 80px auto;
       max-width: 1180px;
       width: 80%;
     }
@@ -72,14 +72,48 @@
         display: block;
         @include rem(12);
         font-weight: 500;
+        letter-spacing: 0.04em;
         padding: 20px 25px 0;
         text-align: center;
         text-transform: uppercase;
         width: 100%;
       }
-      .tittle{
-        font-weight: 500;
-        text-align: center;
+    }
+    .title{
+      color: $main-text-color;
+      @include rem(24);
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      margin: 5px 0 10px;
+      padding: 0 20px;
+      text-align: center;
+      &:after{
+        background: $main-color;
+        content: '';
+        display: block;
+        height: 2px;
+        margin: 12px auto 10px;
+        width: 44px;
+      }
+    }
+    .summary{
+      color: $main-text-color;
+      @include rem(16);
+      font-weight: 500;
+      padding: 0 20px;
+      text-align: center;
+    }
+    .viewPost{
+      margin: 20px 0 0;
+      padding: 0 20px 25px;
+      text-align: center;
+      a{
+        color: $main-text-color;
+        @include rem(14);
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        @include pseudo($main-text-color);
       }
     }
   }

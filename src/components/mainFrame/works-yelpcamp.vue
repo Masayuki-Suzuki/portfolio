@@ -9,6 +9,7 @@
       <li class="using__list">Javascript</li>
       <li class="using__list">Node.js</li>
       <li class="using__list">Express</li>
+      <li class="using__list">MongoDB</li>
       <li class="using__list">Bootstrap</li>
       <li class="using__list">EJS</li>
     </ul>
@@ -123,7 +124,7 @@
       font-weight: bold;
       letter-spacing: 0.04em;
       margin: 0 10px 0 0;
-      padding: 5px 10px;
+      padding: 7px 10px;
     }
   }
 </style>
