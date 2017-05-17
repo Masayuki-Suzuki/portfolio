@@ -112,9 +112,11 @@
       text-align: center;
       a{
         color: $main-text-color;
+        display: inline-block;
         @include rem(14);
         font-weight: 700;
         letter-spacing: 0.04em;
+        position: relative;
         text-transform: uppercase;
         @include pseudo($main-text-color);
       }
@@ -129,10 +131,33 @@
       @include rem(14);
       line-height: 1;
       margin: 30px auto 0;
+      overflow: hidden;
       padding: 12px 0 11px;
+      position: relative;
       text-align: center;
       text-transform: uppercase;
+      transition: color .5s ease 0s;
       width: 160px;
+      z-index: 0;
+      &:after{
+        background: $main-color;
+        content:"";
+        height: 100%;
+        left: 50%;
+        position: absolute;
+        top: 0;
+        transform: matrix(1,0,-1,1,0,0);
+        transition: all .5s ease 0s;
+        width: 0;
+        z-index: -1;
+      }
+      &:hover {
+        color: #fff;
+        &:after{
+          left: -25%;
+          width: 150%;
+        }
+      }
     }
   }
 </style>

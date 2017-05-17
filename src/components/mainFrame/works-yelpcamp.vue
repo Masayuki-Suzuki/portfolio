@@ -94,7 +94,6 @@
     &__view{
       padding: 0 0 0 $locationX;
       position: relative;
-      z-index: 2;
       a{
         border: solid 1px $main-color;
         //border-radius: 4px;
@@ -103,10 +102,33 @@
         @include rem(14);
         line-height: 1;
         margin: 30px 0 0;
+        overflow: hidden;
         padding: 12px 0 11px;
+        position: relative;
         text-align: center;
         text-transform: uppercase;
+        transition: color .5s ease 0s;
         width: 160px;
+        z-index: 2;
+        &:after{
+          background: $main-color;
+          content:"";
+          height: 100%;
+          left: 50%;
+          position: absolute;
+          top: 0;
+          transform: matrix(1,0,-1,1,0,0);
+          transition: all .5s ease 0s;
+          width: 0;
+          z-index: -1;
+        }
+        &:hover {
+          color: #fff;
+          &:after{
+            left: -25%;
+            width: 150%;
+          }
+        }
       }
     }
   }

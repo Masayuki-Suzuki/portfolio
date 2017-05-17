@@ -12,7 +12,7 @@
         <input type="email" placeholder="john@stark.com">
       </label>
       <label class="ttl">message<span class="require">*</span> :
-        <textarea placeholder="Winter is Coming"></textarea>
+        <textarea placeholder="Winter is Coming" rows="1"></textarea>
       </label>
       <button class="submit">send</button>
     </form>
@@ -87,9 +87,37 @@
       }
     }
     .submit{
+      background: transparent;
       border: solid 1px $main-color;
+      color: $main-text-color;
       display: inline-block;
+      @include rem(14);
+      overflow: hidden;
       padding: 10px 20px;
+      position: relative;
+      text-transform: uppercase;
+      transition: color .4s ease 0s;
+      width: 180px;
+      z-index: 1;
+      &:after{
+        background: $main-color;
+        content:"";
+        height: 100%;
+        left: 50%;
+        position: absolute;
+        top: 0;
+        transform: matrix(1,0,-1,1,0,0);
+        transition: all .5s ease 0s;
+        width: 0;
+        z-index: -1;
+      }
+      &:hover {
+        color: #fff;
+        &:after{
+          left: -25%;
+          width: 150%;
+        }
+      }
     }
   }
 </style>
