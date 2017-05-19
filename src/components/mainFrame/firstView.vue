@@ -49,6 +49,12 @@
       background: rgba(255,255,255,0.8);
       padding: 32px 29px 31px 28px;
     }
+    @media (max-height: 800px){
+      padding: 32vh 0 0;
+      &__image{
+        width: 240px;
+      }
+    }
   }
   .scroll-icon{
     bottom: 6%;
@@ -76,12 +82,24 @@
         top: 8px;
         width:8px;
       }
+      @media (max-height: 800px) {
+        height: 38px;
+        width: 24px;
+        &:before{
+          height: 6px;
+          width: 6px;
+          margin: 0 0 0 -3px;
+        }
+      }
     }
     &__text{
       color: #fff;
       @include rem(16);
       font-weight:700;
       letter-spacing: 1px;
+      @media (max-height: 800px){
+        @include rem(15);
+      }
     }
   }
   .scroll-out{

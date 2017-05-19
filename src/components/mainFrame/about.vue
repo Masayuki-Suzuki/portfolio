@@ -69,6 +69,10 @@
       margin: 90px 0 0;
       text-align: center;
       text-transform: uppercase;
+      @media (max-height: 800px){
+        @include rem(40);
+        margin: 30px 0 0;
+      }
     }
     &__lead{
       color: #3C3C3C;
@@ -80,6 +84,9 @@
       max-width: 1024px;
       text-align: center;
       width: 95%;
+      @media (max-height: 800px){
+        margin: 20px auto 30px;
+      }
     }
   }
   .wrapper{
@@ -119,6 +126,9 @@
         }
         &:last-of-type{
           margin: 0 0 40px;
+        }
+        @media (max-height: 800px){
+          margin: 0 20px 15px 0;
         }
       }
     }

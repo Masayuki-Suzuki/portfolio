@@ -75,16 +75,21 @@
       transform: translateY(-4px) rotate(45deg);
     }
   }
-
+  $nav-size: 84px;
+  $nav-size-mid: 74px;
   .gNav{
     background: #3c3c3c;
-    height:84px;
+    height:$nav-size;
     position: absolute;
     right: 12px;
     top: 12px;
     transition: all 0.3s ease 0s;
-    width: 84px;
+    width: $nav-size;
     z-index: 11;
+    @media (max-height: 800px){
+      height: $nav-size-mid;
+      width: $nav-size-mid;
+    }
     &--active{
       height: 100%;
       right: 0;
@@ -115,12 +120,16 @@
   .navIcon{
     cursor: pointer;
     display: block;
-    height: 84px;
+    height: $nav-size;
     position: absolute;
     right: 0;
     top: 0;
     transition: all 0.4s ease 0s;
-    width: 84px;
+    width: $nav-size;
+    @media (max-height: 800px){
+      height: $nav-size-mid;
+      width: $nav-size-mid;
+    }
     span {
       background: #fff;
       height: 2px;
