@@ -22,12 +22,16 @@
     position: absolute;
     top: 50%;
     z-index: 10;
+    @media (max-height: 700px){
+      left: 35px;
+    }
     &__list{
       color: #3c3c3c;
       font-weight: 300;
       @include rem(20);
       letter-spacing: 0.25px;
       margin:0 0 30px;
+      transition: all 0.5s ease 0.2s;
     }
     &--first{
       .pagination__list{

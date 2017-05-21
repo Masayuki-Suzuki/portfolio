@@ -81,8 +81,8 @@
     background: #3c3c3c;
     height:$nav-size;
     position: absolute;
-    right: 12px;
-    top: 12px;
+    right: 8px;
+    top: 8px;
     transition: all 0.3s ease 0s;
     width: $nav-size;
     z-index: 11;
