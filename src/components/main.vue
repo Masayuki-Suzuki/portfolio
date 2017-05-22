@@ -1,8 +1,8 @@
 <template>
   <article class="mainFrame" @wheel="scrollController($event)">
     <div class="frame"></div>
-    <logo :isColorClass="isColorClass"></logo>
-    <pagination :isColorClass="isColorClass"></pagination>
+    <logo></logo>
+    <pagination></pagination>
     <div class="content-wrapper" :style="{ transform: calcPosition }">
       <first-view></first-view>
       <about></about>
@@ -15,6 +15,7 @@
 
 <script>
   import Vue from 'vue';
+  import store from '../store/store';
   import Logo from './mainFrame/logo.vue';
   import pagination from './mainFrame/pagination.vue';
   import firstView from './mainFrame/firstView.vue';
@@ -27,82 +28,17 @@
   export default {
     data: function () {
       return {
-        isColorClass: true,
-        isFired: false,
-        delta: 0,
-        uintDelta: 0,
-        timeStamp: 0,
-        sleep: 300,
-        cTime: Date.now(),
-        cDelta: 0,
-        position: 0,
-        location: 1
+        sharedState: store.state
       }
     },
     computed: {
       calcPosition: function(){
-        return 'translateY(' + (this.position * -100) + 'vh)';
+        return this.sharedState.translate;
       }
     },
     methods: {
-      scrollEvent: function(direction){
-        console.log('scroll');
-        if(direction && this.position < 4){
-          this.position++;
-          this.location++;
-        } else {
-          if(this.position > 0) {
-            this.position--;
-            this.location--;
-          }
-        }
-        if(this.location > 1){
-          this.isColorClass = false;
-        } else {
-          this.isColorClass = true;
-        }
-        switch (this.position){
-          case 0:
-            history.replaceState('','','/');
-            break;
-          case 1:
-            history.replaceState('','','/about');
-            break;
-          case 2:
-            history.replaceState('','','/works');
-            break;
-          case 3:
-            history.replaceState('','','/blogs');
-            break;
-          case 4:
-            history.replaceState('','','/contact');
-            break;
-          default:
-            break;
-        }
-      },
       scrollController: function(e){
-        e.preventDefault();
-        this.delta = e.deltaY ? -(e.deltaY) : e.wheelDelta ? e.wheelDelta : -(e.detail);
-        if (!this.delta) {
-          return;
-        }
-        this.uintDelta = Math.abs(this.delta);
-        if (this.uintDelta - this.cDelta > 0) {
-          this.timeStamp = e.timeStamp;
-          if (!this.isFired && this.timeStamp - this.cTime > this.sleep) {
-            if(this.delta < 0){
-              this.scrollEvent(true);
-            } else {
-              this.scrollEvent(false);
-            }
-            this.isFired = true;
-          }
-          this.cTime = this.timeStamp;
-        } else {
-          this.isFired = false;
-        }
-        this.cDelta = this.uintDelta;
+        store.scrollMain(e);
       }
     }
   }

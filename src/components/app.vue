@@ -7,6 +7,7 @@
 
 <script>
   import Vue from 'vue';
+  import store from '../store/store';
   import mainFrame from './main.vue';
   import navFrame from './nav.vue';
 

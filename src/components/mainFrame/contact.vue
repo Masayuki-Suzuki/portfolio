@@ -25,7 +25,6 @@
   export default {
     data: function () {
       return {
-        isColorClass: false,
       }
     }
   }

@@ -1,16 +1,26 @@
 <template>
-  <div class="pagination" :class="{'pagination--first': isColorClass}">
-    <div class="pagination__list active">01.</div>
-    <div class="pagination__list">02.</div>
-    <div class="pagination__list">03.</div>
-    <div class="pagination__list">04.</div>
-    <div class="pagination__list">05.</div>
+  <div class="pagination" :class="{'pagination--first': sharedState.isColorClass}">
+    <div class="pagination__list" :class="{'active': sharedState.paginationActive[0]}">01.</div>
+    <div class="pagination__list" :class="{'active': sharedState.paginationActive[1]}">02.</div>
+    <div class="pagination__list" :class="{'active': sharedState.paginationActive[2]}">03.</div>
+    <div class="pagination__list" :class="{'active': sharedState.paginationActive[3]}">04.</div>
+    <div class="pagination__list" :class="{'active': sharedState.paginationActive[4]}">05.</div>
   </div>
 </template>
 
 <script>
+  import store from '../../store/store';
   export default {
-    props: ['isColorClass']
+    data: function() {
+      return {
+        sharedState: store.state
+      }
+    },
+    watch: {
+      sharedState(){
+        console.log(this.sharedState.state.paginationActive);
+      }
+    }
   }
 </script>
 
