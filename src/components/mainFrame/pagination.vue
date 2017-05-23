@@ -51,7 +51,7 @@
         opacity: 0;
         position: absolute;
         right: -15px;
-        transition: all 0.5s ease 0.1s;
+        transition: all 0.5s ease 0.2s;
         width: 10px;
       }
     }

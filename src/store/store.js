@@ -10,8 +10,7 @@ let store = {
     cDelta: 0,
     position: 0,
     translate: 'translateY(0vh)',
-    location: 1,
-    paginationActive: [true,false,false,false,false]
+    location: 1
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -54,7 +53,6 @@ let store = {
     this.state.translate = 'translateY(' + (this.state.position * -100) + 'vh)';
     this.setIsColor();
     this.URLController();
-    this.paginationControll();
   },
   scrollMain(e){
     e.preventDefault();
@@ -78,16 +76,6 @@ let store = {
       this.state.isFired = false;
     }
     this.state.cDelta = this.state.uintDelta;
-  },
-  paginationControll(){
-    this.state.paginationActive[this.state.position] = true;
-    if(this.state.paginationActive[this.state.position - 1]){
-      this.state.paginationActive[this.state.position - 1] = false;
-    }
-    if(this.state.paginationActive[this.state.position + 1]){
-      this.state.paginationActive[this.state.position + 1] = false;
-    }
-    console.log("store.js: " + this.state.paginationActive);
   }
 }
 

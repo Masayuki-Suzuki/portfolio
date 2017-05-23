@@ -60,6 +60,9 @@
     padding: 25px;
     position: relative;
     width: 100%;
+    @media (max-height: 800px){
+      padding: 15px;
+    }
     &__hd{
       color: $main-text-color;
       @include rem(60);
