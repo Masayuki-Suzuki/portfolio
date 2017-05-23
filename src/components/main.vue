@@ -2,7 +2,7 @@
   <article class="mainFrame" @wheel="scrollController($event)">
     <div class="frame"></div>
     <logo></logo>
-    <pagination></pagination>
+    <pagination :active-page="sharedState.paginationActive"></pagination>
     <div class="content-wrapper" :style="{ transform: calcPosition }">
       <first-view></first-view>
       <about></about>

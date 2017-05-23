@@ -87,6 +87,7 @@ let store = {
     if(this.state.paginationActive[this.state.position + 1]){
       this.state.paginationActive[this.state.position + 1] = false;
     }
+    console.log("store.js: " + this.state.paginationActive);
   }
 }
 

@@ -1,24 +1,26 @@
 <template>
-  <div class="pagination" :class="{'pagination--first': sharedState.isColorClass}">
-    <div class="pagination__list" :class="{'active': sharedState.paginationActive[0]}">01.</div>
-    <div class="pagination__list" :class="{'active': sharedState.paginationActive[1]}">02.</div>
-    <div class="pagination__list" :class="{'active': sharedState.paginationActive[2]}">03.</div>
-    <div class="pagination__list" :class="{'active': sharedState.paginationActive[3]}">04.</div>
-    <div class="pagination__list" :class="{'active': sharedState.paginationActive[4]}">05.</div>
+  <div class="pagination" :class="{'pagination--first': store.state.isColorClass}">
+    <!--<template v-for="num in 5">-->
+      <!--<div class="pagination__list" :class="{'active': checkActive(num - 1)}">0{{ num }}.</div>-->
+    <!--</template>-->
+    <div class="pagination__list" :class="{'active': test(0)}">01.</div>
+    <div class="pagination__list" :class="{'active': test(1)}">02.</div>
+    <div class="pagination__list" :class="{'active': test(2)}">03.</div>
+    <div class="pagination__list" :class="{'active': activePage[3]}">04.</div>
+    <div class="pagination__list" :class="{'active': activePage[4]}">05.</div>
   </div>
 </template>
 
 <script>
   import store from '../../store/store';
   export default {
+    props: ['activePage'],
     data: function() {
-      return {
-        sharedState: store.state
-      }
+      return store.state
     },
-    watch: {
-      sharedState(){
-        console.log(this.sharedState.state.paginationActive);
+    methods: {
+      test(page){
+        console.log(page)
       }
     }
   }
@@ -45,7 +47,7 @@
     }
     &--first{
       .pagination__list{
-          color:#fff;
+        color:#fff;
       }
     }
   }
