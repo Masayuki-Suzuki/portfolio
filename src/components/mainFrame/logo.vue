@@ -27,6 +27,11 @@
     top:$FrameWidth;
     z-index: 10;
     @media (max-height: 800px){
+      left: 20px;
+      padding: 15px;
+      top: 20px;
+    }
+    @media (max-height: 700px){
       left: 15px;
       padding: 10px;
       top: 15px;
@@ -35,6 +40,9 @@
       height: auto;
       width: 70px;
       @media (max-height: 800px){
+        width: 60px;
+      }
+      @media (max-height: 700px){
         width: 50px;
       }
     }

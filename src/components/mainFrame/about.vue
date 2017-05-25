@@ -69,16 +69,23 @@
       font-weight:300;
       letter-spacing: 0.02em;
       line-height: (72/60);
-      margin: 90px 0 0;
+      margin: 6% 0 0;
       text-align: center;
       text-transform: uppercase;
+      @media (max-height: 850px){
+        margin: 5% 0 0;
+      }
       @media (max-height: 800px){
         @include rem(50);
-        margin: 70px 0 0;
+        margin: 3% 0 0;
       }
       @media (max-height: 700px){
         @include rem(40);
-        margin: 30px 0 0;
+        margin: 3% 0 0;
+      }
+      @media (max-height: 630px){
+        @include rem(40);
+        margin: 1% 0 0;
       }
     }
     &__lead{
@@ -91,8 +98,11 @@
       max-width: 1024px;
       text-align: center;
       width: 95%;
+      @media (max-height: 800px){
+        margin: 20px auto 40px;
+      }
       @media (max-height: 700px){
-        margin: 25px auto 35px;
+        margin: 10px auto 25px;
       }
     }
   }
@@ -143,12 +153,32 @@
           margin: 0 0 40px;
         }
         @media (max-height: 700px){
+          margin: 0 20px 30px 0;
+          &:nth-of-type(3n){
+            margin: 0 0 30px;
+          }
+          &:last-of-type{
+            margin: 0 0 30px;
+          }
+        }
+        @media (max-height: 700px){
           margin: 0 20px 25px 0;
           &:nth-of-type(3n){
             margin: 0 0 25px;
           }
           &:last-of-type{
             margin: 0 0 25px;
+          }
+        }
+        @media (max-height: 600px){
+          margin: 0 20px 20px 0;
+          max-width: 85px;
+          max-height: 45px;
+          &:nth-of-type(3n){
+            margin: 0 0 20px;
+          }
+          &:last-of-type{
+            margin: 0 0 20px;
           }
         }
       }
@@ -170,6 +200,15 @@
     transform: rotateZ(-45deg);
     text-align: center;
     z-index: 5;
+    @media (max-height: 800px){
+      bottom: 45px;
+    }
+    @media (max-height: 600px){
+      bottom: 32px;
+    }
+    @media (max-height: 500px){
+      display: none;
+    }
     a{
       border: solid 1px #979797;
       border-top: 0;

@@ -76,7 +76,7 @@
     width: 100%;
   }
   .content-wrapper{
-    height: 100vh;
+    height: 100%;
     transition: all 0.5s ease-in-out 0s;
   }
   .scroll{
