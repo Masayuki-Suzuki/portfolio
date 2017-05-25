@@ -1,5 +1,5 @@
 <template>
-  <section class="works1">
+  <section class="works works1">
     <p class="works__caption">design / coding</p>
     <h1 class="works__hd">YelpCamp</h1>
     <p class="works__lead">YelpCamp is a campgrounds information sharing site which made by Node.js, Express and MongoDB. I followed The Web Developer Bootcamp course by Colt Steele on Udemy.</p>
@@ -39,6 +39,8 @@
   $locationX: 46.5vw;
   .works1 {
     background: url(/dist/img/camping.jpg) no-repeat center center;
+  }
+  .works{
     background-size: cover;
     height:100%;
     padding: 25px;
@@ -56,8 +58,6 @@
       width: 100vw;
       z-index: 0;
     }
-  }
-  .works{
     &__caption{
       color: $main-text-color;
       @include rem(20);
