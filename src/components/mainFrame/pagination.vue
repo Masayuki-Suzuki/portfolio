@@ -61,7 +61,6 @@
       }
     }
   }
-
   .active{
     font-weight: 700;
     &:after{

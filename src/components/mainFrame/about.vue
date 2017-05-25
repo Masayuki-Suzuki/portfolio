@@ -1,7 +1,7 @@
 <template>
   <section class="about">
     <h1 class="about__hd">Who I am ?</h1>
-    <p class="about__lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    <p class="about__lead">Hi, there. I'm Masayuki Suzuki, a Japanese front-end developer based in Vancouver. My focus is creating interactive experiences and user-friendly interfaces whilst maintaining semantic, clean markup and SEO friendly code. I have 4 years experience in the feild in Japan. I continue to learn newly language, tools and framework to go to next stage.</p>
     <div class="wrapper">
       <div class="what-i what-i-can">
         <h2>What I can ?</h2>
@@ -60,7 +60,7 @@
     padding: 25px;
     position: relative;
     width: 100%;
-    @media (max-height: 800px){
+    @media (max-height: 650px){
       padding: 15px;
     }
     &__hd{
@@ -73,22 +73,26 @@
       text-align: center;
       text-transform: uppercase;
       @media (max-height: 800px){
+        @include rem(50);
+        margin: 70px 0 0;
+      }
+      @media (max-height: 700px){
         @include rem(40);
         margin: 30px 0 0;
       }
     }
     &__lead{
       color: #3C3C3C;
-      @include rem(14);
-      font-weight: 300;
+      @include rem(15);
+      font-weight: 500;
       letter-spacing: 0.15em;
       line-height: 1.5;
       margin: 30px auto 60px;
       max-width: 1024px;
       text-align: center;
       width: 95%;
-      @media (max-height: 800px){
-        margin: 20px auto 30px;
+      @media (max-height: 700px){
+        margin: 25px auto 35px;
       }
     }
   }
@@ -115,23 +119,37 @@
       margin: 0 auto 50px;
       text-align: center;
       text-transform: uppercase;
+      @media (max-height: 700px){
+        @include rem(24);
+        margin: 0 auto 30px;
+      }
     }
     &__images{
       margin: auto;
       max-width: 300px;
       text-align: center;
       width: 90%;
+      @media (max-height: 700px){
+        max-width: 240px;
+      }
       img {
         display: inline-block;
         margin: 0 50px 40px 0;
+        vertical-align: top;
         &:nth-of-type(3n){
           margin: 0 0 40px;
         }
         &:last-of-type{
           margin: 0 0 40px;
         }
-        @media (max-height: 800px){
-          margin: 0 20px 15px 0;
+        @media (max-height: 700px){
+          margin: 0 20px 25px 0;
+          &:nth-of-type(3n){
+            margin: 0 0 25px;
+          }
+          &:last-of-type{
+            margin: 0 0 25px;
+          }
         }
       }
     }

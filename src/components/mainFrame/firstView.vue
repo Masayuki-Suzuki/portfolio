@@ -45,6 +45,7 @@
     display: flex;
     justify-content: center;
     padding:32vh 0 0;
+    pointer-events: none;
     &__image{
       background: rgba(255,255,255,0.8);
       padding: 32px 29px 31px 28px;

@@ -2,7 +2,7 @@
   <section class="works1">
     <p class="works__caption">design / coding</p>
     <h1 class="works__hd">YelpCamp</h1>
-    <p class="works__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p class="works__lead">YelpCamp is a campgrounds information sharing site which made by Node.js, Express and MongoDB. I followed The Web Developer Bootcamp course by Colt Steele on Udemy.</p>
     <ul class="using">
       <li class="using__list">HTML5</li>
       <li class="using__list">CSS3</li>
@@ -52,7 +52,7 @@
       left: 0 ;
       position: absolute;
       top: 0;
-      transform: matrix(1,0,-1.2,1,0,0) translateX(48%);
+      transform: matrix(1,0,-0.8,1,0,0) translateX(42%);
       width: 100vw;
       z-index: 0;
     }
@@ -61,7 +61,7 @@
     &__caption{
       color: $main-text-color;
       @include rem(20);
-      margin: 54vh 0 0;
+      margin: 50vh 0 0;
       padding: 0 0 0 $locationX;
       position: relative;
       text-transform: uppercase;
