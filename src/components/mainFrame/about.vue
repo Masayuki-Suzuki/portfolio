@@ -60,7 +60,7 @@
     padding: 25px;
     position: relative;
     width: 100%;
-    @media (max-height: 650px){
+    @media (max-height: 800px){
       padding: 15px;
     }
     &__hd{
@@ -80,12 +80,12 @@
         margin: 3% 0 0;
       }
       @media (max-height: 700px){
-        @include rem(40);
-        margin: 3% 0 0;
+        @include rem(45);
+        margin: 3.5% 0 0;
       }
-      @media (max-height: 630px){
+      @media (max-height: 550px){
         @include rem(40);
-        margin: 1% 0 0;
+        margin: 2% 0 0;
       }
     }
     &__lead{
@@ -99,9 +99,12 @@
       text-align: center;
       width: 95%;
       @media (max-height: 800px){
-        margin: 20px auto 40px;
+        margin: 25px auto 50px;
       }
       @media (max-height: 700px){
+        margin: 15px auto 40px;
+      }
+      @media (max-height: 600px){
         margin: 10px auto 25px;
       }
     }
@@ -145,7 +148,7 @@
       img {
         display: inline-block;
         margin: 0 50px 40px 0;
-        vertical-align: top;
+        vertical-align: bottom;
         &:nth-of-type(3n){
           margin: 0 0 40px;
         }
@@ -203,6 +206,9 @@
     @media (max-height: 800px){
       bottom: 45px;
     }
+    @media (max-height: 700px){
+      margin: 0 0 0 -10px;
+    }
     @media (max-height: 600px){
       bottom: 32px;
     }
@@ -216,6 +222,10 @@
       display: inline-block;
       height: 30px;
       width: 30px;
+      @media (max-height: 700px){
+        height: 20px;
+        width: 20px;
+      }
     }
   }
 </style>

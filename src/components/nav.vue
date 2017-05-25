@@ -40,6 +40,18 @@
     }
   }
 
+  @keyframes navIcon-top-sml {
+    0% {
+      transform: translateY(0px) rotate(-45deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-8px) rotate(0deg);
+    }
+  }
+
   @keyframes navIcon-bottom {
     0% {
       transform: translateY(-1px) rotate(45deg);
@@ -49,6 +61,18 @@
     }
     100% {
       transform: translateY(8px) rotate(0deg);
+    }
+  }
+
+  @keyframes navIcon-bottom-sml {
+    0% {
+      transform: translateY(-1px) rotate(45deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(6px) rotate(0deg);
     }
   }
 
@@ -77,6 +101,7 @@
   }
   $nav-size: 84px;
   $nav-size-mid: 74px;
+  $nav-size-sml: 60px;
   .gNav{
     background: #3c3c3c;
     height:$nav-size;
@@ -89,6 +114,10 @@
     @media (max-height: 800px){
       height: $nav-size-mid;
       width: $nav-size-mid;
+    }
+    @media (max-height: 700px){
+      height: $nav-size-sml;
+      width: $nav-size-sml;
     }
     &--active{
       height: 100%;
@@ -130,30 +159,48 @@
       height: $nav-size-mid;
       width: $nav-size-mid;
     }
+    @media (max-height: 700px){
+      height: $nav-size-sml - 4px;
+      width: $nav-size-sml;
+    }
     span {
       background: #fff;
       height: 2px;
       display: block;
       left: 50%;
-      margin-left: -15px;
+      margin-left: -12px;
       position: relative;
       top: 50%;
       transition: 0.3s opacity;
       width: 30px;
+      @media (max-height: 700px){
+        width: 24px;
+      }
     }
     .top {
       animation: navIcon-top .4s;
       animation-fill-mode: forwards;
+      @media (max-height: 700px){
+        animation: navIcon-top-sml .4s;
+        animation-fill-mode: forwards;
+      }
     }
     .middle {
       transition: .4s opacity;
       transform: translateY(-1px);
       opacity: 1;
       width: 20px;
+      @media (max-height: 700px){
+        width: 15px;
+      }
     }
     .bottom {
       animation: navIcon-bottom .4s;
       animation-fill-mode: forwards;
+      @media (max-height: 700px){
+        animation: navIcon-bottom-sml .4s;
+        animation-fill-mode: forwards;
+      }
     }
     &.isOpen {
       right: 12px;
