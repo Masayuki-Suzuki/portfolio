@@ -62,16 +62,22 @@
         margin: 4% 0 0;
       }
       @media (max-height: 800px){
-        @include rem(50);
+        margin: 3% 0 0;
+      }
+      @media (max-height: 750px){
+        @include rem(55);
         margin: 2% 0 0;
       }
       @media (max-height: 700px){
         @include rem(45);
-        margin: 3.5% 0 0;
-      }
-      @media (max-height: 550px){
-        @include rem(40);
         margin: 2% 0 0;
+      }
+      @media (max-height: 650px){
+        margin: 1.5% 0 0;
+      }
+      @media (max-height: 600px){
+        @include rem(40);
+        margin: 1% 0 0;
       }
     }
     &__container{
@@ -83,6 +89,12 @@
       @media (max-height: 800px){
         margin: 2% auto;
       }
+      @media (max-height: 700px){
+        width: 70%;
+      }
+      @media (max-height: 650px){
+        margin: 1% auto;
+      }
     }
     &__list{
       background: #fff;
@@ -91,6 +103,7 @@
         margin: 0;
       }
       img{
+        display: block;
         width: 100%;
       }
       time{
@@ -103,6 +116,12 @@
         text-align: center;
         text-transform: uppercase;
         width: 100%;
+        @media (max-height: 700px){
+          padding: 15px 20px 0;
+        }
+        @media (max-height: 600px){
+          padding: 10px 20px 0;
+        }
       }
     }
     .title{
@@ -113,6 +132,12 @@
       margin: 5px 0 10px;
       padding: 0 20px;
       text-align: center;
+      @media (max-height: 700px){
+        @include rem(20);
+      }
+      @media (max-height: 600px){
+        @include rem(18);
+      }
       &:after{
         background: $main-color;
         content: '';
@@ -128,11 +153,21 @@
       font-weight: 500;
       padding: 0 20px;
       text-align: center;
+      @media (max-height: 600px){
+        @include rem(14);
+      }
     }
     .viewPost{
       margin: 20px 0 0;
       padding: 0 20px 25px;
       text-align: center;
+      @media (max-height: 700px){
+        padding: 0 15px 20px;
+      }
+      @media (max-height: 600px){
+        margin: 10px 0 0;
+        padding: 0 15px 12px;
+      }
       a{
         color: $main-text-color;
         display: inline-block;
@@ -162,6 +197,12 @@
       transition: color .5s ease 0s;
       width: 160px;
       z-index: 0;
+      @media (max-height: 650px){
+        margin: 15px auto 0;
+      }
+      @media (max-height: 650px){
+        @include rem(12);
+      }
       &:after{
         background: $main-color;
         content:"";

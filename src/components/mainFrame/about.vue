@@ -207,12 +207,10 @@
       bottom: 45px;
     }
     @media (max-height: 700px){
-      margin: 0 0 0-10px;
-    }
-    @media (max-height: 600px){
       bottom: 32px;
+      margin: 0 0 0 -10px;
     }
-    @media (max-height: 500px){
+    @media (max-height: 550px){
       display: none;
     }
     a{
