@@ -99,17 +99,17 @@
       transform: translateY(-4px) rotate(45deg);
     }
   }
-  $nav-size: 84px;
+  $nav-size: 74px;
   $nav-size-mid: 74px;
   $nav-size-sml: 60px;
   .gNav{
     background: #3c3c3c;
-    height:$nav-size;
+    height:$nav-size-mid;
     position: absolute;
     right: 8px;
     top: 8px;
     transition: all 0.3s ease 0s;
-    width: $nav-size;
+    width: $nav-size-mid;
     z-index: 11;
     @media (max-height: 800px){
       height: $nav-size-mid;
@@ -149,14 +149,14 @@
   .navIcon{
     cursor: pointer;
     display: block;
-    height: $nav-size;
+    height: $nav-size-mid - 2px;
     position: absolute;
     right: 0;
     top: 0;
     transition: all 0.4s ease 0s;
-    width: $nav-size;
+    width: $nav-size-mid;
     @media (max-height: 800px){
-      height: $nav-size-mid;
+      height: $nav-size-mid - 4px;
       width: $nav-size-mid;
     }
     @media (max-height: 700px){
@@ -168,12 +168,13 @@
       height: 2px;
       display: block;
       left: 50%;
-      margin-left: -12px;
+      margin-left: -15px;
       position: relative;
       top: 50%;
       transition: 0.3s opacity;
       width: 30px;
       @media (max-height: 700px){
+        margin-left: -12px;
         width: 24px;
       }
     }

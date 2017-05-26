@@ -7,7 +7,7 @@
         <img src="/dist/img/dummy1.jpg" alt="dummy">
         <time>January / 30 / 2017 - coding</time>
         <h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h2>
-        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur, eos error eveniet facilis incidunt laboriosam maxime molestiae odio omnis possimus quaerat, quis quos rem repellat suscipit tempora.</p>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur, eos error eveniet facilis incidunt laboriosam.</p>
         <div class="viewPost">
           <a href="">Read the post</a>
         </div>
@@ -43,22 +43,46 @@
     padding: 25px;
     position: relative;
     width: 100%;
+    @media (max-height: 800px){
+      padding: 15px;
+    }
     &__hd{
       color: $main-text-color;
       @include rem(60);
       font-weight:300;
       letter-spacing: 0.02em;
       line-height: (72/60);
-      margin: 70px 0 0;
+      margin: 7% 0 0;
       text-align: center;
       text-transform: uppercase;
+      @media (max-height: 900px){
+        margin: 6% 0 0;
+      }
+      @media (max-height: 850px){
+        margin: 4% 0 0;
+      }
+      @media (max-height: 800px){
+        @include rem(50);
+        margin: 2% 0 0;
+      }
+      @media (max-height: 700px){
+        @include rem(45);
+        margin: 3.5% 0 0;
+      }
+      @media (max-height: 550px){
+        @include rem(40);
+        margin: 2% 0 0;
+      }
     }
     &__container{
       display: flex;
       justify-content: space-between;
-      margin: 70px auto;
+      margin: 3% auto;
       max-width: 1180px;
       width: 80%;
+      @media (max-height: 800px){
+        margin: 2% auto;
+      }
     }
     &__list{
       background: #fff;

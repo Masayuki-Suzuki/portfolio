@@ -50,7 +50,7 @@
       background: rgba(255,255,255,0.8);
       padding: 32px 29px 31px 28px;
     }
-    @media (max-height: 800px){
+    @media (max-height: 700px){
       padding: 32vh 0 0;
       &__image{
         width: 240px;

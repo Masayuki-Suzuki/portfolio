@@ -25,11 +25,14 @@
 <style lang="scss">
   @import "../../../assets/sass/foundation/mixins/mixin";
   .pagination{
-    left: 50px;
+    left: 60px;
     margin: -120px 0 0;
     position: absolute;
     top: 50%;
     z-index: 10;
+    @media (max-height: 800px){
+      left: 45px;
+    }
     @media (max-height: 700px){
       left: 35px;
     }

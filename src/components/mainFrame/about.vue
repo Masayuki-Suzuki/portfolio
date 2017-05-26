@@ -207,7 +207,7 @@
       bottom: 45px;
     }
     @media (max-height: 700px){
-      margin: 0 0 0 -10px;
+      margin: 0 0 0-10px;
     }
     @media (max-height: 600px){
       bottom: 32px;
