@@ -66,6 +66,16 @@
       position: relative;
       text-transform: uppercase;
       z-index: 2;
+      @media (max-height: 800px){
+        margin: 47vh 0 0;
+      }
+      @media (max-height: 700px){
+        margin: 44vh 0 0;
+      }
+      @media (max-height: 620px){
+        @include rem(16);
+        margin: 40vh 0 0;
+      }
     }
     &__hd{
       color: $main-text-color;
@@ -77,6 +87,12 @@
       position: relative;
       text-transform: uppercase;
       z-index: 2;
+      @media (max-height: 800px){
+        @include rem(45);
+      }
+      @media (max-height: 620px){
+        @include rem(40);
+      }
     }
     &__lead{
       color: $main-text-color;
@@ -109,6 +125,12 @@
         transition: color .5s ease 0s;
         width: 160px;
         z-index: 2;
+        @media (max-height: 620px){
+          @include rem(12);
+          margin: 20px 0 0;
+          padding: 9px 0;
+          width: 120px;
+        }
         &:after{
           background: $main-color;
           content:"";
@@ -138,6 +160,9 @@
     position: relative;
     width: 100%;
     z-index: 2;
+    @media (max-height: 620px){
+      margin: 10px 0 0 $locationX;
+    }
     &__list{
       background: $main-color;
       color: #fff;
