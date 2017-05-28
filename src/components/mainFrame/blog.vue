@@ -52,7 +52,7 @@
       font-weight:300;
       letter-spacing: 0.02em;
       line-height: (72/60);
-      margin: 7% 0 0;
+      margin: 90px 0 0;
       text-align: center;
       text-transform: uppercase;
       @media (max-height: 900px){
@@ -83,7 +83,7 @@
     &__container{
       display: flex;
       justify-content: space-between;
-      margin: 3% auto;
+      margin: 2.5% auto;
       max-width: 1180px;
       width: 80%;
       @media (max-height: 800px){
