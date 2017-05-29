@@ -68,6 +68,7 @@
       border: solid 15px #fff;
     }
   }
+  
   .mainFrame{
     background: url(/dist/img/topBg.jpg) no-repeat center center;
     background-size: cover;

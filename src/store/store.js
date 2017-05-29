@@ -50,7 +50,7 @@ let store = {
         this.state.location--;
       }
     }
-    document.getElementsByClassName('content-wrapper')[0].style.transition = "all 0.5s ease-in-out 0s";
+    document.getElementsByClassName('content-wrapper')[0].style.transition = "all 0.5s cubic-bezier(.69,.06,.34,.99) 0s";
     this.state.translate = 'translateY(' + (this.state.position * -100) + 'vh)';
     this.setIsColor();
     this.URLController();

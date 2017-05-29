@@ -1,10 +1,18 @@
 <template>
-  <nav class="gNav" :class="{'gNav--active': isClose}">
+  <nav class="gNav" :class="{
+    'activePage1': activePage(1),
+    'activePage2': activePage(2),
+    'activePage3': activePage(3),
+    'activePage4': activePage(4),
+    'activePage5': activePage(5),
+    'gNav--active': isClose
+  }">
     <div class="navIcon" :class="{isOpen: isClose}" @click="isClose = !isClose">
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }">Masayuki Suzuki Portfolio Web Site</p>
     <ul class="gNav__main" v-show="isClose">
       <li class="gNav__list"><a href="">home</a></li>
       <li class="gNav__list"><a href="">about</a></li>
@@ -16,10 +24,17 @@
 </template>
 
 <script>
+  import store from '../store/store';
   export default {
     data: function () {
       return {
+        sharedState: store.state,
         isClose: false
+      }
+    },
+    methods: {
+      activePage(num){
+        return this.sharedState.location == num ? true : false;
       }
     }
   }
@@ -104,26 +119,15 @@
   $nav-size-sml: 60px;
   .gNav{
     background: #3c3c3c;
-    height:$nav-size-mid;
+    height: 100%;
     position: absolute;
-    right: 8px;
-    top: 8px;
+    right: 0;
+    top: 0;
     transition: all 0.3s ease 0s;
     width: $nav-size-mid;
     z-index: 11;
-    @media (max-height: 800px){
-      height: $nav-size-mid;
-      width: $nav-size-mid;
-    }
     @media (max-height: 700px){
-      height: $nav-size-sml;
       width: $nav-size-sml;
-    }
-    &--active{
-      height: 100%;
-      right: 0;
-      top: 0;
-      width: 100%;
     }
     &__main{
       align-items:center;
@@ -145,6 +149,25 @@
         @include pseudo(#fff);
       }
     }
+    &__ttl{
+      color: #fff;
+      @include rem(14);
+      letter-spacing: 0.06em;
+      opacity: 0;
+      position: absolute;
+      right: -150%;
+      top: 50%;
+      text-transform: uppercase;
+      transition: opacity .5s ease 0s;
+      transform: rotate(90deg);
+      width: 300px;
+      z-index: 1;
+      @media (max-height: 700px){
+        @include rem(12);
+        right: -166%;
+        width: 260px;
+      }
+    }
   }
   .navIcon{
     cursor: pointer;
@@ -155,9 +178,9 @@
     top: 0;
     transition: all 0.4s ease 0s;
     width: $nav-size-mid;
+    z-index: 2;
     @media (max-height: 800px){
       height: $nav-size-mid - 4px;
-      width: $nav-size-mid;
     }
     @media (max-height: 700px){
       height: $nav-size-sml - 4px;
@@ -204,8 +227,6 @@
       }
     }
     &.isOpen {
-      right: 12px;
-      top: 12px;
       .middle {
         opacity: 0;
         transition: .4s opacity;
@@ -219,5 +240,40 @@
         animation-fill-mode: forwards;
       }
     }
+  }
+  .activePage1{
+    height: $nav-size-mid;
+    right: 12px;
+    top: 12px;
+    transition: all .3s ease 0s;
+    width: $nav-size-mid;
+    @media (max-height: 800px){
+      right: 8px;
+      top: 8px;
+    }
+    @media (max-height: 700px){
+      height: $nav-size-sml;
+      width: $nav-size-sml;
+    }
+    .isOpen{
+      right: 12px;
+      top: 12px;
+    }
+  }
+  .activePage2{
+    right: 0;
+    top: 0;
+    transition: all .3s ease 0s;
+  }
+  .ttl__active{
+    opacity: 1;
+    transition: opacity .3s ease .5s;
+  }
+  .gNav--active{
+    height: 100%;
+    right: 0;
+    top: 0;
+    transition: all .3s ease 0s;
+    width: 100%;
   }
 </style>
