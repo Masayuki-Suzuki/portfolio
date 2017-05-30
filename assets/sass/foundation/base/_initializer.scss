@@ -22,6 +22,7 @@
 
 html{
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   font-size:$base-font-size * 1%; //For rem size(1rem = 10px);
   height: 100%;
 }

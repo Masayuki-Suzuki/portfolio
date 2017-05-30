@@ -5,7 +5,7 @@ let store = {
     delta: 0,
     uintDelta: 0,
     timeStamp: 0,
-    sleep: 300,
+    sleep: 500,
     cTime: Date.now(),
     cDelta: 0,
     position: 0,
@@ -51,7 +51,7 @@ let store = {
       }
     }
     document.getElementsByClassName('content-wrapper')[0].style.transition = "all 0.5s cubic-bezier(.69,.06,.34,.99) 0s";
-    this.state.translate = 'translateY(' + (this.state.position * -100) + 'vh)';
+    this.state.translate = 'translateY(' + (this.state.position * -100) + '%)';
     this.setIsColor();
     this.URLController();
     setTimeout(() => {
@@ -65,6 +65,8 @@ let store = {
       return;
     }
     this.state.uintDelta = Math.abs(this.state.delta);
+
+    console.log(this.state.timeStamp);
     if (this.state.uintDelta - this.state.cDelta > 0) {
       this.state.timeStamp = e.timeStamp;
       if (!this.state.isFired && this.state.timeStamp - this.state.cTime > this.state.sleep) {

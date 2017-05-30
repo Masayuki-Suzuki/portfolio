@@ -2,7 +2,7 @@
   <article class="mainFrame" @wheel="scrollController($event)">
     <div class="frame"></div>
     <logo></logo>
-    <pagination :active-page="sharedState.paginationActive"></pagination>
+    <pagination></pagination>
     <div class="content-wrapper" :style="{ transform: calcPosition }">
       <first-view></first-view>
       <about></about>
@@ -68,7 +68,7 @@
       border: solid 15px #fff;
     }
   }
-  
+
   .mainFrame{
     background: url(/dist/img/topBg.jpg) no-repeat center center;
     background-size: cover;

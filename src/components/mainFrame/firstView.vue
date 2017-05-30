@@ -1,7 +1,9 @@
 <template>
   <section class="firstView">
     <div class="mainlogo">
-      <object class="mainlogo__image" data="/dist/img/mainLogo.svg" type="image/svg+xml"></object>
+      <div class="mainlogo__image">
+        <object  data="/dist/img/mainLogo.svg" type="image/svg+xml"></object>
+      </div>
     </div>
     <div class="scroll-icon">
       <div class="scroll-icon__main"></div>
@@ -54,6 +56,9 @@
       padding: 32vh 0 0;
       &__image{
         width: 240px;
+        object{
+          width: 100%;
+        }
       }
     }
   }

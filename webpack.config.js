@@ -49,7 +49,18 @@ let config = {
         loader: ['url-loader?mimetype=application/font-woff']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.LoaderOptionsPlugin({
+      options:{
+        babel: {
+          presets: ['es2015'],
+          plugins: ['transform-runtime']
+        }
+      }
+    })
+  ]
+
 }
 
 module.exports = config;
