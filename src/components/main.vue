@@ -5,10 +5,10 @@
     <pagination></pagination>
     <div class="content-wrapper" :style="{ transform: calcPosition }">
       <first-view></first-view>
-      <about></about>
-      <works1></works1>
-      <blogs></blogs>
-      <contact></contact>
+      <about v-if="sharedState.location <= 2"></about>
+      <works1 v-if="sharedState.location === 3"></works1>
+      <blogs v-if="sharedState.location === 4"></blogs>
+      <contact v-if="sharedState.location === 5"></contact>
     </div>
   </article>
 </template>

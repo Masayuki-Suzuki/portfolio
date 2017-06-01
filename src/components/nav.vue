@@ -245,7 +245,7 @@
     height: $nav-size-mid;
     right: 12px;
     top: 12px;
-    transition: all .3s ease 0s;
+    transition: all .5s ease 0s;
     width: $nav-size-mid;
     @media (max-height: 800px){
       right: 8px;
