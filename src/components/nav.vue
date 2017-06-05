@@ -155,10 +155,10 @@
       letter-spacing: 0.06em;
       opacity: 0;
       position: absolute;
-      right: -150%;
+      right: -156%;
       top: 50%;
       text-transform: uppercase;
-      transition: opacity .5s ease 0s;
+      transition: all .5s ease 0s;
       transform: rotate(90deg);
       width: 300px;
       z-index: 1;
@@ -267,7 +267,8 @@
   }
   .ttl__active{
     opacity: 1;
-    transition: opacity .3s ease .5s;
+    right: -150%;
+    transition: all .3s ease .5s;
   }
   .gNav--active{
     height: 100%;

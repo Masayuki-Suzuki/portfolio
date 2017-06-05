@@ -12,7 +12,8 @@ var store = {
     translate: 'translateY(0vh)',
     location: 1,
     save: 0, // test property
-    clock: 0 // test property
+    clock: 0, // test property
+    isScroll: null
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -85,21 +86,28 @@ var store = {
     e.preventDefault();
     this.state.clock = e.timeStamp - this.state.save;
     this.state.save = e.timeStamp;
-    console.log("time stamp: " + e.timeStamp);
-    console.log("clock: " + this.state.clock);
-    console.log("save: " + this.state.save);
+    if(this.state.clock > 50){
+      console.log("time stamp: " + e.timeStamp);
+      console.log("clock: " + this.state.clock);
+      console.log("save: " + this.state.save);
+      console.log("isFired: " + this.state.isFired);
+    }
     this.state.delta = e.deltaY ? -(e.deltaY) : 0;
     if (!this.state.delta) {
       return;
     }
-    if(this.state.clock < 50){
-      return;
-    } else {
+    if(!this.state.isFired && this.state.clock > 50){
+      this.state.isFired = true;
       if(this.state.delta < 0){
         this.scrollEvent(true);
       } else {
         this.scrollEvent(false);
       }
+      setTimeout( () => {
+        this.state.isFired = false;
+      }, 800);
+    } else {
+      return;
     }
     // this.state.uintDelta = Math.abs(this.state.delta);
     // console.log(this.state.timeStamp);
