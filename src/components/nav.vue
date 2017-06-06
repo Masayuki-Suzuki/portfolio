@@ -8,13 +8,13 @@
     'gNav--active': isClose,
     'right-to-left': rtl(),
     'left-to-right': ltr()
-  }">
+  }" @wheel="blockScroll($event)">
     <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose">
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1), isHidden: isHidden() }">Masayuki Suzuki Portfolio Web Site</p>
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()">Masayuki Suzuki Portfolio Web Site</p>
     <ul class="gNav__main" v-show="isClose">
       <li class="gNav__list"><a href="">home</a></li>
       <li class="gNav__list"><a href="">about</a></li>
@@ -35,6 +35,9 @@
       }
     },
     methods: {
+      blockScroll(e){
+        e.preventDefault();
+      },
       activePage(num){
         return this.sharedState.location == num ? true : false;
       },
@@ -45,7 +48,7 @@
         return store.state.ltr;
       },
       isHidden(){
-        return this.sharedState.isHidden;
+        return store.state.isHidden;
       }
     }
   }
@@ -214,10 +217,7 @@
         width: $nav-size-sml;
       }
     }
-    &.isHidden{
-      opacity: 0;
-      transition: all 0.3s ease 0s;
-    }
+
   }
   .navIcon{
     cursor: pointer;
@@ -289,6 +289,10 @@
         animation: navIcon-bottom-close .4s;
         animation-fill-mode: forwards;
       }
+    }
+    &.isHidden{
+      opacity: 0;
+      transition: all 0.3s ease 0s;
     }
   }
 

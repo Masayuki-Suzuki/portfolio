@@ -2,8 +2,9 @@ var store = {
   state: {
     //Class Toggle
     isColorClass: true,
-    isShown: false,
+    isHidden: false,
     isFired: false,
+    logoRight: false,
     //Transition Style
     translate: 'translateY(0vh)',
     //Location Control
@@ -33,7 +34,7 @@ var store = {
       tag.style.transition = "";
     },500);
   },
-  scrollEvent(direction){
+  scrollEvent(direction, e){
     switch (this.state.position){
       case 0:
         if(direction){
@@ -45,6 +46,7 @@ var store = {
         }
         break;
       case 1:
+        e.preventDefault();
         if(direction){
           history.replaceState('','','/works');
           this.state.isHidden = true;
@@ -56,7 +58,10 @@ var store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
-          },600);
+          },500);
+          setTimeout( () => {
+            this.state.isHidden = false;
+          },700);
         } else {
           history.replaceState('','','/');
           this.state.position--;
@@ -127,9 +132,9 @@ var store = {
     if(!this.state.isFired && this.state.clock > 50){
       this.state.isFired = true;
       if(this.state.delta < 0){
-        this.scrollEvent(true);
+        this.scrollEvent(true, e);
       } else {
-        this.scrollEvent(false);
+        this.scrollEvent(false, e);
       }
       this.state.isScroll = setTimeout( () => {
         this.state.isFired = false;
