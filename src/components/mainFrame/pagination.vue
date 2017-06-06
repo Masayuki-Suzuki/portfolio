@@ -1,5 +1,5 @@
 <template>
-  <div class="pagination" :class="{'pagination--first': sharedState.isColorClass}">
+  <div class="pagination" :class="{'pagination--first': sharedState.isColorClass, 'pagination--right': sharedState.isRight }">
     <template v-for="num in 5">
       <div class="pagination__list" :class="{'active': sharedState.location == num ? true : false }">0{{ num }}.</div>
     </template>
@@ -35,6 +35,16 @@
     }
     @media (max-height: 700px){
       left: 35px;
+    }
+    &--right{
+      left: auto;
+      right: 70px;
+      @media (max-height: 800px){
+        right: 45px;
+      }
+      @media (max-height: 700px){
+        right: 35px;
+      }
     }
     &__list{
       color: #3c3c3c;

@@ -2,13 +2,13 @@
   <article class="mainFrame" @wheel="scrollController($event)">
     <div class="frame"></div>
     <logo></logo>
-    <pagination></pagination>
-    <div class="content-wrapper" :style="{ transform: calcPosition }">
+    <pagination v-transition></pagination>
+    <div class="content-wrapper" :style="{ transform: calcPosition }" v-transition>
       <first-view></first-view>
-      <about v-show="sharedState.location <= 2"></about>
-      <works1 v-show="sharedState.location === 3"></works1>
-      <blogs v-show="sharedState.location === 4"></blogs>
-      <contact v-show="sharedState.location === 5"></contact>
+      <about v-if="sharedState.location <= 2"></about>
+      <works1 v-if="sharedState.location === 3"></works1>
+      <blogs v-if="sharedState.location === 4"></blogs>
+      <contact v-if="sharedState.location === 5"></contact>
     </div>
   </article>
 </template>

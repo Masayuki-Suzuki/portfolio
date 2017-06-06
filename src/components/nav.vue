@@ -3,18 +3,18 @@
     'gNav__firstView': activePage(1),
     'gNav__about': activePage(2),
     'gNav__works': activePage(3),
-    'activePage4': activePage(4),
-    'activePage5': activePage(5),
+    'gNav__blogs': activePage(4),
+    'gNav__contact': activePage(5),
     'gNav--active': isClose,
     'right-to-left': rtl(),
     'left-to-right': ltr()
-  }" @wheel="blockScroll($event)">
-    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose">
+  }" @wheel="blockScroll($event)" v-transition>
+    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose" v-transition>
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()">Masayuki Suzuki Portfolio Web Site</p>
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()" v-transition>Masayuki Suzuki Portfolio Web Site</p>
     <ul class="gNav__main" v-show="isClose">
       <li class="gNav__list"><a href="">home</a></li>
       <li class="gNav__list"><a href="">about</a></li>
@@ -134,6 +134,7 @@
   .gNav{
     background: #3c3c3c;
     height: 100%;
+    overflow: hidden;
     position: absolute;
     transition: all 0.3s ease 0s;
     z-index: 11;
@@ -199,7 +200,8 @@
         top: 12px;
       }
     }
-    &__about{
+    &__about,
+    &__blogs{
       right: 0;
       top: 0;
       transition: all .3s ease 0s;
@@ -208,7 +210,8 @@
         width: $nav-size-sml;
       }
     }
-    &__works{
+    &__works,
+    &__contact{
       left: 0;
       right: auto;
       top: 0;

@@ -14,7 +14,7 @@
       <li class="using__list">EJS</li>
     </ul>
     <div class="works__view">
-      <a href="">View Site</a>
+      <a href="http://yelpcamp.masa.works" target="_blank">View Site</a>
     </div>
     <div class="scrollNav">
       <a href=""></a>

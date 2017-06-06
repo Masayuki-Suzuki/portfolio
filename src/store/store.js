@@ -4,14 +4,14 @@ var store = {
     isColorClass: true,
     isHidden: false,
     isFired: false,
-    logoRight: false,
+    isRight: false,
     //Transition Style
     translate: 'translateY(0vh)',
     //Location Control
     position: 0,
     location: 1,
     //For Scroll Controller
-    sleep: 1000,
+    sleep: 800,
     save: 0,
     clock: 0,
     isScroll: null,
@@ -46,7 +46,6 @@ var store = {
         }
         break;
       case 1:
-        e.preventDefault();
         if(direction){
           history.replaceState('','','/works');
           this.state.isHidden = true;
@@ -54,14 +53,15 @@ var store = {
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
-          },200);
+            this.state.isRight = true;
+          },310);
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
           },500);
           setTimeout( () => {
             this.state.isHidden = false;
-          },700);
+          },900);
         } else {
           history.replaceState('','','/');
           this.state.position--;
@@ -74,8 +74,18 @@ var store = {
         if(direction){
           history.replaceState('','','/blogs');
           this.state.isHidden = true;
-          this.state.position++;
-          this.state.location++;
+          this.state.ltr = true;
+          setTimeout( () => {
+            this.state.position++;
+            this.state.location++;
+            this.state.isRight = false;
+          },310);
+          setTimeout( () => {
+            this.state.ltr = false;
+          },500);
+          setTimeout( () => {
+            this.state.isHidden = false;
+          },800);
         } else {
           history.replaceState('','','/about');
           this.state.isHidden = true;
@@ -83,31 +93,67 @@ var store = {
           setTimeout( () => {
             this.state.position--;
             this.state.location--;
-          },300);
+            this.state.isRight = false;
+          },310);
+          setTimeout( () => {
+            this.state.ltr = false;
+          },500);
           setTimeout( () => {
             this.state.isHidden = false;
-            this.state.ltr = false;
-          },600);
+          },800);
         }
         break;
       case 3:
         if(direction){
           history.replaceState('','','/contact');
           this.state.isHidden = true;
-          this.state.position++;
-          this.state.location++;
+          this.state.rtl = true;
+          setTimeout( () => {
+            this.state.position++;
+            this.state.location++;
+            this.state.isRight = true;
+          },310);
+          setTimeout( () => {
+            this.state.isHidden = false;
+            this.state.rtl = false;
+          },500);
+          setTimeout( () => {
+            this.state.isHidden = false;
+          },900);
         } else {
-          this.state.position--;
-          this.state.location--;
           history.replaceState('','','/works');
+          this.state.isHidden = true;
+          this.state.rtl = true;
+          setTimeout( () => {
+            this.state.position--;
+            this.state.location--;
+            this.state.isRight = true;
+          },310);
+          setTimeout( () => {
+            this.state.isHidden = false;
+            this.state.rtl = false;
+          },500);
+          setTimeout( () => {
+            this.state.isHidden = false;
+          },900);
         }
         break;
       case 4:
         if(!direction){
           history.replaceState('','','/blogs');
           this.state.isHidden = true;
-          this.state.position--;
-          this.state.location--;
+          this.state.ltr = true;
+          setTimeout( () => {
+            this.state.position--;
+            this.state.location--;
+            this.state.isRight = false;
+          },310);
+          setTimeout( () => {
+            this.state.ltr = false;
+          },500);
+          setTimeout( () => {
+            this.state.isHidden = false;
+          },800);
         }
         break;
       default:
@@ -129,7 +175,7 @@ var store = {
     if (!this.state.delta) {
       return;
     }
-    if(!this.state.isFired && this.state.clock > 50){
+    if(!this.state.isFired && this.state.clock > 100){
       this.state.isFired = true;
       if(this.state.delta < 0){
         this.scrollEvent(true, e);
