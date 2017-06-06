@@ -11,7 +11,7 @@ var store = {
     position: 0,
     location: 1,
     //For Scroll Controller
-    sleep: 1500,
+    sleep: 1000,
     save: 0,
     clock: 0,
     isScroll: null,
