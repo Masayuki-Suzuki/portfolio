@@ -37,10 +37,13 @@
   }
 
   .firstView{
+    background: url(/dist/img/topBg.jpg) no-repeat center center;
+    background-size: cover;
     height:100%;
     position: relative;
     transition: all 0.5s ease 0s;
     width: 100%;
+    z-index: 0;
   }
   .mainlogo{
     align-items: center;

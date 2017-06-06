@@ -46,6 +46,7 @@
     padding: 25px;
     position: relative;
     width: 100%;
+    z-index: 1;
     &:after{
       background: $bg-color;
       content: "";

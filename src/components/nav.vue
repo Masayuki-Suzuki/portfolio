@@ -1,18 +1,20 @@
 <template>
   <nav class="gNav" :class="{
-    'activePage1': activePage(1),
-    'activePage2': activePage(2),
-    'activePage3': activePage(3),
+    'gNav__firstView': activePage(1),
+    'gNav__about': activePage(2),
+    'gNav__works': activePage(3),
     'activePage4': activePage(4),
     'activePage5': activePage(5),
-    'gNav--active': isClose
+    'gNav--active': isClose,
+    'right-to-left': rtl(),
+    'left-to-right': ltr()
   }">
-    <div class="navIcon" :class="{isOpen: isClose}" @click="isClose = !isClose">
+    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose">
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }">Masayuki Suzuki Portfolio Web Site</p>
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1), isHidden: isHidden() }">Masayuki Suzuki Portfolio Web Site</p>
     <ul class="gNav__main" v-show="isClose">
       <li class="gNav__list"><a href="">home</a></li>
       <li class="gNav__list"><a href="">about</a></li>
@@ -35,6 +37,15 @@
     methods: {
       activePage(num){
         return this.sharedState.location == num ? true : false;
+      },
+      rtl(){
+        return this.sharedState.rtl;
+      },
+      ltr(){
+        return store.state.ltr;
+      },
+      isHidden(){
+        return this.sharedState.isHidden;
       }
     }
   }
@@ -121,10 +132,7 @@
     background: #3c3c3c;
     height: 100%;
     position: absolute;
-    right: 0;
-    top: 0;
     transition: all 0.3s ease 0s;
-    width: $nav-size-mid;
     z-index: 11;
     @media (max-height: 700px){
       width: $nav-size-sml;
@@ -155,18 +163,60 @@
       letter-spacing: 0.06em;
       opacity: 0;
       position: absolute;
-      right: -156%;
+      right: -225%;
       top: 50%;
+      text-align: center;
       text-transform: uppercase;
       transition: all .5s ease 0s;
       transform: rotate(90deg);
-      width: 300px;
+      width: 400px;
       z-index: 1;
       @media (max-height: 700px){
         @include rem(12);
         right: -166%;
-        width: 260px;
+        width: 300px;
       }
+    }
+    &__firstView{
+      height: $nav-size-mid;
+      right: 12px;
+      top: 12px;
+      transition: all .5s ease 0s;
+      width: $nav-size-mid;
+      @media (max-height: 800px){
+        right: 8px;
+        top: 8px;
+      }
+      @media (max-height: 700px){
+        height: $nav-size-sml;
+        width: $nav-size-sml;
+      }
+      .isOpen{
+        right: 12px;
+        top: 12px;
+      }
+    }
+    &__about{
+      right: 0;
+      top: 0;
+      transition: all .3s ease 0s;
+      width: $nav-size-mid;
+      @media (max-height: 700px){
+        width: $nav-size-sml;
+      }
+    }
+    &__works{
+      left: 0;
+      right: auto;
+      top: 0;
+      width: $nav-size-mid;
+      @media (max-height: 700px){
+        width: $nav-size-sml;
+      }
+    }
+    &.isHidden{
+      opacity: 0;
+      transition: all 0.3s ease 0s;
     }
   }
   .navIcon{
@@ -241,34 +291,14 @@
       }
     }
   }
-  .activePage1{
-    height: $nav-size-mid;
-    right: 12px;
-    top: 12px;
-    transition: all .5s ease 0s;
-    width: $nav-size-mid;
-    @media (max-height: 800px){
-      right: 8px;
-      top: 8px;
-    }
-    @media (max-height: 700px){
-      height: $nav-size-sml;
-      width: $nav-size-sml;
-    }
-    .isOpen{
-      right: 12px;
-      top: 12px;
-    }
-  }
-  .activePage2{
-    right: 0;
-    top: 0;
-    transition: all .3s ease 0s;
-  }
+
   .ttl__active{
     opacity: 1;
-    right: -150%;
+    right: -219%;
     transition: all .3s ease .5s;
+    @media (max-height: 700px){
+      right: -199%;
+    }
   }
   .gNav--active{
     height: 100%;
@@ -277,5 +307,16 @@
     transition: all .3s ease 0s;
     width: 100%;
   }
-
+  .right-to-left{
+    left: auto;
+    right: 0;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+  }
+  .left-to-right{
+    right: auto;
+    left: 0;
+    transition: all 0.3s ease 0s;
+    width: 100%;
+  }
 </style>

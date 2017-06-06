@@ -5,10 +5,10 @@
     <pagination></pagination>
     <div class="content-wrapper" :style="{ transform: calcPosition }">
       <first-view></first-view>
-      <about v-if="sharedState.location <= 2"></about>
-      <works1 v-if="sharedState.location === 3"></works1>
-      <blogs v-if="sharedState.location === 4"></blogs>
-      <contact v-if="sharedState.location === 5"></contact>
+      <about v-show="sharedState.location <= 2"></about>
+      <works1 v-show="sharedState.location === 3"></works1>
+      <blogs v-show="sharedState.location === 4"></blogs>
+      <contact v-show="sharedState.location === 5"></contact>
     </div>
   </article>
 </template>
@@ -55,6 +55,9 @@
 </script>
 
 <style lang="scss">
+  [v-cloak] {
+    display:none
+  }
   .frame{
     border: solid 25px #fff;
     height:100%;
@@ -70,8 +73,6 @@
   }
 
   .mainFrame{
-    background: url(/dist/img/topBg.jpg) no-repeat center center;
-    background-size: cover;
     height:100%;
     overflow: hidden;
     width: 100%;
