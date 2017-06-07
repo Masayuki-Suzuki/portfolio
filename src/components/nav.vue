@@ -155,6 +155,7 @@
     }
     &__list{
       color: #fff;
+      cursor: pointer;
       @include rem(24);
       letter-spacing: 0.06em;
       margin: 0 0 30px;

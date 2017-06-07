@@ -11,7 +11,7 @@ let store = {
     position: 0,
     location: 1,
     //For Scroll Controller
-    sleep: 2000,
+    sleep: 1500,
     save: 0,
     clock: 0,
     delta: 0,

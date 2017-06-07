@@ -1,8 +1,18 @@
 <template>
   <div class="pagination" :class="{'pagination--first': sharedState.isColorClass, 'pagination--right': sharedState.isRight }">
-    <template v-for="num in 5">
-      <div class="pagination__list" :class="{'active': sharedState.location == num ? true : false }" @click="paginationClick(num)">0{{ num }}.</div>
-    </template>
+      <div class="pagination__list" :class="{'active': activeControl(1) }" @click="paginationClick(1,$event)">01.</div>
+      <div class="pagination__list" :class="{'active': activeControl(2) }" @click="paginationClick(2,$event)">02.</div>
+      <div class="pagination__list" :class="{'active': activeControl(3) }" @click="paginationClick(3,$event)">03.</div>
+      <div class="pagination__list" :style="{'display' : activeControl(3) ? 'block' : 'none'}">
+        <ul class="pagination__works">
+          <li class="works__list active"></li>
+          <li class="works__list"></li>
+          <li class="works__list"></li>
+          <li class="works__list"></li>
+        </ul>
+      </div>
+      <div class="pagination__list" :class="{'active': activeControl(4) }" @click="paginationClick(4)">04.</div>
+      <div class="pagination__list" :class="{'active': activeControl(5) }" @click="paginationClick(5)">05.</div>
   </div>
 </template>
 
@@ -15,8 +25,12 @@
       }
     },
     methods: {
-      paginationClick(num){
+      paginationClick(num, e){
+        e.preventDefault();
         store.paginationLinkAction(num);
+      },
+      activeControl(num){
+        return this.sharedState.location == num ? true : false;
       }
     }
   }
@@ -73,11 +87,27 @@
         color:#fff;
       }
     }
+    &__works{
+      margin: -20px 0px 0 13px;
+      width: 15px;
+    }
   }
   .active{
     font-weight: 700;
     &:after{
       opacity: 1;
+    }
+  }
+  .works{
+    &__list{
+      background: #fff;
+      border-radius: 50%;
+      height: 12px;
+      margin: 0 0 15px;
+      width: 12px;
+      &.active{
+        background: #3c3c3c;
+      }
     }
   }
 </style>
