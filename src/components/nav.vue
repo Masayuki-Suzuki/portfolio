@@ -16,11 +16,11 @@
     </div>
     <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()">Masayuki Suzuki Portfolio Web Site</p>
     <ul class="gNav__main" v-show="isClose">
-      <li class="gNav__list"><a href="">home</a></li>
-      <li class="gNav__list"><a href="">about</a></li>
-      <li class="gNav__list"><a href="">works</a></li>
-      <li class="gNav__list"><a href="">blog</a></li>
-      <li class="gNav__list"><a href="">contact</a></li>
+      <li class="gNav__list" @click="paginationClick(1)">home</li>
+      <li class="gNav__list" @click="paginationClick(2)">about</li>
+      <li class="gNav__list" @click="paginationClick(3)">works</li>
+      <li class="gNav__list" @click="paginationClick(4)">blog</li>
+      <li class="gNav__list" @click="paginationClick(5)">contact</li>
     </ul>
   </nav>
 </template>
@@ -49,6 +49,10 @@
       },
       isHidden(){
         return store.state.isHidden;
+      },
+      paginationClick(num){
+        store.paginationLinkAction(num);
+        this.isClose = !this.isClose;
       }
     }
   }
@@ -156,10 +160,6 @@
       margin: 0 0 30px;
       position: relative;
       text-transform: uppercase;
-      a{
-        color: #fff;
-        @include pseudo(#fff);
-      }
     }
     &__ttl{
       color: #fff;

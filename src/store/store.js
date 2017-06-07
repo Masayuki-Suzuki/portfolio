@@ -1,4 +1,4 @@
-var store = {
+let store = {
   state: {
     //Class Toggle
     isColorClass: true,
