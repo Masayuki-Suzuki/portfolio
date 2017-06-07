@@ -8,13 +8,13 @@
     'gNav--active': isClose,
     'right-to-left': rtl(),
     'left-to-right': ltr()
-  }" @wheel="blockScroll($event)" v-transition>
-    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose" v-transition>
+  }" @wheel="blockScroll($event)">
+    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose">
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()" v-transition>Masayuki Suzuki Portfolio Web Site</p>
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()">Masayuki Suzuki Portfolio Web Site</p>
     <ul class="gNav__main" v-show="isClose">
       <li class="gNav__list"><a href="">home</a></li>
       <li class="gNav__list"><a href="">about</a></li>
@@ -315,14 +315,16 @@
     width: 100%;
   }
   .right-to-left{
+    height: 100%;
     left: auto;
     right: 0;
     transition: all 0.3s ease 0s;
     width: 100%;
   }
   .left-to-right{
-    right: auto;
+    height: 100%;
     left: 0;
+    right: auto;
     transition: all 0.3s ease 0s;
     width: 100%;
   }

@@ -1,7 +1,7 @@
 <template>
   <div class="pagination" :class="{'pagination--first': sharedState.isColorClass, 'pagination--right': sharedState.isRight }">
     <template v-for="num in 5">
-      <div class="pagination__list" :class="{'active': sharedState.location == num ? true : false }">0{{ num }}.</div>
+      <div class="pagination__list" :class="{'active': sharedState.location == num ? true : false }" @click="paginationClick(num)">0{{ num }}.</div>
     </template>
   </div>
 </template>
@@ -15,8 +15,8 @@
       }
     },
     methods: {
-      test(page){
-        console.log(page)
+      paginationClick(num){
+        store.paginationLinkAction(num);
       }
     }
   }

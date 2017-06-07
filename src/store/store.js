@@ -11,9 +11,10 @@ var store = {
     position: 0,
     location: 1,
     //For Scroll Controller
-    sleep: 800,
+    sleep: 2000,
     save: 0,
     clock: 0,
+    delta: 0,
     isScroll: null,
     //Animation Toggle
     rtl: false,
@@ -34,7 +35,7 @@ var store = {
       tag.style.transition = "";
     },500);
   },
-  scrollEvent(direction, e){
+  scrollEvent(direction){
     switch (this.state.position){
       case 0:
         if(direction){
@@ -58,10 +59,10 @@ var store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
-          },500);
+          },700);
           setTimeout( () => {
             this.state.isHidden = false;
-          },900);
+          },1000);
         } else {
           history.replaceState('','','/');
           this.state.position--;
@@ -82,10 +83,10 @@ var store = {
           },310);
           setTimeout( () => {
             this.state.ltr = false;
-          },500);
+          },700);
           setTimeout( () => {
             this.state.isHidden = false;
-          },800);
+          },1000);
         } else {
           history.replaceState('','','/about');
           this.state.isHidden = true;
@@ -97,10 +98,10 @@ var store = {
           },310);
           setTimeout( () => {
             this.state.ltr = false;
-          },500);
+          },700);
           setTimeout( () => {
             this.state.isHidden = false;
-          },800);
+          },1000);
         }
         break;
       case 3:
@@ -116,10 +117,10 @@ var store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
-          },500);
+          },700);
           setTimeout( () => {
             this.state.isHidden = false;
-          },900);
+          },1000);
         } else {
           history.replaceState('','','/works');
           this.state.isHidden = true;
@@ -132,10 +133,10 @@ var store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
-          },500);
+          },700);
           setTimeout( () => {
             this.state.isHidden = false;
-          },900);
+          },1000);
         }
         break;
       case 4:
@@ -150,10 +151,10 @@ var store = {
           },310);
           setTimeout( () => {
             this.state.ltr = false;
-          },500);
+          },700);
           setTimeout( () => {
             this.state.isHidden = false;
-          },800);
+          },1000);
         }
         break;
       default:
@@ -164,23 +165,16 @@ var store = {
     e.preventDefault();
     this.state.clock = e.timeStamp - this.state.save;
     this.state.save = e.timeStamp;
-    // if(this.state.clock > 50){
-    //   console.log("time stamp: " + e.timeStamp);
-    //   console.log("clock: " + this.state.clock);
-    //   console.log("save: " + this.state.save);
-    //   console.log("isFired: " + this.state.isFired);
-    //   console.log("isScroll: " + this.state.isScroll);
-    // }
     this.state.delta = e.deltaY ? -(e.deltaY) : 0;
     if (!this.state.delta) {
       return;
     }
-    if(!this.state.isFired && this.state.clock > 100){
+    if(!this.state.isFired && this.state.clock > 50){
       this.state.isFired = true;
       if(this.state.delta < 0){
-        this.scrollEvent(true, e);
+        this.scrollEvent(true);
       } else {
-        this.scrollEvent(false, e);
+        this.scrollEvent(false);
       }
       this.state.isScroll = setTimeout( () => {
         this.state.isFired = false;
@@ -188,6 +182,79 @@ var store = {
     } else {
       return;
     }
+  },
+  paginationLinkAction(num){
+    switch (num) {
+      case 1:
+        if(this.state.location !== 1){
+          if(this.state.location === 2){
+            this.scrollEvent(false);
+          } else {
+            history.replaceState('','','/');
+            this.setLocation(0, false);
+          }
+        }
+        break;
+      case 2:
+        if(this.state.location !== 2){
+          if(this.state.location === 1){
+            this.scrollEvent(true);
+          } else {
+            history.replaceState('','','/about');
+            this.setLocation(1, false);
+          }
+        }
+        break;
+      case 3:
+        if(this.state.location !== 3){
+          history.replaceState('','','/works');
+          this.setLocation(2 , true);
+        }
+        break;
+      case 4:
+        if(this.state.location !== 4){
+          history.replaceState('','','/blogs');
+          this.setLocation(3 , false);
+        }
+        break;
+      case 5:
+        if(this.state.location !== 5){
+          history.replaceState('','','/contact');
+          this.setLocation(4 , true);
+        }
+        break;
+      default:
+        break;
+    }
+  },
+  setLocation(pos,right){
+    this.state.isHidden = true;
+    if(this.state.isRight){
+      this.state.ltr = true;
+    } else {
+      this.state.rtl = true;
+    }
+    setTimeout( () => {
+      this.state.position = pos;
+      this.state.location = pos + 1;
+      if(pos === 0) {
+        this.state.translate = 'translateY(0%)';
+      } else{
+        this.state.translate = 'translateY(-100%)';
+      }
+      this.setIsColor();
+    },310);
+    setTimeout( () => {
+      if(this.state.isRight){
+        this.state.ltr = false;
+      } else {
+        this.state.rtl = false;
+      }
+      this.state.isRight = right;
+    },700);
+    setTimeout( () => {
+      this.state.isHidden = false;
+    },1000);
   }
 }
 

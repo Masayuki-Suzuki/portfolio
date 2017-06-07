@@ -2,8 +2,8 @@
   <article class="mainFrame" @wheel="scrollController($event)">
     <div class="frame"></div>
     <logo></logo>
-    <pagination v-transition></pagination>
-    <div class="content-wrapper" :style="{ transform: calcPosition }" v-transition>
+    <pagination></pagination>
+    <div class="content-wrapper" :style="{ transform: calcPosition() }">
       <first-view></first-view>
       <about v-if="sharedState.location <= 2"></about>
       <works1 v-if="sharedState.location === 3"></works1>
@@ -32,13 +32,14 @@
       }
     },
     computed: {
-      calcPosition: function(){
-        return this.sharedState.translate;
-      }
+
     },
     methods: {
-      scrollController: function(e){
+      scrollController(e){
         store.scrollMain(e);
+      },
+      calcPosition(){
+        return this.sharedState.translate;
       }
     }
   }
