@@ -90,7 +90,7 @@
         margin: 2% auto;
       }
       @media (max-height: 700px){
-        width: 70%;
+        width: 85%;
       }
       @media (max-height: 650px){
         margin: 1% auto;

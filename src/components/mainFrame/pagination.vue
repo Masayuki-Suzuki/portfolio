@@ -50,9 +50,9 @@
   @import "../../../assets/sass/foundation/mixins/mixin";
   .pagination{
     left: 60px;
-    margin: -120px 0 0;
     position: absolute;
     top: 50%;
+    transform: translateY(-45%);
     z-index: 10;
     @media (max-height: 800px){
       left: 45px;
@@ -98,7 +98,7 @@
       }
     }
     &__works{
-      margin: -20px 0px 0 13px;
+      margin: -15px 0px -15px 13px;
       width: 15px;
     }
   }

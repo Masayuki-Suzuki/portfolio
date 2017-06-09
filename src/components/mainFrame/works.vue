@@ -50,7 +50,7 @@
 <style lang="scss">
   @import "../../../assets/sass/foundation/mixins/mixin";
   @import "../../../assets/sass/foundation/variables/variables";
-  $locationX: 46.5vw;
+  $locationX: 45vw;
   .works1 {
     background: url(/dist/img/camping.jpg) no-repeat center center;
   }
@@ -97,7 +97,6 @@
       font-weight: 700;
       line-height: 1;
       margin: 5px 0 12px;
-      padding: 0 0 0 $locationX;
       position: relative;
       text-transform: uppercase;
       z-index: 2;
@@ -114,14 +113,12 @@
       font-weight: 500;
       letter-spacing: 0.08em;
       line-height: 1.5;
-      margin: 0 0 0 $locationX;
       max-width: 600px;
       position: relative;
       z-index: 2;
       width: 100%;
     }
     &__view{
-      padding: 0 0 0 $locationX;
       position: relative;
       a{
         border: solid 1px $main-color;
@@ -171,18 +168,6 @@
         transform: matrix(1,0,-0.8,1,0,0) translateX(-45%);
       }
       .works{
-        &__caption{
-          padding: 0 0 0 10vw;
-        }
-        &__hd{
-          padding: 0 0 0 10vw;
-        }
-        &__lead{
-          margin: 0 0 0 10vw;
-        }
-        &__view{
-          padding: 0 0 0 10vw;
-        }
       }
     }
     &--right{
@@ -190,23 +175,12 @@
         transform: matrix(1,0,-0.8,1,0,0) translateX(42%);
       }
       .works{
-        &__caption{
-          padding: 0 0 0 $locationX;
-        }
-        &__hd{
-          padding: 0 0 0 $locationX;
-        }
-        &__lead{
-          margin: 0 0 0 $locationX;
-        }
-        &__view{
-          padding: 0 0 0 $locationX;
-        }
       }
     }
     &__details{
       &--right{
         margin: 50vh 0 0;
+        padding: 0 0 0 45vw;
         @media (max-height: 800px){
           margin: 47vh 0 0;
         }
@@ -219,6 +193,7 @@
       }
       &--left{
         margin: 15vh 0 0;
+        padding: 0 0 0 10vw;
       }
     }
   }
@@ -242,17 +217,17 @@
   .works{
     &--right{
       .using{
-        margin: 20px 0 0 $locationX;
+        margin: 20px 0 0;
         @media (max-height: 620px){
-          margin: 10px 0 0 $locationX;
+          margin: 10px 0 0;
         }
       }
     }
     &--left{
       .using{
-        margin: 20px 0 0 10vw;
+        margin: 20px 0 0;
         @media (max-height: 620px){
-          margin: 10px 0 0 10vw;
+          margin: 10px 0 0;
         }
       }
     }
