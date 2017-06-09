@@ -12,7 +12,6 @@ app.use(express.static(path.join(__dirname + '/public')));
 
 app.set('view engine','ejs');
 app.use('/', indexRoutes);
-app.use('/about', indexRoutes);
 
 app.listen(PORT,IP,() => {
   console.log('SERVER HAS STARTED!!');
