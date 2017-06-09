@@ -1,21 +1,16 @@
 <template>
-  <section class="works works1">
-    <p class="works__caption">design / coding</p>
-    <h1 class="works__hd">YelpCamp</h1>
-    <p class="works__lead">YelpCamp is a campgrounds information sharing site which made by Node.js, Express and MongoDB. I followed The Web Developer Bootcamp course by Colt Steele on Udemy.</p>
-    <ul class="using">
-      <li class="using__list">HTML5</li>
-      <li class="using__list">CSS3</li>
-      <li class="using__list">Javascript</li>
-      <li class="using__list">Node.js</li>
-      <li class="using__list">Express</li>
-      <li class="using__list">MongoDB</li>
-      <li class="using__list">Bootstrap</li>
-      <li class="using__list">EJS</li>
-    </ul>
-    <div class="works__view">
-      <a href="http://yelpcamp.masa.works" target="_blank">View Site</a>
-    </div>
+  <section class="works" :class="{
+    'works1': changeWorks(3),
+    'works2': changeWorks(4),
+    'works3': changeWorks(5),
+    'works4': changeWorks(6),
+    'works--left': worksSide(),
+    'works--right': !worksSide()
+  }">
+    <yelp-camp v-if="changeWorks(3)"></yelp-camp>
+    <portfolio v-if="changeWorks(4)"></portfolio>
+    <ballet v-if="changeWorks(5)"></ballet>
+    <marketas v-if="changeWorks(6)"></marketas>
     <div class="scrollNav">
       <a href=""></a>
     </div>
@@ -24,13 +19,32 @@
 
 <script>
   import Vue from 'vue';
+  import store from '../../store/store';
+  import yelpCamp from './yelpCamp.vue';
+  import portfolio from './portfolio.vue';
+  import ballet from './ballet.vue';
+  import marketas from './marketas.vue';
 
   export default {
     data: function () {
       return {
       }
+    },
+    methods: {
+      changeWorks(num){
+        return store.state.location === num ? true : false;
+      },
+      worksSide(){
+        let loc = store.state.location;
+        return loc % 2 == 0 ? true : false;
+      }
     }
   }
+
+  Vue.component('yelp-camp',yelpCamp);
+  Vue.component('portfolio', portfolio);
+  Vue.component('ballet', ballet);
+  Vue.component('marketas', marketas);
 </script>
 
 <style lang="scss">
@@ -39,6 +53,15 @@
   $locationX: 46.5vw;
   .works1 {
     background: url(/dist/img/camping.jpg) no-repeat center center;
+  }
+  .works2 {
+    background: url(/dist/img/topBg.jpg) no-repeat 25vw top;
+  }
+  .works3 {
+    background: url(/dist/img/ballet_bg.jpg) no-repeat center center;
+  }
+  .works4 {
+    background: url(/dist/img/marketas.jpg) no-repeat center center;
   }
   .works{
     background-size: cover;
@@ -55,27 +78,17 @@
       left: 0 ;
       position: absolute;
       top: 0;
-      transform: matrix(1,0,-0.8,1,0,0) translateX(42%);
       width: 100vw;
       z-index: 0;
     }
     &__caption{
       color: $main-text-color;
       @include rem(20);
-      margin: 50vh 0 0;
-      padding: 0 0 0 $locationX;
       position: relative;
       text-transform: uppercase;
       z-index: 2;
-      @media (max-height: 800px){
-        margin: 47vh 0 0;
-      }
-      @media (max-height: 700px){
-        margin: 44vh 0 0;
-      }
       @media (max-height: 620px){
         @include rem(16);
-        margin: 40vh 0 0;
       }
     }
     &__hd{
@@ -117,7 +130,7 @@
         display: block;
         @include rem(14);
         line-height: 1;
-        margin: 30px 0 0;
+        margin: 20px 0 0;
         overflow: hidden;
         padding: 12px 0 11px;
         position: relative;
@@ -153,25 +166,95 @@
         }
       }
     }
+    &--left{
+      &:after{
+        transform: matrix(1,0,-0.8,1,0,0) translateX(-45%);
+      }
+      .works{
+        &__caption{
+          padding: 0 0 0 10vw;
+        }
+        &__hd{
+          padding: 0 0 0 10vw;
+        }
+        &__lead{
+          margin: 0 0 0 10vw;
+        }
+        &__view{
+          padding: 0 0 0 10vw;
+        }
+      }
+    }
+    &--right{
+      &:after{
+        transform: matrix(1,0,-0.8,1,0,0) translateX(42%);
+      }
+      .works{
+        &__caption{
+          padding: 0 0 0 $locationX;
+        }
+        &__hd{
+          padding: 0 0 0 $locationX;
+        }
+        &__lead{
+          margin: 0 0 0 $locationX;
+        }
+        &__view{
+          padding: 0 0 0 $locationX;
+        }
+      }
+    }
+    &__details{
+      &--right{
+        margin: 50vh 0 0;
+        @media (max-height: 800px){
+          margin: 47vh 0 0;
+        }
+        @media (max-height: 700px){
+          margin: 44vh 0 0;
+        }
+        @media (max-height: 620px){
+          margin: 40vh 0 0;
+        }
+      }
+      &--left{
+        margin: 15vh 0 0;
+      }
+    }
   }
   .using{
     display: flex;
-    margin: 20px 0 0 $locationX;
+    flex-wrap: wrap;
     max-width: 650px;
     position: relative;
     width: 100%;
     z-index: 2;
-    @media (max-height: 620px){
-      margin: 10px 0 0 $locationX;
-    }
     &__list{
       background: $main-color;
       color: #fff;
       @include rem(12);
       font-weight: bold;
       letter-spacing: 0.04em;
-      margin: 0 10px 0 0;
+      margin: 0 10px 10px 0;
       padding: 7px 10px;
+    }
+  }
+  .works{
+    &--right{
+      .using{
+        margin: 20px 0 0 $locationX;
+        @media (max-height: 620px){
+          margin: 10px 0 0 $locationX;
+        }
+      }
+    }
+    &--left{
+      .using{
+        margin: 20px 0 0 10vw;
+        @media (max-height: 620px){
+          margin: 10px 0 0 10vw;
+        }
+      }
     }
   }
 </style>

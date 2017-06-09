@@ -6,12 +6,13 @@
     <div class="content-wrapper" :style="{ transform: calcPosition() }">
       <first-view></first-view>
       <about v-if="sharedState.location <= 2"></about>
-      <works1 v-if="sharedState.location === 3"></works1>
-      <blogs v-if="sharedState.location === 4"></blogs>
-      <contact v-if="sharedState.location === 5"></contact>
+      <works v-if="sharedState.location >= 3 && sharedState.location <= 6"></works>
+      <blogs v-if="sharedState.location === 7"></blogs>
+      <contact v-if="sharedState.location === 8"></contact>
     </div>
   </article>
 </template>
+
 
 <script>
   import Vue from 'vue';
@@ -20,8 +21,8 @@
   import pagination from './mainFrame/pagination.vue';
   import firstView from './mainFrame/firstView.vue';
   import about from './mainFrame/about.vue';
-  import works1 from './mainFrame/works-yelpcamp.vue';
-  import works3 from './mainFrame/works-ballet.vue';
+  import works from './mainFrame/works.vue';
+  import works3 from './mainFrame/ballet.vue';
   import blogs from './mainFrame/blog.vue';
   import contact from './mainFrame/contact.vue';
 
@@ -49,7 +50,7 @@
   Vue.component('pagination', pagination);
   Vue.component('first-view', firstView);
   Vue.component('about', about);
-  Vue.component('works1', works1);
+  Vue.component('works', works);
   Vue.component('blogs', blogs);
   Vue.component('contact',contact)
 

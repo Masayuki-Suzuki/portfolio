@@ -3,8 +3,8 @@
     'gNav__firstView': activePage(1),
     'gNav__about': activePage(2),
     'gNav__works': activePage(3),
-    'gNav__blogs': activePage(4),
-    'gNav__contact': activePage(5),
+    'gNav__blogs': activePage(7),
+    'gNav__contact': activePage(8),
     'gNav--active': isClose,
     'right-to-left': rtl(),
     'left-to-right': ltr()
@@ -19,8 +19,8 @@
       <li class="gNav__list" @click="paginationClick(1)">home</li>
       <li class="gNav__list" @click="paginationClick(2)">about</li>
       <li class="gNav__list" @click="paginationClick(3)">works</li>
-      <li class="gNav__list" @click="paginationClick(4)">blog</li>
-      <li class="gNav__list" @click="paginationClick(5)">contact</li>
+      <li class="gNav__list" @click="paginationClick(7)">blog</li>
+      <li class="gNav__list" @click="paginationClick(8)">contact</li>
     </ul>
   </nav>
 </template>
@@ -39,6 +39,13 @@
         e.preventDefault();
       },
       activePage(num){
+        if(num >= 3 && num <= 6){
+          if(this.sharedState.location >= 3 && this.sharedState.location <= 6){
+            return true;
+          } else {
+            return false;
+          }
+        }
         return this.sharedState.location == num ? true : false;
       },
       rtl(){
@@ -51,6 +58,7 @@
         return store.state.isHidden;
       },
       paginationClick(num){
+        console.log('pagination link action');
         store.paginationLinkAction(num);
         this.isClose = !this.isClose;
       }
@@ -186,7 +194,7 @@
       height: $nav-size-mid;
       right: 12px;
       top: 12px;
-      transition: all .5s ease 0s;
+      transition: all .3s ease 0s;
       width: $nav-size-mid;
       @media (max-height: 800px){
         right: 8px;

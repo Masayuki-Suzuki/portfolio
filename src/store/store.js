@@ -73,20 +73,11 @@ let store = {
         break;
       case 2:
         if(direction){
-          history.replaceState('','','/blogs');
-          this.state.isHidden = true;
-          this.state.ltr = true;
+          this.state.isColorClass = true;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
-            this.state.isRight = false;
           },310);
-          setTimeout( () => {
-            this.state.ltr = false;
-          },700);
-          setTimeout( () => {
-            this.state.isHidden = false;
-          },1000);
         } else {
           history.replaceState('','','/about');
           this.state.isHidden = true;
@@ -105,6 +96,61 @@ let store = {
         }
         break;
       case 3:
+        if(direction){
+          this.state.isColorClass = false;
+          setTimeout( () => {
+            this.state.position++;
+            this.state.location++;
+          },310);
+        } else {
+          this.state.isColorClass = false;
+          setTimeout( () => {
+            this.state.position--;
+            this.state.location--;
+          },310);
+        }
+        break;
+      case 4:
+        if(direction){
+          this.state.isColorClass = true;
+          setTimeout( () => {
+            this.state.position++;
+            this.state.location++;
+          },310);
+        } else {
+          this.state.isColorClass = true;
+          setTimeout( () => {
+            this.state.position--;
+            this.state.location--;
+          },310);
+        }
+        break;
+      case 5:
+        if(direction){
+          this.state.isColorClass = false;
+          history.replaceState('','','/blogs');
+          this.state.isHidden = true;
+          this.state.ltr = true;
+          setTimeout( () => {
+            this.state.position++;
+            this.state.location++;
+            this.state.isRight = false;
+          },310);
+          setTimeout( () => {
+            this.state.ltr = false;
+          },700);
+          setTimeout( () => {
+            this.state.isHidden = false;
+          },1000);
+        } else {
+          this.state.isColorClass = false;
+          setTimeout( () => {
+            this.state.position--;
+            this.state.location--;
+          },310);
+        }
+        break;
+      case 6:
         if(direction){
           history.replaceState('','','/contact');
           this.state.isHidden = true;
@@ -139,7 +185,7 @@ let store = {
           },1000);
         }
         break;
-      case 4:
+      case 7:
         if(!direction){
           history.replaceState('','','/blogs');
           this.state.isHidden = true;
@@ -211,16 +257,16 @@ let store = {
           this.setLocation(2 , true);
         }
         break;
-      case 4:
-        if(this.state.location !== 4){
+      case 7:
+        if(this.state.location !== 7){
           history.replaceState('','','/blogs');
-          this.setLocation(3 , false);
+          this.setLocation(6 , false);
         }
         break;
-      case 5:
-        if(this.state.location !== 5){
+      case 8:
+        if(this.state.location !== 8){
           history.replaceState('','','/contact');
-          this.setLocation(4 , true);
+          this.setLocation(7 , true);
         }
         break;
       default:

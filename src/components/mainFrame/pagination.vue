@@ -5,14 +5,14 @@
       <div class="pagination__list" :class="{'active': activeControl(3) }" @click="paginationClick(3,$event)">03.</div>
       <div class="pagination__list" :style="{'display' : activeControl(3) ? 'block' : 'none'}">
         <ul class="pagination__works">
-          <li class="works__list active"></li>
-          <li class="works__list"></li>
-          <li class="works__list"></li>
-          <li class="works__list"></li>
+          <li class="works__list" :class="{'active': worksActiveControl(4)}"></li>
+          <li class="works__list" :class="{'active': worksActiveControl(5)}"></li>
+          <li class="works__list" :class="{'active': worksActiveControl(6)}"></li>
+          <li class="works__list" :class="{'active': worksActiveControl(7)}"></li>
         </ul>
       </div>
-      <div class="pagination__list" :class="{'active': activeControl(4) }" @click="paginationClick(4)">04.</div>
-      <div class="pagination__list" :class="{'active': activeControl(5) }" @click="paginationClick(5)">05.</div>
+      <div class="pagination__list" :class="{'active': activeControl(7) }" @click="paginationClick(7,$event)">04.</div>
+      <div class="pagination__list" :class="{'active': activeControl(8) }" @click="paginationClick(8,$event)">05.</div>
   </div>
 </template>
 
@@ -30,7 +30,17 @@
         store.paginationLinkAction(num);
       },
       activeControl(num){
+        if(num === 3){
+          if(this.sharedState.location >= 3 && this.sharedState.location <= 6){
+            return true;
+          } else {
+            return false;
+          }
+        }
         return this.sharedState.location == num ? true : false;
+      },
+      worksActiveControl(num){
+        return this.sharedState.location + 1 == num ? true : false;
       }
     }
   }
