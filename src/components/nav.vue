@@ -229,7 +229,20 @@
         width: $nav-size-sml;
       }
     }
-
+    &.right-to-left{
+      height: 100%;
+      left: auto;
+      right: 0;
+      transition: all 0.3s ease 0s;
+      width: 100%;
+    }
+    &.left-to-right{
+      height: 100%;
+      left: 0;
+      right: auto;
+      transition: all 0.3s ease 0s;
+      width: 100%;
+    }
   }
   .navIcon{
     cursor: pointer;
@@ -323,18 +336,5 @@
     transition: all .3s ease 0s;
     width: 100%;
   }
-  .right-to-left{
-    height: 100%;
-    left: auto;
-    right: 0;
-    transition: all 0.3s ease 0s;
-    width: 100%;
-  }
-  .left-to-right{
-    height: 100%;
-    left: 0;
-    right: auto;
-    transition: all 0.3s ease 0s;
-    width: 100%;
-  }
+
 </style>

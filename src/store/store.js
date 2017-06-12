@@ -18,7 +18,9 @@ let store = {
     isScroll: null,
     //Animation Toggle
     rtl: false,
-    ltr: false
+    ltr: false,
+    worksRtl: false,
+    worksLtr: false
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -74,10 +76,15 @@ let store = {
       case 2:
         if(direction){
           this.state.isColorClass = true;
+          //this.state.worksRtl = true;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
+            //this.state.worksRtl = false;
           },310);
+          // setTimeout( () => {
+          //   this.state.worksRtl = false;
+          // },1000);
         } else {
           history.replaceState('','','/about');
           this.state.isHidden = true;
@@ -98,10 +105,14 @@ let store = {
       case 3:
         if(direction){
           this.state.isColorClass = false;
+          //this.state.worksLtr = true;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
           },310);
+          // setTimeout( () => {
+          //   this.state.worksLtr = false;
+          // },500);
         } else {
           this.state.isColorClass = false;
           setTimeout( () => {

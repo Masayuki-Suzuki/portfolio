@@ -5,7 +5,9 @@
     'works3': changeWorks(5),
     'works4': changeWorks(6),
     'works--left': worksSide(),
-    'works--right': !worksSide()
+    'works--right': !worksSide(),
+    'right-to-left': rtl(),
+    'left-to-right': ltr()
   }">
     <yelp-camp v-if="changeWorks(3)"></yelp-camp>
     <portfolio v-if="changeWorks(4)"></portfolio>
@@ -37,6 +39,13 @@
       worksSide(){
         let loc = store.state.location;
         return loc % 2 == 0 ? true : false;
+      },
+      rtl(){
+        console.log(store.state.worksRtl);
+        return store.state.worksRtl;
+      },
+      ltr(){
+        return store.state.worksLtr;
       }
     }
   }
@@ -61,13 +70,14 @@
     background: url(/dist/img/ballet_bg.jpg) no-repeat center center;
   }
   .works4 {
-    background: url(/dist/img/marketas.jpg) no-repeat center center;
+    background: url(/dist/img/marketas.jpg) no-repeat 15vw center;
   }
   .works{
     background-size: cover;
     height:100%;
     padding: 25px;
     position: relative;
+    transition: all 0.3s ease 0s;
     width: 100%;
     z-index: 1;
     &:after{
@@ -78,6 +88,7 @@
       left: 0 ;
       position: absolute;
       top: 0;
+      transition: all 0.3s ease 0s;
       width: 100vw;
       z-index: 0;
     }
@@ -181,6 +192,7 @@
       &--right{
         margin: 50vh 0 0;
         padding: 0 0 0 45vw;
+        transition: all 0.3s ease 0s;
         @media (max-height: 800px){
           margin: 47vh 0 0;
         }
@@ -194,6 +206,24 @@
       &--left{
         margin: 15vh 0 0;
         padding: 0 0 0 10vw;
+        transition: all 0.3s ease 0s;
+      }
+    }
+    &.right-to-left{
+      &:after{
+        transform: matrix(1,0,-0.8,1,0,0) translateX(-30%);
+        transition: all 0.3s ease 0s;
+        width: 200vw;
+      }
+      .works__details{
+        &--right{
+          transition: all 0.3s ease 0s;
+          opacity: 0;
+        }
+        &--left{
+          transition: all 0.3s ease 0s;
+          opacity: 0;
+        }
       }
     }
   }
