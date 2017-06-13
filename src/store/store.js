@@ -19,8 +19,8 @@ let store = {
     //Animation Toggle
     rtl: false,
     ltr: false,
-    worksRtl: false,
-    worksLtr: false
+    worksA: true,
+    worksB: false
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -53,6 +53,7 @@ let store = {
           history.replaceState('','','/works');
           this.state.isHidden = true;
           this.state.rtl = true;
+          this.state.worksA = true;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
@@ -76,12 +77,15 @@ let store = {
       case 2:
         if(direction){
           this.state.isColorClass = true;
-          //this.state.worksRtl = true;
+          this.state.worksA = false;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
             //this.state.worksRtl = false;
           },310);
+          setTimeout(() => {
+            this.state.worksB = true;
+          }, 10000);
           // setTimeout( () => {
           //   this.state.worksRtl = false;
           // },1000);
@@ -115,10 +119,14 @@ let store = {
           // },500);
         } else {
           this.state.isColorClass = false;
+          this.state.worksB = false;
           setTimeout( () => {
             this.state.position--;
             this.state.location--;
           },310);
+          setTimeout(() => {
+            this.state.worksA = true;
+          }, 10000);
         }
         break;
       case 4:

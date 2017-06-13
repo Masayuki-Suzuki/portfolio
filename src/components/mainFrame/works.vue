@@ -5,14 +5,12 @@
     'works3': changeWorks(5),
     'works4': changeWorks(6),
     'works--left': worksSide(),
-    'works--right': !worksSide(),
-    'right-to-left': rtl(),
-    'left-to-right': ltr()
+    'works--right': !worksSide()
   }">
-    <yelp-camp v-if="changeWorks(3)"></yelp-camp>
-    <portfolio v-if="changeWorks(4)"></portfolio>
-    <ballet v-if="changeWorks(5)"></ballet>
-    <marketas v-if="changeWorks(6)"></marketas>
+    <yelp-camp v-if="changeWorks(3)" :class="{ 'active-works': changeWorksA() }"></yelp-camp>
+    <portfolio v-if="changeWorks(4)" :class="{ 'active-works': changeWorksB() }"></portfolio>
+    <ballet v-if="changeWorks(5)" :class="{ 'active-works': changeWorksA() }"></ballet>
+    <marketas v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></marketas>
     <div class="scrollNav">
       <a href=""></a>
     </div>
@@ -36,16 +34,15 @@
       changeWorks(num){
         return store.state.location === num ? true : false;
       },
+      changeWorksA(){
+        return store.state.worksA;
+      },
+      changeWorksB(){
+        return store.state.worksB;
+      },
       worksSide(){
         let loc = store.state.location;
         return loc % 2 == 0 ? true : false;
-      },
-      rtl(){
-        console.log(store.state.worksRtl);
-        return store.state.worksRtl;
-      },
-      ltr(){
-        return store.state.worksLtr;
       }
     }
   }
@@ -77,7 +74,7 @@
     height:100%;
     padding: 25px;
     position: relative;
-    transition: all 0.3s ease 0s;
+    transition: all 0.4s ease 0s;
     width: 100%;
     z-index: 1;
     &:after{
@@ -88,7 +85,7 @@
       left: 0 ;
       position: absolute;
       top: 0;
-      transition: all 0.3s ease 0s;
+      transition: all 0.4s ease 0s;
       width: 100vw;
       z-index: 0;
     }
@@ -133,7 +130,6 @@
       position: relative;
       a{
         border: solid 1px $main-color;
-        //border-radius: 4px;
         color: $main-text-color;
         display: block;
         @include rem(14);
@@ -189,10 +185,12 @@
       }
     }
     &__details{
+      opacity: 0;
+      transition: all .4s ease 0s;
       &--right{
         margin: 50vh 0 0;
         padding: 0 0 0 45vw;
-        transition: all 0.3s ease 0s;
+        transition: all 0.4s ease 0s;
         @media (max-height: 800px){
           margin: 47vh 0 0;
         }
@@ -205,8 +203,8 @@
       }
       &--left{
         margin: 15vh 0 0;
-        padding: 0 0 0 10vw;
-        transition: all 0.3s ease 0s;
+        padding: 0 0 0 6vw;
+        transition: all 0.4s ease 0s;
       }
     }
     &.right-to-left{
@@ -218,11 +216,11 @@
       .works__details{
         &--right{
           transition: all 0.3s ease 0s;
-          opacity: 0;
+          //opacity: 0;
         }
         &--left{
           transition: all 0.3s ease 0s;
-          opacity: 0;
+          //opacity: 0;
         }
       }
     }
@@ -262,4 +260,21 @@
       }
     }
   }
+  @keyframes activeWorksAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    100%{
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
+
+  .active-works{
+    opacity: 1;
+    transition: all 0.5s ease 0s;
+  }
+
+
 </style>
