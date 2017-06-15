@@ -325,6 +325,9 @@ let store = {
         this.state.rtl = false;
       }
       this.state.isRight = right;
+      if(pos === 2){
+        this.state.worksA = true;
+      }
     },700);
     setTimeout( () => {
       this.state.isHidden = false;

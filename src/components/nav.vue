@@ -58,7 +58,6 @@
         return store.state.isHidden;
       },
       paginationClick(num){
-        console.log('pagination link action');
         store.paginationLinkAction(num);
         this.isClose = !this.isClose;
       }

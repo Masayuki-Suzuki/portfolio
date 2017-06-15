@@ -1,5 +1,5 @@
 <template>
-  <section class="about">
+  <section class="about" :class="{'about-active': pageController()}">
     <h1 class="about__hd">Who I am ?</h1>
     <p class="about__lead">Hi, there. I'm Masayuki Suzuki, a Japanese front-end developer based in Vancouver. My focus is creating interactive experiences and user-friendly interfaces whilst maintaining semantic, clean markup and SEO friendly code. I have 4 years experience in the feild in Japan. I continue to learn newly language, tools and framework to go to next stage.</p>
     <div class="wrapper">
@@ -41,11 +41,17 @@
 
 <script>
   import Vue from 'vue';
+  import store from '../../store/store';
 
   export default {
     data: function () {
       return {
         isColorClass: false,
+      }
+    },
+    methods: {
+      pageController(){
+        return store.state.location === 2 ? true : false;
       }
     }
   }
@@ -54,41 +60,44 @@
 <style lang="scss">
   @import "../../../assets/sass/foundation/mixins/mixin";
   @import "../../../assets/sass/foundation/variables/variables";
-  .about{
+  .about {
     background: $bg-color;
-    height:100%;
+    height: 100%;
     padding: 25px;
     position: relative;
     width: 100%;
-    @media (max-height: 800px){
+    @media (max-height: 800px) {
       padding: 15px;
     }
-    &__hd{
+    &__hd {
       color: $main-text-color;
       @include rem(60);
-      font-weight:300;
+      font-weight: 300;
       letter-spacing: 0.02em;
       line-height: (72/60);
       margin: 6% 0 0;
+      opacity: 0;
       text-align: center;
       text-transform: uppercase;
-      @media (max-height: 850px){
+      transition: all 0.4s ease 0s;
+      transform: translateY(30px);
+      @media (max-height: 850px) {
         margin: 5% 0 0;
       }
-      @media (max-height: 800px){
+      @media (max-height: 800px) {
         @include rem(50);
         margin: 3% 0 0;
       }
-      @media (max-height: 700px){
+      @media (max-height: 700px) {
         @include rem(45);
         margin: 3.5% 0 0;
       }
-      @media (max-height: 550px){
+      @media (max-height: 550px) {
         @include rem(40);
         margin: 2% 0 0;
       }
     }
-    &__lead{
+    &__lead {
       color: #3C3C3C;
       @include rem(15);
       font-weight: 500;
@@ -96,15 +105,18 @@
       line-height: 1.5;
       margin: 30px auto 60px;
       max-width: 1024px;
+      opacity: 0;
       text-align: center;
+      transition: all 0.4s ease 0.2s;
+      transform: translateY(30px);
       width: 95%;
-      @media (max-height: 800px){
+      @media (max-height: 800px) {
         margin: 25px auto 50px;
       }
-      @media (max-height: 700px){
+      @media (max-height: 700px) {
         margin: 15px auto 40px;
       }
-      @media (max-height: 600px){
+      @media (max-height: 600px) {
         margin: 10px auto 25px;
       }
     }
@@ -130,8 +142,11 @@
       font-weight: 300;
       letter-spacing: 0.08em;
       margin: 0 auto 50px;
+      opacity: 0;
       text-align: center;
       text-transform: uppercase;
+      transition: all 0.4s ease 0.4s;
+      transform: translateY(30px);
       @media (max-height: 700px){
         @include rem(24);
         margin: 0 auto 30px;
@@ -140,7 +155,10 @@
     &__images{
       margin: auto;
       max-width: 300px;
+      opacity: 0;
       text-align: center;
+      transition: all 0.4s ease 0.6s;
+      transform: translateY(30px);
       width: 90%;
       @media (max-height: 700px){
         max-width: 240px;
@@ -192,7 +210,41 @@
       font-weight: 500;
       letter-spacing: 0.05em;
       margin: 0 0 5px;
+      opacity: 0;
       text-align: center;
+      transition: all 0.4s ease 0s;
+      transform: translateY(30px);
+    }
+  }
+  .about-active{
+    .about{
+      &__hd {
+        opacity: 1;
+        transition: all 0.4s ease 0.4s;
+        transform: translateY(0px);
+      }
+      &__lead{
+        opacity: 1;
+        transition: all 0.4s ease 0.6s;
+        transform: translateY(0px);
+      }
+    }
+    .what-i{
+      h2{
+        opacity: 1;
+        transition: all 0.4s ease 0.8s;
+        transform: translateY(0px);
+      }
+      &__images{
+        opacity: 1;
+        transition: all 0.4s ease 1.0s;
+        transform: translateY(0px);
+      }
+      p{
+        opacity: 1;
+        transition: all 0.4s ease 1.2s;
+        transform: translateY(0px);
+      }
     }
   }
   .scrollNav{
