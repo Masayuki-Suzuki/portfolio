@@ -19,7 +19,7 @@ let store = {
     //Animation Toggle
     rtl: false,
     ltr: false,
-    worksA: true,
+    worksA: false,
     worksB: false
   },
   setIsColor(){
@@ -53,7 +53,6 @@ let store = {
           history.replaceState('','','/works');
           this.state.isHidden = true;
           this.state.rtl = true;
-          this.state.worksA = true;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
@@ -62,10 +61,8 @@ let store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
+            this.state.worksA = true;
           },700);
-          setTimeout( () => {
-            this.state.isHidden = false;
-          },1000);
         } else {
           history.replaceState('','','/');
           this.state.position--;
@@ -77,18 +74,14 @@ let store = {
       case 2:
         if(direction){
           this.state.isColorClass = true;
-          this.state.worksA = false;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
-            //this.state.worksRtl = false;
+            this.state.worksA = false;
           },310);
           setTimeout(() => {
             this.state.worksB = true;
-          }, 10000);
-          // setTimeout( () => {
-          //   this.state.worksRtl = false;
-          // },1000);
+          }, 500);
         } else {
           history.replaceState('','','/about');
           this.state.isHidden = true;
@@ -102,6 +95,7 @@ let store = {
             this.state.ltr = false;
           },700);
           setTimeout( () => {
+            this.state.worksA = false;
             this.state.isHidden = false;
           },1000);
         }
@@ -109,39 +103,47 @@ let store = {
       case 3:
         if(direction){
           this.state.isColorClass = false;
-          //this.state.worksLtr = true;
-          setTimeout( () => {
+          setTimeout(() => {
             this.state.position++;
             this.state.location++;
-          },310);
-          // setTimeout( () => {
-          //   this.state.worksLtr = false;
-          // },500);
-        } else {
-          this.state.isColorClass = false;
-          this.state.worksB = false;
-          setTimeout( () => {
-            this.state.position--;
-            this.state.location--;
+            this.state.worksB = false;
           },310);
           setTimeout(() => {
             this.state.worksA = true;
-          }, 10000);
+          }, 500);
+        } else {
+          this.state.isColorClass = false;
+          setTimeout(() => {
+            this.state.position--;
+            this.state.location--;
+            this.state.worksB = false;
+          },310);
+          setTimeout(() => {
+            this.state.worksA = true;
+          }, 500);
         }
         break;
       case 4:
         if(direction){
-          this.state.isColorClass = true;
-          setTimeout( () => {
+          this.state.isColorClass = false;
+          setTimeout(() => {
             this.state.position++;
             this.state.location++;
+            this.state.worksA = false;
           },310);
+          setTimeout(() => {
+            this.state.worksB = true;
+          }, 500);
         } else {
-          this.state.isColorClass = true;
-          setTimeout( () => {
+          this.state.isColorClass = false;
+          setTimeout(() => {
             this.state.position--;
             this.state.location--;
+            this.state.worksA = false;
           },310);
+          setTimeout(() => {
+            this.state.worksB = true;
+          }, 500);
         }
         break;
       case 5:
@@ -153,6 +155,7 @@ let store = {
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
+            this.state.worksB = false;
             this.state.isRight = false;
           },310);
           setTimeout( () => {
@@ -163,10 +166,14 @@ let store = {
           },1000);
         } else {
           this.state.isColorClass = false;
-          setTimeout( () => {
+          setTimeout(() => {
             this.state.position--;
             this.state.location--;
+            this.state.worksB = false;
           },310);
+          setTimeout(() => {
+            this.state.worksA = true;
+          }, 500);
         }
         break;
       case 6:
@@ -198,6 +205,7 @@ let store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
+            this.state.worksB = true;
           },700);
           setTimeout( () => {
             this.state.isHidden = false;
@@ -249,6 +257,7 @@ let store = {
     }
   },
   paginationLinkAction(num){
+    console.log('here');
     switch (num) {
       case 1:
         if(this.state.location !== 1){

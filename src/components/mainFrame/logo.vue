@@ -1,5 +1,5 @@
 <template>
-  <div class="logo" :class="{'logo__right': sharedState.isRight}">
+  <div class="logo" :class="{'logo__right': sharedState.isRight}" @click="logoClick($event)">
     <svg class="logo__svg" viewBox="0 0 70 57" xmlns="http://www.w3.org/2000/svg">
       <title>logo</title>
       <path class="path" :class="{logoWhite: sharedState.isColorClass, logoBlack: !sharedState.isColorClass}" d="M14.573 41.567l5.01-18.199 4.724 22.053 8.446-39.395 8.016 50.957 5.583-27.405 4.437 15.201 4.581-24.836 14.601-4.497-15.03 3.426-4.867 21.84-3.865-13.49-5.297 22.267L32.323.031l-8.16 39.61-5.01-20.34-5.01 21.196L.115 46.064z" stroke="#FFF" fill="#FFF" fill-rule="evenodd"/>
@@ -16,6 +16,13 @@
       }
     },
     methods: {
+      logoClick(e){
+        let num = store.state.location;
+        e.preventDefault();
+        if(num !== 1){
+          store.paginationLinkAction(1);
+        }
+      }
     }
   }
 </script>
@@ -23,6 +30,7 @@
 <style lang="scss">
   @import '../../../assets/sass/foundation/variables/variables';
   .logo{
+    cursor: pointer;
     left: $FrameWidth;
     padding: 20px;
     position: fixed;

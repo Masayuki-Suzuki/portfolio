@@ -89,6 +89,14 @@
       width: 100vw;
       z-index: 0;
     }
+    &__caption,
+    &__hd,
+    &__lead,
+    &__view a{
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.4s ease 0s;
+    }
     &__caption{
       color: $main-text-color;
       @include rem(20);
@@ -185,8 +193,6 @@
       }
     }
     &__details{
-      opacity: 0;
-      transition: all .4s ease 0s;
       &--right{
         margin: 50vh 0 0;
         padding: 0 0 0 45vw;
@@ -229,7 +235,10 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 650px;
+    opacity: 0;
     position: relative;
+    transform: translateY(20px);
+    transition: all 0.4s ease 0s;
     width: 100%;
     z-index: 2;
     &__list{
@@ -260,20 +269,32 @@
       }
     }
   }
-  @keyframes activeWorksAnimation {
-    0% {
-      opacity: 0;
-      transform: translateY(100px);
-    }
-    100%{
-      opacity: 1;
-      transform: translateY(0px);
-    }
-  }
 
   .active-works{
-    opacity: 1;
-    transition: all 0.5s ease 0s;
+    .works{
+      &__caption{}
+      &__hd,
+      &__lead,
+      &__view a {
+        opacity: 1;
+        transform: translateY(0px);
+        transition: all 0.4s ease 0s;
+      }
+      &__hd{
+        transition: all 0.4s ease 0.2s;
+      }
+      &__lead{
+        transition: all 0.4s ease 0.4s;
+      }
+      &__view a{
+        transition: all 0.4s ease 0.8s;
+      }
+    }
+    .using{
+      opacity: 1;
+      transform: translateY(0px);
+      transition: all 0.4s ease 0.6s;
+    }
   }
 
 
