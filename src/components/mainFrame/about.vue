@@ -51,7 +51,7 @@
     },
     methods: {
       pageController(){
-        return store.state.location === 2 ? true : false;
+        return store.state.showAbout;
       }
     }
   }

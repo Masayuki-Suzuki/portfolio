@@ -20,7 +20,10 @@ let store = {
     rtl: false,
     ltr: false,
     worksA: false,
-    worksB: false
+    worksB: false,
+    showAbout: false,
+    showBlog: false,
+    showContact: false,
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -46,6 +49,7 @@ let store = {
           this.ScrollAction();
           this.setIsColor();
           history.replaceState('','','/about');
+          this.state.showAbout = true;
         }
         break;
       case 1:
@@ -62,6 +66,7 @@ let store = {
             this.state.isHidden = false;
             this.state.rtl = false;
             this.state.worksA = true;
+            this.state.showAbout = false;
           },700);
         } else {
           history.replaceState('','','/');
@@ -69,6 +74,9 @@ let store = {
           this.state.location--;
           this.ScrollAction();
           this.setIsColor();
+          setTimeout(() => {
+            this.state.showAbout = false;
+          }, 500);
         }
         break;
       case 2:
@@ -93,6 +101,7 @@ let store = {
           },310);
           setTimeout( () => {
             this.state.ltr = false;
+            this.state.showAbout = true;
           },700);
           setTimeout( () => {
             this.state.worksA = false;
@@ -125,7 +134,7 @@ let store = {
         break;
       case 4:
         if(direction){
-          this.state.isColorClass = false;
+          this.state.isColorClass = true;
           setTimeout(() => {
             this.state.position++;
             this.state.location++;
@@ -160,6 +169,7 @@ let store = {
           },310);
           setTimeout( () => {
             this.state.ltr = false;
+            this.state.showBlog = true;
           },700);
           setTimeout( () => {
             this.state.isHidden = false;
@@ -189,6 +199,8 @@ let store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
+            this.state.showBlog = false;
+            this.state.showContact = true;
           },700);
           setTimeout( () => {
             this.state.isHidden = false;
@@ -206,6 +218,7 @@ let store = {
             this.state.isHidden = false;
             this.state.rtl = false;
             this.state.worksB = true;
+            this.state.showBlog = false;
           },700);
           setTimeout( () => {
             this.state.isHidden = false;
@@ -221,9 +234,11 @@ let store = {
             this.state.position--;
             this.state.location--;
             this.state.isRight = false;
+            this.state.showContact = false;
           },310);
           setTimeout( () => {
             this.state.ltr = false;
+            this.state.showBlog = true;
           },700);
           setTimeout( () => {
             this.state.isHidden = false;
@@ -303,6 +318,8 @@ let store = {
   },
   setLocation(pos,right){
     this.state.isHidden = true;
+    this.state.showBlog = false;
+    this.state.showContact = false;
     if(this.state.isRight){
       this.state.ltr = true;
     } else {
@@ -327,6 +344,12 @@ let store = {
       this.state.isRight = right;
       if(pos === 2){
         this.state.worksA = true;
+      }
+      if(pos === 6){
+        this.state.showBlog = true;
+      }
+      if(pos === 7){
+        this.state.showContact = true;
       }
     },700);
     setTimeout( () => {

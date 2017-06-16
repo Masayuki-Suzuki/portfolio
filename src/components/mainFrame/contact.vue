@@ -1,5 +1,5 @@
 <template>
-  <section class="contact">
+  <section class="contact" :class="{'contact-active': pageController()}">
     <h1 class="contact__hd">contact</h1>
     <form class="contact__form" action="">
       <label class="ttl">Your name<span class="require">*</span> :
@@ -14,17 +14,25 @@
       <label class="ttl">message<span class="require">*</span> :
         <textarea placeholder="Winter is Coming" rows="1"></textarea>
       </label>
-      <button class="submit">send</button>
+      <div class="btn">
+        <button class="submit">send</button>
+      </div>
     </form>
   </section>
 </template>
 
 <script>
   import Vue from 'vue';
+  import store from '../../store/store';
 
   export default {
     data: function () {
       return {
+      }
+    },
+    methods: {
+      pageController(){
+        return store.state.showContact;
       }
     }
   }
@@ -49,34 +57,36 @@
       letter-spacing: 0.02em;
       line-height: (72/60);
       margin: 70px 0 0;
+      opacity: 0;
       text-align: center;
       text-transform: uppercase;
+      transform: translateY(30px);
+      transition: all 0.4s ease 0s;
       @media (max-height: 800px){
-        margin: 3% 0 0;
+        margin: 5% 0 0;
       }
       @media (max-height: 750px){
         @include rem(55);
-        margin: 2% 0 0;
+        margin: 3% 0 0;
       }
       @media (max-height: 700px){
         @include rem(45);
-        margin: 2% 0 0;
+        margin: 4.5% 0 0;
       }
       @media (max-height: 650px){
-        margin: 1.5% 0 0;
+        margin: 3% 0 0;
       }
       @media (max-height: 600px){
         @include rem(40);
-        margin: 1% 0 0;
+      }
+      @media (max-height: 550px){
+        margin: 2% 0 0;
       }
     }
     &__form{
       margin: 80px auto 0;
       max-width: 560px;
       @media (max-height: 800px){
-        margin: 3% auto 0;
-      }
-      @media (max-height: 700px){
         margin: 2% auto 0;
       }
       @media (max-height: 600px){
@@ -85,9 +95,13 @@
     }
     .ttl{
       color: $main-text-color;
+      display: block;
       @include rem(27);
       font-weight: 300;
+      opacity: 0;
       text-transform: uppercase;
+      transform: translateY(30px);
+      transition: all 0.4s ease 0s;
       @media (max-height: 700px){
         @include rem(22);
       }
@@ -125,6 +139,11 @@
         font-weight: 300;
       }
     }
+    .btn{
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.4s ease 0s;
+    }
     .submit{
       background: transparent;
       border: solid 1px $main-color;
@@ -157,6 +176,36 @@
           width: 150%;
         }
       }
+    }
+  }
+  .contact-active{
+    .contact{
+      &__hd{
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.4s ease 0.2s;
+      }
+    }
+    .ttl{
+      opacity: 1;
+      transform: translateY(0);
+      &:first-of-type{
+        transition: all 0.4s ease 0.4s;
+      }
+      &:nth-of-type(2){
+        transition: all 0.4s ease 0.6s;
+      }
+      &:nth-of-type(3){
+        transition: all 0.4s ease 0.8s;
+      }
+      &:last-of-type{
+        transition: all 0.4s ease 1s;
+      }
+    }
+    .btn{
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.4s ease 1.2s;
     }
   }
 </style>

@@ -1,5 +1,5 @@
 <template lang="ejs">
-  <section class="blogs">
+  <section class="blogs" :class="{'blog-active': pageController()}">
     <h1 class="blogs__hd">Blogs</h1>
     <div class="blogs__container">
       <% for(var i = 0; i < 3; i++){ %>
@@ -25,10 +25,16 @@
 
 <script>
   import Vue from 'vue';
+  import store from '../../store/store';
 
   export default {
     data: function () {
       return {
+      }
+    },
+    methods: {
+      pageController(){
+        return store.state.showBlog;
       }
     }
   }
@@ -53,8 +59,11 @@
       letter-spacing: 0.02em;
       line-height: (72/60);
       margin: 90px 0 0;
+      opacity: 0;
       text-align: center;
       text-transform: uppercase;
+      transform: translateY(30px);
+      transition: all 0.4s ease 0.2s;
       @media (max-height: 900px){
         margin: 6% 0 0;
       }
@@ -99,8 +108,44 @@
     &__list{
       background: #fff;
       margin: 0 3% 0 0;
+      overflow: hidden;
+      position: relative;
+      &:before,
+      &:after{
+        content: '';
+        display: block;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      &:before{
+        background: $main-color;
+        left: -100%;
+      }
+      &:after{
+        background: #fff;
+        left: 0;
+      }
+      &:first-of-type{
+        &:before,
+        &:after{
+          transition: left 0.4s ease 0.4s;
+        }
+      }
+      &:nth-of-type(2){
+        &:before,
+        &:after{
+          transition: left 0.4s ease 0.8s;
+        }
+      }
       &:last-of-type{
         margin: 0;
+        &:before,
+        &:after{
+          transition: left 0.4s ease 1.2s;
+        }
       }
       img{
         display: block;
@@ -180,7 +225,51 @@
       }
     }
   }
+  .blog-active{
+    .blogs{
+      &__hd{
+        opacity: 1;
+        transform: translateY(0);
+        transition: all 0.4s ease 0.2s;
+      }
+      &__list{
+        &:before{
+          left: 100%;
+        }
+        &:after{
+          left: 200%;
+        }
+        &:first-of-type{
+          &:before,
+          &:after{
+            transition: left .6s ease 0.4s;
+          }
+        }
+        &:nth-of-type(2){
+          &:before,
+          &:after{
+            transition: left .6s ease 0.67s;
+          }
+        }
+        &:last-of-type{
+          margin: 0;
+          &:before,
+          &:after{
+            transition: left .6s ease 0.92s;
+          }
+        }
+      }
+    }
+    .more{
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.5s ease 1.1s;
+    }
+  }
   .more{
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s ease 0.7s;
     a{
       border: solid 1px $main-color;
       //border-radius: 4px;
