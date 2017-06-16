@@ -272,28 +272,28 @@
 
   .active-works{
     .works{
-      &__caption{}
+      &__caption,
       &__hd,
       &__lead,
       &__view a {
         opacity: 1;
         transform: translateY(0px);
-        transition: all 0.4s ease 0s;
-      }
-      &__hd{
         transition: all 0.4s ease 0.2s;
       }
-      &__lead{
+      &__hd{
         transition: all 0.4s ease 0.4s;
       }
+      &__lead{
+        transition: all 0.4s ease 0.6s;
+      }
       &__view a{
-        transition: all 0.4s ease 0.8s;
+        transition: all 0.4s ease 1s;
       }
     }
     .using{
       opacity: 1;
       transform: translateY(0px);
-      transition: all 0.4s ease 0.6s;
+      transition: all 0.4s ease 0.8s;
     }
   }
 
