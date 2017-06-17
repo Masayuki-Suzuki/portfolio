@@ -69,7 +69,7 @@
     top: 0;
     width: 100%;
     z-index: 10;
-    @media (max-height: 800px){
+    @media (max-height: 800px) , (max-width: 950px){
       border: solid 15px #fff;
     }
   }

@@ -139,6 +139,31 @@
       transform: translateY(-4px) rotate(45deg);
     }
   }
+
+  @keyframes navIcon-top-mid-w {
+    0% {
+      transform: translateY(0px) rotate(-45deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-7px) rotate(0deg);
+    }
+  }
+
+  @keyframes navIcon-bottom-mid-w{
+    0% {
+      transform: translateY(-1px) rotate(45deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(5px) rotate(0deg);
+    }
+  }
+
   $nav-size: 74px;
   $nav-size-mid: 74px;
   $nav-size-sml: 60px;
@@ -149,9 +174,6 @@
     position: absolute;
     transition: all 0.3s ease 0s;
     z-index: 11;
-    @media (max-height: 700px){
-      width: $nav-size-sml;
-    }
     &__main{
       align-items:center;
       display: flex;
@@ -203,6 +225,11 @@
         height: $nav-size-sml;
         width: $nav-size-sml;
       }
+
+      @media (max-width: 950px){
+        height: 45px;
+        width: 45px;
+      }
       .isOpen{
         right: 12px;
         top: 12px;
@@ -217,6 +244,9 @@
       @media (max-height: 700px){
         width: $nav-size-sml;
       }
+      @media (max-width: 950px){
+        width: 45px;
+      }
     }
     &__works,
     &__contact{
@@ -226,6 +256,9 @@
       width: $nav-size-mid;
       @media (max-height: 700px){
         width: $nav-size-sml;
+      }
+      @media (max-width: 950px){
+        width: 45px;
       }
     }
     &.right-to-left{
@@ -260,6 +293,10 @@
       height: $nav-size-sml - 4px;
       width: $nav-size-sml;
     }
+    @media (max-width: 950px){
+      height: 45px;
+      width: 45px;
+    }
     span {
       background: #fff;
       height: 2px;
@@ -274,12 +311,20 @@
         margin-left: -12px;
         width: 24px;
       }
+      @media (max-width: 950px){
+        height: 1px;
+        width: 20px;
+      }
     }
     .top {
       animation: navIcon-top .4s;
       animation-fill-mode: forwards;
       @media (max-height: 700px){
         animation: navIcon-top-sml .4s;
+        animation-fill-mode: forwards;
+      }
+      @media (max-width: 950px){
+        animation: navIcon-top-mid-w .4s;
         animation-fill-mode: forwards;
       }
     }
@@ -291,12 +336,19 @@
       @media (max-height: 700px){
         width: 15px;
       }
+      @media (max-width: 950px){
+        width: 12px;
+      }
     }
     .bottom {
       animation: navIcon-bottom .4s;
       animation-fill-mode: forwards;
       @media (max-height: 700px){
         animation: navIcon-bottom-sml .4s;
+        animation-fill-mode: forwards;
+      }
+      @media (max-width: 950px){
+        animation: navIcon-bottom-mid-w .4s;
         animation-fill-mode: forwards;
       }
     }
@@ -326,6 +378,9 @@
     transition: all .3s ease .5s;
     @media (max-height: 700px){
       right: -199%;
+    }
+    @media (max-width: 950px){
+      right: -285%;
     }
   }
   .gNav--active{

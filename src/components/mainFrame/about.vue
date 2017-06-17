@@ -119,6 +119,9 @@
       @media (max-height: 600px) {
         margin: 10px auto 25px;
       }
+      @media (max-width: 1200px){
+        max-width: 800px;
+      }
     }
   }
   .wrapper{
