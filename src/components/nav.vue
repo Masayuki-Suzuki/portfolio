@@ -9,13 +9,24 @@
     'right-to-left': rtl(),
     'left-to-right': ltr()
   }" @wheel="blockScroll($event)">
-    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose">
+    <div class="navIcon" :class="{isOpen: isClose}" @click="isClose = !isClose">
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }" v-show="!isHidden()">Masayuki Suzuki Portfolio Web Site</p>
-    <ul class="gNav__main" v-show="isClose">
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }">Masayuki Suzuki Portfolio Web Site</p>
+    <ul class="navSns" :class="{ 'navSns--active': !activePage(1)}">
+      <li class="navSns__list">
+        <a class="sns__link github sns__link--nav" href="https://github.com/Masayuki-Suzuki" target="_blank"></a>
+      </li>
+      <li class="navSns__list">
+        <a class="sns__link linkedin sns__link--nav" href="https://www.linkedin.com/in/masayuki-suzuki/"　target="_blank"></a>
+      </li>
+      <li class="navSns__list">
+        <span class="sns__link email sns__link--nav" @click="paginationClick(8)"></span>
+      </li>
+    </ul>
+    <ul class="gNav__main" v-if="isClose">
       <li class="gNav__list" @click="paginationClick(1)">home</li>
       <li class="gNav__list" @click="paginationClick(2)">about</li>
       <li class="gNav__list" @click="paginationClick(3)">works</li>
@@ -313,6 +324,7 @@
       }
       @media (max-width: 950px){
         height: 1px;
+        margin-left: -11px;
         width: 20px;
       }
     }
@@ -369,6 +381,22 @@
     &.isHidden{
       opacity: 0;
       transition: all 0.3s ease 0s;
+    }
+  }
+  .navSns{
+    bottom: 5%;
+    opacity: 0;
+    position: absolute;
+    right: -30%;
+    transition: all .5s ease 0s;
+    &__list{
+      margin: 10px 0;
+      text-align: center;
+    }
+    &--active{
+      opacity: 1;
+      right: 30%;
+      transition: all .5s ease 0.8s;
     }
   }
 

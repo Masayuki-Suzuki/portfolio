@@ -5,6 +5,17 @@
         <object  data="/dist/img/mainLogo.svg" type="image/svg+xml"></object>
       </div>
     </div>
+    <ul class="sns">
+      <li class="sns__list">
+        <a class="sns__link github" href="https://github.com/Masayuki-Suzuki" target="_blank"></a>
+      </li>
+      <li class="sns__list">
+        <a class="sns__link linkedin" href="https://www.linkedin.com/in/masayuki-suzuki/"　target="_blank"></a>
+      </li>
+      <li class="sns__list">
+        <span class="sns__link email" @click="paginationClick(8)"></span>
+      </li>
+    </ul>
     <div class="scroll-icon">
       <div class="scroll-icon__main"></div>
       <p class="scroll-icon__text">Scroll</p>
@@ -13,7 +24,14 @@
 </template>
 
 <script>
+  import store from '../../store/store';
   export default {
+    methods: {
+      paginationClick(num){
+        store.paginationLinkAction(num);
+        this.isClose = !this.isClose;
+      }
+    }
   }
 </script>
 
@@ -53,7 +71,7 @@
     pointer-events: none;
     &__image{
       background: rgba(255,255,255,0.6);
-      padding: 32px 29px 31px 28px;
+      padding: 32px 34px 28px 34px;
     }
     @media (max-height: 700px){
       padding: 32vh 0 0;
@@ -63,6 +81,48 @@
           width: 100%;
         }
       }
+    }
+  }
+  .sns{
+    margin: 15px 0;
+    text-align: center;
+    width: 100%;
+    &__list{
+      display: inline-block;
+      margin: 0 7px;
+    }
+    &__link{
+      display: block;
+      &:before{
+        color: rgba(255,255,255,0.8);
+        display: block;
+        font-family: fontawesome;
+        font-size: 30px;
+        font-size: 3.6rem;
+        line-height: 1;
+      }
+      &--nav{
+        &:before {
+          color: #fff;
+          @include rem(30);
+        }
+      }
+    }
+  }
+  .github{
+    &:before{
+      content: '\f092';
+    }
+  }
+  .linkedin{
+    &:before{
+      content: '\f08c';
+    }
+  }
+  .email{
+    &:before{
+      content: '\f003';
+      cursor: pointer;
     }
   }
   .scroll-icon{

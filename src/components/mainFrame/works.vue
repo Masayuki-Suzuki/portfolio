@@ -92,10 +92,11 @@
     &__caption,
     &__hd,
     &__lead,
-    &__view a{
+    &__view{
       opacity: 0;
       transform: translateY(30px);
       transition: all 0.4s ease 0s;
+      z-index: 1;
     }
     &__caption{
       color: $main-text-color;
@@ -275,7 +276,7 @@
       &__caption,
       &__hd,
       &__lead,
-      &__view a {
+      &__view{
         opacity: 1;
         transform: translateY(0px);
         transition: all 0.4s ease 0.2s;
@@ -286,8 +287,8 @@
       &__lead{
         transition: all 0.4s ease 0.6s;
       }
-      &__view a{
-        transition: all 0.4s ease 1s;
+      &__view{
+        transition: opacity 0.4s ease 1s, transform 0.4s ease 1s;
       }
     }
     .using{

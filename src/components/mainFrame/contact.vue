@@ -84,7 +84,7 @@
       }
     }
     &__form{
-      margin: 80px auto 0;
+      margin: 70px auto 0;
       max-width: 560px;
       @media (max-height: 800px){
         margin: 2% auto 0;
@@ -96,14 +96,14 @@
     .ttl{
       color: $main-text-color;
       display: block;
-      @include rem(27);
+      @include rem(22);
       font-weight: 300;
       opacity: 0;
       text-transform: uppercase;
       transform: translateY(30px);
       transition: all 0.4s ease 0s;
       @media (max-height: 700px){
-        @include rem(22);
+        @include rem(18);
       }
     }
     .require{

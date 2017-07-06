@@ -144,7 +144,7 @@ let store = {
             this.state.worksB = true;
           }, 500);
         } else {
-          this.state.isColorClass = false;
+          this.state.isColorClass = true;
           setTimeout(() => {
             this.state.position--;
             this.state.location--;
@@ -207,6 +207,7 @@ let store = {
           },1000);
         } else {
           history.replaceState('','','/works');
+          this.state.isColorClass = true;
           this.state.isHidden = true;
           this.state.rtl = true;
           setTimeout( () => {
@@ -318,6 +319,7 @@ let store = {
   },
   setLocation(pos,right){
     this.state.isHidden = true;
+    this.state.showAbout = false;
     this.state.showBlog = false;
     this.state.showContact = false;
     if(this.state.isRight){
@@ -342,6 +344,9 @@ let store = {
         this.state.rtl = false;
       }
       this.state.isRight = right;
+      if(pos === 1){
+        this.state.showAbout = true;
+      }
       if(pos === 2){
         this.state.worksA = true;
       }
