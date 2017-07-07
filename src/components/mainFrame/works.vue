@@ -104,7 +104,7 @@
       position: relative;
       text-transform: uppercase;
       z-index: 2;
-      @media (max-height: 620px){
+      @media (max-height: 620px), (max-width: 1024px){
         @include rem(16);
       }
     }
@@ -120,7 +120,7 @@
       @media (max-height: 800px){
         @include rem(45);
       }
-      @media (max-height: 620px){
+      @media (max-height: 620px), (max-width: 1024px){
         @include rem(40);
       }
     }
@@ -134,6 +134,9 @@
       position: relative;
       z-index: 2;
       width: 100%;
+      @media (max-width: 1024px){
+        max-width: 410px;
+      }
     }
     &__view{
       position: relative;
@@ -152,9 +155,9 @@
         transition: color .5s ease 0s;
         width: 160px;
         z-index: 2;
-        @media (max-height: 620px){
+        @media (max-height: 620px), (max-width: 1024px){
           @include rem(12);
-          margin: 20px 0 0;
+          margin: 10px 0 0;
           padding: 9px 0;
           width: 120px;
         }
@@ -182,6 +185,9 @@
     &--left{
       &:after{
         transform: matrix(1,0,-0.8,1,0,0) translateX(-45%);
+        @media (max-width: 1024px) and (max-height: 800px){
+          transform: matrix(1,0,-0.8,1,0,0) translateX(-38%);
+        }
       }
       .works{
       }
@@ -189,8 +195,9 @@
     &--right{
       &:after{
         transform: matrix(1,0,-0.8,1,0,0) translateX(42%);
-      }
-      .works{
+        @media (max-width: 1024px) and (max-height: 800px){
+          transform: matrix(1,0,-0.8,1,0,0) translateX(35%);
+        }
       }
     }
     &__details{
@@ -205,7 +212,10 @@
           margin: 44vh 0 0;
         }
         @media (max-height: 620px){
-          margin: 40vh 0 0;
+          margin: 37vh 0 0;
+        }
+        @media (max-width: 1024px){
+          padding: 0 0 0 40vw;
         }
       }
       &--left{
@@ -242,6 +252,9 @@
     transition: all 0.4s ease 0s;
     width: 100%;
     z-index: 2;
+    @media (max-width: 1024px){
+      max-width: 410px;
+    }
     &__list{
       background: $main-color;
       color: #fff;
@@ -250,13 +263,17 @@
       letter-spacing: 0.04em;
       margin: 0 10px 10px 0;
       padding: 7px 10px;
+      @media (max-width: 1024px){
+        @include rem(10);
+        padding: 5px 7px;
+      }
     }
   }
   .works{
     &--right{
       .using{
         margin: 20px 0 0;
-        @media (max-height: 620px){
+        @media (max-height: 620px), (max-width: 1024px){
           margin: 10px 0 0;
         }
       }

@@ -122,6 +122,9 @@
       @media (max-width: 1200px){
         max-width: 800px;
       }
+      @media (max-width: 1024px){
+        max-width: 700px;
+      }
     }
   }
   .wrapper{
@@ -130,15 +133,24 @@
     margin: auto;
     max-width: 1024px;
     width: 95%;
+    @media (max-width: 1024px){
+      width: 85%;
+    }
   }
   .what-i{
     width: 50%;
     &-can{
       border-right: solid 1px #A8A8A0;
       padding: 0 50px 0 0;
+      @media (max-width: 1024px){
+        padding: 0 20px 0 0;
+      }
     }
     &-use{
       padding: 0 0 0 50px;
+      @media (max-width: 1024px){
+        padding: 0 0 0 20px;
+      }
     }
     h2{
       @include rem(30);
@@ -163,7 +175,7 @@
       transition: all 0.4s ease 0.6s;
       transform: translateY(30px);
       width: 90%;
-      @media (max-height: 700px){
+      @media (max-height: 700px), (max-width: 1024px){
         max-width: 240px;
       }
       img {
@@ -176,16 +188,16 @@
         &:last-of-type{
           margin: 0 0 40px;
         }
-        @media (max-height: 700px){
-          margin: 0 20px 30px 0;
-          &:nth-of-type(3n){
-            margin: 0 0 30px;
-          }
-          &:last-of-type{
-            margin: 0 0 30px;
-          }
-        }
-        @media (max-height: 700px){
+        /*@media (max-height: 700px), (max-width: 1024px){*/
+          /*margin: 0 20px 30px 0;*/
+          /*&:nth-of-type(3n){*/
+            /*margin: 0 0 30px;*/
+          /*}*/
+          /*&:last-of-type{*/
+            /*margin: 0 0 30px;*/
+          /*}*/
+        /*}*/
+        @media (max-height: 700px), (max-width: 1024px){
           margin: 0 20px 25px 0;
           &:nth-of-type(3n){
             margin: 0 0 25px;
@@ -194,7 +206,7 @@
             margin: 0 0 25px;
           }
         }
-        @media (max-height: 600px){
+        @media (max-height: 600px), (max-width: 1024px){
           margin: 0 20px 20px 0;
           max-width: 85px;
           max-height: 45px;
@@ -275,7 +287,7 @@
       display: inline-block;
       height: 30px;
       width: 30px;
-      @media (max-height: 700px){
+      @media (max-height: 700px), (max-width: 1024px){
         height: 20px;
         width: 20px;
       }

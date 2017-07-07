@@ -57,7 +57,7 @@
     @media (max-height: 800px){
       left: 45px;
     }
-    @media (max-height: 700px){
+    @media (max-height: 700px), (max-width: 1024px){
       left: 35px;
     }
     &--right{

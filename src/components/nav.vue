@@ -9,13 +9,13 @@
     'right-to-left': rtl(),
     'left-to-right': ltr()
   }" @wheel="blockScroll($event)">
-    <div class="navIcon" :class="{isOpen: isClose}" @click="isClose = !isClose">
+    <div class="navIcon" :class="{isOpen: isClose, isHidden: isHidden()}" @click="isClose = !isClose">
       <span class="top"></span>
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1) }">Masayuki Suzuki Portfolio Web Site</p>
-    <ul class="navSns" :class="{ 'navSns--active': !activePage(1)}">
+    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1), isHidden: isHidden() }">Masayuki Suzuki Portfolio Web Site</p>
+    <ul class="navSns" :class="{ 'navSns--active': !activePage(1), isHidden: isHidden()}">
       <li class="navSns__list">
         <a class="sns__link github sns__link--nav" href="https://github.com/Masayuki-Suzuki" target="_blank"></a>
       </li>
@@ -237,7 +237,7 @@
         width: $nav-size-sml;
       }
 
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         height: 45px;
         width: 45px;
       }
@@ -304,7 +304,7 @@
       height: $nav-size-sml - 4px;
       width: $nav-size-sml;
     }
-    @media (max-width: 950px){
+    @media (max-width: 1024px){
       height: 45px;
       width: 45px;
     }
@@ -322,7 +322,7 @@
         margin-left: -12px;
         width: 24px;
       }
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         height: 1px;
         margin-left: -11px;
         width: 20px;
@@ -335,7 +335,7 @@
         animation: navIcon-top-sml .4s;
         animation-fill-mode: forwards;
       }
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         animation: navIcon-top-mid-w .4s;
         animation-fill-mode: forwards;
       }
@@ -348,7 +348,7 @@
       @media (max-height: 700px){
         width: 15px;
       }
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         width: 12px;
       }
     }
@@ -359,7 +359,7 @@
         animation: navIcon-bottom-sml .4s;
         animation-fill-mode: forwards;
       }
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         animation: navIcon-bottom-mid-w .4s;
         animation-fill-mode: forwards;
       }
@@ -389,6 +389,13 @@
     position: absolute;
     right: -30%;
     transition: all .5s ease 0s;
+    @media (max-height: 600px){
+      bottom: 3%;
+    }
+    @media (max-height: 500px){
+      display: none;
+    }
+
     &__list{
       margin: 10px 0;
       text-align: center;
@@ -396,7 +403,14 @@
     &--active{
       opacity: 1;
       right: 30%;
-      transition: all .5s ease 0.8s;
+      transition: all .5s ease 0.3s;
+      @media (max-width: 1024px){
+        right: 23%;
+      }
+    }
+    &.isHidden{
+      opacity: 0;
+      transition: opacity .2s ease 0s;
     }
   }
 
@@ -407,8 +421,10 @@
     @media (max-height: 700px){
       right: -199%;
     }
-    @media (max-width: 950px){
+    @media (max-width: 1024px){
+      @include rem(12);
       right: -285%;
+      width: 300px;
     }
   }
   .gNav--active{

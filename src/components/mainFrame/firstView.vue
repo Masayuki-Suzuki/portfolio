@@ -67,13 +67,13 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    padding:32vh 0 0;
+    padding:30vh 0 0;
     pointer-events: none;
     &__image{
       background: rgba(255,255,255,0.6);
       padding: 32px 34px 28px 34px;
     }
-    @media (max-height: 700px){
+    @media (max-height: 700px),(max-width: 1024px){
       padding: 32vh 0 0;
       &__image{
         width: 240px;
@@ -105,6 +105,9 @@
         &:before {
           color: #fff;
           @include rem(30);
+          @media (max-height: 600px), (max-width: 1024px){
+            @include rem(24);
+          }
         }
       }
     }
