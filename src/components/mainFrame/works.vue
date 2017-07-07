@@ -59,9 +59,15 @@
   $locationX: 45vw;
   .works1 {
     background: url(/dist/img/camping.jpg) no-repeat center center;
+    @media (max-width: 1200px){
+      background-position: 3vw top;
+    }
   }
   .works2 {
     background: url(/dist/img/topBg.jpg) no-repeat 25vw top;
+    @media (max-width: 1200px){
+      background-position: 10vw top;
+    }
   }
   .works3 {
     background: url(/dist/img/ballet_bg.jpg) no-repeat center center;
@@ -104,6 +110,9 @@
       position: relative;
       text-transform: uppercase;
       z-index: 2;
+      @media (max-height: 800px) and (max-width: 1200px){
+        @include rem(18);
+      }
       @media (max-height: 620px), (max-width: 1024px){
         @include rem(16);
       }
@@ -120,8 +129,15 @@
       @media (max-height: 800px){
         @include rem(45);
       }
-      @media (max-height: 620px), (max-width: 1024px){
+      @media (max-height: 800px) and (max-width: 1200px){
         @include rem(40);
+      }
+      @media (max-height: 620px){
+        @include rem(40);
+      }
+      @media (max-width: 1024px){
+        @include rem(36);
+        max-width: 450px;
       }
     }
     &__lead{
@@ -133,9 +149,12 @@
       max-width: 600px;
       position: relative;
       z-index: 2;
-      width: 100%;
+      width: 85%;
+      @media (max-width: 1200px){
+        max-width: 540px;
+      }
       @media (max-width: 1024px){
-        max-width: 410px;
+        max-width: 500px;
       }
     }
     &__view{
@@ -189,8 +208,6 @@
           transform: matrix(1,0,-0.8,1,0,0) translateX(-38%);
         }
       }
-      .works{
-      }
     }
     &--right{
       &:after{
@@ -206,7 +223,18 @@
         padding: 0 0 0 45vw;
         transition: all 0.4s ease 0s;
         @media (max-height: 800px){
-          margin: 47vh 0 0;
+          margin: 45vh 0 0;
+        }
+        @media (max-width: 1200px){
+          margin: 48vh 0 0;
+          padding: 0 0 0 43vw;
+        }
+        @media (max-height: 800px) and (max-width: 1200px){
+          margin: 44vh 0 0;
+        }
+        @media (max-width: 1024px){
+          margin: 53vh 0 0;
+          padding: 0 0 0 40vw;
         }
         @media (max-height: 700px){
           margin: 44vh 0 0;
@@ -214,14 +242,15 @@
         @media (max-height: 620px){
           margin: 37vh 0 0;
         }
-        @media (max-width: 1024px){
-          padding: 0 0 0 40vw;
-        }
+
       }
       &--left{
         margin: 15vh 0 0;
         padding: 0 0 0 6vw;
         transition: all 0.4s ease 0s;
+        @media (max-width: 1200px){
+          padding: 0 0 0 8vw;
+        }
       }
     }
     &.right-to-left{
@@ -250,10 +279,10 @@
     position: relative;
     transform: translateY(20px);
     transition: all 0.4s ease 0s;
-    width: 100%;
+    width: 85%;
     z-index: 2;
-    @media (max-width: 1024px){
-      max-width: 410px;
+    @media (max-width: 1200px){
+      max-width: 470px;
     }
     &__list{
       background: $main-color;

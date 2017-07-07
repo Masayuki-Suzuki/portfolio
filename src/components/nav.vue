@@ -236,7 +236,6 @@
         height: $nav-size-sml;
         width: $nav-size-sml;
       }
-
       @media (max-width: 1024px){
         height: 45px;
         width: 45px;
@@ -255,9 +254,10 @@
       @media (max-height: 700px){
         width: $nav-size-sml;
       }
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         width: 45px;
       }
+
     }
     &__works,
     &__contact{
@@ -268,7 +268,7 @@
       @media (max-height: 700px){
         width: $nav-size-sml;
       }
-      @media (max-width: 950px){
+      @media (max-width: 1024px){
         width: 45px;
       }
     }

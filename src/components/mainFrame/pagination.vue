@@ -66,7 +66,7 @@
       @media (max-height: 800px){
         right: 45px;
       }
-      @media (max-height: 700px){
+      @media (max-height: 700px), (max-width: 1024px){
         right: 35px;
       }
     }
