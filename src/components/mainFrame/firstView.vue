@@ -82,6 +82,9 @@
         }
       }
     }
+    @media (max-height: 600px){
+      padding: 27vh 0 0;
+    }
   }
   .sns{
     margin: 15px 0;

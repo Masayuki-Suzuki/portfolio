@@ -7,7 +7,7 @@
         <img src="/dist/img/dummy1.jpg" alt="dummy">
         <time>January / 30 / 2017 - coding</time>
         <h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h2>
-        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur, eos error eveniet facilis incidunt laboriosam.</p>
+        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur.</p>
         <div class="viewPost">
           <a href="">Read the post</a>
         </div>
@@ -79,14 +79,14 @@
       }
       @media (max-height: 700px){
         @include rem(45);
-        margin: 2% 0 0;
-      }
-      @media (max-height: 650px){
-        margin: 1.5% 0 0;
+        margin: 4% 0 0;
       }
       @media (max-height: 600px){
         @include rem(40);
-        margin: 1% 0 0;
+        margin: 5% 0 0;
+      }
+      @media (max-height: 550px){
+        margin: 3% 0 0;
       }
     }
     &__container{

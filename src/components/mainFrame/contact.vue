@@ -71,26 +71,29 @@
       }
       @media (max-height: 700px){
         @include rem(45);
-        margin: 4.5% 0 0;
+        margin: 7% 0 0;
       }
       @media (max-height: 650px){
-        margin: 3% 0 0;
+        margin: 6% 0 0;
       }
       @media (max-height: 600px){
         @include rem(40);
       }
       @media (max-height: 550px){
-        margin: 2% 0 0;
+        margin: 4% 0 0;
       }
     }
     &__form{
       margin: 70px auto 0;
       max-width: 560px;
       @media (max-height: 800px){
-        margin: 2% auto 0;
+        margin: 5% auto 0;
       }
       @media (max-height: 600px){
-        margin: 1% auto 0;
+        margin: 4% auto 0;
+      }
+      @media (max-height: 550px) {
+        margin: 2% auto 0;
       }
     }
     .ttl{

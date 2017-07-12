@@ -15,7 +15,7 @@
       <span class="bottom"></span>
     </div>
     <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1), isHidden: isHidden() }">Masayuki Suzuki Portfolio Web Site</p>
-    <ul class="navSns" :class="{ 'navSns--active': !activePage(1), isHidden: isHidden()}">
+    <ul class="navSns" :class="{ 'navSns--active': !activePage(1), isHidden: isHidden()}" v-if="!isClose">
       <li class="navSns__list">
         <a class="sns__link github sns__link--nav" href="https://github.com/Masayuki-Suzuki" target="_blank"></a>
       </li>

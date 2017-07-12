@@ -154,7 +154,7 @@
         max-width: 540px;
       }
       @media (max-width: 1024px){
-        max-width: 500px;
+        max-width: 470px;
       }
     }
     &__view{
@@ -174,9 +174,11 @@
         transition: color .5s ease 0s;
         width: 160px;
         z-index: 2;
-        @media (max-height: 620px), (max-width: 1024px){
-          @include rem(12);
+        @media (max-height: 700px){
           margin: 10px 0 0;
+        }
+        @media (max-height: 650px), (max-width: 1024px){
+          @include rem(12);
           padding: 9px 0;
           width: 120px;
         }
@@ -237,7 +239,7 @@
           padding: 0 0 0 40vw;
         }
         @media (max-height: 700px){
-          margin: 44vh 0 0;
+          margin: 42vh 0 0;
         }
         @media (max-height: 620px){
           margin: 37vh 0 0;
@@ -292,7 +294,7 @@
       letter-spacing: 0.04em;
       margin: 0 10px 10px 0;
       padding: 7px 10px;
-      @media (max-width: 1024px){
+      @media (max-height:600px), (max-width: 1024px){
         @include rem(10);
         padding: 5px 7px;
       }
