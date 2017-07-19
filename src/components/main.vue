@@ -6,10 +6,10 @@
       <pagination></pagination>
       <div class="content-wrapper" :style="{ transform: calcPosition() }">
         <first-view></first-view>
-        <about v-if="sharedState.location <= 2"></about>
-        <works v-if="sharedState.location >= 3 && sharedState.location <= 6"></works>
-        <blogs v-if="sharedState.location === 7"></blogs>
-        <contact v-if="sharedState.location === 8"></contact>
+        <about v-if="sharedState.location <= 2 || checkDeviceWidth()"></about>
+        <works v-if="sharedState.location >= 3 && sharedState.location <= 6 || checkDeviceWidth()"></works>
+        <blogs v-if="sharedState.location === 7 || sharedState.isTablet"></blogs>
+        <contact v-if="sharedState.location === 8 || sharedState.isTablet"></contact>
       </div>
     </article>
   </v-touch>
@@ -41,16 +41,29 @@
 
     },
     created: function() {
-      window.addEventListener('keydown', (e) => {
-        this.keyEvent(e);
+      if(document.body.clientWidth >= 900){
+        window.addEventListener('keydown', this.callKeyEvent);
+      }
+      window.addEventListener('resize', (e) => {
+        this.checkDeviceWidth();
+        if(this.sharedState.isTablet){
+          window.removeEventListener('keydown', this.callKeyEvent);
+        } else {
+          window.addEventListener('keydown', this.callKeyEvent);
+        }
       });
     },
     methods: {
       scrollController(e){
-        store.scrollMain(e);
+        if(document.body.clientWidth >= 900){
+          store.scrollMain(e);
+        }
       },
       calcPosition(){
         return this.sharedState.translate;
+      },
+      callKeyEvent(e){
+        this.keyEvent(e);
       },
       keyEvent(e){
         if(e.which === 38) {
@@ -60,10 +73,19 @@
         }
       },
       swipeUp(){
-        store.arrowKeyEvent(true);
+        if(document.body.clientWidth >= 900){
+          store.arrowKeyEvent(true);
+        }
       },
       swipeDown(){
-        store.arrowKeyEvent(false);
+        if(document.body.clientWidth >= 900){
+          store.arrowKeyEvent(false);
+        }
+      },
+      checkDeviceWidth(){
+        let temp = 0;
+        temp = store.checkDeviceWidth()
+        return temp;
       }
     }
   }

@@ -6,6 +6,7 @@ let store = {
     isFired: false,
     isKeyFired: false,
     isRight: false,
+    isTablet: false,
     //Transition Style
     translate: 'translateY(0vh)',
     //Location Control
@@ -373,6 +374,11 @@ let store = {
         this.isKeyFired = false;
       },1500);
     }
+  },
+  checkDeviceWidth(){
+    document.body.clientWidth <= 900 ? this.isTablet = true : this.isTablet = false;
+    console.log("store: " + this.isTablet);
+    return this.isTablet;
   }
 }
 
