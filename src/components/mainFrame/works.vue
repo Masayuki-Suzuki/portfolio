@@ -144,7 +144,7 @@
       color: $main-text-color;
       @include rem(14);
       font-weight: 500;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
       line-height: 1.5;
       max-width: 600px;
       position: relative;
@@ -244,7 +244,12 @@
         @media (max-height: 620px){
           margin: 37vh 0 0;
         }
-
+        @media (max-height: 620px) and (max-width: 1200px){
+          margin: 42vh 0 0;
+        }
+        @media (max-height: 620px) and (max-width: 1024px){
+          margin: 37vh 0 0;
+        }
       }
       &--left{
         margin: 15vh 0 0;
@@ -252,6 +257,9 @@
         transition: all 0.4s ease 0s;
         @media (max-width: 1200px){
           padding: 0 0 0 8vw;
+        }
+        @media (max-height: 700px){
+          margin: 8vh 0 0;
         }
       }
     }

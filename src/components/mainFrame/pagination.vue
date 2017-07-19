@@ -112,9 +112,9 @@
     &__list{
       background: #fff;
       border-radius: 50%;
-      height: 12px;
-      margin: 0 0 15px;
-      width: 12px;
+      height: 8px;
+      margin: 0 0 10px;
+      width: 8px;
       &.active{
         background: #3c3c3c;
       }

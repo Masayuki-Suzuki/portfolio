@@ -4,6 +4,7 @@ let store = {
     isColorClass: true,
     isHidden: false,
     isFired: false,
+    isKeyFired: false,
     isRight: false,
     //Transition Style
     translate: 'translateY(0vh)',
@@ -273,7 +274,6 @@ let store = {
     }
   },
   paginationLinkAction(num){
-    console.log('here');
     switch (num) {
       case 1:
         if(this.state.location !== 1){
@@ -360,6 +360,19 @@ let store = {
     setTimeout( () => {
       this.state.isHidden = false;
     },1000);
+  },
+  arrowKeyEvent(direction){
+    if(!this.isKeyFired){
+      this.isKeyFired = true;
+      if(direction){
+        this.scrollEvent(true);
+      } else {
+        this.scrollEvent(false);
+      }
+      setTimeout( () => {
+        this.isKeyFired = false;
+      },1500);
+    }
   }
 }
 

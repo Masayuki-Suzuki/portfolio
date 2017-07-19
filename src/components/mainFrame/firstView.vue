@@ -132,11 +132,17 @@
     }
   }
   .scroll-icon{
-    bottom: 6%;
+    bottom: 4%;
     left: 50%;
     margin: 0 0 0 -23px;
     text-align: center;
     position: absolute;
+    /*Landscape（画面横）*/
+    @media (max-device-width: 1024px) and (orientation: landscape),
+    (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1),
+    (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) {
+      bottom: 11%;
+    }
     &__main{
       border: solid 2px #fff;
       border-radius: 15px;

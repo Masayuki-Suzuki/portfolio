@@ -1,20 +1,23 @@
 <template>
-  <article class="mainFrame" @wheel="scrollController($event)">
-    <div class="frame"></div>
-    <logo></logo>
-    <pagination></pagination>
-    <div class="content-wrapper" :style="{ transform: calcPosition() }">
-      <first-view></first-view>
-      <about v-if="sharedState.location <= 2"></about>
-      <works v-if="sharedState.location >= 3 && sharedState.location <= 6"></works>
-      <blogs v-if="sharedState.location === 7"></blogs>
-      <contact v-if="sharedState.location === 8"></contact>
-    </div>
-  </article>
+  <v-touch class="touchWrapper" @swipeup="swipeUp" @swipedown="swipeDown">
+    <article class="mainFrame" @wheel="scrollController($event)" >
+      <div class="frame"></div>
+      <logo></logo>
+      <pagination></pagination>
+      <div class="content-wrapper" :style="{ transform: calcPosition() }">
+        <first-view></first-view>
+        <about v-if="sharedState.location <= 2"></about>
+        <works v-if="sharedState.location >= 3 && sharedState.location <= 6"></works>
+        <blogs v-if="sharedState.location === 7"></blogs>
+        <contact v-if="sharedState.location === 8"></contact>
+      </div>
+    </article>
+  </v-touch>
 </template>
 
 <script>
   import Vue from 'vue';
+  import VueTouch from 'vue-touch';
   import store from '../store/store';
   import Logo from './mainFrame/logo.vue';
   import pagination from './mainFrame/pagination.vue';
@@ -25,6 +28,9 @@
   import blogs from './mainFrame/blog.vue';
   import contact from './mainFrame/contact.vue';
 
+  Vue.use(VueTouch, {name: 'v-touch'});
+
+
   export default {
     data: function () {
       return {
@@ -34,12 +40,30 @@
     computed: {
 
     },
+    created: function() {
+      window.addEventListener('keydown', (e) => {
+        this.keyEvent(e);
+      });
+    },
     methods: {
       scrollController(e){
         store.scrollMain(e);
       },
       calcPosition(){
         return this.sharedState.translate;
+      },
+      keyEvent(e){
+        if(e.which === 38) {
+          store.arrowKeyEvent(false);
+        } else if(e.which === 40) {
+          store.arrowKeyEvent(true);
+        }
+      },
+      swipeUp(){
+        store.arrowKeyEvent(true);
+      },
+      swipeDown(){
+        store.arrowKeyEvent(false);
       }
     }
   }
@@ -52,7 +76,6 @@
   Vue.component('works', works);
   Vue.component('blogs', blogs);
   Vue.component('contact',contact)
-
 </script>
 
 <style lang="scss">
@@ -72,7 +95,9 @@
       border: solid 15px #fff;
     }
   }
-
+  .touchWrapper{
+    height: 100%;
+  }
   .mainFrame{
     height:100%;
     overflow: hidden;

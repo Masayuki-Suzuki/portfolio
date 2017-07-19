@@ -79,6 +79,13 @@
 <style lang="scss">
   @import "../../assets/sass/foundation/mixins/mixin";
 
+  //--Variables
+  $nav-size: 74px;
+  $nav-size-mid: 74px;
+  $nav-size-sml: 60px;
+
+  //---------------------------
+  // navigation Icon top
   @keyframes navIcon-top {
     0% {
       transform: translateY(0px) rotate(-45deg);
@@ -103,6 +110,45 @@
     }
   }
 
+  @keyframes navIcon-top-mid-w {
+    0% {
+      transform: translateY(0px) rotate(-45deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-7px) rotate(0deg);
+    }
+  }
+
+  //-- Close
+  @keyframes navIcon-top-close {
+    0% {
+      transform: translateY(-10px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(0px) rotate(-45deg);
+    }
+  }
+
+  @keyframes navIcon-top-close-md {
+    0% {
+      transform: translateY(-10px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-2px) rotate(-45deg);
+    }
+  }
+
+  //---------------------------
+  // navigation Icon bottom
   @keyframes navIcon-bottom {
     0% {
       transform: translateY(-1px) rotate(45deg);
@@ -127,42 +173,6 @@
     }
   }
 
-  @keyframes navIcon-top-close {
-    0% {
-      transform: translateY(-10px) rotate(0deg);
-    }
-    50% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    100% {
-      transform: translateY(0px) rotate(-45deg);
-    }
-  }
-
-  @keyframes navIcon-bottom-close {
-    0% {
-      transform: translateY(8px) rotate(0deg);
-    }
-    50% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    100% {
-      transform: translateY(-4px) rotate(45deg);
-    }
-  }
-
-  @keyframes navIcon-top-mid-w {
-    0% {
-      transform: translateY(0px) rotate(-45deg);
-    }
-    50% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    100% {
-      transform: translateY(-7px) rotate(0deg);
-    }
-  }
-
   @keyframes navIcon-bottom-mid-w{
     0% {
       transform: translateY(-1px) rotate(45deg);
@@ -175,9 +185,20 @@
     }
   }
 
-  $nav-size: 74px;
-  $nav-size-mid: 74px;
-  $nav-size-sml: 60px;
+  //-- close
+  @keyframes navIcon-bottom-close {
+    0% {
+      transform: translateY(8px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-4px) rotate(45deg);
+    }
+  }
+
+
   .gNav{
     background: #3c3c3c;
     height: 100%;
@@ -372,6 +393,10 @@
       .top {
         animation: navIcon-top-close .4s;
         animation-fill-mode: forwards;
+        @media (max-width: 1024px){
+          animation: navIcon-top-close-md .4s;
+          animation-fill-mode: forwards;
+        }
       }
       .bottom {
         animation: navIcon-bottom-close .4s;
@@ -410,7 +435,7 @@
     }
     &.isHidden{
       opacity: 0;
-      transition: opacity .2s ease 0s;
+      transition: opacity .1s ease 0s;
     }
   }
 

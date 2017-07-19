@@ -101,7 +101,7 @@
       color: #3C3C3C;
       @include rem(15);
       font-weight: 500;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.05em;
       line-height: 1.5;
       margin: 30px auto 60px;
       max-width: 1024px;
