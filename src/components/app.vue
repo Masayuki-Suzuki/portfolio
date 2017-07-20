@@ -26,6 +26,10 @@
     overflow: hidden;
     position: relative;
     width: 100%;
+    @media (max-width: 900px){
+      overflow: initial;
+      //height: auto;
+    }
     &:after{
       content: url(/dist/img/camping.jpg);
       display: inline;

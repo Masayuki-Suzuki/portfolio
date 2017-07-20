@@ -1,15 +1,15 @@
 <template>
-  <v-touch ref="swiper" class="touchWrapper" @swipeup="swipeUp" @swipedown="swipeDown">
+  <v-touch ref="swipe" class="touchWrapper" @swipeup="swipeUp" @swipedown="swipeDown">
     <article class="mainFrame" @wheel="scrollController($event)" >
-      <div class="frame"></div>
+      <div class="frame" v-if="sharedState.isTablet === false"></div>
       <logo></logo>
       <pagination></pagination>
       <div class="content-wrapper" :style="{ transform: calcPosition() }">
         <first-view></first-view>
-        <about v-if="sharedState.location <= 2 || checkDeviceWidth()"></about>
-        <works v-if="sharedState.location >= 3 && sharedState.location <= 6 || checkDeviceWidth()"></works>
-        <blogs v-if="sharedState.location === 7 || sharedState.isTablet"></blogs>
-        <contact v-if="sharedState.location === 8 || sharedState.isTablet"></contact>
+        <about v-if="sharedState.location <= 2 || sharedState.isTablet === true"></about>
+        <works v-if="sharedState.location >= 3 && sharedState.location <= 6 || sharedState.isTablet === true"></works>
+        <blogs v-if="sharedState.location === 7 || sharedState.isTablet === true"></blogs>
+        <contact v-if="sharedState.location === 8 || sharedState.isTablet === true"></contact>
       </div>
     </article>
   </v-touch>
@@ -40,16 +40,23 @@
     created: function() {
       if(document.body.clientWidth >= 900){
         window.addEventListener('keydown', this.callKeyEvent);
-      } else {
+      } else if(document.body.clientWidth <= 900) {
+        this.sharedState.isTablet = true;
+      }
+    },
+    mounted: function(){
+      if(document.body.clientWidth <= 900) {
         this.disableSwipe();
       }
       window.addEventListener('resize', (e) => {
-        this.checkDeviceWidth();
-        if(this.sharedState.isTablet){
+        if(this.checkDeviceWidth()){
           window.removeEventListener('keydown', this.callKeyEvent);
           this.disableSwipe();
+          this.sharedState.isTablet = true;
         } else {
           window.addEventListener('keydown', this.callKeyEvent);
+          this.enableSwipe();
+          this.sharedState.isTablet = false;
         }
       });
     },
@@ -87,12 +94,15 @@
         temp = store.checkDeviceWidth()
         return temp;
       },
+      enableSwipe(){
+        this.$refs.swipe.enableAll();
+      },
       disableSwipe(){
-        console.log('here');
-        this.$refs.swiper.disable('swipe');
+        this.$refs.swipe.disableAll();
       }
     }
   }
+
 
   // Create components
   Vue.component('logo', Logo);
@@ -120,6 +130,9 @@
     @media (max-height: 800px) , (max-width: 1024px){
       border: solid 15px #fff;
     }
+    @media (max-width: 900px){
+      display: none;
+    }
   }
   .touchWrapper{
     height: 100%;
@@ -128,6 +141,9 @@
     height:100%;
     overflow: hidden;
     width: 100%;
+    @media (max-width: 900px){
+      overflow: initial;
+    }
   }
   .content-wrapper{
     height: 100%;
