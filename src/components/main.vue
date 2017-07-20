@@ -1,5 +1,5 @@
 <template>
-  <v-touch class="touchWrapper" @swipeup="swipeUp" @swipedown="swipeDown">
+  <v-touch ref="swiper" class="touchWrapper" @swipeup="swipeUp" @swipedown="swipeDown">
     <article class="mainFrame" @wheel="scrollController($event)" >
       <div class="frame"></div>
       <logo></logo>
@@ -37,17 +37,17 @@
         sharedState: store.state
       }
     },
-    computed: {
-
-    },
     created: function() {
       if(document.body.clientWidth >= 900){
         window.addEventListener('keydown', this.callKeyEvent);
+      } else {
+        this.disableSwipe();
       }
       window.addEventListener('resize', (e) => {
         this.checkDeviceWidth();
         if(this.sharedState.isTablet){
           window.removeEventListener('keydown', this.callKeyEvent);
+          this.disableSwipe();
         } else {
           window.addEventListener('keydown', this.callKeyEvent);
         }
@@ -86,6 +86,10 @@
         let temp = 0;
         temp = store.checkDeviceWidth()
         return temp;
+      },
+      disableSwipe(){
+        console.log('here');
+        this.$refs.swiper.disable('swipe');
       }
     }
   }

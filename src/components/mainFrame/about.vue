@@ -75,15 +75,12 @@
       font-weight: 300;
       letter-spacing: 0.02em;
       line-height: (72/60);
-      margin: 6% 0 0;
+      margin: 10% 0 0;
       opacity: 0;
       text-align: center;
       text-transform: uppercase;
       transition: all 0.4s ease 0s;
       transform: translateY(30px);
-      @media (max-height: 850px) {
-        margin: 5% 0 0;
-      }
       @media (max-height: 800px) {
         @include rem(50);
         margin: 3% 0 0;
