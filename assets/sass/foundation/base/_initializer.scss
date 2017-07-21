@@ -4,14 +4,14 @@
 //font awesome
 //******************************
 
-//@font-face {
-//  font-family: 'fontawesome';
-//  src: url("./fontawesome-webfont.eot");
-//  src: url("./fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
-//       url("./fontawesome-webfont.woff") format("woff"),
-//       url("./fontawesome-webfont.ttf") format("truetype"),
-//       url("./fontawesome-webfont.svg#fontawesome") format("svg");
-//}
+@font-face {
+  font-family: 'fontawesome';
+  src: url("/dist/fonts/fontawesome-webfont.eot");
+  src: url("/dist/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"),
+       url("/dist/fonts/fontawesome-webfont.woff") format("woff"),
+       url("/dist/fonts/fontawesome-webfont.ttf") format("truetype"),
+       url("/dist/fonts/fontawesome-webfont.svg#fontawesome") format("svg");
+}
 
 //******************************
 //Base initialize

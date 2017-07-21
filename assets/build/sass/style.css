@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'fontawesome';
+  src: url("/dist/fonts/fontawesome-webfont.eot");
+  src: url("/dist/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype"), url("/dist/fonts/fontawesome-webfont.woff") format("woff"), url("/dist/fonts/fontawesome-webfont.ttf") format("truetype"), url("/dist/fonts/fontawesome-webfont.svg#fontawesome") format("svg");
+}
+
 * {
   box-sizing: border-box;
 }

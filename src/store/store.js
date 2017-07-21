@@ -377,8 +377,20 @@ let store = {
   },
   checkDeviceWidth(){
     document.body.clientWidth <= 900 ? this.isTablet = true : this.isTablet = false;
-    console.log("store: " + this.isTablet);
     return this.isTablet;
+  },
+  navColourChange(){
+    const tag = document.getElementsByClassName('firstView')[0];
+    let tagHeight = tag.clientHeight;
+    if(window.pageYOffset + 40 >= tagHeight){
+      this.isColorClass = false;
+      document.querySelector('path').classList.add('logoBlack');
+      document.querySelector('path').classList.remove('logoWhite');
+    } else {
+      this.isColorClass = true;
+      document.querySelector('path').classList.add('logoWhite');
+      document.querySelector('path').classList.remove('logoBlack');
+    }
   }
 }
 

@@ -46,6 +46,11 @@
       padding: 10px;
       top: 15px;
     }
+    @media (max-width: 900px){
+      left: 0;
+      padding: 25px;
+      top: 0;
+    }
     &__right{
       left: auto;
       right: $FrameWidth;

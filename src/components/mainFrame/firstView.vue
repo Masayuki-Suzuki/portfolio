@@ -85,11 +85,20 @@
     @media (max-height: 600px){
       padding: 27vh 0 0;
     }
+    @media (max-width: 900px){
+      padding: 35vh 0 0 0;
+      &__image {
+        width: 270px;
+      }
+    }
   }
   .sns{
     margin: 15px 0;
     text-align: center;
     width: 100%;
+    @media (max-width: 900px){
+      margin: 32px 0 0;
+    }
     &__list{
       display: inline-block;
       margin: 0 7px;
@@ -100,9 +109,11 @@
         color: rgba(255,255,255,0.8);
         display: block;
         font-family: fontawesome;
-        font-size: 30px;
-        font-size: 3.6rem;
+        @include rem(36);
         line-height: 1;
+        @media (max-width: 900px){
+          @include rem(40);
+        }
       }
       &--nav{
         &:before {
@@ -139,9 +150,12 @@
     position: absolute;
     /*Landscape（画面横）*/
     @media (max-device-width: 1024px) and (orientation: landscape),
-    (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1),
-    (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) {
+    (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape),
+    (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape){
       bottom: 11%;
+    }
+    @media (max-width: 900px){
+      bottom: 5%;
     }
     &__main{
       border: solid 2px #fff;
@@ -150,6 +164,15 @@
       height: 46px;
       position: relative;
       width: 30px;
+      @media (max-width: 900px){
+        border-top: 0;
+        border-right: 0;
+        border-radius: 0;
+        height: 36px;
+        opacity: 0.8;
+        transform: rotateZ(-45deg);
+        width: 36px;
+      }
       &:before{
         animation: scrollAnimation 1.5s ease infinite;
         background: #fff;
@@ -162,6 +185,9 @@
         position: absolute;
         top: 8px;
         width:8px;
+        @media (max-width: 900px){
+          content:none;
+        }
       }
       @media (max-height: 800px) {
         height: 38px;
@@ -180,6 +206,9 @@
       letter-spacing: 1px;
       @media (max-height: 800px){
         @include rem(15);
+      }
+      @media (max-width: 900px){
+        display: none;
       }
     }
   }

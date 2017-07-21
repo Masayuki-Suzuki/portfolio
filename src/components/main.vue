@@ -3,7 +3,7 @@
     <article class="mainFrame" @wheel="scrollController($event)" >
       <div class="frame" v-if="sharedState.isTablet === false"></div>
       <logo></logo>
-      <pagination></pagination>
+      <pagination v-if="sharedState.isTablet === false"></pagination>
       <div class="content-wrapper" :style="{ transform: calcPosition() }">
         <first-view></first-view>
         <about v-if="sharedState.location <= 2 || sharedState.isTablet === true"></about>
@@ -47,18 +47,22 @@
     mounted: function(){
       if(document.body.clientWidth <= 900) {
         this.disableSwipe();
+        window.addEventListener('scroll', this.navColourController);
       }
       window.addEventListener('resize', (e) => {
         if(this.checkDeviceWidth()){
           window.removeEventListener('keydown', this.callKeyEvent);
+          window.addEventListener('scroll', this.navColourController);
           this.disableSwipe();
           this.sharedState.isTablet = true;
         } else {
           window.addEventListener('keydown', this.callKeyEvent);
+          window.removeEventListener('scroll', this.navColourController);
           this.enableSwipe();
           this.sharedState.isTablet = false;
         }
       });
+
     },
     methods: {
       scrollController(e){
@@ -99,6 +103,9 @@
       },
       disableSwipe(){
         this.$refs.swipe.disableAll();
+      },
+      navColourController(){
+        store.navColourChange();
       }
     }
   }

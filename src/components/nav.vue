@@ -198,6 +198,18 @@
     }
   }
 
+  @keyframes navIcon-bottom-close-tb {
+    0% {
+      transform: translateY(8px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(-5px) rotate(45deg);
+    }
+  }
+
 
   .gNav{
     background: #3c3c3c;
@@ -261,7 +273,16 @@
         height: 45px;
         width: 45px;
       }
+      @media (max-width: 900px){
+        height: 70px;
+        position: fixed;
+        right: 25px;
+        top: 25px;
+        width: 70px;
+      }
       .isOpen{
+        height: $nav-size-sml;
+        width: $nav-size-sml;
         right: 12px;
         top: 12px;
       }
@@ -329,6 +350,10 @@
       height: 45px;
       width: 45px;
     }
+    @media (max-width: 900px){
+      height: 65px;
+      width: 70px;
+    }
     span {
       background: #fff;
       height: 2px;
@@ -348,6 +373,11 @@
         margin-left: -11px;
         width: 20px;
       }
+      @media (max-width: 900px){
+        height: 2px;
+        margin-left: -15px;
+        width: 30px;
+      }
     }
     .top {
       animation: navIcon-top .4s;
@@ -358,6 +388,10 @@
       }
       @media (max-width: 1024px){
         animation: navIcon-top-mid-w .4s;
+        animation-fill-mode: forwards;
+      }
+      @media (max-width: 900px){
+        animation: navIcon-top .4s;
         animation-fill-mode: forwards;
       }
     }
@@ -372,6 +406,11 @@
       @media (max-width: 1024px){
         width: 12px;
       }
+      @media (max-width: 900px){
+        transition: .4s opacity;
+        transform: translateY(-1px);
+        width: 20px;
+      }
     }
     .bottom {
       animation: navIcon-bottom .4s;
@@ -382,6 +421,10 @@
       }
       @media (max-width: 1024px){
         animation: navIcon-bottom-mid-w .4s;
+        animation-fill-mode: forwards;
+      }
+      @media (max-width: 900px){
+        animation: navIcon-bottom .4s;
         animation-fill-mode: forwards;
       }
     }
@@ -401,6 +444,10 @@
       .bottom {
         animation: navIcon-bottom-close .4s;
         animation-fill-mode: forwards;
+        @media (max-width: 900px){
+          animation: navIcon-bottom-close-tb .4s;
+          animation-fill-mode: forwards;
+        }
       }
     }
     &.isHidden{
