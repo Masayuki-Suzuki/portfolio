@@ -1,0 +1,13 @@
+.common{
+  &__hd{
+    color: $main-text-color;
+    @include rem(60);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: (72/60);
+    opacity: 0;
+    text-align: center;
+    text-transform: uppercase;
+    transform: translateY(30px);
+  }
+}

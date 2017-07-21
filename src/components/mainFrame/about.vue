@@ -1,6 +1,6 @@
 <template>
   <section class="about" :class="{'about-active': pageController()}">
-    <h1 class="about__hd">Who I am ?</h1>
+    <h1 class="common__hd about__hd">Who I am ?</h1>
     <p class="about__lead">Hi, there. I'm Masayuki Suzuki, a Japanese front-end developer based in Vancouver. My focus is creating interactive experiences and user-friendly interfaces whilst maintaining semantic, clean markup and SEO friendly code. I have 4 years experience in the feild in Japan. I continue to learn newly language, tools and framework to go to next stage.</p>
     <div class="wrapper">
       <div class="what-i what-i-can">
@@ -33,7 +33,7 @@
         <p>BEM / OOCSS / SMACSS / RESTful / illustrator</p>
       </div>
     </div>
-    <div class="scrollNav">
+    <div v-if="!sharedState.isTablet" class="scrollNav">
       <a href=""></a>
     </div>
   </section>
@@ -47,10 +47,14 @@
     data: function () {
       return {
         isColorClass: false,
+        sharedState: store.state
       }
     },
     methods: {
       pageController(){
+        if(document.body.clientWidth <= 900){
+          return true;
+        }
         return store.state.showAbout;
       }
     }
@@ -69,18 +73,13 @@
     @media (max-height: 800px) {
       padding: 15px;
     }
+    @media (max-width: 900px) {
+      height: initial;
+      padding: 90px 25px;
+    }
     &__hd {
-      color: $main-text-color;
-      @include rem(60);
-      font-weight: 300;
-      letter-spacing: 0.02em;
-      line-height: (72/60);
       margin: 10% 0 0;
-      opacity: 0;
-      text-align: center;
-      text-transform: uppercase;
       transition: all 0.4s ease 0s;
-      transform: translateY(30px);
       @media (max-height: 800px) {
         @include rem(50);
         margin: 3% 0 0;
@@ -92,6 +91,11 @@
       @media (max-height: 550px) {
         @include rem(40);
         margin: 2% 0 0;
+      }
+      @media (max-width: 900px){
+        @include rem(50);
+        line-height: (72/50);
+        margin: 0;
       }
     }
     &__lead {
@@ -122,6 +126,11 @@
       @media (max-width: 1024px){
         max-width: 700px;
       }
+      @media (max-width: 900px){
+        @include rem(14);
+        font-weight: 400;
+        max-width: 660px;
+      }
     }
   }
   .wrapper{
@@ -133,20 +142,37 @@
     @media (max-width: 1024px){
       width: 85%;
     }
+    @media (max-width: 900px){
+      display: block;
+      width: 100%;
+    }
   }
   .what-i{
-    width: 50%;
+    width: 100%;
+    @media (max-width: 900px){
+      margin: 0 auto;
+    }
     &-can{
       border-right: solid 1px #A8A8A0;
       padding: 0 50px 0 0;
       @media (max-width: 1024px){
         padding: 0 20px 0 0;
       }
+      @media (max-width: 900px){
+        border: 0;
+        margin: 0 auto 60px;
+        max-width: 480px;
+        padding: 0;
+      }
     }
     &-use{
       padding: 0 0 0 50px;
       @media (max-width: 1024px){
         padding: 0 0 0 20px;
+      }
+      @media (max-width: 900px){
+        max-width: 480px;
+        padding: 0;
       }
     }
     h2{
@@ -163,6 +189,10 @@
         @include rem(24);
         margin: 0 auto 30px;
       }
+      @media (max-width: 900px){
+        @include rem(30);
+        margin: 0 auto 35px;
+      }
     }
     &__images{
       margin: auto;
@@ -175,6 +205,9 @@
       @media (max-height: 700px), (max-width: 1024px){
         max-width: 240px;
       }
+      @media (max-width: 900px){
+        max-width: 450px;
+      }
       img {
         display: inline-block;
         margin: 0 50px 40px 0;
@@ -185,15 +218,6 @@
         &:last-of-type{
           margin: 0 0 40px;
         }
-        /*@media (max-height: 700px), (max-width: 1024px){*/
-          /*margin: 0 20px 30px 0;*/
-          /*&:nth-of-type(3n){*/
-            /*margin: 0 0 30px;*/
-          /*}*/
-          /*&:last-of-type{*/
-            /*margin: 0 0 30px;*/
-          /*}*/
-        /*}*/
         @media (max-height: 700px), (max-width: 1024px){
           margin: 0 20px 25px 0;
           &:nth-of-type(3n){
@@ -212,6 +236,16 @@
           }
           &:last-of-type{
             margin: 0 0 20px;
+          }
+        }
+        @media (max-width: 900px){
+          margin: 0 50px 38px 0;
+          vertical-align: middle;
+          &:nth-of-type(3n){
+            margin: 0 50px 38px 0;
+          }
+          &:nth-of-type(4n){
+            margin: 0 0 38px;
           }
         }
       }

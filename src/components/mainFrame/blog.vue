@@ -1,6 +1,6 @@
 <template lang="ejs">
   <section class="blogs" :class="{'blog-active': pageController()}">
-    <h1 class="blogs__hd">Blogs</h1>
+    <h1 class="common__hd blogs__hd">Blogs</h1>
     <div class="blogs__container">
       <% for(var i = 0; i < 3; i++){ %>
       <div class="blogs__list">
@@ -53,16 +53,7 @@
       padding: 15px;
     }
     &__hd{
-      color: $main-text-color;
-      @include rem(60);
-      font-weight:300;
-      letter-spacing: 0.02em;
-      line-height: (72/60);
       margin: 90px 0 0;
-      opacity: 0;
-      text-align: center;
-      text-transform: uppercase;
-      transform: translateY(30px);
       transition: all 0.4s ease 0.2s;
       @media (max-height: 900px){
         margin: 6% 0 0;

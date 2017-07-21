@@ -50,6 +50,11 @@
         e.preventDefault();
       },
       activePage(num){
+        if(document.body.clientWidth <= 900){
+          if(num === 1){
+            return true;
+          }
+        }
         if(num >= 3 && num <= 6){
           if(this.sharedState.location >= 3 && this.sharedState.location <= 6){
             return true;

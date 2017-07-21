@@ -30,7 +30,6 @@
 
   Vue.use(VueTouch, {name: 'v-touch'});
 
-
   export default {
     data: function () {
       return {
@@ -48,18 +47,25 @@
       if(document.body.clientWidth <= 900) {
         this.disableSwipe();
         window.addEventListener('scroll', this.navColourController);
+        this.sharedState.position = -1;
+        this.sharedState.location = -1;
       }
       window.addEventListener('resize', (e) => {
+        console.log('position: ' + this.sharedState.position);
         if(this.checkDeviceWidth()){
           window.removeEventListener('keydown', this.callKeyEvent);
           window.addEventListener('scroll', this.navColourController);
           this.disableSwipe();
           this.sharedState.isTablet = true;
+          this.sharedState.position = -1;
+          this.sharedState.location = -1;
         } else {
           window.addEventListener('keydown', this.callKeyEvent);
           window.removeEventListener('scroll', this.navColourController);
           this.enableSwipe();
           this.sharedState.isTablet = false;
+          this.sharedState.position = 0;
+          this.sharedState.location = 1;
         }
       });
 

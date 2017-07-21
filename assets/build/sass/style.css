@@ -42,3 +42,16 @@ a {
     display: block;
   }
 }
+
+.common__hd {
+  color: #3c3c3c;
+  font-size: 60px;
+  font-size: 6rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  opacity: 0;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateY(30px);
+}

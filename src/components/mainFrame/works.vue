@@ -32,12 +32,21 @@
     },
     methods: {
       changeWorks(num){
+        if(document.body.clientWidth <= 900 && num <= 4 || num == 7){
+          return true;
+        }
         return store.state.location === num ? true : false;
       },
       changeWorksA(){
+        if(document.body.clientWidth <= 900){
+          return true;
+        }
         return store.state.worksA;
       },
       changeWorksB(){
+        if(document.body.clientWidth <= 900){
+          return true;
+        }
         return store.state.worksB;
       },
       worksSide(){

@@ -53,7 +53,23 @@
       opacity: 0;
     }
   }
+  @keyframes scrollAnimation-touch{
+    from, 20%,55%, 80%, to {
+      transform: translate3d(0,0,0);
+    }
 
+    40%, 45% {
+      transform: translate3d(0, -30px, 0);
+    }
+
+    70% {
+      transform: translate3d(0, -20px, 0);
+    }
+
+    90% {
+      transform: translate3d(0,-10px,0);
+    }
+  }
   .firstView{
     background: url(/dist/img/topBg.jpg) no-repeat center center;
     background-size: cover;
@@ -154,8 +170,18 @@
     (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape){
       bottom: 11%;
     }
+    @media (max-height: 800px) {
+      height: 38px;
+      width: 24px;
+      &:before{
+        height: 6px;
+        width: 6px;
+        margin: 0 0 0 -3px;
+      }
+    }
     @media (max-width: 900px){
-      bottom: 5%;
+      animation: scrollAnimation-touch 1.5s infinite;
+      bottom: 8%;
     }
     &__main{
       border: solid 2px #fff;
@@ -165,6 +191,7 @@
       position: relative;
       width: 30px;
       @media (max-width: 900px){
+        border: solid 3px #fff;
         border-top: 0;
         border-right: 0;
         border-radius: 0;
@@ -189,15 +216,7 @@
           content:none;
         }
       }
-      @media (max-height: 800px) {
-        height: 38px;
-        width: 24px;
-        &:before{
-          height: 6px;
-          width: 6px;
-          margin: 0 0 0 -3px;
-        }
-      }
+
     }
     &__text{
       color: #fff;

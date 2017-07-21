@@ -46,11 +46,11 @@ let store = {
     switch (this.state.position){
       case 0:
         if(direction){
-          this.state.position++;
-          this.state.location++;
+          history.replaceState('','','/about');
+          this.state.position = 1;
+          this.state.location = 2;
           this.ScrollAction();
           this.setIsColor();
-          history.replaceState('','','/about');
           this.state.showAbout = true;
         }
         break;
@@ -376,7 +376,13 @@ let store = {
     }
   },
   checkDeviceWidth(){
-    document.body.clientWidth <= 900 ? this.isTablet = true : this.isTablet = false;
+    if(document.body.clientWidth <= 900){
+      this.state.translate = 'translateY(0)';
+      this.isRight = false;
+      this.isTablet = true;
+    } else {
+      this.isTablet = false;
+    }
     return this.isTablet;
   },
   navColourChange(){
