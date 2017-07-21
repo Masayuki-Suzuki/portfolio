@@ -9,5 +9,12 @@
     text-align: center;
     text-transform: uppercase;
     transform: translateY(30px);
+    @media (max-width: 900px){
+      @include rem(50);
+      line-height: (72/50);
+      margin: 0;
+      opacity: 1;
+      transform: none;
+    }
   }
 }

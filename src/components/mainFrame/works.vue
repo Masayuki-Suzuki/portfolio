@@ -7,6 +7,7 @@
     'works--left': worksSide(),
     'works--right': !worksSide()
   }">
+    <h1 v-if="sharedState.isTablet" class="common__hd">works</h1>
     <yelp-camp v-if="changeWorks(3)" :class="{ 'active-works': changeWorksA() }"></yelp-camp>
     <portfolio v-if="changeWorks(4)" :class="{ 'active-works': changeWorksB() }"></portfolio>
     <ballet v-if="changeWorks(5)" :class="{ 'active-works': changeWorksA() }"></ballet>
@@ -28,6 +29,7 @@
   export default {
     data: function () {
       return {
+        sharedState: store.state
       }
     },
     methods: {
@@ -35,22 +37,22 @@
         if(document.body.clientWidth <= 900 && num <= 4 || num == 7){
           return true;
         }
-        return store.state.location === num ? true : false;
+        return this.sharedState.location === num ? true : false;
       },
       changeWorksA(){
         if(document.body.clientWidth <= 900){
           return true;
         }
-        return store.state.worksA;
+        return this.sharedState.worksA;
       },
       changeWorksB(){
         if(document.body.clientWidth <= 900){
           return true;
         }
-        return store.state.worksB;
+        return this.sharedState.worksB;
       },
       worksSide(){
-        let loc = store.state.location;
+        let loc = this.sharedState.location;
         return loc % 2 == 0 ? true : false;
       }
     }
@@ -71,11 +73,17 @@
     @media (max-width: 1200px){
       background-position: 3vw top;
     }
+    @media (max-width: 900px){
+      background: none;
+    }
   }
   .works2 {
     background: url(/dist/img/topBg.jpg) no-repeat 25vw top;
     @media (max-width: 1200px){
       background-position: 10vw top;
+    }
+    @media (max-width: 900px){
+      background: none;
     }
   }
   .works3 {
@@ -92,6 +100,11 @@
     transition: all 0.4s ease 0s;
     width: 100%;
     z-index: 1;
+    @media (max-width:900px){
+      height: inherit;
+      padding: 90px 0 95px;
+      position: static;
+    }
     &:after{
       background: $bg-color;
       content: "";
@@ -103,6 +116,9 @@
       transition: all 0.4s ease 0s;
       width: 100vw;
       z-index: 0;
+      @media (max-width: 900px){
+        content: none;
+      }
     }
     &__caption,
     &__hd,
@@ -228,6 +244,54 @@
         }
       }
     }
+    &__ttl{
+      @media (max-width: 900px){
+        background: url(/dist/img/camping.jpg) no-repeat left center;
+        background-size: cover;
+        margin: 45px 0 0 12.7604166666%;
+        padding: 112px 0 206px;
+        width: 87.23958333333334%;
+      }
+    }
+    &__desc{
+      @media (max-width: 900px){
+        background: rgba($main-color, 0.97);
+        margin: -140px 0 0;
+        padding: 30px 40px;
+        width: 62.5%;
+        .works{
+          &__lead{
+            color: #fff;
+            @include rem(14);
+            letter-spacing: 0.02em;
+            line-height: (20/14);
+            margin: 0;
+            max-width: 100%;
+            width: 100%;
+          }
+          &__view{
+            a{
+              border: solid 1px #fff;
+              color: #fff;
+              margin: 10px 0 0;
+              &:after{
+                content: none;
+              }
+              &:hover {
+                color: #fff;
+              }
+            }
+          }
+        }
+        .using{
+          margin: 20px 0 0;
+          &__list{
+            background: #fff;
+            color: $main-color;
+          }
+        }
+      }
+    }
     &__details{
       &--right{
         margin: 50vh 0 0;
@@ -259,6 +323,10 @@
         @media (max-height: 620px) and (max-width: 1024px){
           margin: 37vh 0 0;
         }
+        @media (max-width: 900px){
+          margin: 0;
+          padding: 0;
+        }
       }
       &--left{
         margin: 15vh 0 0;
@@ -272,6 +340,7 @@
         }
       }
     }
+
     &.right-to-left{
       &:after{
         transform: matrix(1,0,-0.8,1,0,0) translateX(-30%);
@@ -324,6 +393,9 @@
         @media (max-height: 620px), (max-width: 1024px){
           margin: 10px 0 0;
         }
+        @media (max-width: 900px){
+          margin: 20px 0 0;
+        }
       }
     }
     &--left{
@@ -331,6 +403,9 @@
         margin: 20px 0 0;
         @media (max-height: 620px){
           margin: 10px 0 0;
+        }
+        @media (max-width: 900px){
+          margin: 20px 0 0;
         }
       }
     }

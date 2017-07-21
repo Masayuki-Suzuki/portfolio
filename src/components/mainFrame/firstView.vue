@@ -67,7 +67,7 @@
     }
 
     90% {
-      transform: translate3d(0,-10px,0);
+      transform: translate3d(0, 0px,0);
     }
   }
   .firstView{
@@ -78,6 +78,9 @@
     transition: all 0.5s ease 0s;
     width: 100%;
     z-index: 0;
+    @media (max-width:900px){
+      height: 100vh;
+    }
   }
   .mainlogo{
     align-items: center;

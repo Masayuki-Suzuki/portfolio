@@ -1,10 +1,10 @@
 <template>
   <div class="works__details works__details--right">
-    <div class="works__lead">
+    <div class="works__ttl">
       <p class="works__caption">design / coding</p>
       <h1 class="works__hd">YelpCamp</h1>
     </div>
-    <div class="works__details">
+    <div class="works__desc">
       <p class="works__lead">YelpCamp is a campgrounds information sharing website which is made by Node.js, Express and MongoDB. I followed The Web Developer Bootcamp course by Colt Steele on Udemy.</p>
       <ul class="using">
         <li class="using__list">HTML5</li>

@@ -53,6 +53,8 @@
         if(document.body.clientWidth <= 900){
           if(num === 1){
             return true;
+          } else if(this.sharedState.location === -1){
+            return false;
           }
         }
         if(num >= 3 && num <= 6){

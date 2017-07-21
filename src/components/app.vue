@@ -28,16 +28,7 @@
     width: 100%;
     @media (max-width: 900px){
       overflow: initial;
-      //height: auto;
-    }
-    &:after{
-      content: url(/dist/img/camping.jpg);
-      display: inline;
-      height: 0;
-      opacity: 0;
-      overflow: hidden;
-      visibility: hidden;
-      width: 0;
+      height: auto;
     }
   }
 

@@ -75,7 +75,7 @@
     }
     @media (max-width: 900px) {
       height: initial;
-      padding: 90px 25px;
+      padding: 90px 25px 95px;
     }
     &__hd {
       margin: 10% 0 0;
@@ -93,8 +93,6 @@
         margin: 2% 0 0;
       }
       @media (max-width: 900px){
-        @include rem(50);
-        line-height: (72/50);
         margin: 0;
       }
     }
@@ -161,7 +159,7 @@
       @media (max-width: 900px){
         border: 0;
         margin: 0 auto 60px;
-        max-width: 480px;
+        max-width: 485px;
         padding: 0;
       }
     }
@@ -206,7 +204,8 @@
         max-width: 240px;
       }
       @media (max-width: 900px){
-        max-width: 450px;
+        max-width: 485px;
+        width: 100%;
       }
       img {
         display: inline-block;
@@ -240,6 +239,8 @@
         }
         @media (max-width: 900px){
           margin: 0 50px 38px 0;
+          max-height: inherit;
+          max-width: inherit;
           vertical-align: middle;
           &:nth-of-type(3n){
             margin: 0 50px 38px 0;
