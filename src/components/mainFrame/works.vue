@@ -247,10 +247,13 @@
     &__ttl{
       @media (max-width: 900px){
         background: url(/dist/img/camping.jpg) no-repeat left center;
-        background-size: cover;
+        background-size: 115%;
         margin: 45px 0 0 12.7604166666%;
-        padding: 112px 0 206px;
+        overflow: hidden;
+        padding: 380px 0 0;
+        position: relative;
         width: 87.23958333333334%;
+        z-index: 2;
       }
     }
     &__desc{
@@ -258,7 +261,9 @@
         background: rgba($main-color, 0.97);
         margin: -140px 0 0;
         padding: 30px 40px;
+        position: relative;
         width: 62.5%;
+        z-index: 3;
         .works{
           &__lead{
             color: #fff;
@@ -274,6 +279,8 @@
               border: solid 1px #fff;
               color: #fff;
               margin: 10px 0 0;
+              padding: 13px 0;
+              width: 160px;
               &:after{
                 content: none;
               }
@@ -285,6 +292,8 @@
         }
         .using{
           margin: 20px 0 0;
+          max-width: inherit;
+          width: 100%;
           &__list{
             background: #fff;
             color: $main-color;
@@ -326,6 +335,44 @@
         @media (max-width: 900px){
           margin: 0;
           padding: 0;
+          position: relative;
+          &:before{
+            color: $main-color;
+            content:"design / coding";
+            @include rem(16);
+            left: 5%;
+            line-height: 1;
+            position: absolute;
+            text-transform: uppercase;
+            top: 112px;
+            z-index: 1;
+          }
+          &:after{
+            color: $main-color;
+            content:"YelpCamp";
+            @include rem(36);
+            font-weight: 700;
+            left: 5%;
+            line-height: 1;
+            position: absolute;
+            text-transform: uppercase;
+            top: 130px;
+            z-index: 1;
+          }
+        }
+        .works{
+          &__caption{
+            color: #fff;
+            left: -9%;
+            position: absolute;
+            top: 110px;
+          }
+          &__hd{
+            color: #fff;
+            left: -9%;
+            position: absolute;
+            top: 125px;
+          }
         }
       }
       &--left{
