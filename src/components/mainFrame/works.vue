@@ -246,14 +246,12 @@
     }
     &__ttl{
       @media (max-width: 900px){
-        background: url(/dist/img/camping.jpg) no-repeat left center;
         background-size: 115%;
-        margin: 45px 0 0 12.7604166666%;
         overflow: hidden;
         padding: 380px 0 0;
         position: relative;
         width: 87.23958333333334%;
-        z-index: 2;
+        z-index: -1;
       }
     }
     &__desc{
@@ -261,9 +259,20 @@
         background: rgba($main-color, 0.97);
         margin: -140px 0 0;
         padding: 30px 40px;
-        position: relative;
+        //position: relative;
         width: 62.5%;
-        z-index: 3;
+        /*z-index: 3;*/
+        &:after{
+          background: $main-color;
+          bottom: -50px;
+          content: '';
+          display: block;
+          height: 2px;
+          left: 50%;
+          position: absolute;
+          transform: translateX(-50%);
+          width: 160px;
+        }
         .works{
           &__lead{
             color: #fff;
@@ -345,7 +354,7 @@
             position: absolute;
             text-transform: uppercase;
             top: 112px;
-            z-index: 1;
+            z-index: -2;
           }
           &:after{
             color: $main-color;
@@ -357,10 +366,14 @@
             position: absolute;
             text-transform: uppercase;
             top: 130px;
-            z-index: 1;
+            z-index: -2;
           }
         }
         .works{
+          &__ttl{
+            background: url(/dist/img/camping.jpg) no-repeat left center;
+            margin: 45px 0 0 12.7604166666%;
+          }
           &__caption{
             color: #fff;
             left: -9%;
@@ -384,6 +397,9 @@
         }
         @media (max-height: 700px){
           margin: 8vh 0 0;
+        }
+        @media (max-width: 900px) {
+          margin: 0;
         }
       }
     }
