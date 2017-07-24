@@ -7,9 +7,9 @@
       <div class="content-wrapper" :style="{ transform: calcPosition() }">
         <first-view></first-view>
         <about v-if="sharedState.location <= 2 || sharedState.isTablet === true"></about>
-        <works v-if="sharedState.location >= 3 && sharedState.location <= 6 || sharedState.isTablet === true"></works>
-        <blogs v-if="sharedState.location === 7 || sharedState.isTablet === true"></blogs>
-        <contact v-if="sharedState.location === 8 || sharedState.isTablet === true"></contact>
+        <works v-if="sharedState.location >= 3 && sharedState.location <= 7 || sharedState.isTablet === true"></works>
+        <blogs v-if="sharedState.location === 8 || sharedState.isTablet === true"></blogs>
+        <contact v-if="sharedState.location === 9 || sharedState.isTablet === true"></contact>
       </div>
     </article>
   </v-touch>

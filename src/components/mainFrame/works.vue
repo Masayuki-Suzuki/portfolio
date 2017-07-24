@@ -4,6 +4,7 @@
     'works2': changeWorks(4),
     'works3': changeWorks(5),
     'works4': changeWorks(6),
+    'works5': changeWorks(7),
     'works--left': worksSide(),
     'works--right': !worksSide()
   }">
@@ -12,6 +13,7 @@
     <portfolio v-if="changeWorks(4)" :class="{ 'active-works': changeWorksB() }"></portfolio>
     <ballet v-if="changeWorks(5)" :class="{ 'active-works': changeWorksA() }"></ballet>
     <marketas v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></marketas>
+    <another v-if="changeWorks(7)" :class="{ 'active-works': changeWorksA() }"></another>
     <div class="scrollNav">
       <a href=""></a>
     </div>
@@ -25,6 +27,7 @@
   import portfolio from './portfolio.vue';
   import ballet from './ballet.vue';
   import marketas from './marketas.vue';
+  import another from './another.vue';
 
   export default {
     data: function () {
@@ -62,6 +65,7 @@
   Vue.component('portfolio', portfolio);
   Vue.component('ballet', ballet);
   Vue.component('marketas', marketas);
+  Vue.component('another', another);
 </script>
 
 <style lang="scss">
@@ -368,23 +372,23 @@
             top: 130px;
             z-index: -2;
           }
-        }
-        .works{
-          &__ttl{
-            background: url(/dist/img/camping.jpg) no-repeat left center;
-            margin: 45px 0 0 12.7604166666%;
-          }
-          &__caption{
-            color: #fff;
-            left: -9%;
-            position: absolute;
-            top: 110px;
-          }
-          &__hd{
-            color: #fff;
-            left: -9%;
-            position: absolute;
-            top: 125px;
+          .works{
+            &__ttl{
+              background: url(/dist/img/camping.jpg) no-repeat left center;
+              margin: 45px 0 0 12.7604166666%;
+            }
+            &__caption{
+              color: #fff;
+              left: -9%;
+              position: absolute;
+              top: 110px;
+            }
+            &__hd{
+              color: #fff;
+              left: -9%;
+              position: absolute;
+              top: 125px;
+            }
           }
         }
       }
@@ -400,10 +404,48 @@
         }
         @media (max-width: 900px) {
           margin: 0;
+          overflow: auto;
+          padding: 0;
+          position: relative;
+          &:after{
+            color: $main-color;
+            content:"portfolio site";
+            @include rem(36);
+            font-weight: 700;
+            right: 0;
+            line-height: 1;
+            position: absolute;
+            text-transform: uppercase;
+            top: 175px;
+            width: 320px;
+            z-index: -2;
+          }
+          .works{
+            &__ttl{
+              background: url(/dist/img/topBg.jpg) no-repeat left center;
+              margin: 45px 12.7604166666% 0 0;
+            }
+            &__caption{
+              color: #fff;
+              right: -15%;
+              position: absolute;
+              top: 110px;
+              width: 320px;
+            }
+            &__hd{
+              color: #fff;
+              right: -15%;
+              position: absolute;
+              top: 125px;
+              width: 322px;
+            }
+            &__desc{
+              float: right;
+            }
+          }
         }
       }
     }
-
     &.right-to-left{
       &:after{
         transform: matrix(1,0,-0.8,1,0,0) translateX(-30%);
@@ -473,7 +515,6 @@
       }
     }
   }
-
   .active-works{
     .works{
       &__caption,
@@ -500,6 +541,4 @@
       transition: all 0.4s ease 0.8s;
     }
   }
-
-
 </style>

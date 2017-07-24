@@ -158,24 +158,8 @@ let store = {
         }
         break;
       case 5:
-        if(direction){
-          this.state.isColorClass = false;
-          history.replaceState('','','/blogs');
-          this.state.isHidden = true;
-          this.state.ltr = true;
-          setTimeout( () => {
-            this.state.position++;
-            this.state.location++;
-            this.state.worksB = false;
-            this.state.isRight = false;
-          },310);
-          setTimeout( () => {
-            this.state.ltr = false;
-            this.state.showBlog = true;
-          },700);
-          setTimeout( () => {
-            this.state.isHidden = false;
-          },1000);
+        if(true){
+
         } else {
           this.state.isColorClass = false;
           setTimeout(() => {
@@ -189,6 +173,36 @@ let store = {
         }
         break;
       case 6:
+        if(direction) {
+          this.state.isColorClass = false;
+          history.replaceState('', '', '/blogs');
+          this.state.isHidden = true;
+          this.state.ltr = true;
+          setTimeout(() => {
+            this.state.position++;
+            this.state.location++;
+            this.state.worksB = false;
+            this.state.isRight = false;
+          }, 310);
+          setTimeout(() => {
+            this.state.ltr = false;
+            this.state.showBlog = true;
+          }, 700);
+          setTimeout(() => {
+            this.state.isHidden = false;
+          }, 1000);
+        } else {
+          this.state.isColorClass = true;
+          setTimeout(() => {
+            this.state.position--;
+            this.state.location--;
+            this.state.worksA = false;
+          },310);
+          setTimeout(() => {
+            this.state.worksB = true;
+          }, 500);
+        }
+      case 7:
         if(direction){
           history.replaceState('','','/contact');
           this.state.isHidden = true;
@@ -220,15 +234,16 @@ let store = {
           setTimeout( () => {
             this.state.isHidden = false;
             this.state.rtl = false;
-            this.state.worksB = true;
+            this.state.worksA = true;
             this.state.showBlog = false;
           },700);
           setTimeout( () => {
             this.state.isHidden = false;
           },1000);
         }
+        
         break;
-      case 7:
+      case 8:
         if(!direction){
           history.replaceState('','','/blogs');
           this.state.isHidden = true;
@@ -302,16 +317,16 @@ let store = {
           this.setLocation(2 , true);
         }
         break;
-      case 7:
-        if(this.state.location !== 7){
-          history.replaceState('','','/blogs');
-          this.setLocation(6 , false);
-        }
-        break;
       case 8:
         if(this.state.location !== 8){
+          history.replaceState('','','/blogs');
+          this.setLocation(7 , false);
+        }
+        break;
+      case 9:
+        if(this.state.location !== 9){
           history.replaceState('','','/contact');
-          this.setLocation(7 , true);
+          this.setLocation(8 , true);
         }
         break;
       default:
@@ -351,10 +366,10 @@ let store = {
       if(pos === 2){
         this.state.worksA = true;
       }
-      if(pos === 6){
+      if(pos === 7){
         this.state.showBlog = true;
       }
-      if(pos === 7){
+      if(pos === 8){
         this.state.showContact = true;
       }
     },700);
@@ -388,7 +403,7 @@ let store = {
   navColourChange(){
     const tag = document.getElementsByClassName('firstView')[0];
     let tagHeight = tag.clientHeight;
-    if(window.pageYOffset + 40 >= tagHeight){
+    if(window.pageYOffset + 60 >= tagHeight){
       this.isColorClass = false;
       document.querySelector('path').classList.add('logoBlack');
       document.querySelector('path').classList.remove('logoWhite');

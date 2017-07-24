@@ -9,10 +9,11 @@
           <li class="works__list" :class="{'active': worksActiveControl(5)}"></li>
           <li class="works__list" :class="{'active': worksActiveControl(6)}"></li>
           <li class="works__list" :class="{'active': worksActiveControl(7)}"></li>
+          <li class="works__list" :class="{'active': worksActiveControl(8)}"></li>
         </ul>
       </div>
-      <div class="pagination__list" :class="{'active': activeControl(7) }" @click="paginationClick(7,$event)">04.</div>
-      <div class="pagination__list" :class="{'active': activeControl(8) }" @click="paginationClick(8,$event)">05.</div>
+      <div class="pagination__list" :class="{'active': activeControl(8) }" @click="paginationClick(8,$event)">04.</div>
+      <div class="pagination__list" :class="{'active': activeControl(9) }" @click="paginationClick(9,$event)">05.</div>
   </div>
 </template>
 
