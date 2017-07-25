@@ -37,9 +37,9 @@
     top:$FrameWidth;
     z-index: 10;
     @media (max-height: 800px){
-      left: 20px;
+      left: 15px;
       padding: 15px;
-      top: 20px;
+      top: 15px;
     }
     @media (max-height: 700px){
       left: 15px;

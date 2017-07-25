@@ -78,19 +78,28 @@
       padding: 90px 25px 95px;
     }
     &__hd {
-      margin: 10% 0 0;
+      margin: 10vh 0 0;
       transition: all 0.4s ease 0s;
       @media (max-height: 800px) {
         @include rem(50);
-        margin: 3% 0 0;
+        margin: 9vh 0 0;
+      }
+      @media (max-height: 750px) {
+        margin: 6vh 0 0;
       }
       @media (max-height: 700px) {
         @include rem(45);
-        margin: 3.5% 0 0;
+        margin: 9vh 0 0;
+      }
+      @media (max-height: 650px) {
+        margin: 5vh 0 0;
+      }
+      @media (max-height: 600px) {
+        margin: 8vh 0 0;
       }
       @media (max-height: 550px) {
         @include rem(40);
-        margin: 2% 0 0;
+        margin: 5vh 0 0;
       }
       @media (max-width: 900px){
         margin: 0;
@@ -305,7 +314,7 @@
     @media (max-height: 800px){
       bottom: 45px;
     }
-    @media (max-height: 700px){
+    @media (max-height: 700px), (max-width: 1024px){
       bottom: 32px;
       margin: 0 0 0 -10px;
     }

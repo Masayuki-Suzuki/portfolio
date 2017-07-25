@@ -173,15 +173,15 @@
     (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape){
       bottom: 11%;
     }
-    @media (max-height: 800px) {
-      height: 38px;
-      width: 24px;
-      &:before{
-        height: 6px;
-        width: 6px;
-        margin: 0 0 0 -3px;
-      }
-    }
+    //@media (max-height: 800px) {
+      //height: 38px;
+      //width: 24px;
+      //&:before{
+        //height: 6px;
+        //width: 6px;
+        //margin: 0 0 0 -3px;
+      //}
+    //}
     @media (max-width: 900px){
       animation: scrollAnimation-touch 1.5s infinite;
       bottom: 8%;

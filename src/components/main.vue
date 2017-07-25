@@ -50,25 +50,32 @@
         this.sharedState.position = -1;
         this.sharedState.location = -1;
       }
-      window.addEventListener('resize', (e) => {
-        console.log('position: ' + this.sharedState.position);
+      window.addEventListener('resize', () => {
         if(this.checkDeviceWidth()){
-          window.removeEventListener('keydown', this.callKeyEvent);
-          window.addEventListener('scroll', this.navColourController);
-          this.disableSwipe();
-          this.sharedState.isTablet = true;
-          this.sharedState.position = -1;
-          this.sharedState.location = -1;
+          if(this.sharedState.prevWindowSize <= 900){
+            window.removeEventListener('keydown', this.callKeyEvent);
+            window.addEventListener('scroll', this.navColourController);
+            this.disableSwipe();
+            this.sharedState.isTablet = true;
+            this.sharedState.position = -1;
+            this.sharedState.location = -1;
+            this.sharedState.isRight = false;
+            this.sharedState.isColorClass = true;
+          }
+          this.sharedState.prevWindowSize = document.body.clientWidth;
         } else {
-          window.addEventListener('keydown', this.callKeyEvent);
-          window.removeEventListener('scroll', this.navColourController);
-          this.enableSwipe();
-          this.sharedState.isTablet = false;
-          this.sharedState.position = 0;
-          this.sharedState.location = 1;
+          if(this.sharedState.prevWindowSize <= 900){
+            window.addEventListener('keydown', this.callKeyEvent);
+            window.removeEventListener('scroll', this.navColourController);
+            this.enableSwipe();
+            this.sharedState.isTablet = false;
+            this.sharedState.position = 0;
+            this.sharedState.location = 1;
+            this.sharedState.isColorClass = true;
+          }
+          this.sharedState.prevWindowSize = document.body.clientWidth;
         }
       });
-
     },
     methods: {
       scrollController(e){

@@ -32,7 +32,7 @@
       },
       activeControl(num){
         if(num === 3){
-          if(this.sharedState.location >= 3 && this.sharedState.location <= 6){
+          if(this.sharedState.location >= 3 && this.sharedState.location <= 7){
             return true;
           } else {
             return false;

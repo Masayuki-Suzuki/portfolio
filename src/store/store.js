@@ -7,6 +7,8 @@ let store = {
     isKeyFired: false,
     isRight: false,
     isTablet: false,
+    // Previous Window Size
+    prevWindowSize: 1000,
     //Transition Style
     translate: 'translateY(0vh)',
     //Location Control
@@ -45,16 +47,18 @@ let store = {
   scrollEvent(direction){
     switch (this.state.position){
       case 0:
+        // First view
         if(direction){
           history.replaceState('','','/about');
-          this.state.position = 1;
-          this.state.location = 2;
+          this.state.position++;
+          this.state.location++;
           this.ScrollAction();
           this.setIsColor();
           this.state.showAbout = true;
         }
         break;
       case 1:
+        // About ( Who I am )
         if(direction){
           history.replaceState('','','/works');
           this.state.isHidden = true;
@@ -82,6 +86,7 @@ let store = {
         }
         break;
       case 2:
+        // Works ( Yelp Camp )
         if(direction){
           this.state.isColorClass = true;
           setTimeout( () => {
@@ -112,6 +117,7 @@ let store = {
         }
         break;
       case 3:
+        // Works ( Portfolio )
         if(direction){
           this.state.isColorClass = false;
           setTimeout(() => {
@@ -135,6 +141,7 @@ let store = {
         }
         break;
       case 4:
+        // Works ( Ballet )
         if(direction){
           this.state.isColorClass = true;
           setTimeout(() => {
@@ -158,8 +165,17 @@ let store = {
         }
         break;
       case 5:
-        if(true){
-
+        // Works ( Marketa's )
+        if(direction){
+          this.state.isColorClass = false;
+          setTimeout(() => {
+            this.state.position++;
+            this.state.location++;
+            this.state.worksB = false;
+          },310);
+          setTimeout(() => {
+            this.state.worksA = true;
+          }, 500);
         } else {
           this.state.isColorClass = false;
           setTimeout(() => {
@@ -173,6 +189,7 @@ let store = {
         }
         break;
       case 6:
+        // Works ( Another works )
         if(direction) {
           this.state.isColorClass = false;
           history.replaceState('', '', '/blogs');
@@ -202,6 +219,7 @@ let store = {
             this.state.worksB = true;
           }, 500);
         }
+        break;
       case 7:
         if(direction){
           history.replaceState('','','/contact');

@@ -104,6 +104,9 @@
     transition: all 0.4s ease 0s;
     width: 100%;
     z-index: 1;
+    @media (max-height: 800px), (max-width: 1024px){
+      padding: 15px;
+    }
     @media (max-width:900px){
       height: inherit;
       padding: 90px 0 95px;
@@ -330,22 +333,28 @@
           margin: 44vh 0 0;
         }
         @media (max-width: 1024px){
-          margin: 53vh 0 0;
+          margin: 55vh 0 0;
           padding: 0 0 0 40vw;
+        }
+        @media (max-height: 800px) and (max-width: 1024px) {
+          margin: 49vh 0 0;
         }
         @media (max-height: 700px){
           margin: 42vh 0 0;
         }
+        @media (max-height: 700px) and (max-width: 1024px) {
+          margin: 49vh 0 0;
+        }
         @media (max-height: 620px){
           margin: 37vh 0 0;
         }
-        @media (max-height: 620px) and (max-width: 1200px){
+        @media (max-height: 620px) and (max-width: 1200px) {
           margin: 42vh 0 0;
         }
-        @media (max-height: 620px) and (max-width: 1024px){
+        @media (max-height: 620px) and (max-width: 1024px) {
           margin: 37vh 0 0;
         }
-        @media (max-width: 900px){
+        @media (max-width: 900px) {
           margin: 0;
           padding: 0;
           position: relative;
