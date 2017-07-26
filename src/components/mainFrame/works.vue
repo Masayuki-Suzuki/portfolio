@@ -157,6 +157,7 @@
       margin: 5px 0 12px;
       position: relative;
       text-transform: uppercase;
+      width: 88%;
       z-index: 2;
       @media (max-height: 800px){
         @include rem(45);
@@ -197,7 +198,7 @@
         display: block;
         @include rem(14);
         line-height: 1;
-        margin: 20px 0 0;
+        margin: 10px 0 0;
         overflow: hidden;
         padding: 12px 0 11px;
         position: relative;
@@ -327,10 +328,9 @@
         }
         @media (max-width: 1200px){
           margin: 48vh 0 0;
-          padding: 0 0 0 43vw;
         }
         @media (max-height: 800px) and (max-width: 1200px){
-          margin: 44vh 0 0;
+          margin: 46vh 0 0;
         }
         @media (max-width: 1024px){
           margin: 55vh 0 0;
@@ -346,13 +346,7 @@
           margin: 49vh 0 0;
         }
         @media (max-height: 620px){
-          margin: 37vh 0 0;
-        }
-        @media (max-height: 620px) and (max-width: 1200px) {
           margin: 42vh 0 0;
-        }
-        @media (max-height: 620px) and (max-width: 1024px) {
-          margin: 37vh 0 0;
         }
         @media (max-width: 900px) {
           margin: 0;
@@ -384,6 +378,7 @@
           .works{
             &__ttl{
               background: url(/dist/img/camping.jpg) no-repeat left center;
+              background-size: 120%;
               margin: 45px 0 0 12.7604166666%;
             }
             &__caption{
@@ -399,6 +394,51 @@
               top: 125px;
             }
           }
+          &.anotherWorks {
+            &:before,
+            &:after {
+              content: none;
+            }
+          }
+          .anotherWorks{
+            &__ttl{
+              background: none;
+              margin: 95px 0 0;
+              padding: 0;
+              width: 100%;
+            }
+            &__hd{
+              color: $main-color;
+              @include rem(30);
+              font-weight: 300;
+              line-height: 1;
+              margin: 0 0 25px;
+              max-width: 100%;
+              position: static;
+              text-align: center;
+              width: 100%;
+            }
+            &__desc{
+              background: none;
+              margin: 0 auto;
+              max-width: 670px;
+              padding: 0;
+              text-align: center;
+              width: 95%;
+              &:after{
+                content: none;
+              }
+              .works{
+                &__lead{
+                  color: $main-color;
+                  @include rem(16);
+                  font-weight: 300;
+                  line-height: (26/16);
+                  text-align: center;
+                }
+              }
+            }
+          }
         }
       }
       &--left{
@@ -412,10 +452,10 @@
           margin: 8vh 0 0;
         }
         @media (max-width: 900px) {
-          margin: 0;
-          overflow: auto;
+          margin: 100px 0 0;
           padding: 0;
           position: relative;
+          text-align: right;
           &:after{
             color: $main-color;
             content:"portfolio site";
@@ -424,15 +464,18 @@
             right: 0;
             line-height: 1;
             position: absolute;
+            text-align: left;
             text-transform: uppercase;
-            top: 175px;
+            top: 131px;
             width: 320px;
             z-index: -2;
           }
           .works{
             &__ttl{
               background: url(/dist/img/topBg.jpg) no-repeat left center;
+              background-size: 105%;
               margin: 45px 12.7604166666% 0 0;
+              text-align: left;
             }
             &__caption{
               color: #fff;
@@ -449,7 +492,8 @@
               width: 322px;
             }
             &__desc{
-              float: right;
+              display: inline-block;
+              text-align: left;
             }
           }
         }
@@ -550,4 +594,5 @@
       transition: all 0.4s ease 0.8s;
     }
   }
+
 </style>

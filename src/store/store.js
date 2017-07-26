@@ -241,7 +241,6 @@ let store = {
           },1000);
         } else {
           history.replaceState('','','/works');
-          this.state.isColorClass = true;
           this.state.isHidden = true;
           this.state.rtl = true;
           setTimeout( () => {

@@ -56,6 +56,7 @@
           } else if(this.sharedState.location === -1){
             return false;
           }
+
         }
         if(num >= 3 && num <= 7){
           if(this.sharedState.location >= 3 && this.sharedState.location <= 7){

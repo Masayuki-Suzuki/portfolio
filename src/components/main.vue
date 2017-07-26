@@ -37,7 +37,7 @@
       }
     },
     created: function() {
-      if(document.body.clientWidth >= 900){
+      if(document.body.clientWidth > 900){
         window.addEventListener('keydown', this.callKeyEvent);
       } else if(document.body.clientWidth <= 900) {
         this.sharedState.isTablet = true;
@@ -49,10 +49,11 @@
         window.addEventListener('scroll', this.navColourController);
         this.sharedState.position = -1;
         this.sharedState.location = -1;
+        this.sharedState.prevWindowSize = document.body.clientWidth;
       }
       window.addEventListener('resize', () => {
         if(this.checkDeviceWidth()){
-          if(this.sharedState.prevWindowSize <= 900){
+          if(this.sharedState.prevWindowSize >= 900){
             window.removeEventListener('keydown', this.callKeyEvent);
             window.addEventListener('scroll', this.navColourController);
             this.disableSwipe();
@@ -79,7 +80,7 @@
     },
     methods: {
       scrollController(e){
-        if(document.body.clientWidth >= 900){
+        if(document.body.clientWidth > 900){
           store.scrollMain(e);
         }
       },
@@ -97,12 +98,12 @@
         }
       },
       swipeUp(){
-        if(document.body.clientWidth >= 900){
+        if(document.body.clientWidth > 900){
           store.arrowKeyEvent(true);
         }
       },
       swipeDown(){
-        if(document.body.clientWidth >= 900){
+        if(document.body.clientWidth > 900){
           store.arrowKeyEvent(false);
         }
       },

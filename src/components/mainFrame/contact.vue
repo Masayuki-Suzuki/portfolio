@@ -32,6 +32,9 @@
     },
     methods: {
       pageController(){
+        if(document.body.clientWidth <= 900){
+          return true;
+        }
         return store.state.showContact;
       }
     }
@@ -49,6 +52,10 @@
     width: 100%;
     @media (max-height: 800px){
       padding: 15px;
+    }
+    @media (max-width: 900px){
+      background: #fff;
+      padding: 90px 0;
     }
     &__hd{
       color: $main-text-color;
@@ -81,6 +88,11 @@
       }
       @media (max-height: 550px){
         margin: 4% 0 0;
+      }
+      @media (max-width: 900px){
+        @include rem(50);
+        line-height: 1;
+        margin: 0;
       }
     }
     &__form{
@@ -116,6 +128,7 @@
       background: none;
       border: 0;
       border-bottom: solid 1px #979797;
+      border-radius: 0;
       display: block;
       @include rem(22);
       font-weight: 300;

@@ -162,7 +162,7 @@
     &-can{
       border-right: solid 1px #A8A8A0;
       padding: 0 50px 0 0;
-      @media (max-width: 1024px){
+      @media (max-width: 1024px) , (max-height: 750px) and (max-width: 1200px){
         padding: 0 20px 0 0;
       }
       @media (max-width: 900px){
@@ -174,7 +174,7 @@
     }
     &-use{
       padding: 0 0 0 50px;
-      @media (max-width: 1024px){
+      @media (max-width: 1024px), (max-height: 750px) and (max-width: 1200px){
         padding: 0 0 0 20px;
       }
       @media (max-width: 900px){
@@ -209,7 +209,8 @@
       transition: all 0.4s ease 0.6s;
       transform: translateY(30px);
       width: 90%;
-      @media (max-height: 700px), (max-width: 1024px){
+      @media (max-height: 700px),(max-width: 1024px),
+      (max-height: 750px) and (max-width: 1200px){
         max-width: 240px;
       }
       @media (max-width: 900px){
@@ -235,7 +236,8 @@
             margin: 0 0 25px;
           }
         }
-        @media (max-height: 600px), (max-width: 1024px){
+        @media (max-height: 600px), (max-width: 1024px),
+        (max-height: 750px) and (max-width: 1200px){
           margin: 0 20px 20px 0;
           max-width: 85px;
           max-height: 45px;
@@ -318,7 +320,7 @@
       bottom: 32px;
       margin: 0 0 0 -10px;
     }
-    @media (max-height: 550px){
+    @media (max-height: 550px), (max-width: 900px){
       display: none;
     }
     a{

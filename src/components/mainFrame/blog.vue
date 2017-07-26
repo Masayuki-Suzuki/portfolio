@@ -3,13 +3,21 @@
     <h1 class="common__hd blogs__hd">Blogs</h1>
     <div class="blogs__container">
       <% for(var i = 0; i < 3; i++){ %>
+      <% if(i === 1) { %>
+        <div class="blogs__list blogs__list--right">
+      <% } else { %>
       <div class="blogs__list">
-        <img src="/dist/img/dummy1.jpg" alt="dummy">
-        <time>January / 30 / 2017 - coding</time>
-        <h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h2>
-        <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur.</p>
-        <div class="viewPost">
-          <a href="">Read the post</a>
+      <% } %>
+        <div class="blogs__thumbnail">
+          <img src="/dist/img/dummy1.jpg" alt="dummy">
+        </div>
+        <div class="blogs__desc">
+          <time>January / 30 / 2017 - coding</time>
+          <h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h2>
+          <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur.</p>
+          <div class="viewPost">
+            <a href="">Read the post</a>
+          </div>
         </div>
       </div>
       <% } %>
@@ -34,6 +42,9 @@
     },
     methods: {
       pageController(){
+        if(document.body.clientWidth <= 900){
+          return true;
+        }
         return store.state.showBlog;
       }
     }
@@ -47,10 +58,12 @@
     background: $bg-color;
     height:100%;
     padding: 25px;
-    position: relative;
     width: 100%;
     @media (max-height: 800px){
       padding: 15px;
+    }
+    @media (max-width: 900px){
+      padding: 90px 0;
     }
     &__hd{
       margin: 90px 0 0;
@@ -79,12 +92,18 @@
       @media (max-height: 550px){
         margin: 3% 0 0;
       }
+      @media (max-width: 900px){
+        @include rem(50);
+        line-height: 1;
+        margin: 0 auto;
+      }
     }
     &__container{
       display: flex;
       justify-content: space-between;
       margin: 2.5% auto;
       max-width: 1180px;
+      position: relative;
       width: 80%;
       @media (max-height: 800px){
         margin: 2% auto;
@@ -94,6 +113,13 @@
       }
       @media (max-height: 650px){
         margin: 1% auto;
+      }
+      @media (max-width: 900px){
+        flex-direction: column;
+        justify-content: flex-start;
+        margin: 35px auto 0;
+        max-width: 650px;
+        width: 90%;
       }
     }
     &__list{
@@ -113,11 +139,22 @@
       }
       &:before{
         background: $main-color;
-        left: -100%;
+        left: -103%;
       }
       &:after{
         background: #fff;
         left: 0;
+      }
+      @media (max-width: 900px){
+        background: none;
+        display: flex;
+        justify-content: flex-end;
+        margin: 15px auto;
+        width: 100%;
+        &:before,
+        &after{
+          content: none;
+        }
       }
       &:first-of-type{
         &:before,
@@ -138,10 +175,6 @@
           transition: left 0.4s ease 1.2s;
         }
       }
-      img{
-        display: block;
-        width: 100%;
-      }
       time{
         color: #7c7c7c;
         display: block;
@@ -158,7 +191,28 @@
         @media (max-height: 600px){
           padding: 10px 20px 0;
         }
+        @media (max-width: 900px){
+          padding: 20px 25px 0 75px;
+          text-align: left;
+        }
       }
+    }
+    &__thumbnail{
+      left: 0;
+      max-width: 260px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 10;
+      img{
+        display: block;
+        width: 100%;
+      }
+    }
+    &__desc{
+      background: #fff;
+      margin: 30px 0 0;
+      max-width: 440px;
     }
     .title{
       color: $main-text-color;
@@ -168,11 +222,15 @@
       margin: 5px 0 10px;
       padding: 0 20px;
       text-align: center;
-      @media (max-height: 700px){
+      @media (max-height: 700px), (max-width: 900px){
         @include rem(20);
       }
       @media (max-height: 600px){
         @include rem(18);
+      }
+      @media (max-width: 900px){
+        padding: 0 25px 0 75px;
+        text-align: left;
       }
       &:after{
         background: $main-color;
@@ -181,6 +239,9 @@
         height: 2px;
         margin: 12px auto 10px;
         width: 44px;
+        @media (max-width: 900px){
+          margin: 12px 0 10px;
+        }
       }
     }
     .summary{
@@ -189,8 +250,12 @@
       font-weight: 500;
       padding: 0 20px;
       text-align: center;
-      @media (max-height: 600px){
+      @media (max-height: 600px), (max-width: 900px){
         @include rem(14);
+      }
+      @media (max-width: 900px){
+        padding: 0 25px 0 75px;
+        text-align: left;
       }
     }
     .viewPost{
@@ -204,6 +269,10 @@
         margin: 10px 0 0;
         padding: 0 15px 12px;
       }
+      @media (max-width: 900px){
+        padding: 0 25px 20px 75px;
+        text-align: left;
+      }
       a{
         color: $main-text-color;
         display: inline-block;
@@ -213,6 +282,27 @@
         position: relative;
         text-transform: uppercase;
         @include pseudo($main-text-color);
+      }
+    }
+    &__list{
+      &--right{
+        @media (max-width: 900px){
+          justify-content: flex-start;
+          .blogs__thumbnail{
+            left: auto;
+            right: 0;
+          }
+          time{
+            padding: 20px 75px 0 25px;
+          }
+          .title,
+          .summary{
+            padding: 0 75px 0 25px;
+          }
+          .viewPost{
+            padding: 0 75px 20px 25px;
+          }
+        }
       }
     }
   }
@@ -225,10 +315,10 @@
       }
       &__list{
         &:before{
-          left: 100%;
+          left: 103%;
         }
         &:after{
-          left: 200%;
+          left: 203%;
         }
         &:first-of-type{
           &:before,
@@ -244,6 +334,9 @@
         }
         &:last-of-type{
           margin: 0;
+          @media (max-width: 900px){
+            margin: 15px 0;
+          }
           &:before,
           &:after{
             transition: left .6s ease 0.92s;
@@ -282,6 +375,12 @@
       }
       @media (max-height: 650px){
         @include rem(12);
+      }
+      @media (max-width: 900px){
+        background: $main-color;
+        color: #fff;
+        padding: 15px 0;
+        width: 200px;
       }
       &:after{
         background: $main-color;
