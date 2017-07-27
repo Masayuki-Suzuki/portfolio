@@ -26,7 +26,7 @@
       <a href="">read more post</a>
     </div>
     <div class="scrollNav">
-      <a href=""></a>
+      <span @click="paginationClick(9)" href=""></span>
     </div>
   </section>
 </template>
@@ -46,6 +46,9 @@
           return true;
         }
         return store.state.showBlog;
+      },
+      paginationClick(num){
+        store.paginationLinkAction(num);
       }
     }
   }
@@ -58,12 +61,16 @@
     background: $bg-color;
     height:100%;
     padding: 25px;
+    position: relative;
     width: 100%;
     @media (max-height: 800px){
       padding: 15px;
     }
     @media (max-width: 900px){
       padding: 90px 0;
+    }
+    @media (max-width: 550px){
+      padding: 50px 0;
     }
     &__hd{
       margin: 90px 0 0;
@@ -121,6 +128,12 @@
         max-width: 650px;
         width: 90%;
       }
+      @media (max-width: 740px){
+        margin: 20px auto 0;
+      }
+      @media (max-width: 550px){
+        max-width: 400px;
+      }
     }
     &__list{
       background: #fff;
@@ -149,12 +162,15 @@
         background: none;
         display: flex;
         justify-content: flex-end;
-        margin: 15px auto;
+        margin: 25px auto;
         width: 100%;
         &:before,
         &after{
           content: none;
         }
+      }
+      @media (max-width: 550px){
+        display: block;
       }
       &:first-of-type{
         &:before,
@@ -195,24 +211,51 @@
           padding: 20px 25px 0 75px;
           text-align: left;
         }
+        @media (max-width: 740px){
+          padding: 85px 25px 0;
+        }
+        @media (max-width: 550px){
+          padding: 15px 15px 0;
+          text-align: center;
+        }
       }
     }
     &__thumbnail{
-      left: 0;
-      max-width: 260px;
-      position: absolute;
-      top: 0;
-      width: 100%;
-      z-index: 10;
+      @media (max-width: 900px){
+        left: 0;
+        max-width: 260px;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      @media (max-width: 740px){
+        max-width: 300px;
+      }
+      @media (max-width: 550px){
+        position: static;
+        max-width: 100%;
+      }
       img{
         display: block;
         width: 100%;
       }
     }
     &__desc{
-      background: #fff;
-      margin: 30px 0 0;
-      max-width: 440px;
+      @media (max-width: 900px) {
+        background: #fff;
+        margin: 30px 0 0;
+        max-width: 440px;
+      }
+      @media (max-width: 740px){
+        margin: 85px 0 0;
+        max-width: 600px;
+        width: 80%;
+      }
+      @media (max-width: 550px){
+        margin: 0;
+        width: 100%;
+      }
     }
     .title{
       color: $main-text-color;
@@ -232,6 +275,13 @@
         padding: 0 25px 0 75px;
         text-align: left;
       }
+      @media (max-width: 740px){
+        padding: 0 25px;
+      }
+      @media (max-width: 550px){
+        padding: 0 15px;
+        text-align: center;
+      }
       &:after{
         background: $main-color;
         content: '';
@@ -241,6 +291,9 @@
         width: 44px;
         @media (max-width: 900px){
           margin: 12px 0 10px;
+        }
+        @media (max-width: 550px){
+          margin: 12px auto 10px;
         }
       }
     }
@@ -257,6 +310,13 @@
         padding: 0 25px 0 75px;
         text-align: left;
       }
+      @media (max-width: 740px){
+        padding: 0 25px;
+      }
+      @media (max-width: 550px){
+        padding: 0 15px;
+        text-align: center;
+      }
     }
     .viewPost{
       margin: 20px 0 0;
@@ -272,6 +332,13 @@
       @media (max-width: 900px){
         padding: 0 25px 20px 75px;
         text-align: left;
+      }
+      @media (max-width: 740px){
+        padding: 0 25px 20px 25px;
+      }
+      @media (max-width: 550px){
+        padding: 0 15px 15px;
+        text-align: center;
       }
       a{
         color: $main-text-color;
@@ -294,13 +361,43 @@
           }
           time{
             padding: 20px 75px 0 25px;
+            @media (max-width: 740px){
+              padding: 85px 25px 0;
+            }
           }
           .title,
           .summary{
             padding: 0 75px 0 25px;
+            @media (max-width: 740px){
+
+            }
           }
           .viewPost{
             padding: 0 75px 20px 25px;
+          }
+        }
+        @media (max-width: 740px){
+          time{
+            padding: 85px 25px 0;
+          }
+          .title,
+          .summary{
+            padding: 0 25px;
+          }
+          .viewPost{
+            padding: 0 25px 20px 25px;
+          }
+        }
+        @media (max-width: 550px){
+          time{
+            padding: 15px 15px 0;
+          }
+          .title,
+          .summary{
+            padding: 0 15px;
+          }
+          .viewPost{
+            padding: 0 15px 15px 15px;
           }
         }
       }
@@ -335,7 +432,7 @@
         &:last-of-type{
           margin: 0;
           @media (max-width: 900px){
-            margin: 15px 0;
+            margin: 25px 0;
           }
           &:before,
           &:after{

@@ -51,6 +51,9 @@
       padding: 25px;
       top: 0;
     }
+    @media (max-width: 740px){
+      padding: 25px 15px;
+    }
     &__right{
       left: auto;
       right: $FrameWidth;
@@ -64,10 +67,10 @@
     &__svg{
       height: auto;
       width: 70px;
-      @media (max-height: 800px){
+      @media (max-height: 800px), (max-width: 740px){
         width: 60px;
       }
-      @media (max-height: 700px){
+      @media (max-height: 700px), (max-width: 550px){
         width: 50px;
       }
     }

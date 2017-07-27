@@ -7,6 +7,7 @@ let store = {
     isKeyFired: false,
     isRight: false,
     isTablet: false,
+    isScrollClick: null,
     // Previous Window Size
     prevWindowSize: 1000,
     //Transition Style
@@ -428,6 +429,58 @@ let store = {
       this.isColorClass = true;
       document.querySelector('path').classList.add('logoWhite');
       document.querySelector('path').classList.remove('logoBlack');
+    }
+  },
+  targetController(num){
+    console.log('targetController');
+    switch (num){
+      case 1:
+        this.smoothScroll('.firstView');
+        this.isColorClass = true;
+        break;
+      case 2:
+        this.smoothScroll('.about');
+        this.isColorClass = false;
+        break;
+      case 3:
+        this.smoothScroll('.works');
+        this.isColorClass = false;
+        break;
+      case 8:
+        this.smoothScroll('.blogs');
+        this.isColorClass = false;
+        break;
+      case 9:
+        this.smoothScroll('.contact');
+        this.isColorClass = false;
+        break;
+      default:
+        break;
+    }
+  },
+  smoothScroll(t){
+    if(this.state.isScrollClick == null){
+      const tag = document.querySelector(t);
+      tag.rect = tag.getBoundingClientRect();
+      tag.posY = tag.rect.top + window.pageYOffset;
+
+      let direction, move, totalScroll;
+      direction = (tag.posY < window.pageYOffset) ? -1 : 1;
+      move = 50 * direction;
+      totalScroll = window.pageYOffset;
+
+      this.state.isScrollClick = setInterval(() => {
+        if( (direction === 1 && totalScroll >= tag.posY) ||
+        (direction === -1 && totalScroll <= tag.posY) ){
+          window.scrollTo(0, tag.posY);
+          clearInterval(this.state.isScrollClick);
+          this.state.isScrollClick = null;
+          return;
+        }
+
+        window.scrollBy(0, move);
+        totalScroll += move;
+      },10);
     }
   }
 }

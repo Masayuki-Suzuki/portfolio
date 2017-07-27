@@ -57,6 +57,9 @@
       background: #fff;
       padding: 90px 0;
     }
+    @media (max-width: 550px){
+      padding: 50px 0;
+    }
     &__hd{
       color: $main-text-color;
       @include rem(60);
@@ -94,6 +97,9 @@
         line-height: 1;
         margin: 0;
       }
+      @media (max-width: 740px){
+        @include rem(40);
+      }
     }
     &__form{
       margin: 70px auto 0;
@@ -106,6 +112,9 @@
       }
       @media (max-height: 550px) {
         margin: 2% auto 0;
+      }
+      @media (max-width: 740px){
+        width: 80%;
       }
     }
     .ttl{

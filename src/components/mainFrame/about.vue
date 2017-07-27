@@ -15,8 +15,7 @@
           <img src="/dist/img/mongodb.svg" alt="">
           <img src="/dist/img/jquery.svg" alt="">
         </div>
-        <p>Express / Bootstrap / Semantic UI / JSON / AJAX </p>
-        <p>PHP / SQL / C & C++ / C# / ASP.NET</p>
+        <p class="what-i__another">Express / Bootstrap / Semantic UI / JSON / AJAX <span>PHP / SQL / C & C++ / C# / ASP.NET</span></p>
       </div>
       <div class="what-i what-i-use">
         <h2>What I use ?</h2>
@@ -34,7 +33,7 @@
       </div>
     </div>
     <div v-if="!sharedState.isTablet" class="scrollNav">
-      <a href=""></a>
+      <span @click="paginationClick(3)"></span>
     </div>
   </section>
 </template>
@@ -56,6 +55,9 @@
           return true;
         }
         return store.state.showAbout;
+      },
+      paginationClick(num){
+        store.paginationLinkAction(num);
       }
     }
   }
@@ -76,6 +78,9 @@
     @media (max-width: 900px) {
       height: initial;
       padding: 90px 25px 95px;
+    }
+    @media (max-width: 550px){
+      padding: 50px 25px 55px;
     }
     &__hd {
       margin: 10vh 0 0;
@@ -103,6 +108,9 @@
       }
       @media (max-width: 900px){
         margin: 0;
+      }
+      @media (max-width: 550px){
+        @include rem(40);
       }
     }
     &__lead {
@@ -182,6 +190,21 @@
         padding: 0;
       }
     }
+    &__another{
+      line-height: 1.44;
+      span{
+        display: block;
+        @media (max-width: 740px){
+          display: inline-block;
+        }
+        @media (max-width: 378px){
+          display: inline;
+          &:before{
+            content:" / ";
+          }
+        }
+      }
+    }
     h2{
       @include rem(30);
       font-weight: 300;
@@ -216,6 +239,12 @@
       @media (max-width: 900px){
         max-width: 485px;
         width: 100%;
+      }
+      @media (max-width: 740px){
+        max-width: 400px;
+      }
+      @media (max-width: 550px){
+        max-width: 300px;
       }
       img {
         display: inline-block;
@@ -258,6 +287,29 @@
           }
           &:nth-of-type(4n){
             margin: 0 0 38px;
+          }
+        }
+        @media (max-width: 740px){
+          margin: 0 30px 30px 0;
+          max-width: 85px;
+          &:nth-of-type(3n){
+            margin: 0 30px 30px 0;
+          }
+          &:nth-of-type(4n){
+            margin: 0 0 30px;
+          }
+        }
+        @media (max-width: 550px){
+          max-width: inherit;
+          vertical-align: bottom;
+          &:nth-of-type(3n){
+            margin: 0 0 30px 0;
+          }
+          &:nth-of-type(4n){
+            margin: 0 30px 30px 0;
+          }
+          &:last-of-type{
+            margin: 0 0 30px;
           }
         }
       }
@@ -323,7 +375,7 @@
     @media (max-height: 550px), (max-width: 900px){
       display: none;
     }
-    a{
+    span{
       border: solid 1px #979797;
       border-top: 0;
       border-right: 0;

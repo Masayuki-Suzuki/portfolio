@@ -12,6 +12,7 @@
         <contact v-if="sharedState.location === 9 || sharedState.isTablet === true"></contact>
       </div>
     </article>
+    <tFooter v-if="sharedState.isTablet === true"></tFooter>
   </v-touch>
 </template>
 
@@ -27,6 +28,7 @@
   import works3 from './mainFrame/ballet.vue';
   import blogs from './mainFrame/blog.vue';
   import contact from './mainFrame/contact.vue';
+  import tfooter from './footer.vue';
 
   Vue.use(VueTouch, {name: 'v-touch'});
 
@@ -132,7 +134,8 @@
   Vue.component('about', about);
   Vue.component('works', works);
   Vue.component('blogs', blogs);
-  Vue.component('contact',contact)
+  Vue.component('contact', contact);
+  Vue.component('tFooter', tfooter);
 </script>
 
 <style lang="scss">

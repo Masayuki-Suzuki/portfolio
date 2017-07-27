@@ -66,3 +66,10 @@ a {
     transform: none;
   }
 }
+
+@media (max-width: 550px) {
+  .common__hd {
+    font-size: 40px;
+    font-size: 4rem;
+  }
+}

@@ -28,8 +28,13 @@
   export default {
     methods: {
       paginationClick(num){
-        store.paginationLinkAction(num);
-        this.isClose = !this.isClose;
+        if(document.body.clientWidth <= 900){
+          store.targetController(num + 1);
+          this.isClose = !this.isClose;
+        } else {
+          store.paginationLinkAction(num);
+          this.isClose = !this.isClose;
+        }
       }
     }
   }
@@ -80,6 +85,7 @@
     z-index: 0;
     @media (max-width:900px){
       height: 100vh;
+      min-height: 500px;
     }
   }
   .mainlogo{
@@ -110,6 +116,22 @@
         width: 270px;
       }
     }
+    @media (max-width: 900px) and (max-height: 700px){
+      padding: 30vh 0 0 0;
+      &__image {
+        width: 240px;
+      }
+    }
+    @media (max-width: 900px) and (max-height: 550px){
+      padding: 24vh 0 0 0;
+    }
+    @media (max-width: 550px) {
+      padding: 28vh 0 0 0;
+      &__image {
+        padding: 18px 22px;
+        width: 200px;
+      }
+    }
   }
   .sns{
     margin: 15px 0;
@@ -118,9 +140,15 @@
     @media (max-width: 900px){
       margin: 32px 0 0;
     }
+    @media (max-width: 900px) and (max-height: 550px), (max-width: 550px){
+      margin: 20px 0 0;
+    }
     &__list{
       display: inline-block;
       margin: 0 7px;
+      @media (max-width: 550px){
+        margin: 0 12px;
+      }
     }
     &__link{
       display: block;
@@ -132,6 +160,9 @@
         line-height: 1;
         @media (max-width: 900px){
           @include rem(40);
+        }
+        @media (max-width: 900px) and (max-height: 550px){
+          @include rem(34);
         }
       }
       &--nav{
@@ -173,18 +204,15 @@
     (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape){
       bottom: 11%;
     }
-    //@media (max-height: 800px) {
-      //height: 38px;
-      //width: 24px;
-      //&:before{
-        //height: 6px;
-        //width: 6px;
-        //margin: 0 0 0 -3px;
-      //}
-    //}
     @media (max-width: 900px){
       animation: scrollAnimation-touch 1.5s infinite;
       bottom: 8%;
+    }
+    @media (max-width: 900px) and (max-height: 600px){
+      margin: 0 0 0 -18px;
+    }
+    @media (max-width: 550px){
+      bottom: 12%;
     }
     &__main{
       border: solid 2px #fff;
@@ -202,6 +230,10 @@
         opacity: 0.8;
         transform: rotateZ(-45deg);
         width: 36px;
+      }
+      @media (max-width: 900px) and (max-height: 600px){
+        height: 28px;
+        width: 28px;
       }
       &:before{
         animation: scrollAnimation 1.5s ease infinite;

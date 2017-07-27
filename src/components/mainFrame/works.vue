@@ -15,7 +15,7 @@
     <marketas v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></marketas>
     <another v-if="changeWorks(7)" :class="{ 'active-works': changeWorksA() }"></another>
     <div class="scrollNav">
-      <a href=""></a>
+      <span @click="paginationClick(8)" href=""></span>
     </div>
   </section>
 </template>
@@ -57,6 +57,9 @@
       worksSide(){
         let loc = this.sharedState.location;
         return loc % 2 == 0 ? true : false;
+      },
+      paginationClick(num){
+        store.paginationLinkAction(num);
       }
     }
   }
@@ -111,6 +114,9 @@
       height: inherit;
       padding: 90px 0 95px;
       position: static;
+    }
+    @media (max-width: 550px){
+      padding: 50px 0 55px;
     }
     &:after{
       background: $bg-color;
@@ -255,11 +261,18 @@
     &__ttl{
       @media (max-width: 900px){
         background-size: 115%;
+        height: 380px;
         overflow: hidden;
-        padding: 380px 0 0;
+        //padding: 380px 0 0;
         position: relative;
         width: 87.23958333333334%;
         z-index: -1;
+      }
+      @media (max-width: 740px){
+        height: 320px;
+      }
+      @media (max-width: 550px){
+        height: 230px;
       }
     }
     &__desc{
@@ -317,6 +330,15 @@
           }
         }
       }
+      @media (max-width: 740px){
+        margin: -100px 0 0;
+        width: 85%;
+      }
+      @media (max-width: 550px){
+        margin: -55px 0 0;
+        padding: 20px;
+        width: 90%;
+      }
     }
     &__details{
       &--right{
@@ -362,6 +384,9 @@
             text-transform: uppercase;
             top: 112px;
             z-index: -2;
+            @media (max-width: 550px){
+              top: 62px
+            }
           }
           &:after{
             color: $main-color;
@@ -374,24 +399,39 @@
             text-transform: uppercase;
             top: 130px;
             z-index: -2;
+            @media (max-width: 550px){
+              top: 80px
+            }
           }
           .works{
             &__ttl{
               background: url(/dist/img/camping.jpg) no-repeat left center;
               background-size: 120%;
               margin: 45px 0 0 12.7604166666%;
+              @media (max-width: 740px){
+                margin: 20px 0 0 12.7604166666%;
+              }
+              @media (max-width: 550px){
+                background-size: cover;
+              }
             }
             &__caption{
               color: #fff;
               left: -9%;
               position: absolute;
               top: 110px;
+              @media (max-width: 550px){
+                top: 60px
+              }
             }
             &__hd{
               color: #fff;
               left: -9%;
               position: absolute;
               top: 125px;
+              @media (max-width: 550px){
+                top: 75px
+              }
             }
           }
           &.anotherWorks {
@@ -403,6 +443,7 @@
           .anotherWorks{
             &__ttl{
               background: none;
+              height: inherit;
               margin: 95px 0 0;
               padding: 0;
               width: 100%;
@@ -425,6 +466,9 @@
               padding: 0;
               text-align: center;
               width: 95%;
+              @media (max-width: 740px){
+                width: 85%;
+              }
               &:after{
                 content: none;
               }
@@ -469,6 +513,10 @@
             top: 131px;
             width: 320px;
             z-index: -2;
+            @media (max-width: 550px){
+              width: 296px;
+              top: 81px;
+            }
           }
           .works{
             &__ttl{
@@ -476,6 +524,9 @@
               background-size: 105%;
               margin: 45px 12.7604166666% 0 0;
               text-align: left;
+              @media (max-width: 550px){
+                background-size: cover;
+              }
             }
             &__caption{
               color: #fff;
@@ -483,6 +534,10 @@
               position: absolute;
               top: 110px;
               width: 320px;
+              @media (max-width: 550px){
+                top: 60px;
+                width: 295px;
+              }
             }
             &__hd{
               color: #fff;
@@ -490,6 +545,10 @@
               position: absolute;
               top: 125px;
               width: 322px;
+              @media (max-width: 550px){
+                top: 75px;
+                width: 296px;
+              }
             }
             &__desc{
               display: inline-block;

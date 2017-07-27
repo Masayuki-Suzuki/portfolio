@@ -14,8 +14,8 @@
       <span class="middle"></span>
       <span class="bottom"></span>
     </div>
-    <p class="gNav__ttl" :class="{ 'ttl__active': !activePage(1), isHidden: isHidden() }">Masayuki Suzuki Portfolio Web Site</p>
-    <ul class="navSns" :class="{ 'navSns--active': !activePage(1), isHidden: isHidden()}" v-if="!isClose">
+    <p v-if="!sharedState.isTablet" class="gNav__ttl" :class="{ 'ttl__active': !activePage(1), isHidden: isHidden() }">Masayuki Suzuki Portfolio Web Site</p>
+    <ul class="navSns" :class="{ 'navSns--active': !activePage(1), isHidden: isHidden()}" v-if="!isClose && !sharedState.isTablet">
       <li class="navSns__list">
         <a class="sns__link github sns__link--nav" href="https://github.com/Masayuki-Suzuki" target="_blank"></a>
       </li>
@@ -77,8 +77,13 @@
         return store.state.isHidden;
       },
       paginationClick(num){
-        store.paginationLinkAction(num);
-        this.isClose = !this.isClose;
+        if(document.body.clientWidth <= 900){
+          store.targetController(num);
+          this.isClose = !this.isClose;
+        } else {
+          store.paginationLinkAction(num);
+          this.isClose = !this.isClose;
+        }
       }
     }
   }
@@ -288,11 +293,25 @@
         top: 25px;
         width: 70px;
       }
+      @media (max-width: 740px){
+        height: $nav-size-sml;
+        right: 15px;
+        top: 15px;
+        width: $nav-size-sml;
+      }
+      @media (max-width: 550px){
+        height: 55px;
+        width: 55px;
+      }
       .isOpen{
         height: $nav-size-sml;
         width: $nav-size-sml;
         right: 12px;
         top: 12px;
+        @media (max-width: 740px){
+          right: 15px;
+          top: 15px;
+        }
       }
     }
     &__about,
@@ -362,6 +381,14 @@
       height: 65px;
       width: 70px;
     }
+    @media (max-width: 740px){
+      height: $nav-size-sml - 4px;
+      width: $nav-size-sml;
+    }
+    @media (max-width: 550px){
+      height: 55px - 4px;
+      width: 55px;
+    }
     span {
       background: #fff;
       height: 2px;
@@ -386,6 +413,10 @@
         margin-left: -15px;
         width: 30px;
       }
+      @media (max-width: 740px){
+        margin-left: -12px;
+        width: 24px;
+      }
     }
     .top {
       animation: navIcon-top .4s;
@@ -400,6 +431,10 @@
       }
       @media (max-width: 900px){
         animation: navIcon-top .4s;
+        animation-fill-mode: forwards;
+      }
+      @media (max-width: 740px){
+        animation: navIcon-top-sml .4s;
         animation-fill-mode: forwards;
       }
     }
@@ -419,6 +454,9 @@
         transform: translateY(-1px);
         width: 20px;
       }
+      @media (max-width: 740px){
+        width: 15px;
+      }
     }
     .bottom {
       animation: navIcon-bottom .4s;
@@ -433,6 +471,10 @@
       }
       @media (max-width: 900px){
         animation: navIcon-bottom .4s;
+        animation-fill-mode: forwards;
+      }
+      @media (max-width: 740px){
+        animation: navIcon-bottom-sml .4s;
         animation-fill-mode: forwards;
       }
     }

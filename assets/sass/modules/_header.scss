@@ -16,5 +16,8 @@
       opacity: 1;
       transform: none;
     }
+    @media (max-width: 550px){
+      @include rem(40);
+    }
   }
 }
