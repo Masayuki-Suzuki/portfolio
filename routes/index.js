@@ -2,7 +2,7 @@ const express    = require('express'),
       router     = express.Router(),
       bodyParser = require('body-parser'),
       mailer     = require('nodemailer'),
-      xoauth     = require('xoauth2');
+      xoauth2     = require('xoauth2');
 
 const gmail = {
   user: 'm.suzuki.fp@gmail.com',
@@ -18,7 +18,7 @@ let message = {
 }
 
 let  generator = function() {
-  var g = xoauth.createXOAuth2Generator(gmail);
+  var g = xoauth2.createXOAuth2Generator(gmail);
   g.on('token', function(token) {
     console.log('New token for %s: %s', token.user, token.accessToken);
   });
@@ -51,15 +51,15 @@ router.get('/contact', (req,res) =>{
 router.post('/contact', (req, res) =>{
 
   let transport = {
-    service : 'gmail',
-    auth    : {}
+    service : 'iCloud',
+    auth: {
+      user: 'm.suzuki.exe@icloud.com',
+      pass: '9090_8080Afrmx'
+    }
   };
 
-  transport.auth.xoauth2 = generator();
 
-  console.log(transport);
-
-  let transporter = mailer.createTransport(transport);
+  let transporter = mailer.createTransport('SMTP',transport);
 
   const returnMsg = {
     msg: 'Success!! Thank you for sending your message.',

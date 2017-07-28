@@ -58,6 +58,7 @@
     "express": "^4.15.2",
     "express-session": "^1.15.2",
     "font-awesome": "^4.7.0",
+    "mailgun-js": "^0.12.0",
     "method-override": "^2.3.8",
     "mongoose": "^4.9.2",
     "nodemailer": "^4.0.1",
