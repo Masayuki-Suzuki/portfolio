@@ -2,6 +2,7 @@
 const express         = require('express'),
       app             = express(),
       path            = require('path'),
+      bodyParser      = require('body-parser'),
       PORT            = 3000,
       IP              = '127.0.0.1';
 
@@ -9,6 +10,9 @@ const express         = require('express'),
 const indexRoutes = require('./routes/index');
 app.use(express.static(path.join(__dirname + '/public')));
 //app.use(express.static(path.join(__dirname + '/public')));
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.set('view engine','ejs');
 app.use('/', indexRoutes);

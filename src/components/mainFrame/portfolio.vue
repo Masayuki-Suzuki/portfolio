@@ -18,6 +18,9 @@
       <div class="works__view">
         <a href="">View Site</a>
       </div>
+      <div class="works__github">
+        <a href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank"></a>
+      </div>
     </div>
   </div>
 </template>

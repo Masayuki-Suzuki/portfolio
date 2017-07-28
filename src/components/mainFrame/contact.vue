@@ -1,22 +1,23 @@
 <template>
   <section class="contact" :class="{'contact-active': pageController()}">
     <h1 class="contact__hd">contact</h1>
-    <form class="contact__form" action="">
+    <form class="contact__form">
       <label class="ttl">Your name<span class="require">*</span> :
-        <input type="text" placeholder="John Snow">
+        <input type="text" placeholder="John Snow" name="name" required>
       </label>
       <label class="ttl">company :
-        <input type="text" placeholder="House Stark">
+        <input type="text" placeholder="House Stark" name="company">
       </label>
       <label class="ttl">e-mail<span class="require">*</span> :
-        <input type="email" placeholder="john@stark.com">
+        <input type="email" placeholder="john@stark.com" name="email" required>
       </label>
       <label class="ttl">message<span class="require">*</span> :
-        <textarea placeholder="Winter is Coming" rows="1"></textarea>
+        <textarea placeholder="Winter is Coming" rows="1" name="msg" required></textarea>
       </label>
       <div class="btn">
-        <button class="submit">send</button>
+        <button class="submit" @click="sendMsg($event)">send</button>
       </div>
+      <p v-if="sending" class="submitMsg">{{ message }}</p>
     </form>
   </section>
 </template>
@@ -24,10 +25,14 @@
 <script>
   import Vue from 'vue';
   import store from '../../store/store';
+  import axios from 'axios';
 
   export default {
     data: function () {
       return {
+        sending: false,
+        message: "",
+        inputData: {}
       }
     },
     methods: {
@@ -36,6 +41,43 @@
           return true;
         }
         return store.state.showContact;
+      },
+      sendMsg(event){
+        let name, company ,email, msg;
+        name = document.getElementsByName('name')[0];
+        company = document.getElementsByName('company')[0];
+        email = document.getElementsByName('email')[0];
+        msg = document.getElementsByName('msg')[0];
+
+        //Initialize Custom Validity
+        name.setCustomValidity("");
+        email.setCustomValidity("");
+        msg.setCustomValidity("");
+        if(name.validity.valueMissing) {
+          name.setCustomValidity("Please input your name.");
+        } else if(email.validity.typeMismatch || email.validity.valueMissing) {
+          email.setCustomValidity("Please input your collect e-mail address.");
+        } else if(msg.validity.valueMissing){
+          msg.setCustomValidity("Please input your message.")
+        } else {
+          name.setCustomValidity("");
+          email.setCustomValidity("");
+          msg.setCustomValidity("");
+          this.inputData.name = name.value;
+          this.inputData.company = company.value;
+          this.inputData.email = email.value;
+          this.inputData.msg = msg.value;
+          axios.post('/contact' , this.inputData).then(res => {
+            this.sending = true;
+            console.log(res.status, res.statusText, res.data)
+            this.message = res.data;
+          })
+            .catch(error => {
+              this.sending = false
+              throw error
+            })
+          event.preventDefault();
+        }
       }
     }
   }
