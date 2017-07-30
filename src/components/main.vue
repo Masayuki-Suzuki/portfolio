@@ -160,6 +160,7 @@
   }
   .touchWrapper{
     height: 100%;
+    user-select: initial !important;
   }
   .mainFrame{
     height:100%;

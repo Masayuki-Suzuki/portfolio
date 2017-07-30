@@ -14,10 +14,20 @@
       <label class="ttl">message<span class="require">*</span> :
         <textarea placeholder="Winter is Coming" rows="1" name="msg" required></textarea>
       </label>
-      <div class="btn">
+      <div v-if="!connecting" class="btn">
         <button class="submit" @click="sendMsg($event)">send</button>
       </div>
+      <div v-if="connecting" class="sendingLoader">
+        <div class="sendingLoader__box"></div>
+        <div class="sendingLoader__box"></div>
+        <div class="sendingLoader__box"></div>
+        <div class="sendingLoader__box"></div>
+        <div class="sendingLoader__text"></div>
+      </div>
       <p v-if="sending" class="submitMsg">{{ message }}</p>
+      <p v-if="error" class="submitMsg submitMsg--error">Oops!! Sorry, couldn't send your message. please try again.<br>
+        If you've seen this message more than twice, please send an e-mail to this address.<br>
+        m.suzuki.exe "at" gmail.com.</p>
     </form>
   </section>
 </template>
@@ -30,7 +40,9 @@
   export default {
     data: function () {
       return {
+        connecting: false,
         sending: false,
+        error: false,
         message: "",
         inputData: {}
       }
@@ -63,19 +75,27 @@
           name.setCustomValidity("");
           email.setCustomValidity("");
           msg.setCustomValidity("");
+          this.connecting = true;
+          this.sending = false;
           this.inputData.name = name.value;
           this.inputData.company = company.value;
           this.inputData.email = email.value;
           this.inputData.msg = msg.value;
-          axios.post('/contact' , this.inputData).then(res => {
-            this.sending = true;
-            console.log(res.status, res.statusText, res.data)
-            this.message = res.data;
-          })
-            .catch(error => {
-              this.sending = false
-              throw error
+          axios.post('/contact' , this.inputData)
+            .then(res => {
+              this.sending = true;
+              this.message = res.data;
+              this.connecting = false;
+              name.value = "";
+              company.value = "";
+              email.value = "";
+              msg.value = "";
             })
+            .catch(error => {
+              this.sending = false;
+              this.error = true;
+              throw error;
+            });
           event.preventDefault();
         }
       }
@@ -86,6 +106,38 @@
 <style lang="scss">
   @import "../../../assets/sass/foundation/mixins/mixin";
   @import "../../../assets/sass/foundation/variables/variables";
+
+  $animation-time: 1s;
+  $size: 30px;
+
+  @keyframes loading-text {
+    0%{
+      content:"Sending";
+    }
+    25%{
+      content:"Sending."
+    }
+    50%{
+      content:"Sending.."
+    }
+    75%{
+      content:"Sending..."
+    }
+  }
+  @keyframes loader{
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
   .contact{
     background: $bg-color;
     height:100%;
@@ -123,16 +175,16 @@
       }
       @media (max-height: 700px){
         @include rem(45);
-        margin: 7% 0 0;
+        margin: 5% 0 0;
       }
       @media (max-height: 650px){
-        margin: 6% 0 0;
+        margin: 3% 0 0;
       }
       @media (max-height: 600px){
         @include rem(40);
       }
       @media (max-height: 550px){
-        margin: 4% 0 0;
+        margin: 2.5% 0 0;
       }
       @media (max-width: 900px){
         @include rem(50);
@@ -147,12 +199,9 @@
       margin: 70px auto 0;
       max-width: 560px;
       @media (max-height: 800px){
-        margin: 5% auto 0;
+        margin: 3% auto 0;
       }
       @media (max-height: 600px){
-        margin: 4% auto 0;
-      }
-      @media (max-height: 550px) {
         margin: 2% auto 0;
       }
       @media (max-width: 740px){
@@ -273,6 +322,71 @@
       opacity: 1;
       transform: translateY(0);
       transition: all 0.4s ease 1.2s;
+    }
+  }
+  .submitMsg{
+    color: #e00;
+    @include rem(20);
+    font-weight: 300;
+    margin: 20px 0 0;
+    text-align: center;
+    &--error{
+      @include rem(16);
+      text-align: left;
+    }
+  }
+  .sendingLoader{
+    display: block;
+    height: $size;
+    margin: auto;
+    position: relative;
+    width: $size;
+    &__box{
+      animation: loader $animation-time linear infinite;
+      background: rgba(0,0,0, 0.7);
+      filter: blur(0.7px);
+      height: 45%;
+      opacity: 0;
+      width: 45%;
+      &:nth-of-type(1) {
+        position: absolute;
+        top: 2.5%;
+        left: 2.5%;
+      }
+      &:nth-of-type(2) {
+        position: absolute;
+        top: 2.5%;
+        right: 2.5%;
+        animation-delay: -($animation-time / 4 );
+      }
+      &:nth-of-type(3) {
+        position: absolute;
+        bottom: 2.5%;
+        right: 2.5%;
+        animation-delay: -($animation-time / 4 )*2;
+      }
+      &:nth-of-type(4) {
+        position: absolute;
+        bottom: 2.5%;
+        left: 2.5%;
+        animation-delay: -($animation-time / 4 )*3;
+      }
+    }
+    &__text{
+      left: -51%;
+      margin: auto;
+      position: absolute;
+      top: 130%;
+      width: 6.5em;
+      &:after{
+        animation: loading-text 3s infinite;
+        color: $main-color;
+        content: "Sending";
+        display: inline-block;
+        @include rem(16);
+        font-weight: 400;
+        /*text-transform: uppercase;*/
+      }
     }
   }
 </style>

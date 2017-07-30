@@ -1,29 +1,27 @@
 const express    = require('express'),
       router     = express.Router(),
       bodyParser = require('body-parser'),
-      mailer     = require('nodemailer'),
-      xoauth2     = require('xoauth2');
+      mailer     = require('nodemailer');
 
-const gmail = {
-  user: 'm.suzuki.fp@gmail.com',
-  clientId: '866429438150-a8upbeie4elffcqav2le666d0rt7h5f5.apps.googleusercontent.com',
-  clientSecret: '4GkX_blJSK0sPjNrsh5azmjw',
-  refreshToken  : '1/CP6NTIOnJIIQwtkuMEC0_5CrquxNtBjsZN-9FpXwdxzRU0uqGHyBoq7x08irEQDW'
-}
+const transport = {
+  host: "smtp-mail.outlook.com", // hostname
+  secureConnection: false, // TLS requires secureConnection to be false
+  port: 587, // port for secure SMTP
+  tls: {
+    ciphers:'SSLv3'
+  },
+  auth: {
+    user: 'm.suzuki365@outlook.com',
+    pass: '9090_8080Afrmx'
+  }
+};
 
 let message = {
-  to : gmail.user,
+  from: 'Portfolio Contact Form <m.suzuki365@outlook.com>',
+  to: 'm.suzuki.exe@gmail.com',
   subject: 'Message From Portfolio',
-  text: ''
+  html: ''
 }
-
-let  generator = function() {
-  var g = xoauth2.createXOAuth2Generator(gmail);
-  g.on('token', function(token) {
-    console.log('New token for %s: %s', token.user, token.accessToken);
-  });
-  return g;
-};
 
 router.use(bodyParser.urlencoded({extended: false}));
 router.use(bodyParser.json());
@@ -50,36 +48,31 @@ router.get('/contact', (req,res) =>{
 
 router.post('/contact', (req, res) =>{
 
-  let transport = {
-    service : 'iCloud',
-    auth: {
-      user: 'm.suzuki.exe@icloud.com',
-      pass: '9090_8080Afrmx'
-    }
-  };
-
-
-  let transporter = mailer.createTransport('SMTP',transport);
+  let transporter = mailer.createTransport(transport);
 
   const returnMsg = {
-    msg: 'Success!! Thank you for sending your message.',
-    err: 'Oops!! Sorry, couldn\'t send your message. please try again.'
+    msg: "Success!! Thank you for sending your message.",
+    err: "Oops!! Sorry, couldn\'t send your message. please try again."
   }
+
   let mailContent =
-      `<h1>Message From Portfolio's Form</h1>
-       <p><strong>name:</strong> ${req.body.name}</p>
-       <p><strong>company:</strong> ${req.body.company}</p>
-       <p style="margin-bottom: 60px;"><strong>e-mail:</strong> ${req.body.email}</p>
-       <h2>Message:</h2>
+      `<h3>Message From Portfolio's Form</h3>
+       <p><strong>name : </strong>${req.body.name}</p>
+       <p><strong>company : </strong>${req.body.company}</p>
+       <p style="margin-bottom: 30px;"><strong>e-mail : </strong> ${req.body.email}</p>
+       <h4>Message:</h4>
        <p>${req.body.msg}</p>`;
 
-  message.text = mailContent;
+  message.html = mailContent;
 
   transporter.sendMail(message, function(err, response) {
-    console.log(err || response);
-    res.send(JSON.stringify(returnMsg.err));
+    console.log( err || response);
+    if(err){
+      res.send(JSON.stringify(returnMsg.err));
+    } else {
+      res.send(JSON.stringify(returnMsg.msg));
+    }
   });
-  //res.send(JSON.stringify(returnMsg.msg));
 });
 
 router.get('*', (req,res) => {
