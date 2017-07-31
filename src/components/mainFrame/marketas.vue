@@ -10,10 +10,8 @@
       <li class="using__list">Javascript</li>
     </ul>
     <div class="works__view">
+      <a class="works__github" href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank">github</a>
       <a href="http://marketas.masa.works/" target="_blank">View Site</a>
-    </div>
-    <div class="works__github">
-      <a href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank"></a>
     </div>
   </div>
 </template>

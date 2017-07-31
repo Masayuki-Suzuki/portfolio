@@ -37,7 +37,7 @@
     },
     methods: {
       changeWorks(num){
-        if(document.body.clientWidth <= 900 && num <= 4 || num == 7){
+        if(document.body.clientWidth <= 900 && num <= 4 || document.body.clientWidth <= 900 && num == 7){
           return true;
         }
         return this.sharedState.location === num ? true : false;
@@ -98,6 +98,9 @@
   }
   .works4 {
     background: url(/dist/img/marketas.jpg) no-repeat 15vw center;
+  }
+  .works5{
+    background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;
   }
   .works{
     background-size: cover;
@@ -201,10 +204,10 @@
       a{
         border: solid 1px $main-color;
         color: $main-text-color;
-        display: block;
+        display: inline-block;
         @include rem(14);
         line-height: 1;
-        margin: 10px 0 0;
+        margin: 10px 20px 0 0;
         overflow: hidden;
         padding: 12px 0 11px;
         position: relative;
@@ -214,7 +217,7 @@
         width: 160px;
         z-index: 2;
         @media (max-height: 700px){
-          margin: 10px 0 0;
+          margin: 10px 20px 0 0;
         }
         @media (max-height: 650px), (max-width: 1024px){
           @include rem(12);
@@ -238,6 +241,18 @@
           &:after{
             left: -25%;
             width: 150%;
+          }
+        }
+        &.works__github{
+          padding: 7px 0 6px;
+          &:before{
+            content:"\f09b";
+            display: inline-block;
+            font-family: fontawesome;
+            @include rem(24);
+            line-height: 1;
+            margin: 0 10px 0 0;
+            vertical-align: sub;
           }
         }
       }
@@ -308,7 +323,7 @@
             a{
               border: solid 1px #fff;
               color: #fff;
-              margin: 10px 0 0;
+              margin: 10px 10px 0 0;
               padding: 13px 0;
               width: 160px;
               &:after{

@@ -16,10 +16,7 @@
         <li class="using__list">Express</li>
       </ul>
       <div class="works__view">
-        <a href="">View Site</a>
-      </div>
-      <div class="works__github">
-        <a href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank"></a>
+        <a class="works__github" href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank">github</a>
       </div>
     </div>
   </div>

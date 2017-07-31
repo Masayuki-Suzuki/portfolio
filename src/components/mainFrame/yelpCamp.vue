@@ -17,10 +17,8 @@
         <li class="using__list">EJS</li>
       </ul>
       <div class="works__view">
+        <a class="works__github" href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank">Github</a>
         <a href="http://yelpcamp.masa.works" target="_blank">View Site</a>
-      </div>
-      <div class="works__github">
-        <a href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank"></a>
       </div>
     </div>
   </div>
