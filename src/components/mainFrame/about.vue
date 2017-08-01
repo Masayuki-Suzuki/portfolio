@@ -372,7 +372,7 @@
       bottom: 32px;
       margin: 0 0 0 -10px;
     }
-    @media (max-height: 550px), (max-width: 900px){
+    @media (max-height: 600px), (max-width: 900px){
       display: none;
     }
     span{

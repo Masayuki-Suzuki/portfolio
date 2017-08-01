@@ -1,8 +1,8 @@
 <template>
   <div class="works__details works__details--left">
-    <p class="works__caption">design / coding</p>
+    <p class="works__caption">design / Logo design / coding</p>
     <h1 class="works__hd">marketa’s B & B</h1>
-    <p class="works__lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p class="works__lead">Marketa’s is Bed and Breakfast Service. I coded and designed this site in a school assignment using html5, css3 (scss) and jQuery. This is my first time logo design.</p>
     <ul class="using">
       <li class="using__list">HTML5</li>
       <li class="using__list">CSS3</li>
@@ -10,7 +10,7 @@
       <li class="using__list">Javascript</li>
     </ul>
     <div class="works__view">
-      <a class="works__github" href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank">github</a>
+      <a class="works__github" href="https://github.com/Masayuki-Suzuki/marketas" target="_blank">github</a>
       <a href="http://marketas.masa.works/" target="_blank">View Site</a>
     </div>
   </div>

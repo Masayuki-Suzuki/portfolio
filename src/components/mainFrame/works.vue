@@ -17,6 +17,11 @@
     <div class="scrollNav">
       <span @click="paginationClick(8)" href=""></span>
     </div>
+    <div class="imgPreload">
+      <img src="/dist/img/ballet_bg.jpg" alt="">
+      <img src="/dist/img/marketas.jpg" alt="">
+      <img src="/dist/img/tokyo.jpg" alt="">
+    </div>
   </section>
 </template>
 
@@ -101,6 +106,9 @@
   }
   .works5{
     background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;
+    @media (max-width: 900px){
+      background: none;
+    }
   }
   .works{
     background-size: cover;
@@ -169,7 +177,7 @@
       width: 88%;
       z-index: 2;
       @media (max-height: 800px){
-        @include rem(45);
+        @include rem(43);
       }
       @media (max-height: 800px) and (max-width: 1200px){
         @include rem(40);
@@ -221,7 +229,7 @@
         }
         @media (max-height: 650px), (max-width: 1024px){
           @include rem(12);
-          padding: 9px 0;
+          padding: 13px 0 12px;
           width: 120px;
         }
         &:after{
@@ -325,12 +333,15 @@
               color: #fff;
               margin: 10px 10px 0 0;
               padding: 13px 0;
-              width: 160px;
+              width: 113px;
               &:after{
                 content: none;
               }
               &:hover {
                 color: #fff;
+              }
+              &.works__github{
+                padding: 7px 0;
               }
             }
           }
@@ -357,17 +368,26 @@
     }
     &__details{
       &--right{
-        margin: 50vh 0 0;
+        margin: 47vh 0 0;
         padding: 0 0 0 45vw;
         transition: all 0.4s ease 0s;
-        @media (max-height: 800px){
-          margin: 45vh 0 0;
+        //@media (max-height: 800px){
+        //  margin: 47vh 0 0;
+        //}
+        &.anotherWorks {
+          margin: 55vh 0 0;
+          @media (max-height: 800px) and (max-width: 1200px) {
+            margin: 54vh 0 0;
+          }
+          @media (max-width: 900px){
+            margin: 0;
+          }
         }
         @media (max-width: 1200px){
           margin: 48vh 0 0;
         }
         @media (max-height: 800px) and (max-width: 1200px){
-          margin: 46vh 0 0;
+          margin: 48vh 0 0;
         }
         @media (max-width: 1024px){
           margin: 55vh 0 0;
@@ -377,13 +397,16 @@
           margin: 49vh 0 0;
         }
         @media (max-height: 700px){
-          margin: 42vh 0 0;
+          margin: 46vh 0 0;
         }
         @media (max-height: 700px) and (max-width: 1024px) {
           margin: 49vh 0 0;
         }
-        @media (max-height: 620px){
-          margin: 42vh 0 0;
+        @media (max-height: 650px){
+          margin: 44vh 0 0;
+        }
+        @media (max-height: 600px){
+          margin: 46vh 0 0;
         }
         @media (max-width: 900px) {
           margin: 0;
@@ -501,15 +524,9 @@
         }
       }
       &--left{
-        margin: 15vh 0 0;
-        padding: 0 0 0 6vw;
+        margin: 10vh 0 0;
+        padding: 0 0 0 8vw;
         transition: all 0.4s ease 0s;
-        @media (max-width: 1200px){
-          padding: 0 0 0 8vw;
-        }
-        @media (max-height: 700px){
-          margin: 8vh 0 0;
-        }
         @media (max-width: 900px) {
           margin: 100px 0 0;
           padding: 0;
@@ -668,5 +685,14 @@
       transition: all 0.4s ease 0.8s;
     }
   }
-
+  .imgPreload{
+    display: inline;
+    height: 0;
+    left: -10px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 0;
+  }
 </style>

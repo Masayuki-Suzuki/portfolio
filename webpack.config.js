@@ -8,7 +8,7 @@ let config = {
   output: {
     filename: "bundle.js"
   },
-  devtool: 'cheap-module-eval-source-map',
+  // devtool: 'cheap-module-eval-source-map',
   module: {
     loaders:[
       {
@@ -58,9 +58,14 @@ let config = {
           plugins: ['transform-runtime']
         }
       }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     })
   ]
-
 }
+
 
 module.exports = config;

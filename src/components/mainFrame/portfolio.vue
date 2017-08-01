@@ -1,11 +1,11 @@
 <template>
   <div class="works__details works__details--left">
     <div class="works__ttl">
-      <p class="works__caption">design / coding</p>
+      <p class="works__caption">design / logo design / coding</p>
       <h1 class="works__hd">Portfolio Site</h1>
     </div>
     <div class="works__desc">
-      <p class="works__lead">This is my portfolio site that is you look at it just now. It's created by Vue.js mainly also used Node.js and Express in the back-end. Apart from that, I've coded all event and animation by Javascript from scratch. This site was a little bit challenge to me. If you would like to look at all of the code, they are here. <a href="https://github.com/Masayuki-Suzuki/portfolio" target="_blank">Github</a></p>
+      <p class="works__lead">This is my portfolio site that is you look at it just now. It's created by Vue.js mainly also used Node.js and Express in the back-end. Apart from that, I've coded all event and animation by Javascript from scratch. This site was a little bit challenge to me.</p>
       <ul class="using">
         <li class="using__list">HTML5</li>
         <li class="using__list">CSS3</li>
@@ -16,7 +16,7 @@
         <li class="using__list">Express</li>
       </ul>
       <div class="works__view">
-        <a class="works__github" href="https://github.com/Masayuki-Suzuki/yelpCamp" target="_blank">github</a>
+        <a class="works__github" href="https://github.com/Masayuki-Suzuki/portfolio" target="_blank">github</a>
       </div>
     </div>
   </div>

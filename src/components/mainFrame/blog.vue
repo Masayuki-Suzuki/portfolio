@@ -2,8 +2,21 @@
   <section class="blogs" :class="{'blog-active': pageController()}">
     <h1 class="common__hd blogs__hd">Blogs</h1>
     <div class="blogs__container">
-      <% for(var i = 0; i < 3; i++){ %>
-      <% if(i === 1) { %>
+      <div class="blogs__list">
+        <div class="blogs__thumbnail">
+          <img src="/dist/img/blog/seashore.jpg" alt="seashore">
+        </div>
+        <div class="blogs__desc">
+          <time>July / 31 / 2017 - Life</time>
+          <h2 class="title">Why I started the medium.</h2>
+          <p class="summary">Hi there!! I’m Masa, Masayuki Suzuki and a front-end developer based in Vancouver, Canada. I wa...</p>
+          <div class="viewPost">
+            <a href="https://medium.com/@masayuki.s/why-i-started-the-medium-f349e0c075c1" target="_blank">Read the post</a>
+          </div>
+        </div>
+      </div>
+      <% for(var i = 0; i < 2; i++){ %>
+      <% if(i === 0) { %>
         <div class="blogs__list blogs__list--right">
       <% } else { %>
       <div class="blogs__list">
@@ -12,24 +25,25 @@
           <img src="/dist/img/dummy1.jpg" alt="dummy">
         </div>
         <div class="blogs__desc">
-          <time>January / 30 / 2017 - coding</time>
-          <h2 class="title">Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h2>
-          <p class="summary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aspernatur.</p>
+          <time>coming soon</time>
+          <h2 class="title">Coming Soon.</h2>
+          <p class="summary">I'll write new post soon!!</p>
           <div class="viewPost">
-            <a href="">Read the post</a>
+            <a href="/">Read the post</a>
           </div>
         </div>
       </div>
       <% } %>
     </div>
     <div class="more">
-      <a href="">read more post</a>
+      <a href="https://medium.com/@masayuki.s" target="_blank">read more post</a>
     </div>
     <div class="scrollNav">
       <span @click="paginationClick(9)" href=""></span>
     </div>
   </section>
 </template>
+
 
 <script>
   import Vue from 'vue';
@@ -140,6 +154,7 @@
       margin: 0 3% 0 0;
       overflow: hidden;
       position: relative;
+      width: 33.3333333%;
       &:before,
       &:after{
         content: '';
@@ -246,11 +261,12 @@
         background: #fff;
         margin: 30px 0 0;
         max-width: 440px;
+        width: 100%;
       }
       @media (max-width: 740px){
         margin: 85px 0 0;
         max-width: 600px;
-        width: 80%;
+        width: 88%;
       }
       @media (max-width: 550px){
         margin: 0;

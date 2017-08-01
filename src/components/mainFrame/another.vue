@@ -4,7 +4,7 @@
       <h1 class="works__hd anotherWorks__hd">Another Works</h1>
     </div>
     <div class="works__desc anotherWorks__desc">
-      <p class="works__lead anotherWorks__lead">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+      <p class="works__lead anotherWorks__lead">I have 4 years experience in the field at a Japanese company. I've coded many website which is including responsive web design. but unfortunately, I can't publish those website in this portfolio site. if you want to know what I coded, please ask me via contact form or when we meet at the interview, I'll talk about them.</p>
     </div>
   </div>
 </template>
