@@ -1,7 +1,7 @@
 <template>
   <section class="about" :class="{'about-active': pageController()}">
     <h1 class="common__hd about__hd">Who I am ?</h1>
-    <p class="about__lead">Hi, there. I'm Masayuki Suzuki, a Japanese front-end developer based in Vancouver. My focus is creating interactive experiences and user-friendly interfaces whilst maintaining semantic, clean markup and SEO friendly code. I have 4 years experience in the feild in Japan. I continue to learn newly language, tools and framework to go to next stage.</p>
+    <p class="about__lead">Hi, there. I'm Masayuki Suzuki, a Japanese front-end developer based in Vancouver. My focus is creating interactive experiences and user-friendly interfaces whilst maintaining semantic, clean markup and SEO friendly code. I have 4 years experience in this field in Japan. I continue to learn new language, tools and framework to proceed to the next stage.</p>
     <div class="wrapper">
       <div class="what-i what-i-can">
         <h2>What I can ?</h2>

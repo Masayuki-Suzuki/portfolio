@@ -5,7 +5,7 @@
       <h1 class="works__hd">YelpCamp</h1>
     </div>
     <div class="works__desc">
-      <p class="works__lead">YelpCamp is a campgrounds information sharing website which is made by Node.js, Express and MongoDB. I followed The Web Developer Bootcamp course by Colt Steele on Udemy.</p>
+      <p class="works__lead">YelpCamp is a campgrounds information-sharing website which is made by Node.js, Express and MongoDB. I followed The Web Developer Bootcamp course by Colt Steele on Udemy.</p>
       <ul class="using">
         <li class="using__list">HTML5</li>
         <li class="using__list">CSS3</li>

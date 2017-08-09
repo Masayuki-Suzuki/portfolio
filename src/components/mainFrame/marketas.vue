@@ -2,7 +2,7 @@
   <div class="works__details works__details--left">
     <p class="works__caption">design / Logo design / coding</p>
     <h1 class="works__hd">marketa’s B & B</h1>
-    <p class="works__lead">Marketa’s is Bed and Breakfast Service. I coded and designed this site in a school assignment using html5, css3 (scss) and jQuery. This is my first time logo design.</p>
+    <p class="works__lead">Marketa’s is a Bed and Breakfast Service. I coded and designed this site in a school assignment using html5, css3 (scss) and jQuery. This is my first time logo design.</p>
     <ul class="using">
       <li class="using__list">HTML5</li>
       <li class="using__list">CSS3</li>

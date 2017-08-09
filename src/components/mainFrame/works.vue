@@ -423,7 +423,7 @@
             top: 112px;
             z-index: -2;
             @media (max-width: 550px){
-              top: 62px
+              top: 62px;
             }
           }
           &:after{
@@ -438,7 +438,7 @@
             top: 130px;
             z-index: -2;
             @media (max-width: 550px){
-              top: 80px
+              top: 80px;
             }
           }
           .works{
@@ -532,6 +532,24 @@
           padding: 0;
           position: relative;
           text-align: right;
+          &:before{
+            color: $main-color;
+            content:"design / logo design / coding";
+            @include rem(16);
+            right: 0%;
+            line-height: 1;
+            position: absolute;
+            text-align: left;
+            text-transform: uppercase;
+            top: 112px;
+            width: 317px;
+            z-index: -2;
+            @media (max-width: 550px){
+              top: 62px;
+              width: 293px;
+            }
+
+          }
           &:after{
             color: $main-color;
             content:"portfolio site";
@@ -668,21 +686,36 @@
         opacity: 1;
         transform: translateY(0px);
         transition: all 0.4s ease 0.2s;
+        @media (max-width: 740px){
+          transition: none;
+        }
       }
       &__hd{
         transition: all 0.4s ease 0.4s;
+        @media (max-width: 740px){
+          transition: none;
+        }
       }
       &__lead{
         transition: all 0.4s ease 0.6s;
+        @media (max-width: 740px){
+          transition: none;
+        }
       }
       &__view{
         transition: opacity 0.4s ease 1s, transform 0.4s ease 1s;
+        @media (max-width: 740px){
+          transition: none;
+        }
       }
     }
     .using{
       opacity: 1;
       transform: translateY(0px);
       transition: all 0.4s ease 0.8s;
+      @media (max-width: 740px){
+        transition: none;
+      }
     }
   }
   .imgPreload{
@@ -695,4 +728,5 @@
     top: 0;
     width: 0;
   }
+
 </style>
