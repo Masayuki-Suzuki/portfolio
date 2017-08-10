@@ -42,7 +42,7 @@ Made by SVG with Adobe illustrator.
 #### Mockup
 Using Sketch App.
 #### Animation
-I haven't used library like GSAP because I've wanted to code from scratch for improve my javascript skills.
+I haven't used a library like GSAP because I've wanted to code from scratch in order to improve my javascript skills. Also I haven't used Fullpage.js.
   
 ### 3. Development
 #### Coding
@@ -61,3 +61,12 @@ OOCSS(<http://oocss.org/>)
 * CSS - Combined to one file and minified.
 * js file - Compressed and bundle with webpack.
 * Gzip - Compressed website's data before sending those data from server.
+
+## The More to Do
+* Refactor javascript code to write DRY, small, readable and effectively.
+* Using svg sprite to decrease http request.
+* Opening load animation.
+* Load blog post using ajax from wordpress.
+* Add Parallax animation when site is touch devices.
+* Create and exchange the works contents. (I'm planning to make Wordpress theme with sage stack.)
+* Learn Vue.js more.
