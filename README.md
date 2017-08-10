@@ -61,6 +61,7 @@ OOCSS(<http://oocss.org/>)
 * CSS - Combined to one file and minified.
 * js file - Compressed and bundle with webpack.
 * Gzip - Compressed website's data before sending those data from server.
+* Server Location - Located in San Jose, US which is physically close to my target users living in Vancouver, BC Canada.
 
 ## The More to Do
 * Refactor javascript code to write DRY, small, readable and effectively.
