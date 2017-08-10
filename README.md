@@ -41,9 +41,23 @@ I usually use paper and pen to make wireframe, sometimes use Tablet(iPad) and St
 Made by SVG with Adobe illustrator.
 #### Mockup
 Using Sketch App.
-
+#### Animation
+I haven't used library like GSAP because I've wanted to code from scratch for improve my javascript skills.
+  
 ### 3. Development
 #### Coding
 I've used WebStorm.
 #### Vue.js
-
+**Why Vue.js ?** - These days, Javascript framework demand is increasing and javascript developers are required knowledge and experience them. 
+The typical frameworks are Angular and React but Vue is getting more and more popular moreover Vue is getting Star and Watch more than Angular in Github. Vue is simpler than React and Angular and very light weight and fast and it's easier to learn than another framework. Actually, I had no experience and knowledge of JS framework, so I have needed to learn them and I've chosen Vue to my first time JS framework. 
+#### Node.js
+**Why Node.js ?** - Almost Node user would say that "Node.js is faster than another server". But I reckon it isn't a strong motive to choose Node. So why have I chosen Node? Of course, one of the reasons is that it's fast but it's not only. Because Node is built by Javascript, so we are possible to make apps with only using one programming language although front-end or back-end. And then, Javascript developer can work in both fields and It would make communication smooth between developers. Finally, It would lead to reducing labor cost. And another strong reason is **I would love to be MEA(R/V) N Stack Developer.**
+#### CSS Architecture
+BEM(<http://getbem.com/naming/>)  
+OOCSS(<http://oocss.org/>)
+  
+### 4. Performance Optimaization
+* Images - Compressed and responsive image size.
+* CSS - Combined to one file and minified.
+* js file - Compressed and bundle with webpack.
+* Gzip - Compressed website's data before sending those data from server.
