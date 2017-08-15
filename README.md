@@ -28,7 +28,7 @@ See actual website : <http://masa.works>
 * illustrator
 
 ## Server Environment
-* ubuntu 16.04 on VPS.
+* Ubuntu 16.04 on VPS.
 * Node.js - Web server.
 * Nginx - For reverse proxy.
 
