@@ -27,6 +27,11 @@ See actual website : <http://masa.works>
 * Photoshop
 * illustrator
 
+## Server Environment
+* ubuntu 16.04 on VPS.
+* Node.js - Web server.
+* Nginx - For reverse proxy.
+
 ## Design process
 ### 1. Planing
 #### Goal
