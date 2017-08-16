@@ -32,6 +32,20 @@
       <li class="gNav__list" @click="paginationClick(3)">works</li>
       <li class="gNav__list" @click="paginationClick(8)">blog</li>
       <li class="gNav__list" @click="paginationClick(9)">contact</li>
+      <li class="gNav__list gNav__list--privacy" ><a href="/privacy-policy">privacy policy</a></li>
+      <li class="gNav__list">
+        <ul class="sns">
+          <li class="sns__list">
+            <a class="sns__link github" href="https://github.com/Masayuki-Suzuki" target="_blank"></a>
+          </li>
+          <li class="sns__list">
+            <a class="sns__link linkedin" href="https://www.linkedin.com/in/masayuki-suzuki/"　target="_blank"></a>
+          </li>
+          <li class="sns__list">
+            <span class="sns__link email" @click="paginationClick(8)"></span>
+          </li>
+        </ul>
+      </li>
     </ul>
   </nav>
 </template>
@@ -247,6 +261,20 @@
       margin: 0 0 30px;
       position: relative;
       text-transform: uppercase;
+      &--privacy{
+        @include rem(20);
+        margin: 30px 0 0;
+      }
+      a{
+        color: #fff;
+        @include pseudo(#fff)
+      }
+      .sns{
+        margin: 15px 0 0;
+        @media (max-width: 900px){
+          margin: 15px 0 0;
+        }
+      }
     }
     &__ttl{
       color: #fff;

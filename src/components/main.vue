@@ -139,9 +139,6 @@
 </script>
 
 <style lang="scss">
-  [v-cloak] {
-    display:none
-  }
   .frame{
     border: solid 25px #fff;
     height:100%;

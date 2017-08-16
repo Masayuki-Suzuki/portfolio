@@ -75,6 +75,10 @@ router.post('/contact', (req, res) =>{
   });
 });
 
+router.get('/privacy-policy', (req,res) =>{
+  res.render('main/privacy-policy');
+});
+
 router.get('*', (req,res) => {
   res.send("Oops!! Page is not found...");
 });
