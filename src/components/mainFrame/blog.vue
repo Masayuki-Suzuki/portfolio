@@ -1,8 +1,21 @@
-<template lang="ejs">
+<template>
   <section class="blogs" :class="{'blog-active': pageController()}">
     <h1 class="common__hd blogs__hd">Blogs</h1>
     <div class="blogs__container">
       <div class="blogs__list">
+        <div class="blogs__thumbnail">
+          <img src="/dist/img/blog/aa.jpg" alt="Angular Academy">
+        </div>
+        <div class="blogs__desc">
+          <time>August / 19 / 2017 - Coding</time>
+          <h2 class="title">the Angular Academy in Vancouver Report</h2>
+          <p class="summary">I participated Angular Academy which is Angular’s workshop held over two days on 13th and 14th July.</p>
+          <div class="viewPost">
+            <a href="https://medium.com/@masayuki.s/the-angular-academy-in-vancouver-report-313e821464ad" target="_blank">Read the post</a>
+          </div>
+        </div>
+      </div>
+      <div class="blogs__list blogs__list--right">
         <div class="blogs__thumbnail">
           <img src="/dist/img/blog/seashore.jpg" alt="seashore">
         </div>
@@ -15,12 +28,7 @@
           </div>
         </div>
       </div>
-      <% for(var i = 0; i < 2; i++){ %>
-      <% if(i === 0) { %>
-        <div class="blogs__list blogs__list--right">
-      <% } else { %>
       <div class="blogs__list">
-      <% } %>
         <div class="blogs__thumbnail">
           <img src="/dist/img/dummy1.jpg" alt="dummy">
         </div>
@@ -33,7 +41,6 @@
           </div>
         </div>
       </div>
-      <% } %>
     </div>
     <div class="more">
       <a href="https://medium.com/@masayuki.s" target="_blank">read more post</a>
@@ -87,7 +94,7 @@
       padding: 50px 0;
     }
     &__hd{
-      margin: 90px 0 0;
+      margin: 12% 0 0;
       transition: all 0.4s ease 0.2s;
       @media (max-height: 900px){
         margin: 6% 0 0;
