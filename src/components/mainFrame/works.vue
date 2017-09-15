@@ -10,16 +10,16 @@
   }">
     <h1 v-if="sharedState.isTablet" class="common__hd">works</h1>
     <yelp-camp v-if="changeWorks(3)" :class="{ 'active-works': changeWorksA() }"></yelp-camp>
-    <portfolio v-if="changeWorks(4)" :class="{ 'active-works': changeWorksB() }"></portfolio>
-    <ballet v-if="changeWorks(5)" :class="{ 'active-works': changeWorksA() }"></ballet>
-    <marketas v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></marketas>
+    <wordpress v-if="changeWorks(4)" :class="{ 'active-works': changeWorksB() }"></wordpress>
+    <portfolio v-if="changeWorks(5)" :class="{ 'active-works': changeWorksA() }"></portfolio>
+    <ballet v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></ballet>
     <another v-if="changeWorks(7)" :class="{ 'active-works': changeWorksA() }"></another>
     <div class="scrollNav">
       <span @click="paginationClick(8)" href=""></span>
     </div>
     <div class="imgPreload">
       <img src="/dist/img/ballet_bg.jpg" alt="">
-      <img src="/dist/img/marketas.jpg" alt="">
+      <img src="/dist/img/blog_thumbnail.png" alt="">
       <img src="/dist/img/tokyo.jpg" alt="">
     </div>
   </section>
@@ -30,6 +30,7 @@
   import store from '../../store/store';
   import yelpCamp from './yelpCamp.vue';
   import portfolio from './portfolio.vue';
+  import wordpress from './wordpress.vue';
   import ballet from './ballet.vue';
   import marketas from './marketas.vue';
   import another from './another.vue';
@@ -71,6 +72,7 @@
 
   Vue.component('yelp-camp',yelpCamp);
   Vue.component('portfolio', portfolio);
+  Vue.component('wordpress', wordpress);
   Vue.component('ballet', ballet);
   Vue.component('marketas', marketas);
   Vue.component('another', another);
@@ -90,20 +92,23 @@
     }
   }
   .works2 {
-    background: url(/dist/img/topBg.jpg) no-repeat 25vw top;
-    @media (max-width: 1200px){
-      background-position: 10vw top;
-    }
+    background: url(/dist/img/blog_thumbnail.png) no-repeat 18vw 4vh;
     @media (max-width: 900px){
       background: none;
     }
   }
   .works3 {
-    background: url(/dist/img/ballet_bg.jpg) no-repeat center center;
+    background: url(/dist/img/topBg.jpg) no-repeat left top;
+    @media (max-width: 900px){
+      background: none;
+    }
   }
   .works4 {
-    background: url(/dist/img/marketas.jpg) no-repeat 15vw center;
+    background: url(/dist/img/ballet_bg.jpg) no-repeat 10vw center;
   }
+  //.works4 {
+  //  background: url(/dist/img/marketas.jpg) no-repeat 15vw center;
+  //}
   .works5{
     background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;
     @media (max-width: 900px){

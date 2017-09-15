@@ -89,7 +89,7 @@ let store = {
       case 2:
         // Works ( Yelp Camp )
         if(direction){
-          this.state.isColorClass = true;
+          this.state.isColorClass = false;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
@@ -118,7 +118,7 @@ let store = {
         }
         break;
       case 3:
-        // Works ( Portfolio )
+        // Works ( wordpress )
         if(direction){
           this.state.isColorClass = false;
           setTimeout(() => {
@@ -142,7 +142,7 @@ let store = {
         }
         break;
       case 4:
-        // Works ( Ballet )
+        // Works ( portfolio )
         if(direction){
           this.state.isColorClass = true;
           setTimeout(() => {
@@ -154,7 +154,7 @@ let store = {
             this.state.worksB = true;
           }, 500);
         } else {
-          this.state.isColorClass = true;
+          this.state.isColorClass = false;
           setTimeout(() => {
             this.state.position--;
             this.state.location--;
@@ -166,7 +166,7 @@ let store = {
         }
         break;
       case 5:
-        // Works ( Marketa's )
+        // Works ( ballet )
         if(direction){
           this.state.isColorClass = false;
           setTimeout(() => {

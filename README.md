@@ -74,5 +74,4 @@ OOCSS(<http://oocss.org/>)
 * Opening load animation.
 * Load blog post using ajax from wordpress.
 * Add Parallax animation when site is touch devices.
-* Create and exchange the works contents. (I'm planning to make Wordpress theme with sage stack.)
 * Learn Vue.js more.

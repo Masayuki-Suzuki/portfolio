@@ -1,5 +1,5 @@
 <template>
-  <div class="works__details works__details--left">
+  <div class="works__details works__details--right">
     <div class="works__ttl">
       <p class="works__caption">design / logo design / coding</p>
       <h1 class="works__hd">Portfolio Site</h1>

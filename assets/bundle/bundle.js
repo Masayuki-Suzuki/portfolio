@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 47);
+/******/ 	return __webpack_require__(__webpack_require__.s = 48);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -265,7 +265,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(111)
+var listToStyles = __webpack_require__(116)
 
 /*
 type StyleObject = {
@@ -474,7 +474,7 @@ function applyToTag (styleElement, obj) {
 
 
 var bind = __webpack_require__(11);
-var isBuffer = __webpack_require__(64);
+var isBuffer = __webpack_require__(66);
 
 /*global toString:true*/
 
@@ -879,7 +879,7 @@ var store = {
       case 2:
         // Works ( Yelp Camp )
         if (direction) {
-          this.state.isColorClass = true;
+          this.state.isColorClass = false;
           setTimeout(function () {
             _this.state.position++;
             _this.state.location++;
@@ -908,7 +908,7 @@ var store = {
         }
         break;
       case 3:
-        // Works ( Portfolio )
+        // Works ( wordpress )
         if (direction) {
           this.state.isColorClass = false;
           setTimeout(function () {
@@ -932,7 +932,7 @@ var store = {
         }
         break;
       case 4:
-        // Works ( Ballet )
+        // Works ( portfolio )
         if (direction) {
           this.state.isColorClass = true;
           setTimeout(function () {
@@ -944,7 +944,7 @@ var store = {
             _this.state.worksB = true;
           }, 500);
         } else {
-          this.state.isColorClass = true;
+          this.state.isColorClass = false;
           setTimeout(function () {
             _this.state.position--;
             _this.state.location--;
@@ -956,7 +956,7 @@ var store = {
         }
         break;
       case 5:
-        // Works ( Marketa's )
+        // Works ( ballet )
         if (direction) {
           this.state.isColorClass = false;
           setTimeout(function () {
@@ -8380,7 +8380,7 @@ setTimeout(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(113)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(118)))
 
 /***/ }),
 /* 6 */
@@ -8480,7 +8480,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(67)))
 
 /***/ }),
 /* 7 */
@@ -8757,13 +8757,13 @@ module.exports = function bind(fn, thisArg) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(110)
+  __webpack_require__(115)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(96),
+  __webpack_require__(100),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8801,10 +8801,10 @@ module.exports = Component.exports
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(48);
+var content = __webpack_require__(49);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(66)(content, {});
+var update = __webpack_require__(68)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -8827,13 +8827,13 @@ if(false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(106)
+  __webpack_require__(111)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(33),
   /* template */
-  __webpack_require__(92),
+  __webpack_require__(96),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -9730,11 +9730,11 @@ var _store = __webpack_require__(4);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _main = __webpack_require__(68);
+var _main = __webpack_require__(70);
 
 var _main2 = _interopRequireDefault(_main);
 
-var _nav = __webpack_require__(80);
+var _nav = __webpack_require__(83);
 
 var _nav2 = _interopRequireDefault(_nav);
 
@@ -9801,7 +9801,7 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vueTouch = __webpack_require__(112);
+var _vueTouch = __webpack_require__(117);
 
 var _vueTouch2 = _interopRequireDefault(_vueTouch);
 
@@ -9809,23 +9809,23 @@ var _store = __webpack_require__(4);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _logo = __webpack_require__(74);
+var _logo = __webpack_require__(76);
 
 var _logo2 = _interopRequireDefault(_logo);
 
-var _pagination = __webpack_require__(76);
+var _pagination = __webpack_require__(78);
 
 var _pagination2 = _interopRequireDefault(_pagination);
 
-var _firstView = __webpack_require__(73);
+var _firstView = __webpack_require__(75);
 
 var _firstView2 = _interopRequireDefault(_firstView);
 
-var _about = __webpack_require__(69);
+var _about = __webpack_require__(71);
 
 var _about2 = _interopRequireDefault(_about);
 
-var _works = __webpack_require__(78);
+var _works = __webpack_require__(81);
 
 var _works2 = _interopRequireDefault(_works);
 
@@ -9833,15 +9833,15 @@ var _ballet = __webpack_require__(12);
 
 var _ballet2 = _interopRequireDefault(_ballet);
 
-var _blog = __webpack_require__(71);
+var _blog = __webpack_require__(73);
 
 var _blog2 = _interopRequireDefault(_blog);
 
-var _contact = __webpack_require__(72);
+var _contact = __webpack_require__(74);
 
 var _contact2 = _interopRequireDefault(_contact);
 
-var _footer = __webpack_require__(67);
+var _footer = __webpack_require__(69);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -10581,31 +10581,114 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      isColorClass: false
+    };
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = __webpack_require__(5);
+
+var _vue2 = _interopRequireDefault(_vue);
+
 var _store = __webpack_require__(4);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _yelpCamp = __webpack_require__(79);
+var _yelpCamp = __webpack_require__(82);
 
 var _yelpCamp2 = _interopRequireDefault(_yelpCamp);
 
-var _portfolio = __webpack_require__(77);
+var _portfolio = __webpack_require__(79);
 
 var _portfolio2 = _interopRequireDefault(_portfolio);
+
+var _wordpress = __webpack_require__(80);
+
+var _wordpress2 = _interopRequireDefault(_wordpress);
 
 var _ballet = __webpack_require__(12);
 
 var _ballet2 = _interopRequireDefault(_ballet);
 
-var _marketas = __webpack_require__(75);
+var _marketas = __webpack_require__(77);
 
 var _marketas2 = _interopRequireDefault(_marketas);
 
-var _another = __webpack_require__(70);
+var _another = __webpack_require__(72);
 
 var _another2 = _interopRequireDefault(_another);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 exports.default = {
   data: function data() {
@@ -10640,42 +10723,18 @@ exports.default = {
       _store2.default.paginationLinkAction(num);
     }
   }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+};
+
 
 _vue2.default.component('yelp-camp', _yelpCamp2.default);
 _vue2.default.component('portfolio', _portfolio2.default);
+_vue2.default.component('wordpress', _wordpress2.default);
 _vue2.default.component('ballet', _ballet2.default);
 _vue2.default.component('marketas', _marketas2.default);
 _vue2.default.component('another', _another2.default);
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10792,7 +10851,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10821,7 +10880,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 new _vue2.default(_app2.default).$mount('#app');
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10835,7 +10894,7 @@ exports.push([module.i, "@font-face {\n  font-family: 'fontawesome';\n  src: url
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10849,7 +10908,7 @@ exports.push([module.i, "\n.logo {\n  cursor: pointer;\n  left: 25px;\n  padding
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10863,7 +10922,7 @@ exports.push([module.i, "\n@keyframes navIcon-top {\n0% {\n    transform: transl
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10877,7 +10936,7 @@ exports.push([module.i, "\n@keyframes loading-text {\n0% {\n    content: \"Sendi
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10891,7 +10950,7 @@ exports.push([module.i, "\n.about {\n  background: #E8E8E0;\n  height: 100%;\n  
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10905,7 +10964,7 @@ exports.push([module.i, "\n.frame {\n  border: solid 25px #fff;\n  height: 100%;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10919,20 +10978,6 @@ exports.push([module.i, "\n.pagination {\n  left: 60px;\n  position: absolute;\n
 
 
 /***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10941,7 +10986,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n@keyframes scrollAnimation {\n0% {\n    opacity: 0;\n    transform: translateY(0px);\n}\n37.5% {\n    opacity: 1;\n}\n75% {\n    opacity: 0;\n    transform: translateY(7px);\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes scrollAnimation-touch {\nfrom, 20%, 55%, 80%, to {\n    transform: translate3d(0, 0, 0);\n}\n40%, 45% {\n    transform: translate3d(0, -30px, 0);\n}\n70% {\n    transform: translate3d(0, -20px, 0);\n}\n90% {\n    transform: translate3d(0, 0px, 0);\n}\n}\n.firstView {\n  background: url(/dist/img/topBg.jpg) no-repeat center center;\n  background-size: cover;\n  height: 100%;\n  position: relative;\n  transition: all 0.5s ease 0s;\n  width: 100%;\n  z-index: 0;\n}\n@media (max-width: 900px) {\n.firstView {\n      height: 100vh;\n      min-height: 500px;\n}\n}\n.mainlogo {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  padding: 30vh 0 0;\n  pointer-events: none;\n}\n.mainlogo__image {\n    background: rgba(255, 255, 255, 0.6);\n    padding: 32px 34px 28px 34px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.mainlogo {\n      padding: 32vh 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n.mainlogo__image object {\n          width: 100%;\n}\n}\n@media (max-height: 600px) {\n.mainlogo {\n      padding: 27vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.mainlogo {\n      padding: 35vh 0 0 0;\n}\n.mainlogo__image {\n        width: 270px;\n}\n}\n@media (max-width: 900px) and (max-height: 700px) {\n.mainlogo {\n      padding: 30vh 0 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.mainlogo {\n      padding: 24vh 0 0 0;\n}\n}\n@media (max-width: 550px) {\n.mainlogo {\n      padding: 28vh 0 0 0;\n}\n.mainlogo__image {\n        padding: 18px 22px;\n        width: 200px;\n}\n}\n.sns {\n  margin: 15px 0;\n  text-align: center;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.sns {\n      margin: 32px 0 0;\n}\n}\n@media (max-width: 900px) and (max-height: 550px), (max-width: 550px) {\n.sns {\n      margin: 20px 0 0;\n}\n}\n.sns__list {\n    display: inline-block;\n    margin: 0 7px;\n}\n@media (max-width: 550px) {\n.sns__list {\n        margin: 0 12px;\n}\n}\n.sns__link {\n    display: block;\n}\n.sns__link:before {\n      color: rgba(255, 255, 255, 0.8);\n      display: block;\n      font-family: fontawesome;\n      font-size: 36px;\n      font-size: 3.6rem;\n      line-height: 1;\n}\n@media (max-width: 900px) {\n.sns__link:before {\n          font-size: 40px;\n          font-size: 4rem;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.sns__link:before {\n          font-size: 34px;\n          font-size: 3.4rem;\n}\n}\n.sns__link--nav:before {\n      color: #fff;\n      font-size: 30px;\n      font-size: 3rem;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.sns__link--nav:before {\n          font-size: 24px;\n          font-size: 2.4rem;\n}\n}\n.github:before {\n  content: '\\F092';\n}\n.linkedin:before {\n  content: '\\F08C';\n}\n.email:before {\n  content: '\\F003';\n  cursor: pointer;\n}\n.scroll-icon {\n  bottom: 4%;\n  left: 50%;\n  margin: 0 0 0 -23px;\n  text-align: center;\n  position: absolute;\n  /*Landscape（画面横）*/\n}\n@media (max-device-width: 1024px) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {\n.scroll-icon {\n      bottom: 11%;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon {\n      animation: scrollAnimation-touch 1.5s infinite;\n      bottom: 8%;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon {\n      margin: 0 0 0 -18px;\n}\n}\n@media (max-width: 550px) {\n.scroll-icon {\n      bottom: 12%;\n}\n}\n.scroll-icon__main {\n    border: solid 2px #fff;\n    border-radius: 15px;\n    display: inline-block;\n    height: 46px;\n    position: relative;\n    width: 30px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main {\n        border: solid 3px #fff;\n        border-top: 0;\n        border-right: 0;\n        border-radius: 0;\n        height: 36px;\n        opacity: 0.8;\n        transform: rotateZ(-45deg);\n        width: 36px;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon__main {\n        height: 28px;\n        width: 28px;\n}\n}\n.scroll-icon__main:before {\n      animation: scrollAnimation 1.5s ease infinite;\n      background: #fff;\n      border-radius: 50%;\n      content: \"\";\n      display: block;\n      height: 8px;\n      left: 50%;\n      margin: 0 0 0 -4px;\n      position: absolute;\n      top: 8px;\n      width: 8px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main:before {\n          content: none;\n}\n}\n.scroll-icon__text {\n    color: #fff;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 700;\n    letter-spacing: 1px;\n}\n@media (max-height: 800px) {\n.scroll-icon__text {\n        font-size: 15px;\n        font-size: 1.5rem;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon__text {\n        display: none;\n}\n}\n.scroll-out {\n  transform: translateY(-100vh);\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -10955,7 +11000,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.blogs {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.blogs {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.blogs {\n      padding: 90px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs {\n      padding: 50px 0;\n}\n}\n.blogs__hd {\n    margin: 12% 0 0;\n    transition: all 0.4s ease 0.2s;\n}\n@media (max-height: 900px) {\n.blogs__hd {\n        margin: 6% 0 0;\n}\n}\n@media (max-height: 850px) {\n.blogs__hd {\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 800px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 750px) {\n.blogs__hd {\n        font-size: 55px;\n        font-size: 5.5rem;\n        margin: 2% 0 0;\n}\n}\n@media (max-height: 700px) {\n.blogs__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__hd {\n        font-size: 40px;\n        font-size: 4rem;\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 550px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        line-height: 1;\n        margin: 0 auto;\n}\n}\n.blogs__container {\n    display: flex;\n    justify-content: space-between;\n    margin: 2.5% auto;\n    max-width: 1180px;\n    position: relative;\n    width: 80%;\n}\n@media (max-height: 800px) {\n.blogs__container {\n        margin: 2% auto;\n}\n}\n@media (max-height: 700px) {\n.blogs__container {\n        width: 85%;\n}\n}\n@media (max-height: 650px) {\n.blogs__container {\n        margin: 1% auto;\n}\n}\n@media (max-width: 900px) {\n.blogs__container {\n        flex-direction: column;\n        justify-content: flex-start;\n        margin: 35px auto 0;\n        max-width: 650px;\n        width: 90%;\n}\n}\n@media (max-width: 740px) {\n.blogs__container {\n        margin: 20px auto 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__container {\n        max-width: 400px;\n}\n}\n.blogs__list {\n    background: #fff;\n    margin: 0 3% 0 0;\n    overflow: hidden;\n    position: relative;\n    width: 33.3333333%;\n}\n.blogs__list:before, .blogs__list:after {\n      content: '';\n      display: block;\n      height: 100%;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n.blogs__list:before {\n      background: #3c3c3c;\n      left: -103%;\n}\n.blogs__list:after {\n      background: #fff;\n      left: 0;\n}\n@media (max-width: 900px) {\n.blogs__list {\n        background: none;\n        display: flex;\n        justify-content: flex-end;\n        margin: 25px auto;\n        width: 100%;\n}\n.blogs__list:before, .blogs__listafter {\n          content: none;\n}\n}\n@media (max-width: 550px) {\n.blogs__list {\n        display: block;\n}\n}\n.blogs__list:first-of-type:before, .blogs__list:first-of-type:after {\n      transition: left 0.4s ease 0.4s;\n}\n.blogs__list:nth-of-type(2):before, .blogs__list:nth-of-type(2):after {\n      transition: left 0.4s ease 0.8s;\n}\n.blogs__list:last-of-type {\n      margin: 0;\n}\n.blogs__list:last-of-type:before, .blogs__list:last-of-type:after {\n        transition: left 0.4s ease 1.2s;\n}\n.blogs__list time {\n      color: #7c7c7c;\n      display: block;\n      font-size: 12px;\n      font-size: 1.2rem;\n      font-weight: 500;\n      letter-spacing: 0.04em;\n      padding: 20px 25px 0;\n      text-align: center;\n      text-transform: uppercase;\n      width: 100%;\n}\n@media (max-height: 700px) {\n.blogs__list time {\n          padding: 15px 20px 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__list time {\n          padding: 10px 20px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list time {\n          padding: 20px 25px 0 75px;\n          text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs__list time {\n          padding: 85px 25px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__list time {\n          padding: 15px 15px 0;\n          text-align: center;\n}\n}\n@media (max-width: 900px) {\n.blogs__thumbnail {\n      left: 0;\n      max-width: 260px;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n}\n@media (max-width: 740px) {\n.blogs__thumbnail {\n      max-width: 300px;\n}\n}\n@media (max-width: 550px) {\n.blogs__thumbnail {\n      position: static;\n      max-width: 100%;\n}\n}\n.blogs__thumbnail img {\n    display: block;\n    width: 100%;\n}\n@media (max-width: 900px) {\n.blogs__desc {\n      background: #fff;\n      margin: 30px 0 0;\n      max-width: 440px;\n      width: 100%;\n}\n}\n@media (max-width: 740px) {\n.blogs__desc {\n      margin: 85px 0 0;\n      max-width: 600px;\n      width: 88%;\n}\n}\n@media (max-width: 550px) {\n.blogs__desc {\n      margin: 0;\n      width: 100%;\n}\n}\n.blogs .title {\n    color: #3c3c3c;\n    font-size: 24px;\n    font-size: 2.4rem;\n    font-weight: 500;\n    letter-spacing: 0.02em;\n    margin: 5px 0 10px;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 700px), (max-width: 900px) {\n.blogs .title {\n        font-size: 20px;\n        font-size: 2rem;\n}\n}\n@media (max-height: 600px) {\n.blogs .title {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .title {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .title {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .title:after {\n      background: #3c3c3c;\n      content: '';\n      display: block;\n      height: 2px;\n      margin: 12px auto 10px;\n      width: 44px;\n}\n@media (max-width: 900px) {\n.blogs .title:after {\n          margin: 12px 0 10px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title:after {\n          margin: 12px auto 10px;\n}\n}\n.blogs .summary {\n    color: #3c3c3c;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 500;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 600px), (max-width: 900px) {\n.blogs .summary {\n        font-size: 14px;\n        font-size: 1.4rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .summary {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .summary {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .summary {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost {\n    margin: 20px 0 0;\n    padding: 0 20px 25px;\n    text-align: center;\n}\n@media (max-height: 700px) {\n.blogs .viewPost {\n        padding: 0 15px 20px;\n}\n}\n@media (max-height: 600px) {\n.blogs .viewPost {\n        margin: 10px 0 0;\n        padding: 0 15px 12px;\n}\n}\n@media (max-width: 900px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .viewPost {\n        padding: 0 15px 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost a {\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      font-weight: 700;\n      letter-spacing: 0.04em;\n      position: relative;\n      text-transform: uppercase;\n}\n.blogs .viewPost a:active, .blogs .viewPost a:link, .blogs .viewPost a:visited {\n        color: #3c3c3c;\n}\n@media (max-width: 900px) {\n.blogs__list--right {\n      justify-content: flex-start;\n}\n.blogs__list--right .blogs__thumbnail {\n        left: auto;\n        right: 0;\n}\n.blogs__list--right time {\n        padding: 20px 75px 0 25px;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.blogs__list--right time {\n        padding: 85px 25px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list--right .title,\n      .blogs__list--right .summary {\n        padding: 0 75px 0 25px;\n}\n.blogs__list--right .viewPost {\n        padding: 0 75px 20px 25px;\n}\n}\n@media (max-width: 740px) {\n.blogs__list--right time {\n      padding: 85px 25px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 25px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs__list--right time {\n      padding: 15px 15px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 15px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 15px 15px 15px;\n}\n}\n.blog-active .blogs__hd {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 0.2s;\n}\n.blog-active .blogs__list:before {\n  left: 103%;\n}\n.blog-active .blogs__list:after {\n  left: 203%;\n}\n.blog-active .blogs__list:first-of-type:before, .blog-active .blogs__list:first-of-type:after {\n  transition: left .6s ease 0.4s;\n}\n.blog-active .blogs__list:nth-of-type(2):before, .blog-active .blogs__list:nth-of-type(2):after {\n  transition: left .6s ease 0.67s;\n}\n.blog-active .blogs__list:last-of-type {\n  margin: 0;\n}\n@media (max-width: 900px) {\n.blog-active .blogs__list:last-of-type {\n      margin: 25px 0;\n}\n}\n.blog-active .blogs__list:last-of-type:before, .blog-active .blogs__list:last-of-type:after {\n    transition: left .6s ease 0.92s;\n}\n.blog-active .more {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.5s ease 1.1s;\n}\n.more {\n  opacity: 0;\n  transform: translateY(30px);\n  transition: all 0.4s ease 0.7s;\n}\n.more a {\n    border: solid 1px #3c3c3c;\n    color: #3c3c3c;\n    display: block;\n    font-size: 14px;\n    font-size: 1.4rem;\n    line-height: 1;\n    margin: 30px auto 0;\n    overflow: hidden;\n    padding: 12px 0 11px;\n    position: relative;\n    text-align: center;\n    text-transform: uppercase;\n    transition: color .5s ease 0s;\n    width: 160px;\n    z-index: 0;\n}\n@media (max-height: 650px) {\n.more a {\n        margin: 15px auto 0;\n}\n}\n@media (max-height: 650px) {\n.more a {\n        font-size: 12px;\n        font-size: 1.2rem;\n}\n}\n@media (max-width: 900px) {\n.more a {\n        background: #3c3c3c;\n        color: #fff;\n        padding: 15px 0;\n        width: 200px;\n}\n}\n.more a:after {\n      background: #3c3c3c;\n      content: \"\";\n      height: 100%;\n      left: 50%;\n      position: absolute;\n      top: 0;\n      transform: matrix(1, 0, -1, 1, 0, 0);\n      transition: all .5s ease 0s;\n      width: 0;\n      z-index: -1;\n}\n.more a:hover {\n      color: #fff;\n}\n.more a:hover:after {\n        left: -25%;\n        width: 150%;\n}\n", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n@keyframes scrollAnimation {\n0% {\n    opacity: 0;\n    transform: translateY(0px);\n}\n37.5% {\n    opacity: 1;\n}\n75% {\n    opacity: 0;\n    transform: translateY(7px);\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes scrollAnimation-touch {\nfrom, 20%, 55%, 80%, to {\n    transform: translate3d(0, 0, 0);\n}\n40%, 45% {\n    transform: translate3d(0, -30px, 0);\n}\n70% {\n    transform: translate3d(0, -20px, 0);\n}\n90% {\n    transform: translate3d(0, 0px, 0);\n}\n}\n.firstView {\n  background: url(/dist/img/topBg.jpg) no-repeat center center;\n  background-size: cover;\n  height: 100%;\n  position: relative;\n  transition: all 0.5s ease 0s;\n  width: 100%;\n  z-index: 0;\n}\n@media (max-width: 900px) {\n.firstView {\n      height: 100vh;\n      min-height: 500px;\n}\n}\n.mainlogo {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  padding: 30vh 0 0;\n  pointer-events: none;\n}\n.mainlogo__image {\n    background: rgba(255, 255, 255, 0.6);\n    padding: 32px 34px 28px 34px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.mainlogo {\n      padding: 32vh 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n.mainlogo__image object {\n          width: 100%;\n}\n}\n@media (max-height: 600px) {\n.mainlogo {\n      padding: 27vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.mainlogo {\n      padding: 35vh 0 0 0;\n}\n.mainlogo__image {\n        width: 270px;\n}\n}\n@media (max-width: 900px) and (max-height: 700px) {\n.mainlogo {\n      padding: 30vh 0 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.mainlogo {\n      padding: 24vh 0 0 0;\n}\n}\n@media (max-width: 550px) {\n.mainlogo {\n      padding: 28vh 0 0 0;\n}\n.mainlogo__image {\n        padding: 18px 22px;\n        width: 200px;\n}\n}\n.sns {\n  margin: 15px 0;\n  text-align: center;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.sns {\n      margin: 32px 0 0;\n}\n}\n@media (max-width: 900px) and (max-height: 550px), (max-width: 550px) {\n.sns {\n      margin: 20px 0 0;\n}\n}\n.sns__list {\n    display: inline-block;\n    margin: 0 7px;\n}\n@media (max-width: 550px) {\n.sns__list {\n        margin: 0 12px;\n}\n}\n.sns__link {\n    display: block;\n}\n.sns__link:before {\n      color: rgba(255, 255, 255, 0.8);\n      display: block;\n      font-family: fontawesome;\n      font-size: 36px;\n      font-size: 3.6rem;\n      line-height: 1;\n}\n@media (max-width: 900px) {\n.sns__link:before {\n          font-size: 40px;\n          font-size: 4rem;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.sns__link:before {\n          font-size: 34px;\n          font-size: 3.4rem;\n}\n}\n.sns__link--nav:before {\n      color: #fff;\n      font-size: 30px;\n      font-size: 3rem;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.sns__link--nav:before {\n          font-size: 24px;\n          font-size: 2.4rem;\n}\n}\n.github:before {\n  content: '\\F092';\n}\n.linkedin:before {\n  content: '\\F08C';\n}\n.email:before {\n  content: '\\F003';\n  cursor: pointer;\n}\n.scroll-icon {\n  bottom: 4%;\n  left: 50%;\n  margin: 0 0 0 -23px;\n  text-align: center;\n  position: absolute;\n  /*Landscape（画面横）*/\n}\n@media (max-device-width: 1024px) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {\n.scroll-icon {\n      bottom: 11%;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon {\n      animation: scrollAnimation-touch 1.5s infinite;\n      bottom: 8%;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon {\n      margin: 0 0 0 -18px;\n}\n}\n@media (max-width: 550px) {\n.scroll-icon {\n      bottom: 12%;\n}\n}\n.scroll-icon__main {\n    border: solid 2px #fff;\n    border-radius: 15px;\n    display: inline-block;\n    height: 46px;\n    position: relative;\n    width: 30px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main {\n        border: solid 3px #fff;\n        border-top: 0;\n        border-right: 0;\n        border-radius: 0;\n        height: 36px;\n        opacity: 0.8;\n        transform: rotateZ(-45deg);\n        width: 36px;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon__main {\n        height: 28px;\n        width: 28px;\n}\n}\n.scroll-icon__main:before {\n      animation: scrollAnimation 1.5s ease infinite;\n      background: #fff;\n      border-radius: 50%;\n      content: \"\";\n      display: block;\n      height: 8px;\n      left: 50%;\n      margin: 0 0 0 -4px;\n      position: absolute;\n      top: 8px;\n      width: 8px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main:before {\n          content: none;\n}\n}\n.scroll-icon__text {\n    color: #fff;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 700;\n    letter-spacing: 1px;\n}\n@media (max-height: 800px) {\n.scroll-icon__text {\n        font-size: 15px;\n        font-size: 1.5rem;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon__text {\n        display: none;\n}\n}\n.scroll-out {\n  transform: translateY(-100vh);\n}\n", ""]);
 
 // exports
 
@@ -10969,7 +11014,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.container {\n  background: #fff;\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.container {\n      overflow: initial;\n      height: auto;\n}\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -10983,7 +11028,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n.blogs {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.blogs {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.blogs {\n      padding: 90px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs {\n      padding: 50px 0;\n}\n}\n.blogs__hd {\n    margin: 9% 0 0;\n    transition: all 0.4s ease 0.2s;\n}\n@media (max-height: 900px) {\n.blogs__hd {\n        margin: 6% 0 0;\n}\n}\n@media (max-height: 850px) {\n.blogs__hd {\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 800px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 750px) {\n.blogs__hd {\n        font-size: 55px;\n        font-size: 5.5rem;\n        margin: 2% 0 0;\n}\n}\n@media (max-height: 700px) {\n.blogs__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__hd {\n        font-size: 40px;\n        font-size: 4rem;\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 550px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        line-height: 1;\n        margin: 0 auto;\n}\n}\n.blogs__container {\n    display: flex;\n    justify-content: space-between;\n    margin: 2.5% auto;\n    max-width: 1180px;\n    position: relative;\n    width: 80%;\n}\n@media (max-height: 800px) {\n.blogs__container {\n        margin: 2% auto;\n}\n}\n@media (max-height: 700px) {\n.blogs__container {\n        width: 85%;\n}\n}\n@media (max-height: 650px) {\n.blogs__container {\n        margin: 1% auto;\n}\n}\n@media (max-width: 900px) {\n.blogs__container {\n        flex-direction: column;\n        justify-content: flex-start;\n        margin: 35px auto 0;\n        max-width: 650px;\n        width: 90%;\n}\n}\n@media (max-width: 740px) {\n.blogs__container {\n        margin: 20px auto 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__container {\n        max-width: 400px;\n}\n}\n.blogs__list {\n    background: #fff;\n    margin: 0 3% 0 0;\n    overflow: hidden;\n    position: relative;\n    width: 33.3333333%;\n}\n.blogs__list:before, .blogs__list:after {\n      content: '';\n      display: block;\n      height: 100%;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n.blogs__list:before {\n      background: #3c3c3c;\n      left: -103%;\n}\n.blogs__list:after {\n      background: #fff;\n      left: 0;\n}\n@media (max-width: 900px) {\n.blogs__list {\n        background: none;\n        display: flex;\n        justify-content: flex-end;\n        margin: 25px auto;\n        width: 100%;\n}\n.blogs__list:before, .blogs__listafter {\n          content: none;\n}\n}\n@media (max-width: 550px) {\n.blogs__list {\n        display: block;\n}\n}\n.blogs__list:first-of-type:before, .blogs__list:first-of-type:after {\n      transition: left 0.4s ease 0.4s;\n}\n.blogs__list:nth-of-type(2):before, .blogs__list:nth-of-type(2):after {\n      transition: left 0.4s ease 0.8s;\n}\n.blogs__list:last-of-type {\n      margin: 0;\n}\n.blogs__list:last-of-type:before, .blogs__list:last-of-type:after {\n        transition: left 0.4s ease 1.2s;\n}\n.blogs__list time {\n      color: #7c7c7c;\n      display: block;\n      font-size: 12px;\n      font-size: 1.2rem;\n      font-weight: 500;\n      letter-spacing: 0.04em;\n      padding: 20px 25px 0;\n      text-align: center;\n      text-transform: uppercase;\n      width: 100%;\n}\n@media (max-height: 700px) {\n.blogs__list time {\n          padding: 15px 20px 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__list time {\n          padding: 10px 20px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list time {\n          padding: 20px 25px 0 75px;\n          text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs__list time {\n          padding: 85px 25px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__list time {\n          padding: 15px 15px 0;\n          text-align: center;\n}\n}\n@media (max-width: 900px) {\n.blogs__thumbnail {\n      left: 0;\n      max-width: 260px;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n}\n@media (max-width: 740px) {\n.blogs__thumbnail {\n      max-width: 300px;\n}\n}\n@media (max-width: 550px) {\n.blogs__thumbnail {\n      position: static;\n      max-width: 100%;\n}\n}\n.blogs__thumbnail img {\n    display: block;\n    width: 100%;\n}\n@media (max-width: 900px) {\n.blogs__desc {\n      background: #fff;\n      margin: 30px 0 0;\n      max-width: 440px;\n      width: 100%;\n}\n}\n@media (max-width: 740px) {\n.blogs__desc {\n      margin: 85px 0 0;\n      max-width: 600px;\n      width: 88%;\n}\n}\n@media (max-width: 550px) {\n.blogs__desc {\n      margin: 0;\n      width: 100%;\n}\n}\n.blogs .title {\n    color: #3c3c3c;\n    font-size: 24px;\n    font-size: 2.4rem;\n    font-weight: 500;\n    letter-spacing: 0.02em;\n    margin: 5px 0 10px;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 700px), (max-width: 900px) {\n.blogs .title {\n        font-size: 20px;\n        font-size: 2rem;\n}\n}\n@media (max-height: 600px) {\n.blogs .title {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .title {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .title {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .title:after {\n      background: #3c3c3c;\n      content: '';\n      display: block;\n      height: 2px;\n      margin: 12px auto 10px;\n      width: 44px;\n}\n@media (max-width: 900px) {\n.blogs .title:after {\n          margin: 12px 0 10px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title:after {\n          margin: 12px auto 10px;\n}\n}\n.blogs .summary {\n    color: #3c3c3c;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 500;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 600px), (max-width: 900px) {\n.blogs .summary {\n        font-size: 14px;\n        font-size: 1.4rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .summary {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .summary {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .summary {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost {\n    margin: 20px 0 0;\n    padding: 0 20px 25px;\n    text-align: center;\n}\n@media (max-height: 700px) {\n.blogs .viewPost {\n        padding: 0 15px 20px;\n}\n}\n@media (max-height: 600px) {\n.blogs .viewPost {\n        margin: 10px 0 0;\n        padding: 0 15px 12px;\n}\n}\n@media (max-width: 900px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .viewPost {\n        padding: 0 15px 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost a {\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      font-weight: 700;\n      letter-spacing: 0.04em;\n      position: relative;\n      text-transform: uppercase;\n}\n.blogs .viewPost a:active, .blogs .viewPost a:link, .blogs .viewPost a:visited {\n        color: #3c3c3c;\n}\n@media (max-width: 900px) {\n.blogs__list--right {\n      justify-content: flex-start;\n}\n.blogs__list--right .blogs__thumbnail {\n        left: auto;\n        right: 0;\n}\n.blogs__list--right time {\n        padding: 20px 75px 0 25px;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.blogs__list--right time {\n        padding: 85px 25px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list--right .title,\n      .blogs__list--right .summary {\n        padding: 0 75px 0 25px;\n}\n.blogs__list--right .viewPost {\n        padding: 0 75px 20px 25px;\n}\n}\n@media (max-width: 740px) {\n.blogs__list--right time {\n      padding: 85px 25px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 25px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs__list--right time {\n      padding: 15px 15px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 15px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 15px 15px 15px;\n}\n}\n.blog-active .blogs__hd {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 0.2s;\n}\n.blog-active .blogs__list:before {\n  left: 103%;\n}\n.blog-active .blogs__list:after {\n  left: 203%;\n}\n.blog-active .blogs__list:first-of-type:before, .blog-active .blogs__list:first-of-type:after {\n  transition: left .6s ease 0.4s;\n}\n.blog-active .blogs__list:nth-of-type(2):before, .blog-active .blogs__list:nth-of-type(2):after {\n  transition: left .6s ease 0.67s;\n}\n.blog-active .blogs__list:last-of-type {\n  margin: 0;\n}\n@media (max-width: 900px) {\n.blog-active .blogs__list:last-of-type {\n      margin: 25px 0;\n}\n}\n.blog-active .blogs__list:last-of-type:before, .blog-active .blogs__list:last-of-type:after {\n    transition: left .6s ease 0.92s;\n}\n.blog-active .more {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.5s ease 1.1s;\n}\n.more {\n  opacity: 0;\n  transform: translateY(30px);\n  transition: all 0.4s ease 0.7s;\n}\n.more a {\n    border: solid 1px #3c3c3c;\n    color: #3c3c3c;\n    display: block;\n    font-size: 14px;\n    font-size: 1.4rem;\n    line-height: 1;\n    margin: 30px auto 0;\n    overflow: hidden;\n    padding: 12px 0 11px;\n    position: relative;\n    text-align: center;\n    text-transform: uppercase;\n    transition: color .5s ease 0s;\n    width: 160px;\n    z-index: 0;\n}\n@media (max-height: 650px) {\n.more a {\n        margin: 15px auto 0;\n}\n}\n@media (max-height: 650px) {\n.more a {\n        font-size: 12px;\n        font-size: 1.2rem;\n}\n}\n@media (max-width: 900px) {\n.more a {\n        background: #3c3c3c;\n        color: #fff;\n        padding: 15px 0;\n        width: 200px;\n}\n}\n.more a:after {\n      background: #3c3c3c;\n      content: \"\";\n      height: 100%;\n      left: 50%;\n      position: absolute;\n      top: 0;\n      transform: matrix(1, 0, -1, 1, 0, 0);\n      transition: all .5s ease 0s;\n      width: 0;\n      z-index: -1;\n}\n.more a:hover {\n      color: #fff;\n}\n.more a:hover:after {\n        left: -25%;\n        width: 150%;\n}\n", ""]);
 
 // exports
 
@@ -10997,7 +11042,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.works1 {\n  background: url(/dist/img/camping.jpg) no-repeat center center;\n}\n@media (max-width: 1200px) {\n.works1 {\n      background-position: 3vw top;\n}\n}\n@media (max-width: 900px) {\n.works1 {\n      background: none;\n}\n}\n.works2 {\n  background: url(/dist/img/topBg.jpg) no-repeat 25vw top;\n}\n@media (max-width: 1200px) {\n.works2 {\n      background-position: 10vw top;\n}\n}\n@media (max-width: 900px) {\n.works2 {\n      background: none;\n}\n}\n.works3 {\n  background: url(/dist/img/ballet_bg.jpg) no-repeat center center;\n}\n.works4 {\n  background: url(/dist/img/marketas.jpg) no-repeat 15vw center;\n}\n.works5 {\n  background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;\n}\n@media (max-width: 900px) {\n.works5 {\n      background: none;\n}\n}\n.works {\n  background-size: cover;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  transition: all 0.4s ease 0s;\n  width: 100%;\n  z-index: 1;\n}\n@media (max-height: 800px), (max-width: 1024px) {\n.works {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.works {\n      height: inherit;\n      padding: 90px 0 95px;\n      position: static;\n}\n}\n@media (max-width: 550px) {\n.works {\n      padding: 50px 0 55px;\n}\n}\n.works:after {\n    background: #E8E8E0;\n    content: \"\";\n    display: block;\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    transition: all 0.4s ease 0s;\n    width: 100vw;\n    z-index: 0;\n}\n@media (max-width: 900px) {\n.works:after {\n        content: none;\n}\n}\n.works__caption, .works__hd, .works__lead, .works__view {\n    opacity: 0;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n    z-index: 1;\n}\n.works__caption {\n    color: #3c3c3c;\n    font-size: 20px;\n    font-size: 2rem;\n    position: relative;\n    text-transform: uppercase;\n    z-index: 2;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__caption {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works__caption {\n        font-size: 16px;\n        font-size: 1.6rem;\n}\n}\n.works__hd {\n    color: #3c3c3c;\n    font-size: 55px;\n    font-size: 5.5rem;\n    font-weight: 700;\n    line-height: 1;\n    margin: 5px 0 12px;\n    position: relative;\n    text-transform: uppercase;\n    width: 88%;\n    z-index: 2;\n}\n@media (max-height: 800px) {\n.works__hd {\n        font-size: 43px;\n        font-size: 4.3rem;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-height: 620px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-width: 1024px) {\n.works__hd {\n        font-size: 36px;\n        font-size: 3.6rem;\n        max-width: 450px;\n}\n}\n.works__lead {\n    color: #3c3c3c;\n    font-size: 14px;\n    font-size: 1.4rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    line-height: 1.5;\n    max-width: 600px;\n    position: relative;\n    z-index: 2;\n    width: 85%;\n}\n@media (max-width: 1200px) {\n.works__lead {\n        max-width: 540px;\n}\n}\n@media (max-width: 1024px) {\n.works__lead {\n        max-width: 470px;\n}\n}\n.works__view {\n    position: relative;\n}\n.works__view a {\n      border: solid 1px #3c3c3c;\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      line-height: 1;\n      margin: 10px 20px 0 0;\n      overflow: hidden;\n      padding: 12px 0 11px;\n      position: relative;\n      text-align: center;\n      text-transform: uppercase;\n      transition: color .5s ease 0s;\n      width: 160px;\n      z-index: 2;\n}\n@media (max-height: 700px) {\n.works__view a {\n          margin: 10px 20px 0 0;\n}\n}\n@media (max-height: 650px), (max-width: 1024px) {\n.works__view a {\n          font-size: 12px;\n          font-size: 1.2rem;\n          padding: 13px 0 12px;\n          width: 120px;\n}\n}\n.works__view a:after {\n        background: #3c3c3c;\n        content: \"\";\n        height: 100%;\n        left: 50%;\n        position: absolute;\n        top: 0;\n        transform: matrix(1, 0, -1, 1, 0, 0);\n        transition: all .5s ease 0s;\n        width: 0;\n        z-index: -1;\n}\n.works__view a:hover {\n        color: #fff;\n}\n.works__view a:hover:after {\n          left: -25%;\n          width: 150%;\n}\n.works__view a.works__github {\n        padding: 7px 0 6px;\n}\n.works__view a.works__github:before {\n          content: \"\\F09B\";\n          display: inline-block;\n          font-family: fontawesome;\n          font-size: 24px;\n          font-size: 2.4rem;\n          line-height: 1;\n          margin: 0 10px 0 0;\n          vertical-align: sub;\n}\n.works--left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-45%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--left:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-38%);\n}\n}\n.works--right:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(42%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--right:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(35%);\n}\n}\n@media (max-width: 900px) {\n.works__ttl {\n      background-size: 115%;\n      height: 380px;\n      overflow: hidden;\n      position: relative;\n      width: 87.23958333333334%;\n      z-index: -1;\n}\n}\n@media (max-width: 740px) {\n.works__ttl {\n      height: 320px;\n}\n}\n@media (max-width: 550px) {\n.works__ttl {\n      height: 230px;\n}\n}\n@media (max-width: 900px) {\n.works__desc {\n      background: rgba(60, 60, 60, 0.97);\n      margin: -140px 0 0;\n      padding: 30px 40px;\n      width: 62.5%;\n      /*z-index: 3;*/\n}\n.works__desc:after {\n        background: #3c3c3c;\n        bottom: -50px;\n        content: '';\n        display: block;\n        height: 2px;\n        left: 50%;\n        position: absolute;\n        transform: translateX(-50%);\n        width: 160px;\n}\n.works__desc .works__lead {\n        color: #fff;\n        font-size: 14px;\n        font-size: 1.4rem;\n        letter-spacing: 0.02em;\n        line-height: 1.42857;\n        margin: 0;\n        max-width: 100%;\n        width: 100%;\n}\n.works__desc .works__view a {\n        border: solid 1px #fff;\n        color: #fff;\n        margin: 10px 10px 0 0;\n        padding: 13px 0;\n        width: 113px;\n}\n.works__desc .works__view a:after {\n          content: none;\n}\n.works__desc .works__view a:hover {\n          color: #fff;\n}\n.works__desc .works__view a.works__github {\n          padding: 7px 0;\n}\n.works__desc .using {\n        margin: 20px 0 0;\n        max-width: inherit;\n        width: 100%;\n}\n.works__desc .using__list {\n          background: #fff;\n          color: #3c3c3c;\n}\n}\n@media (max-width: 740px) {\n.works__desc {\n      margin: -100px 0 0;\n      width: 85%;\n}\n}\n@media (max-width: 550px) {\n.works__desc {\n      margin: -55px 0 0;\n      padding: 20px;\n      width: 90%;\n}\n}\n.works__details--right {\n    margin: 47vh 0 0;\n    padding: 0 0 0 45vw;\n    transition: all 0.4s ease 0s;\n}\n.works__details--right.anotherWorks {\n      margin: 55vh 0 0;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right.anotherWorks {\n          margin: 54vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks {\n          margin: 0;\n}\n}\n@media (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-width: 1024px) {\n.works__details--right {\n        margin: 55vh 0 0;\n        padding: 0 0 0 40vw;\n}\n}\n@media (max-height: 800px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-height: 700px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 650px) {\n.works__details--right {\n        margin: 44vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right {\n        margin: 0;\n        padding: 0;\n        position: relative;\n}\n.works__details--right:before {\n          color: #3c3c3c;\n          content: \"design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 112px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:before {\n        top: 62px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right:after {\n          color: #3c3c3c;\n          content: \"YelpCamp\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 130px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:after {\n        top: 80px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__ttl {\n          background: url(/dist/img/camping.jpg) no-repeat left center;\n          background-size: 120%;\n          margin: 45px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .works__ttl {\n        margin: 20px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__caption {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 110px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__caption {\n        top: 60px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__hd {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 125px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__hd {\n        top: 75px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks:before, .works__details--right.anotherWorks:after {\n          content: none;\n}\n.works__details--right .anotherWorks__ttl {\n          background: none;\n          height: inherit;\n          margin: 95px 0 0;\n          padding: 0;\n          width: 100%;\n}\n.works__details--right .anotherWorks__hd {\n          color: #3c3c3c;\n          font-size: 30px;\n          font-size: 3rem;\n          font-weight: 300;\n          line-height: 1;\n          margin: 0 0 25px;\n          max-width: 100%;\n          position: static;\n          text-align: center;\n          width: 100%;\n}\n.works__details--right .anotherWorks__desc {\n          background: none;\n          margin: 0 auto;\n          max-width: 670px;\n          padding: 0;\n          text-align: center;\n          width: 95%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .anotherWorks__desc {\n        width: 85%;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .anotherWorks__desc:after {\n            content: none;\n}\n.works__details--right .anotherWorks__desc .works__lead {\n            color: #3c3c3c;\n            font-size: 16px;\n            font-size: 1.6rem;\n            font-weight: 300;\n            line-height: 1.625;\n            text-align: center;\n}\n}\n.works__details--left {\n    margin: 10vh 0 0;\n    padding: 0 0 0 8vw;\n    transition: all 0.4s ease 0s;\n}\n@media (max-width: 900px) {\n.works__details--left {\n        margin: 100px 0 0;\n        padding: 0;\n        position: relative;\n        text-align: right;\n}\n.works__details--left:before {\n          color: #3c3c3c;\n          content: \"design / logo design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          right: 0%;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 112px;\n          width: 317px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:before {\n        top: 62px;\n        width: 293px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left:after {\n          color: #3c3c3c;\n          content: \"portfolio site\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          right: 0;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 131px;\n          width: 320px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:after {\n        width: 296px;\n        top: 81px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__ttl {\n          background: url(/dist/img/topBg.jpg) no-repeat left center;\n          background-size: 105%;\n          margin: 45px 12.7604166666% 0 0;\n          text-align: left;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__caption {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 110px;\n          width: 320px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__caption {\n        top: 60px;\n        width: 295px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__hd {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 125px;\n          width: 322px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__hd {\n        top: 75px;\n        width: 296px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__desc {\n          display: inline-block;\n          text-align: left;\n}\n}\n.works.right-to-left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-30%);\n    transition: all 0.3s ease 0s;\n    width: 200vw;\n}\n.works.right-to-left .works__details--right {\n    transition: all 0.3s ease 0s;\n}\n.works.right-to-left .works__details--left {\n    transition: all 0.3s ease 0s;\n}\n.using {\n  display: flex;\n  flex-wrap: wrap;\n  max-width: 650px;\n  opacity: 0;\n  position: relative;\n  transform: translateY(20px);\n  transition: all 0.4s ease 0s;\n  width: 85%;\n  z-index: 2;\n}\n@media (max-width: 1200px) {\n.using {\n      max-width: 470px;\n}\n}\n.using__list {\n    background: #3c3c3c;\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    font-weight: bold;\n    letter-spacing: 0.04em;\n    margin: 0 10px 10px 0;\n    padding: 7px 10px;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.using__list {\n        font-size: 10px;\n        font-size: 1rem;\n        padding: 5px 7px;\n}\n}\n.works--right .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works--right .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--right .using {\n      margin: 20px 0 0;\n}\n}\n.works--left .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px) {\n.works--left .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--left .using {\n      margin: 20px 0 0;\n}\n}\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.2s;\n}\n@media (max-width: 740px) {\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n      transition: none;\n}\n}\n.active-works .works__hd {\n  transition: all 0.4s ease 0.4s;\n}\n@media (max-width: 740px) {\n.active-works .works__hd {\n      transition: none;\n}\n}\n.active-works .works__lead {\n  transition: all 0.4s ease 0.6s;\n}\n@media (max-width: 740px) {\n.active-works .works__lead {\n      transition: none;\n}\n}\n.active-works .works__view {\n  transition: opacity 0.4s ease 1s, transform 0.4s ease 1s;\n}\n@media (max-width: 740px) {\n.active-works .works__view {\n      transition: none;\n}\n}\n.active-works .using {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.8s;\n}\n@media (max-width: 740px) {\n.active-works .using {\n      transition: none;\n}\n}\n.imgPreload {\n  display: inline;\n  height: 0;\n  left: -10px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  width: 0;\n}\n", ""]);
+exports.push([module.i, "\n.container {\n  background: #fff;\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.container {\n      overflow: initial;\n      height: auto;\n}\n}\n", ""]);
 
 // exports
 
@@ -11011,7 +11056,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.footer {\n  background: #3c3c3c;\n  padding: 20px 0;\n  text-align: center;\n}\n.footer__logo {\n    display: inline-block;\n    margin: 0 0 10px;\n}\n.footer__copy {\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    letter-spacing: 0.02em;\n    line-height: 1;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -11025,13 +11070,41 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n@media (max-width: 1480px) {\n.works__hd--ballet {\n    font-size: 46px;\n    font-size: 4.6rem;\n}\n}\n@media (max-width: 1200px) {\n.works__hd--ballet {\n    font-size: 39px;\n    font-size: 3.9rem;\n}\n}\n", ""]);
+exports.push([module.i, "\n.works1 {\n  background: url(/dist/img/camping.jpg) no-repeat center center;\n}\n@media (max-width: 1200px) {\n.works1 {\n      background-position: 3vw top;\n}\n}\n@media (max-width: 900px) {\n.works1 {\n      background: none;\n}\n}\n.works2 {\n  background: url(/dist/img/blog_thumbnail.png) no-repeat 18vw 4vh;\n}\n@media (max-width: 900px) {\n.works2 {\n      background: none;\n}\n}\n.works3 {\n  background: url(/dist/img/topBg.jpg) no-repeat left top;\n}\n@media (max-width: 900px) {\n.works3 {\n      background: none;\n}\n}\n.works4 {\n  background: url(/dist/img/ballet_bg.jpg) no-repeat 10vw center;\n}\n.works5 {\n  background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;\n}\n@media (max-width: 900px) {\n.works5 {\n      background: none;\n}\n}\n.works {\n  background-size: cover;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  transition: all 0.4s ease 0s;\n  width: 100%;\n  z-index: 1;\n}\n@media (max-height: 800px), (max-width: 1024px) {\n.works {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.works {\n      height: inherit;\n      padding: 90px 0 95px;\n      position: static;\n}\n}\n@media (max-width: 550px) {\n.works {\n      padding: 50px 0 55px;\n}\n}\n.works:after {\n    background: #E8E8E0;\n    content: \"\";\n    display: block;\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    transition: all 0.4s ease 0s;\n    width: 100vw;\n    z-index: 0;\n}\n@media (max-width: 900px) {\n.works:after {\n        content: none;\n}\n}\n.works__caption, .works__hd, .works__lead, .works__view {\n    opacity: 0;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n    z-index: 1;\n}\n.works__caption {\n    color: #3c3c3c;\n    font-size: 20px;\n    font-size: 2rem;\n    position: relative;\n    text-transform: uppercase;\n    z-index: 2;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__caption {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works__caption {\n        font-size: 16px;\n        font-size: 1.6rem;\n}\n}\n.works__hd {\n    color: #3c3c3c;\n    font-size: 55px;\n    font-size: 5.5rem;\n    font-weight: 700;\n    line-height: 1;\n    margin: 5px 0 12px;\n    position: relative;\n    text-transform: uppercase;\n    width: 88%;\n    z-index: 2;\n}\n@media (max-height: 800px) {\n.works__hd {\n        font-size: 43px;\n        font-size: 4.3rem;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-height: 620px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-width: 1024px) {\n.works__hd {\n        font-size: 36px;\n        font-size: 3.6rem;\n        max-width: 450px;\n}\n}\n.works__lead {\n    color: #3c3c3c;\n    font-size: 14px;\n    font-size: 1.4rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    line-height: 1.5;\n    max-width: 600px;\n    position: relative;\n    z-index: 2;\n    width: 85%;\n}\n@media (max-width: 1200px) {\n.works__lead {\n        max-width: 540px;\n}\n}\n@media (max-width: 1024px) {\n.works__lead {\n        max-width: 470px;\n}\n}\n.works__view {\n    position: relative;\n}\n.works__view a {\n      border: solid 1px #3c3c3c;\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      line-height: 1;\n      margin: 10px 20px 0 0;\n      overflow: hidden;\n      padding: 12px 0 11px;\n      position: relative;\n      text-align: center;\n      text-transform: uppercase;\n      transition: color .5s ease 0s;\n      width: 160px;\n      z-index: 2;\n}\n@media (max-height: 700px) {\n.works__view a {\n          margin: 10px 20px 0 0;\n}\n}\n@media (max-height: 650px), (max-width: 1024px) {\n.works__view a {\n          font-size: 12px;\n          font-size: 1.2rem;\n          padding: 13px 0 12px;\n          width: 120px;\n}\n}\n.works__view a:after {\n        background: #3c3c3c;\n        content: \"\";\n        height: 100%;\n        left: 50%;\n        position: absolute;\n        top: 0;\n        transform: matrix(1, 0, -1, 1, 0, 0);\n        transition: all .5s ease 0s;\n        width: 0;\n        z-index: -1;\n}\n.works__view a:hover {\n        color: #fff;\n}\n.works__view a:hover:after {\n          left: -25%;\n          width: 150%;\n}\n.works__view a.works__github {\n        padding: 7px 0 6px;\n}\n.works__view a.works__github:before {\n          content: \"\\F09B\";\n          display: inline-block;\n          font-family: fontawesome;\n          font-size: 24px;\n          font-size: 2.4rem;\n          line-height: 1;\n          margin: 0 10px 0 0;\n          vertical-align: sub;\n}\n.works--left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-45%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--left:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-38%);\n}\n}\n.works--right:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(42%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--right:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(35%);\n}\n}\n@media (max-width: 900px) {\n.works__ttl {\n      background-size: 115%;\n      height: 380px;\n      overflow: hidden;\n      position: relative;\n      width: 87.23958333333334%;\n      z-index: -1;\n}\n}\n@media (max-width: 740px) {\n.works__ttl {\n      height: 320px;\n}\n}\n@media (max-width: 550px) {\n.works__ttl {\n      height: 230px;\n}\n}\n@media (max-width: 900px) {\n.works__desc {\n      background: rgba(60, 60, 60, 0.97);\n      margin: -140px 0 0;\n      padding: 30px 40px;\n      width: 62.5%;\n      /*z-index: 3;*/\n}\n.works__desc:after {\n        background: #3c3c3c;\n        bottom: -50px;\n        content: '';\n        display: block;\n        height: 2px;\n        left: 50%;\n        position: absolute;\n        transform: translateX(-50%);\n        width: 160px;\n}\n.works__desc .works__lead {\n        color: #fff;\n        font-size: 14px;\n        font-size: 1.4rem;\n        letter-spacing: 0.02em;\n        line-height: 1.42857;\n        margin: 0;\n        max-width: 100%;\n        width: 100%;\n}\n.works__desc .works__view a {\n        border: solid 1px #fff;\n        color: #fff;\n        margin: 10px 10px 0 0;\n        padding: 13px 0;\n        width: 113px;\n}\n.works__desc .works__view a:after {\n          content: none;\n}\n.works__desc .works__view a:hover {\n          color: #fff;\n}\n.works__desc .works__view a.works__github {\n          padding: 7px 0;\n}\n.works__desc .using {\n        margin: 20px 0 0;\n        max-width: inherit;\n        width: 100%;\n}\n.works__desc .using__list {\n          background: #fff;\n          color: #3c3c3c;\n}\n}\n@media (max-width: 740px) {\n.works__desc {\n      margin: -100px 0 0;\n      width: 85%;\n}\n}\n@media (max-width: 550px) {\n.works__desc {\n      margin: -55px 0 0;\n      padding: 20px;\n      width: 90%;\n}\n}\n.works__details--right {\n    margin: 47vh 0 0;\n    padding: 0 0 0 45vw;\n    transition: all 0.4s ease 0s;\n}\n.works__details--right.anotherWorks {\n      margin: 55vh 0 0;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right.anotherWorks {\n          margin: 54vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks {\n          margin: 0;\n}\n}\n@media (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-width: 1024px) {\n.works__details--right {\n        margin: 55vh 0 0;\n        padding: 0 0 0 40vw;\n}\n}\n@media (max-height: 800px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-height: 700px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 650px) {\n.works__details--right {\n        margin: 44vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right {\n        margin: 0;\n        padding: 0;\n        position: relative;\n}\n.works__details--right:before {\n          color: #3c3c3c;\n          content: \"design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 112px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:before {\n        top: 62px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right:after {\n          color: #3c3c3c;\n          content: \"YelpCamp\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 130px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:after {\n        top: 80px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__ttl {\n          background: url(/dist/img/camping.jpg) no-repeat left center;\n          background-size: 120%;\n          margin: 45px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .works__ttl {\n        margin: 20px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__caption {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 110px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__caption {\n        top: 60px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__hd {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 125px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__hd {\n        top: 75px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks:before, .works__details--right.anotherWorks:after {\n          content: none;\n}\n.works__details--right .anotherWorks__ttl {\n          background: none;\n          height: inherit;\n          margin: 95px 0 0;\n          padding: 0;\n          width: 100%;\n}\n.works__details--right .anotherWorks__hd {\n          color: #3c3c3c;\n          font-size: 30px;\n          font-size: 3rem;\n          font-weight: 300;\n          line-height: 1;\n          margin: 0 0 25px;\n          max-width: 100%;\n          position: static;\n          text-align: center;\n          width: 100%;\n}\n.works__details--right .anotherWorks__desc {\n          background: none;\n          margin: 0 auto;\n          max-width: 670px;\n          padding: 0;\n          text-align: center;\n          width: 95%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .anotherWorks__desc {\n        width: 85%;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .anotherWorks__desc:after {\n            content: none;\n}\n.works__details--right .anotherWorks__desc .works__lead {\n            color: #3c3c3c;\n            font-size: 16px;\n            font-size: 1.6rem;\n            font-weight: 300;\n            line-height: 1.625;\n            text-align: center;\n}\n}\n.works__details--left {\n    margin: 10vh 0 0;\n    padding: 0 0 0 8vw;\n    transition: all 0.4s ease 0s;\n}\n@media (max-width: 900px) {\n.works__details--left {\n        margin: 100px 0 0;\n        padding: 0;\n        position: relative;\n        text-align: right;\n}\n.works__details--left:before {\n          color: #3c3c3c;\n          content: \"design / logo design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          right: 0%;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 112px;\n          width: 317px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:before {\n        top: 62px;\n        width: 293px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left:after {\n          color: #3c3c3c;\n          content: \"portfolio site\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          right: 0;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 131px;\n          width: 320px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:after {\n        width: 296px;\n        top: 81px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__ttl {\n          background: url(/dist/img/topBg.jpg) no-repeat left center;\n          background-size: 105%;\n          margin: 45px 12.7604166666% 0 0;\n          text-align: left;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__caption {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 110px;\n          width: 320px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__caption {\n        top: 60px;\n        width: 295px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__hd {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 125px;\n          width: 322px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__hd {\n        top: 75px;\n        width: 296px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__desc {\n          display: inline-block;\n          text-align: left;\n}\n}\n.works.right-to-left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-30%);\n    transition: all 0.3s ease 0s;\n    width: 200vw;\n}\n.works.right-to-left .works__details--right {\n    transition: all 0.3s ease 0s;\n}\n.works.right-to-left .works__details--left {\n    transition: all 0.3s ease 0s;\n}\n.using {\n  display: flex;\n  flex-wrap: wrap;\n  max-width: 650px;\n  opacity: 0;\n  position: relative;\n  transform: translateY(20px);\n  transition: all 0.4s ease 0s;\n  width: 85%;\n  z-index: 2;\n}\n@media (max-width: 1200px) {\n.using {\n      max-width: 470px;\n}\n}\n.using__list {\n    background: #3c3c3c;\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    font-weight: bold;\n    letter-spacing: 0.04em;\n    margin: 0 10px 10px 0;\n    padding: 7px 10px;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.using__list {\n        font-size: 10px;\n        font-size: 1rem;\n        padding: 5px 7px;\n}\n}\n.works--right .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works--right .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--right .using {\n      margin: 20px 0 0;\n}\n}\n.works--left .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px) {\n.works--left .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--left .using {\n      margin: 20px 0 0;\n}\n}\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.2s;\n}\n@media (max-width: 740px) {\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n      transition: none;\n}\n}\n.active-works .works__hd {\n  transition: all 0.4s ease 0.4s;\n}\n@media (max-width: 740px) {\n.active-works .works__hd {\n      transition: none;\n}\n}\n.active-works .works__lead {\n  transition: all 0.4s ease 0.6s;\n}\n@media (max-width: 740px) {\n.active-works .works__lead {\n      transition: none;\n}\n}\n.active-works .works__view {\n  transition: opacity 0.4s ease 1s, transform 0.4s ease 1s;\n}\n@media (max-width: 740px) {\n.active-works .works__view {\n      transition: none;\n}\n}\n.active-works .using {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.8s;\n}\n@media (max-width: 740px) {\n.active-works .using {\n      transition: none;\n}\n}\n.imgPreload {\n  display: inline;\n  height: 0;\n  left: -10px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  width: 0;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.footer {\n  background: #3c3c3c;\n  padding: 20px 0;\n  text-align: center;\n}\n.footer__logo {\n    display: inline-block;\n    margin: 0 0 10px;\n}\n.footer__copy {\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    letter-spacing: 0.02em;\n    line-height: 1;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n@media (max-width: 1480px) {\n.works__hd--ballet {\n    font-size: 46px;\n    font-size: 4.6rem;\n}\n}\n@media (max-width: 1200px) {\n.works__hd--ballet {\n    font-size: 39px;\n    font-size: 3.9rem;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
@@ -13681,7 +13754,7 @@ if (true) {
 
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports) {
 
 /*!
@@ -13708,7 +13781,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -13898,7 +13971,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports) {
 
 /*
@@ -14150,19 +14223,19 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(109)
+  __webpack_require__(114)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(99),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14194,19 +14267,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(101)
+  __webpack_require__(105)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(35),
   /* template */
-  __webpack_require__(87),
+  __webpack_require__(90),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14238,19 +14311,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(100)
+  __webpack_require__(104)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(36),
   /* template */
-  __webpack_require__(86),
+  __webpack_require__(89),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14282,7 +14355,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -14290,7 +14363,7 @@ var Component = __webpack_require__(0)(
   /* script */
   null,
   /* template */
-  __webpack_require__(83),
+  __webpack_require__(86),
   /* styles */
   null,
   /* scopeId */
@@ -14322,19 +14395,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(105)
+  __webpack_require__(110)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(38),
   /* template */
-  __webpack_require__(91),
+  __webpack_require__(95),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14366,19 +14439,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(99)
+  __webpack_require__(103)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(39),
   /* template */
-  __webpack_require__(85),
+  __webpack_require__(88),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14410,19 +14483,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(104)
+  __webpack_require__(108)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(40),
   /* template */
-  __webpack_require__(90),
+  __webpack_require__(93),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14454,19 +14527,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(97)
+  __webpack_require__(101)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(41),
   /* template */
-  __webpack_require__(81),
+  __webpack_require__(84),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14498,19 +14571,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(103)
+  __webpack_require__(107)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(42),
   /* template */
-  __webpack_require__(89),
+  __webpack_require__(92),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14542,19 +14615,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(102)
+  __webpack_require__(106)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(43),
   /* template */
-  __webpack_require__(88),
+  __webpack_require__(91),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14586,19 +14659,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(107)
+  __webpack_require__(112)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(44),
   /* template */
-  __webpack_require__(93),
+  __webpack_require__(97),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14630,19 +14703,63 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(108)
+  __webpack_require__(109)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(45),
   /* template */
   __webpack_require__(94),
+  /* styles */
+  injectStyle,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/wordpress.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] wordpress.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-601ba8a5", Component.options)
+  } else {
+    hotAPI.reload("data-v-601ba8a5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(113)
+}
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(46),
+  /* template */
+  __webpack_require__(98),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14674,7 +14791,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -14682,7 +14799,7 @@ var Component = __webpack_require__(0)(
   /* script */
   null,
   /* template */
-  __webpack_require__(84),
+  __webpack_require__(87),
   /* styles */
   null,
   /* scopeId */
@@ -14714,19 +14831,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(98)
+  __webpack_require__(102)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(46),
+  __webpack_require__(47),
   /* template */
-  __webpack_require__(82),
+  __webpack_require__(85),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14758,7 +14875,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14800,7 +14917,7 @@ if (false) {
 }
 
 /***/ }),
-/* 82 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14965,7 +15082,7 @@ if (false) {
 }
 
 /***/ }),
-/* 83 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14992,7 +15109,7 @@ if (false) {
 }
 
 /***/ }),
-/* 84 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15052,7 +15169,7 @@ if (false) {
 }
 
 /***/ }),
-/* 85 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15150,7 +15267,7 @@ if (false) {
 }
 
 /***/ }),
-/* 86 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15276,7 +15393,7 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15312,7 +15429,7 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15414,7 +15531,7 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15462,7 +15579,7 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15529,7 +15646,67 @@ if (false) {
 }
 
 /***/ }),
-/* 91 */
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "works__details works__details--left"
+  }, [_c('div', {
+    staticClass: "works__ttl"
+  }, [_c('p', {
+    staticClass: "works__caption"
+  }, [_vm._v("design / logo design / coding")]), _vm._v(" "), _c('h1', {
+    staticClass: "works__hd"
+  }, [_vm._v("Personal Blog")])]), _vm._v(" "), _c('div', {
+    staticClass: "works__desc"
+  }, [_c('p', {
+    staticClass: "works__lead"
+  }, [_vm._v("I made my personal blog using Wordpress with Trellis, Bedrock and Sage. ( I call these things \"Roots 3 combo\" ) Especially Sage is almost de facto standard starter theme in the web industry.\n      I’m posting articles such as web development, what I studying and studied,  a joined event, daily life and etc as my whim takes one at will.")]), _vm._v(" "), _c('ul', {
+    staticClass: "using"
+  }, [_c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("HTML5")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("CSS3")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("Sass/Scss")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("Wordpress")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("PHP")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("Trellis")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("Bedrock")]), _vm._v(" "), _c('li', {
+    staticClass: "using__list"
+  }, [_vm._v("Sage")])]), _vm._v(" "), _c('div', {
+    staticClass: "works__view"
+  }, [_c('a', {
+    staticClass: "works__github",
+    attrs: {
+      "href": "https://github.com/Masayuki-Suzuki/Anonymous",
+      "target": "_blank"
+    }
+  }, [_vm._v("github")]), _vm._v(" "), _c('a', {
+    attrs: {
+      "href": "https://anon.one/",
+      "target": "_blank"
+    }
+  }, [_vm._v("View Site")])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-601ba8a5", module.exports)
+  }
+}
+
+/***/ }),
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15566,7 +15743,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "blogs__desc"
-  }, [_c('time', [_vm._v("August / 19 / 2017 - Coding")]), _vm._v(" "), _c('h2', {
+  }, [_c('time', [_vm._v("August / 19 / 2017 - Javascript")]), _vm._v(" "), _c('h2', {
     staticClass: "title"
   }, [_vm._v("the Angular Academy in Vancouver Report")]), _vm._v(" "), _c('p', {
     staticClass: "summary"
@@ -15574,7 +15751,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "viewPost"
   }, [_c('a', {
     attrs: {
-      "href": "https://medium.com/@masayuki.s/the-angular-academy-in-vancouver-report-313e821464ad",
+      "href": "https://anon.one/javascript/the-angular-academy-in-vancouver-report/",
       "target": "_blank"
     }
   }, [_vm._v("Read the post")])])])]), _vm._v(" "), _c('div', {
@@ -15596,7 +15773,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "viewPost"
   }, [_c('a', {
     attrs: {
-      "href": "https://medium.com/@masayuki.s/why-i-started-the-medium-f349e0c075c1",
+      "href": "https://anon.one/life/why-i-started-this-blog/",
       "target": "_blank"
     }
   }, [_vm._v("Read the post")])])])]), _vm._v(" "), _c('div', {
@@ -15640,7 +15817,7 @@ if (false) {
 }
 
 /***/ }),
-/* 92 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15657,14 +15834,14 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "works__details works__details--left"
+    staticClass: "works__details works__details--right"
   }, [_c('div', {
     staticClass: "works__ttl"
   }, [_c('p', {
@@ -15710,7 +15887,7 @@ if (false) {
 }
 
 /***/ }),
-/* 94 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15731,15 +15908,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     class: {
       'active-works': _vm.changeWorksA()
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.changeWorks(4)) ? _c('portfolio', {
+  }) : _vm._e(), _vm._v(" "), (_vm.changeWorks(4)) ? _c('wordpress', {
     class: {
       'active-works': _vm.changeWorksB()
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.changeWorks(5)) ? _c('ballet', {
+  }) : _vm._e(), _vm._v(" "), (_vm.changeWorks(5)) ? _c('portfolio', {
     class: {
       'active-works': _vm.changeWorksA()
     }
-  }) : _vm._e(), _vm._v(" "), (_vm.changeWorks(6)) ? _c('marketas', {
+  }) : _vm._e(), _vm._v(" "), (_vm.changeWorks(6)) ? _c('ballet', {
     class: {
       'active-works': _vm.changeWorksB()
     }
@@ -15769,7 +15946,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/marketas.jpg",
+      "src": "/dist/img/blog_thumbnail.png",
       "alt": ""
     }
   }), _vm._v(" "), _c('img', {
@@ -15788,7 +15965,7 @@ if (false) {
 }
 
 /***/ }),
-/* 95 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15827,14 +16004,14 @@ if (false) {
 }
 
 /***/ }),
-/* 96 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
-    staticClass: "works__details works__details--right"
+    staticClass: "works__details works__details--left"
   }, [_c('p', {
     staticClass: "works__caption"
   }, [_vm._v("design / coding")]), _vm._v(" "), _c('h1', {
@@ -15873,13 +16050,13 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(49);
+var content = __webpack_require__(50);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15899,13 +16076,13 @@ if(false) {
 }
 
 /***/ }),
-/* 98 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(50);
+var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15925,13 +16102,13 @@ if(false) {
 }
 
 /***/ }),
-/* 99 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(51);
+var content = __webpack_require__(52);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15951,13 +16128,13 @@ if(false) {
 }
 
 /***/ }),
-/* 100 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(52);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -15977,13 +16154,13 @@ if(false) {
 }
 
 /***/ }),
-/* 101 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(53);
+var content = __webpack_require__(54);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16003,13 +16180,13 @@ if(false) {
 }
 
 /***/ }),
-/* 102 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(54);
+var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16029,13 +16206,13 @@ if(false) {
 }
 
 /***/ }),
-/* 103 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(55);
+var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16055,13 +16232,13 @@ if(false) {
 }
 
 /***/ }),
-/* 104 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(56);
+var content = __webpack_require__(57);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16081,13 +16258,39 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(58);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("926a7626", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-601ba8a5\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./wordpress.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-601ba8a5\",\"scoped\":false,\"hasInlineConfig\":false}!../../../node_modules/sass-loader/lib/loader.js!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./wordpress.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 110 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(59);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16107,13 +16310,13 @@ if(false) {
 }
 
 /***/ }),
-/* 106 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(58);
+var content = __webpack_require__(60);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16133,13 +16336,13 @@ if(false) {
 }
 
 /***/ }),
-/* 107 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(59);
+var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16159,13 +16362,13 @@ if(false) {
 }
 
 /***/ }),
-/* 108 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(62);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16185,13 +16388,13 @@ if(false) {
 }
 
 /***/ }),
-/* 109 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(61);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16211,13 +16414,13 @@ if(false) {
 }
 
 /***/ }),
-/* 110 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16237,7 +16440,7 @@ if(false) {
 }
 
 /***/ }),
-/* 111 */
+/* 116 */
 /***/ (function(module, exports) {
 
 /**
@@ -16270,11 +16473,11 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 112 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
-   true ? factory(__webpack_require__(63)) :
+   true ? factory(__webpack_require__(65)) :
   typeof define === 'function' && define.amd ? define(['hammerjs'], factory) :
   (factory(global.Hammer));
 }(this, (function (Hammer) { 'use strict';
@@ -16541,7 +16744,7 @@ if (true) {
 
 
 /***/ }),
-/* 113 */
+/* 118 */
 /***/ (function(module, exports) {
 
 var g;

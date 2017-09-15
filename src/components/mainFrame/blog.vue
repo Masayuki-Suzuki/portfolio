@@ -7,11 +7,11 @@
           <img src="/dist/img/blog/aa.jpg" alt="Angular Academy">
         </div>
         <div class="blogs__desc">
-          <time>August / 19 / 2017 - Coding</time>
+          <time>August / 19 / 2017 - Javascript</time>
           <h2 class="title">the Angular Academy in Vancouver Report</h2>
           <p class="summary">I participated Angular Academy which is Angular’s workshop held over two days on 13th and 14th July.</p>
           <div class="viewPost">
-            <a href="https://medium.com/@masayuki.s/the-angular-academy-in-vancouver-report-313e821464ad" target="_blank">Read the post</a>
+            <a href="https://anon.one/javascript/the-angular-academy-in-vancouver-report/" target="_blank">Read the post</a>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
           <h2 class="title">Why I started the medium.</h2>
           <p class="summary">Hi there!! I’m Masa, Masayuki Suzuki and a front-end developer based in Vancouver, Canada. I wa...</p>
           <div class="viewPost">
-            <a href="https://medium.com/@masayuki.s/why-i-started-the-medium-f349e0c075c1" target="_blank">Read the post</a>
+            <a href="https://anon.one/life/why-i-started-this-blog/" target="_blank">Read the post</a>
           </div>
         </div>
       </div>
@@ -94,7 +94,7 @@
       padding: 50px 0;
     }
     &__hd{
-      margin: 12% 0 0;
+      margin: 9% 0 0;
       transition: all 0.4s ease 0.2s;
       @media (max-height: 900px){
         margin: 6% 0 0;

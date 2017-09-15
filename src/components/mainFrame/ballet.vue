@@ -1,5 +1,5 @@
 <template>
-  <div class="works__details works__details--right">
+  <div class="works__details works__details--left">
     <p class="works__caption">design / coding</p>
     <h1 class="works__hd works__hd--ballet">Ballet Bloch Canada</h1>
     <p class="works__lead">Ballet Bloch Canada is the classical ballet and contemporary dance training school. I coded and designed this site in a school assignment using html5 and css3 (scss). I haven't learned about designing and haven't designed a website for a while so it was a little bit difficult.</p>
