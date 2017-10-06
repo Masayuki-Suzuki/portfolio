@@ -1,4 +1,4 @@
-<template>
+<template lang="ejs">
   <section class="blogs" :class="{'blog-active': pageController()}">
     <h1 class="common__hd blogs__hd">Blogs</h1>
     <div class="blogs__container">
@@ -45,12 +45,12 @@
     <div class="more">
       <a href="https://medium.com/@masayuki.s" target="_blank">read more post</a>
     </div>
+    <p>{{ blogPostData }}</p>
     <div class="scrollNav">
       <span @click="paginationClick(9)" href=""></span>
     </div>
   </section>
 </template>
-
 
 <script>
   import Vue from 'vue';
@@ -59,7 +59,11 @@
   export default {
     data: function () {
       return {
+        blogPostData: []
       }
+    },
+    created(){
+      this.blogPostData = store.getPostData();
     },
     methods: {
       pageController(){

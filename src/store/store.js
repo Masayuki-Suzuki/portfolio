@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 let store = {
   state: {
     //Class Toggle
@@ -29,6 +31,12 @@ let store = {
     showAbout: false,
     showBlog: false,
     showContact: false,
+    URL: "https://anon.one/wp-json/wp/v2/posts?per_page=3&_embed",
+    blogPostData: [],
+    blogTitles: [],
+    blogDates: [],
+    blogImage: [],
+    blogURL: []
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -339,6 +347,7 @@ let store = {
         if(this.state.location !== 8){
           history.replaceState('','','/blogs');
           this.setLocation(7 , false);
+          this.getPostData();
         }
         break;
       case 9:
@@ -482,6 +491,23 @@ let store = {
         totalScroll += move;
       },10);
     }
+  },
+  getPostData(){
+    axios.get(store.state.URL)
+      .then((res) =>{
+        store.state.blogPostData = res.data;
+      });
+    for(var i = 0, len = this.state.blogPostData.length; i < len; i++){
+      //Image
+      this.state.blogImage.push(this.state.blogPostData[i]._embedded["wp:featuredmedia"][0].source_url);
+      //
+      // this.state.blogDates.push(this.state.blogPostData[i].)
+      //Title
+      this.state.blogTitles.push(this.state.blogPostData[i].title.rendered);
+
+    }
+    console.log(this.state.blogPostData);
+    return store.state.blogPostData;
   }
 }
 

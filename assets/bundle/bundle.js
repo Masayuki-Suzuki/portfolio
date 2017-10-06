@@ -473,7 +473,7 @@ function applyToTag (styleElement, obj) {
 "use strict";
 
 
-var bind = __webpack_require__(11);
+var bind = __webpack_require__(12);
 var isBuffer = __webpack_require__(66);
 
 /*global toString:true*/
@@ -786,6 +786,13 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _axios = __webpack_require__(7);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var store = {
   state: {
     //Class Toggle
@@ -816,7 +823,13 @@ var store = {
     worksB: false,
     showAbout: false,
     showBlog: false,
-    showContact: false
+    showContact: false,
+    URL: "https://anon.one/wp-json/wp/v2/posts?per_page=3&_embed",
+    blogPostData: [],
+    blogTitles: [],
+    blogDates: [],
+    blogImage: [],
+    blogURL: []
   },
   setIsColor: function setIsColor() {
     if (this.state.location > 1) {
@@ -1131,6 +1144,7 @@ var store = {
         if (this.state.location !== 8) {
           history.replaceState('', '', '/blogs');
           this.setLocation(7, false);
+          this.getPostData();
         }
         break;
       case 9:
@@ -1281,6 +1295,21 @@ var store = {
         totalScroll += move;
       }, 10);
     }
+  },
+  getPostData: function getPostData() {
+    _axios2.default.get(store.state.URL).then(function (res) {
+      store.state.blogPostData = res.data;
+    });
+    for (var i = 0, len = this.state.blogPostData.length; i < len; i++) {
+      //Image
+      this.state.blogImage.push(this.state.blogPostData[i]._embedded["wp:featuredmedia"][0].source_url);
+      //
+      // this.state.blogDates.push(this.state.blogPostData[i].)
+      //Title
+      this.state.blogTitles.push(this.state.blogPostData[i].title.rendered);
+    }
+    console.log(this.state.blogPostData);
+    return store.state.blogPostData;
   }
 };
 
@@ -8406,10 +8435,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   }
   return adapter;
 }
@@ -8486,6 +8515,12 @@ module.exports = defaults;
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = __webpack_require__(16);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -8494,7 +8529,7 @@ var settle = __webpack_require__(22);
 var buildURL = __webpack_require__(25);
 var parseHeaders = __webpack_require__(31);
 var isURLSameOrigin = __webpack_require__(29);
-var createError = __webpack_require__(10);
+var createError = __webpack_require__(11);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(24);
 
 module.exports = function xhrAdapter(config) {
@@ -8670,7 +8705,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8696,7 +8731,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8708,7 +8743,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8733,7 +8768,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8751,7 +8786,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -8795,7 +8830,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
@@ -8821,7 +8856,7 @@ if(false) {
 }
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -8865,12 +8900,6 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(16);
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8878,7 +8907,7 @@ module.exports = __webpack_require__(16);
 
 
 var utils = __webpack_require__(3);
-var bind = __webpack_require__(11);
+var bind = __webpack_require__(12);
 var Axios = __webpack_require__(18);
 var defaults = __webpack_require__(6);
 
@@ -8913,9 +8942,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(8);
+axios.Cancel = __webpack_require__(9);
 axios.CancelToken = __webpack_require__(17);
-axios.isCancel = __webpack_require__(9);
+axios.isCancel = __webpack_require__(10);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -8936,7 +8965,7 @@ module.exports.default = axios;
 "use strict";
 
 
-var Cancel = __webpack_require__(8);
+var Cancel = __webpack_require__(9);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -9154,7 +9183,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(3);
 var transformData = __webpack_require__(23);
-var isCancel = __webpack_require__(9);
+var isCancel = __webpack_require__(10);
 var defaults = __webpack_require__(6);
 
 /**
@@ -9266,7 +9295,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 "use strict";
 
 
-var createError = __webpack_require__(10);
+var createError = __webpack_require__(11);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -9829,7 +9858,7 @@ var _works = __webpack_require__(81);
 
 var _works2 = _interopRequireDefault(_works);
 
-var _ballet = __webpack_require__(12);
+var _ballet = __webpack_require__(13);
 
 var _ballet2 = _interopRequireDefault(_ballet);
 
@@ -10176,8 +10205,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
   data: function data() {
-    return {};
+    return {
+      blogPostData: []
+    };
   },
+  created: function created() {
+    this.blogPostData = _store2.default.getPostData();
+  },
+
   methods: {
     pageController: function pageController() {
       if (document.body.clientWidth <= 900) {
@@ -10210,7 +10245,7 @@ var _store = __webpack_require__(4);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _axios = __webpack_require__(15);
+var _axios = __webpack_require__(7);
 
 var _axios2 = _interopRequireDefault(_axios);
 
@@ -10648,7 +10683,7 @@ var _wordpress = __webpack_require__(80);
 
 var _wordpress2 = _interopRequireDefault(_wordpress);
 
-var _ballet = __webpack_require__(12);
+var _ballet = __webpack_require__(13);
 
 var _ballet2 = _interopRequireDefault(_ballet);
 
@@ -10861,7 +10896,7 @@ var _vue = __webpack_require__(5);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _app = __webpack_require__(14);
+var _app = __webpack_require__(15);
 
 var _app2 = _interopRequireDefault(_app);
 
@@ -10869,7 +10904,7 @@ var _store = __webpack_require__(4);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _style = __webpack_require__(13);
+var _style = __webpack_require__(14);
 
 var style = _interopRequireWildcard(_style);
 
@@ -15717,7 +15752,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('h1', {
     staticClass: "common__hd blogs__hd"
-  }, [_vm._v("Blogs")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('div', {
+  }, [_vm._v("Blogs")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.blogPostData))]), _vm._v(" "), _c('div', {
     staticClass: "scrollNav"
   }, [_c('span', {
     attrs: {
