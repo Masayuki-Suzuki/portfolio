@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 48);
+/******/ 	return __webpack_require__(__webpack_require__.s = 49);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -265,7 +265,7 @@ if (typeof DEBUG !== 'undefined' && DEBUG) {
   ) }
 }
 
-var listToStyles = __webpack_require__(116)
+var listToStyles = __webpack_require__(119)
 
 /*
 type StyleObject = {
@@ -473,316 +473,6 @@ function applyToTag (styleElement, obj) {
 "use strict";
 
 
-var bind = __webpack_require__(12);
-var isBuffer = __webpack_require__(66);
-
-/*global toString:true*/
-
-// utils is a library of generic helper functions non-specific to axios
-
-var toString = Object.prototype.toString;
-
-/**
- * Determine if a value is an Array
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an Array, otherwise false
- */
-function isArray(val) {
-  return toString.call(val) === '[object Array]';
-}
-
-/**
- * Determine if a value is an ArrayBuffer
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an ArrayBuffer, otherwise false
- */
-function isArrayBuffer(val) {
-  return toString.call(val) === '[object ArrayBuffer]';
-}
-
-/**
- * Determine if a value is a FormData
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an FormData, otherwise false
- */
-function isFormData(val) {
-  return (typeof FormData !== 'undefined') && (val instanceof FormData);
-}
-
-/**
- * Determine if a value is a view on an ArrayBuffer
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
- */
-function isArrayBufferView(val) {
-  var result;
-  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
-    result = ArrayBuffer.isView(val);
-  } else {
-    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
-  }
-  return result;
-}
-
-/**
- * Determine if a value is a String
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a String, otherwise false
- */
-function isString(val) {
-  return typeof val === 'string';
-}
-
-/**
- * Determine if a value is a Number
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Number, otherwise false
- */
-function isNumber(val) {
-  return typeof val === 'number';
-}
-
-/**
- * Determine if a value is undefined
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if the value is undefined, otherwise false
- */
-function isUndefined(val) {
-  return typeof val === 'undefined';
-}
-
-/**
- * Determine if a value is an Object
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is an Object, otherwise false
- */
-function isObject(val) {
-  return val !== null && typeof val === 'object';
-}
-
-/**
- * Determine if a value is a Date
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Date, otherwise false
- */
-function isDate(val) {
-  return toString.call(val) === '[object Date]';
-}
-
-/**
- * Determine if a value is a File
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a File, otherwise false
- */
-function isFile(val) {
-  return toString.call(val) === '[object File]';
-}
-
-/**
- * Determine if a value is a Blob
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Blob, otherwise false
- */
-function isBlob(val) {
-  return toString.call(val) === '[object Blob]';
-}
-
-/**
- * Determine if a value is a Function
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Function, otherwise false
- */
-function isFunction(val) {
-  return toString.call(val) === '[object Function]';
-}
-
-/**
- * Determine if a value is a Stream
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a Stream, otherwise false
- */
-function isStream(val) {
-  return isObject(val) && isFunction(val.pipe);
-}
-
-/**
- * Determine if a value is a URLSearchParams object
- *
- * @param {Object} val The value to test
- * @returns {boolean} True if value is a URLSearchParams object, otherwise false
- */
-function isURLSearchParams(val) {
-  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
-}
-
-/**
- * Trim excess whitespace off the beginning and end of a string
- *
- * @param {String} str The String to trim
- * @returns {String} The String freed of excess whitespace
- */
-function trim(str) {
-  return str.replace(/^\s*/, '').replace(/\s*$/, '');
-}
-
-/**
- * Determine if we're running in a standard browser environment
- *
- * This allows axios to run in a web worker, and react-native.
- * Both environments support XMLHttpRequest, but not fully standard globals.
- *
- * web workers:
- *  typeof window -> undefined
- *  typeof document -> undefined
- *
- * react-native:
- *  navigator.product -> 'ReactNative'
- */
-function isStandardBrowserEnv() {
-  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
-    return false;
-  }
-  return (
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined'
-  );
-}
-
-/**
- * Iterate over an Array or an Object invoking a function for each item.
- *
- * If `obj` is an Array callback will be called passing
- * the value, index, and complete array for each item.
- *
- * If 'obj' is an Object callback will be called passing
- * the value, key, and complete object for each property.
- *
- * @param {Object|Array} obj The object to iterate
- * @param {Function} fn The callback to invoke for each item
- */
-function forEach(obj, fn) {
-  // Don't bother if no value provided
-  if (obj === null || typeof obj === 'undefined') {
-    return;
-  }
-
-  // Force an array if not already something iterable
-  if (typeof obj !== 'object' && !isArray(obj)) {
-    /*eslint no-param-reassign:0*/
-    obj = [obj];
-  }
-
-  if (isArray(obj)) {
-    // Iterate over array values
-    for (var i = 0, l = obj.length; i < l; i++) {
-      fn.call(null, obj[i], i, obj);
-    }
-  } else {
-    // Iterate over object keys
-    for (var key in obj) {
-      if (Object.prototype.hasOwnProperty.call(obj, key)) {
-        fn.call(null, obj[key], key, obj);
-      }
-    }
-  }
-}
-
-/**
- * Accepts varargs expecting each argument to be an object, then
- * immutably merges the properties of each object and returns result.
- *
- * When multiple objects contain the same key the later object in
- * the arguments list will take precedence.
- *
- * Example:
- *
- * ```js
- * var result = merge({foo: 123}, {foo: 456});
- * console.log(result.foo); // outputs 456
- * ```
- *
- * @param {Object} obj1 Object to merge
- * @returns {Object} Result of all merge properties
- */
-function merge(/* obj1, obj2, obj3, ... */) {
-  var result = {};
-  function assignValue(val, key) {
-    if (typeof result[key] === 'object' && typeof val === 'object') {
-      result[key] = merge(result[key], val);
-    } else {
-      result[key] = val;
-    }
-  }
-
-  for (var i = 0, l = arguments.length; i < l; i++) {
-    forEach(arguments[i], assignValue);
-  }
-  return result;
-}
-
-/**
- * Extends object a by mutably adding to it the properties of object b.
- *
- * @param {Object} a The object to be extended
- * @param {Object} b The object to copy properties from
- * @param {Object} thisArg The object to bind function to
- * @return {Object} The resulting value of object a
- */
-function extend(a, b, thisArg) {
-  forEach(b, function assignValue(val, key) {
-    if (thisArg && typeof val === 'function') {
-      a[key] = bind(val, thisArg);
-    } else {
-      a[key] = val;
-    }
-  });
-  return a;
-}
-
-module.exports = {
-  isArray: isArray,
-  isArrayBuffer: isArrayBuffer,
-  isBuffer: isBuffer,
-  isFormData: isFormData,
-  isArrayBufferView: isArrayBufferView,
-  isString: isString,
-  isNumber: isNumber,
-  isObject: isObject,
-  isUndefined: isUndefined,
-  isDate: isDate,
-  isFile: isFile,
-  isBlob: isBlob,
-  isFunction: isFunction,
-  isStream: isStream,
-  isURLSearchParams: isURLSearchParams,
-  isStandardBrowserEnv: isStandardBrowserEnv,
-  forEach: forEach,
-  merge: merge,
-  extend: extend,
-  trim: trim
-};
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -825,11 +515,13 @@ var store = {
     showBlog: false,
     showContact: false,
     URL: "https://anon.one/wp-json/wp/v2/posts?per_page=3&_embed",
-    blogPostData: [],
     blogTitles: [],
-    blogDates: [],
-    blogImage: [],
-    blogURL: []
+    blogDates: [{ month: null }, { year: null }, { day: null }],
+    blogImages: [],
+    blogURLs: [],
+    blogCategories: [],
+    blogContents: [],
+    months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   },
   setIsColor: function setIsColor() {
     if (this.state.location > 1) {
@@ -892,7 +584,7 @@ var store = {
       case 2:
         // Works ( Yelp Camp )
         if (direction) {
-          this.state.isColorClass = false;
+          this.state.isColorClass = true;
           setTimeout(function () {
             _this.state.position++;
             _this.state.location++;
@@ -957,7 +649,7 @@ var store = {
             _this.state.worksB = true;
           }, 500);
         } else {
-          this.state.isColorClass = false;
+          this.state.isColorClass = true;
           setTimeout(function () {
             _this.state.position--;
             _this.state.location--;
@@ -1144,7 +836,6 @@ var store = {
         if (this.state.location !== 8) {
           history.replaceState('', '', '/blogs');
           this.setLocation(7, false);
-          this.getPostData();
         }
         break;
       case 9:
@@ -1297,26 +988,51 @@ var store = {
     }
   },
   getPostData: function getPostData() {
-    _axios2.default.get(store.state.URL).then(function (res) {
-      store.state.blogPostData = res.data;
+    var _this6 = this;
+
+    _axios2.default.get(this.state.URL).then(function (res) {
+      _this6.state.blogTitles = [];
+      _this6.state.blogDates = [];
+      _this6.state.blogImages = [];
+      _this6.state.blogURLs = [];
+      _this6.state.blogCategories = [];
+      _this6.state.blogContents = [];
+      for (var i = 0, len = res.data.length; i < len; i++) {
+        var bData = res.data[i],
+            state = _this6.state;
+        var tempTitle = bData.title.rendered.slice(0, 45);
+        if (tempTitle.slice(-1) != '.' && tempTitle.slice(-1) != '?') {
+          tempTitle += '...';
+        }
+        state.blogTitles.push(tempTitle);
+        state.blogURLs.push(bData.link);
+        state.blogImages.push(bData["_embedded"]["wp:featuredmedia"][0]["source_url"]);
+        state.blogCategories.push(bData["_embedded"]["wp:term"][0][0]["name"]);
+
+        // Transform to Date Obj
+        var datesObj = {},
+            tempDate = new Date(bData.date);
+        datesObj.year = tempDate.getFullYear();
+        datesObj.month = _this6.state.months[tempDate.getMonth()];
+        datesObj.day = tempDate.getDate();
+        state.blogDates.push(datesObj);
+
+        // Transform to 100 characters string.
+        var contentData = void 0;
+        contentData = bData.excerpt.rendered.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').slice(0, 110);
+        if (contentData.slice(-1) !== '.' || contentData.slice(-1) !== '?') {
+          contentData += '...';
+        }
+        state.blogContents.push(contentData);
+      } // end for
     });
-    for (var i = 0, len = this.state.blogPostData.length; i < len; i++) {
-      //Image
-      this.state.blogImage.push(this.state.blogPostData[i]._embedded["wp:featuredmedia"][0].source_url);
-      //
-      // this.state.blogDates.push(this.state.blogPostData[i].)
-      //Title
-      this.state.blogTitles.push(this.state.blogPostData[i].title.rendered);
-    }
-    console.log(this.state.blogPostData);
-    return store.state.blogPostData;
   }
 };
 
 exports.default = store;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8409,7 +8125,317 @@ setTimeout(function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(118)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(121)))
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var bind = __webpack_require__(12);
+var isBuffer = __webpack_require__(67);
+
+/*global toString:true*/
+
+// utils is a library of generic helper functions non-specific to axios
+
+var toString = Object.prototype.toString;
+
+/**
+ * Determine if a value is an Array
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Array, otherwise false
+ */
+function isArray(val) {
+  return toString.call(val) === '[object Array]';
+}
+
+/**
+ * Determine if a value is an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+ */
+function isArrayBuffer(val) {
+  return toString.call(val) === '[object ArrayBuffer]';
+}
+
+/**
+ * Determine if a value is a FormData
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an FormData, otherwise false
+ */
+function isFormData(val) {
+  return (typeof FormData !== 'undefined') && (val instanceof FormData);
+}
+
+/**
+ * Determine if a value is a view on an ArrayBuffer
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+ */
+function isArrayBufferView(val) {
+  var result;
+  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+    result = ArrayBuffer.isView(val);
+  } else {
+    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+  }
+  return result;
+}
+
+/**
+ * Determine if a value is a String
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a String, otherwise false
+ */
+function isString(val) {
+  return typeof val === 'string';
+}
+
+/**
+ * Determine if a value is a Number
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Number, otherwise false
+ */
+function isNumber(val) {
+  return typeof val === 'number';
+}
+
+/**
+ * Determine if a value is undefined
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if the value is undefined, otherwise false
+ */
+function isUndefined(val) {
+  return typeof val === 'undefined';
+}
+
+/**
+ * Determine if a value is an Object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is an Object, otherwise false
+ */
+function isObject(val) {
+  return val !== null && typeof val === 'object';
+}
+
+/**
+ * Determine if a value is a Date
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Date, otherwise false
+ */
+function isDate(val) {
+  return toString.call(val) === '[object Date]';
+}
+
+/**
+ * Determine if a value is a File
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a File, otherwise false
+ */
+function isFile(val) {
+  return toString.call(val) === '[object File]';
+}
+
+/**
+ * Determine if a value is a Blob
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Blob, otherwise false
+ */
+function isBlob(val) {
+  return toString.call(val) === '[object Blob]';
+}
+
+/**
+ * Determine if a value is a Function
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Function, otherwise false
+ */
+function isFunction(val) {
+  return toString.call(val) === '[object Function]';
+}
+
+/**
+ * Determine if a value is a Stream
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a Stream, otherwise false
+ */
+function isStream(val) {
+  return isObject(val) && isFunction(val.pipe);
+}
+
+/**
+ * Determine if a value is a URLSearchParams object
+ *
+ * @param {Object} val The value to test
+ * @returns {boolean} True if value is a URLSearchParams object, otherwise false
+ */
+function isURLSearchParams(val) {
+  return typeof URLSearchParams !== 'undefined' && val instanceof URLSearchParams;
+}
+
+/**
+ * Trim excess whitespace off the beginning and end of a string
+ *
+ * @param {String} str The String to trim
+ * @returns {String} The String freed of excess whitespace
+ */
+function trim(str) {
+  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+}
+
+/**
+ * Determine if we're running in a standard browser environment
+ *
+ * This allows axios to run in a web worker, and react-native.
+ * Both environments support XMLHttpRequest, but not fully standard globals.
+ *
+ * web workers:
+ *  typeof window -> undefined
+ *  typeof document -> undefined
+ *
+ * react-native:
+ *  navigator.product -> 'ReactNative'
+ */
+function isStandardBrowserEnv() {
+  if (typeof navigator !== 'undefined' && navigator.product === 'ReactNative') {
+    return false;
+  }
+  return (
+    typeof window !== 'undefined' &&
+    typeof document !== 'undefined'
+  );
+}
+
+/**
+ * Iterate over an Array or an Object invoking a function for each item.
+ *
+ * If `obj` is an Array callback will be called passing
+ * the value, index, and complete array for each item.
+ *
+ * If 'obj' is an Object callback will be called passing
+ * the value, key, and complete object for each property.
+ *
+ * @param {Object|Array} obj The object to iterate
+ * @param {Function} fn The callback to invoke for each item
+ */
+function forEach(obj, fn) {
+  // Don't bother if no value provided
+  if (obj === null || typeof obj === 'undefined') {
+    return;
+  }
+
+  // Force an array if not already something iterable
+  if (typeof obj !== 'object' && !isArray(obj)) {
+    /*eslint no-param-reassign:0*/
+    obj = [obj];
+  }
+
+  if (isArray(obj)) {
+    // Iterate over array values
+    for (var i = 0, l = obj.length; i < l; i++) {
+      fn.call(null, obj[i], i, obj);
+    }
+  } else {
+    // Iterate over object keys
+    for (var key in obj) {
+      if (Object.prototype.hasOwnProperty.call(obj, key)) {
+        fn.call(null, obj[key], key, obj);
+      }
+    }
+  }
+}
+
+/**
+ * Accepts varargs expecting each argument to be an object, then
+ * immutably merges the properties of each object and returns result.
+ *
+ * When multiple objects contain the same key the later object in
+ * the arguments list will take precedence.
+ *
+ * Example:
+ *
+ * ```js
+ * var result = merge({foo: 123}, {foo: 456});
+ * console.log(result.foo); // outputs 456
+ * ```
+ *
+ * @param {Object} obj1 Object to merge
+ * @returns {Object} Result of all merge properties
+ */
+function merge(/* obj1, obj2, obj3, ... */) {
+  var result = {};
+  function assignValue(val, key) {
+    if (typeof result[key] === 'object' && typeof val === 'object') {
+      result[key] = merge(result[key], val);
+    } else {
+      result[key] = val;
+    }
+  }
+
+  for (var i = 0, l = arguments.length; i < l; i++) {
+    forEach(arguments[i], assignValue);
+  }
+  return result;
+}
+
+/**
+ * Extends object a by mutably adding to it the properties of object b.
+ *
+ * @param {Object} a The object to be extended
+ * @param {Object} b The object to copy properties from
+ * @param {Object} thisArg The object to bind function to
+ * @return {Object} The resulting value of object a
+ */
+function extend(a, b, thisArg) {
+  forEach(b, function assignValue(val, key) {
+    if (thisArg && typeof val === 'function') {
+      a[key] = bind(val, thisArg);
+    } else {
+      a[key] = val;
+    }
+  });
+  return a;
+}
+
+module.exports = {
+  isArray: isArray,
+  isArrayBuffer: isArrayBuffer,
+  isBuffer: isBuffer,
+  isFormData: isFormData,
+  isArrayBufferView: isArrayBufferView,
+  isString: isString,
+  isNumber: isNumber,
+  isObject: isObject,
+  isUndefined: isUndefined,
+  isDate: isDate,
+  isFile: isFile,
+  isBlob: isBlob,
+  isFunction: isFunction,
+  isStream: isStream,
+  isURLSearchParams: isURLSearchParams,
+  isStandardBrowserEnv: isStandardBrowserEnv,
+  forEach: forEach,
+  merge: merge,
+  extend: extend,
+  trim: trim
+};
+
 
 /***/ }),
 /* 6 */
@@ -8418,7 +8444,7 @@ setTimeout(function () {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 var normalizeHeaderName = __webpack_require__(30);
 
 var DEFAULT_CONTENT_TYPE = {
@@ -8509,7 +8535,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(67)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(68)))
 
 /***/ }),
 /* 7 */
@@ -8524,7 +8550,7 @@ module.exports = __webpack_require__(16);
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 var settle = __webpack_require__(22);
 var buildURL = __webpack_require__(25);
 var parseHeaders = __webpack_require__(31);
@@ -8792,13 +8818,13 @@ module.exports = function bind(fn, thisArg) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(115)
+  __webpack_require__(118)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(37),
   /* template */
-  __webpack_require__(100),
+  __webpack_require__(103),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8836,10 +8862,10 @@ module.exports = Component.exports
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(49);
+var content = __webpack_require__(50);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(68)(content, {});
+var update = __webpack_require__(69)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -8862,13 +8888,13 @@ if(false) {
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(111)
+  __webpack_require__(114)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(33),
   /* template */
-  __webpack_require__(96),
+  __webpack_require__(98),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -8906,7 +8932,7 @@ module.exports = Component.exports
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 var bind = __webpack_require__(12);
 var Axios = __webpack_require__(18);
 var defaults = __webpack_require__(6);
@@ -9030,7 +9056,7 @@ module.exports = CancelToken;
 
 
 var defaults = __webpack_require__(6);
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 var InterceptorManager = __webpack_require__(19);
 var dispatchRequest = __webpack_require__(20);
 var isAbsoluteURL = __webpack_require__(28);
@@ -9122,7 +9148,7 @@ module.exports = Axios;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 function InterceptorManager() {
   this.handlers = [];
@@ -9181,7 +9207,7 @@ module.exports = InterceptorManager;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 var transformData = __webpack_require__(23);
 var isCancel = __webpack_require__(10);
 var defaults = __webpack_require__(6);
@@ -9328,7 +9354,7 @@ module.exports = function settle(resolve, reject, response) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 /**
  * Transform the data for a request or a response
@@ -9398,7 +9424,7 @@ module.exports = btoa;
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -9494,7 +9520,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -9575,7 +9601,7 @@ module.exports = function isAbsoluteURL(url) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -9650,7 +9676,7 @@ module.exports = (
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -9669,7 +9695,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var utils = __webpack_require__(3);
+var utils = __webpack_require__(5);
 
 /**
  * Parse headers into an object
@@ -9751,19 +9777,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _main = __webpack_require__(70);
+var _main = __webpack_require__(71);
 
 var _main2 = _interopRequireDefault(_main);
 
-var _nav = __webpack_require__(83);
+var _nav = __webpack_require__(85);
 
 var _nav2 = _interopRequireDefault(_nav);
 
@@ -9826,35 +9852,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vueTouch = __webpack_require__(117);
+var _vueTouch = __webpack_require__(120);
 
 var _vueTouch2 = _interopRequireDefault(_vueTouch);
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _logo = __webpack_require__(76);
+var _logo = __webpack_require__(78);
 
 var _logo2 = _interopRequireDefault(_logo);
 
-var _pagination = __webpack_require__(78);
+var _pagination = __webpack_require__(80);
 
 var _pagination2 = _interopRequireDefault(_pagination);
 
-var _firstView = __webpack_require__(75);
+var _firstView = __webpack_require__(77);
 
 var _firstView2 = _interopRequireDefault(_firstView);
 
-var _about = __webpack_require__(71);
+var _about = __webpack_require__(72);
 
 var _about2 = _interopRequireDefault(_about);
 
-var _works = __webpack_require__(81);
+var _works = __webpack_require__(83);
 
 var _works2 = _interopRequireDefault(_works);
 
@@ -9862,15 +9888,15 @@ var _ballet = __webpack_require__(13);
 
 var _ballet2 = _interopRequireDefault(_ballet);
 
-var _blog = __webpack_require__(73);
+var _blog = __webpack_require__(74);
 
 var _blog2 = _interopRequireDefault(_blog);
 
-var _contact = __webpack_require__(74);
+var _contact = __webpack_require__(76);
 
 var _contact2 = _interopRequireDefault(_contact);
 
-var _footer = __webpack_require__(69);
+var _footer = __webpack_require__(70);
 
 var _footer2 = _interopRequireDefault(_footer);
 
@@ -9904,6 +9930,7 @@ exports.default = {
     };
   },
   created: function created() {
+    _store2.default.getPostData();
     if (document.body.clientWidth > 900) {
       window.addEventListener('keydown', this.callKeyEvent);
     } else if (document.body.clientWidth <= 900) {
@@ -10015,16 +10042,17 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//
 //
 //
 //
@@ -10097,7 +10125,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -10138,54 +10166,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
+var _blogListItem = __webpack_require__(75);
+
+var _blogListItem2 = _interopRequireDefault(_blogListItem);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+_vue2.default.component('blog-list-item', _blogListItem2.default); //
 //
 //
 //
@@ -10205,12 +10200,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
   data: function data() {
-    return {
-      blogPostData: []
-    };
+    return {};
   },
   created: function created() {
-    this.blogPostData = _store2.default.getPostData();
+    var _this = this;
+
+    setTimeout(function () {
+      _this.sharedState = _store2.default.state;
+    }, 0);
   },
 
   methods: {
@@ -10237,11 +10234,67 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
+
+var _store2 = _interopRequireDefault(_store);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+exports.default = {
+  props: ['num'],
+  created: function created() {
+    var _this = this;
+
+    setTimeout(function () {
+      _this.$set(_this.sharedState, _store2.default.state);
+      console.log(_this.sharedState);
+    }, 0);
+  },
+
+  data: function data() {
+    return {
+      sharedState: _store2.default.state
+    };
+  }
+};
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = __webpack_require__(4);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -10353,7 +10406,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10363,7 +10416,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -10408,7 +10461,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10418,7 +10471,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -10450,7 +10503,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10460,7 +10513,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -10492,7 +10545,7 @@ exports.default = {
 //
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10502,7 +10555,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -10554,54 +10607,6 @@ exports.default = {
 //
 
 /***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _vue = __webpack_require__(5);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  data: function data() {
-    return {
-      isColorClass: false
-    };
-  }
-}; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10612,7 +10617,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -10625,9 +10630,6 @@ exports.default = {
     };
   }
 }; //
-//
-//
-//
 //
 //
 //
@@ -10663,23 +10665,74 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _store = __webpack_require__(4);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = {
+  data: function data() {
+    return {
+      isColorClass: false
+    };
+  }
+}; //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _vue = __webpack_require__(4);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _yelpCamp = __webpack_require__(82);
+var _yelpCamp = __webpack_require__(84);
 
 var _yelpCamp2 = _interopRequireDefault(_yelpCamp);
 
-var _portfolio = __webpack_require__(79);
+var _portfolio = __webpack_require__(81);
 
 var _portfolio2 = _interopRequireDefault(_portfolio);
 
-var _wordpress = __webpack_require__(80);
+var _wordpress = __webpack_require__(82);
 
 var _wordpress2 = _interopRequireDefault(_wordpress);
 
@@ -10687,11 +10740,11 @@ var _ballet = __webpack_require__(13);
 
 var _ballet2 = _interopRequireDefault(_ballet);
 
-var _marketas = __webpack_require__(77);
+var _marketas = __webpack_require__(79);
 
 var _marketas2 = _interopRequireDefault(_marketas);
 
-var _another = __webpack_require__(72);
+var _another = __webpack_require__(73);
 
 var _another2 = _interopRequireDefault(_another);
 
@@ -10769,7 +10822,7 @@ _vue2.default.component('marketas', _marketas2.default);
 _vue2.default.component('another', _another2.default);
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10779,7 +10832,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -10886,13 +10939,13 @@ exports.default = {
 //
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vue = __webpack_require__(5);
+var _vue = __webpack_require__(4);
 
 var _vue2 = _interopRequireDefault(_vue);
 
@@ -10900,7 +10953,7 @@ var _app = __webpack_require__(15);
 
 var _app2 = _interopRequireDefault(_app);
 
-var _store = __webpack_require__(4);
+var _store = __webpack_require__(3);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -10915,7 +10968,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 new _vue2.default(_app2.default).$mount('#app');
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10929,7 +10982,7 @@ exports.push([module.i, "@font-face {\n  font-family: 'fontawesome';\n  src: url
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10943,7 +10996,7 @@ exports.push([module.i, "\n.logo {\n  cursor: pointer;\n  left: 25px;\n  padding
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)(undefined);
@@ -10957,20 +11010,6 @@ exports.push([module.i, "\n@keyframes navIcon-top {\n0% {\n    transform: transl
 
 
 /***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(undefined);
-// imports
-
-
-// module
-exports.push([module.i, "\n@keyframes loading-text {\n0% {\n    content: \"Sending\";\n}\n25% {\n    content: \"Sending.\";\n}\n50% {\n    content: \"Sending..\";\n}\n75% {\n    content: \"Sending...\";\n}\n}\n@keyframes loader {\n0% {\n    opacity: 0;\n}\n30% {\n    opacity: 0;\n}\n90% {\n    opacity: 1;\n}\n100% {\n    opacity: 0;\n}\n}\n.contact {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.contact {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.contact {\n      background: #fff;\n      padding: 90px 0;\n}\n}\n@media (max-width: 550px) {\n.contact {\n      padding: 50px 0;\n}\n}\n.contact__hd {\n    color: #3c3c3c;\n    font-size: 60px;\n    font-size: 6rem;\n    font-weight: 300;\n    letter-spacing: 0.02em;\n    line-height: 1.2;\n    margin: 70px 0 0;\n    opacity: 0;\n    text-align: center;\n    text-transform: uppercase;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n}\n@media (max-height: 800px) {\n.contact__hd {\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 750px) {\n.contact__hd {\n        font-size: 55px;\n        font-size: 5.5rem;\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 700px) {\n.contact__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 650px) {\n.contact__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 600px) {\n.contact__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-height: 550px) {\n.contact__hd {\n        margin: 2.5% 0 0;\n}\n}\n@media (max-width: 900px) {\n.contact__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        line-height: 1;\n        margin: 0;\n}\n}\n@media (max-width: 740px) {\n.contact__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n.contact__form {\n    margin: 70px auto 0;\n    max-width: 560px;\n}\n@media (max-height: 800px) {\n.contact__form {\n        margin: 3% auto 0;\n}\n}\n@media (max-height: 600px) {\n.contact__form {\n        margin: 2% auto 0;\n}\n}\n@media (max-width: 740px) {\n.contact__form {\n        width: 80%;\n}\n}\n.contact .ttl {\n    color: #3c3c3c;\n    display: block;\n    font-size: 22px;\n    font-size: 2.2rem;\n    font-weight: 300;\n    opacity: 0;\n    text-transform: uppercase;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n}\n@media (max-height: 700px) {\n.contact .ttl {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n.contact .require {\n    color: #E00606;\n}\n.contact input, .contact textarea {\n    background: none;\n    border: 0;\n    border-bottom: solid 1px #979797;\n    border-radius: 0;\n    display: block;\n    font-size: 22px;\n    font-size: 2.2rem;\n    font-weight: 300;\n    margin: 10px 0 35px;\n    padding: 5px 10px;\n    width: 100%;\n}\n@media (max-height: 700px) {\n.contact input, .contact textarea {\n        font-size: 18px;\n        font-size: 1.8rem;\n        margin: 10px 0 25px;\n}\n}\n@media (max-height: 600px) {\n.contact input, .contact textarea {\n        margin: 0px 0 25px;\n}\n}\n.contact input:-ms-input-placeholder, .contact textarea:-ms-input-placeholder {\n      color: #999;\n      font-weight: 300;\n}\n.contact input::-webkit-input-placeholder, .contact textarea::-webkit-input-placeholder {\n      color: #999;\n      font-weight: 300;\n}\n.contact input:placeholder-shown, .contact textarea:placeholder-shown {\n      color: #999;\n      font-weight: 300;\n}\n.contact .btn {\n    opacity: 0;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n}\n.contact .submit {\n    background: transparent;\n    border: solid 1px #3c3c3c;\n    color: #3c3c3c;\n    display: inline-block;\n    font-size: 14px;\n    font-size: 1.4rem;\n    overflow: hidden;\n    padding: 10px 20px;\n    position: relative;\n    text-transform: uppercase;\n    transition: color .4s ease 0s;\n    width: 180px;\n    z-index: 1;\n}\n.contact .submit:after {\n      background: #3c3c3c;\n      content: \"\";\n      height: 100%;\n      left: 50%;\n      position: absolute;\n      top: 0;\n      transform: matrix(1, 0, -1, 1, 0, 0);\n      transition: all .5s ease 0s;\n      width: 0;\n      z-index: -1;\n}\n.contact .submit:hover {\n      color: #fff;\n}\n.contact .submit:hover:after {\n        left: -25%;\n        width: 150%;\n}\n.contact-active .contact__hd {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 0.2s;\n}\n.contact-active .ttl {\n  opacity: 1;\n  transform: translateY(0);\n}\n.contact-active .ttl:first-of-type {\n    transition: all 0.4s ease 0.4s;\n}\n.contact-active .ttl:nth-of-type(2) {\n    transition: all 0.4s ease 0.6s;\n}\n.contact-active .ttl:nth-of-type(3) {\n    transition: all 0.4s ease 0.8s;\n}\n.contact-active .ttl:last-of-type {\n    transition: all 0.4s ease 1s;\n}\n.contact-active .btn {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 1.2s;\n}\n.submitMsg {\n  color: #e00;\n  font-size: 20px;\n  font-size: 2rem;\n  font-weight: 300;\n  margin: 20px 0 0;\n  text-align: center;\n}\n.submitMsg--error {\n    font-size: 16px;\n    font-size: 1.6rem;\n    text-align: left;\n}\n.sendingLoader {\n  display: block;\n  height: 30px;\n  margin: auto;\n  position: relative;\n  width: 30px;\n}\n.sendingLoader__box {\n    animation: loader 1s linear infinite;\n    background: rgba(0, 0, 0, 0.7);\n    filter: blur(0.7px);\n    height: 45%;\n    opacity: 0;\n    width: 45%;\n}\n.sendingLoader__box:nth-of-type(1) {\n      position: absolute;\n      top: 2.5%;\n      left: 2.5%;\n}\n.sendingLoader__box:nth-of-type(2) {\n      position: absolute;\n      top: 2.5%;\n      right: 2.5%;\n      animation-delay: -0.25s;\n}\n.sendingLoader__box:nth-of-type(3) {\n      position: absolute;\n      bottom: 2.5%;\n      right: 2.5%;\n      animation-delay: -0.5s;\n}\n.sendingLoader__box:nth-of-type(4) {\n      position: absolute;\n      bottom: 2.5%;\n      left: 2.5%;\n      animation-delay: -0.75s;\n}\n.sendingLoader__text {\n    left: -51%;\n    margin: auto;\n    position: absolute;\n    top: 130%;\n    width: 6.5em;\n}\n.sendingLoader__text:after {\n      animation: loading-text 3s infinite;\n      color: #3c3c3c;\n      content: \"Sending\";\n      display: inline-block;\n      font-size: 16px;\n      font-size: 1.6rem;\n      font-weight: 400;\n      /*text-transform: uppercase;*/\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10979,7 +11018,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.about {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.about {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.about {\n      height: initial;\n      padding: 90px 25px 95px;\n}\n}\n@media (max-width: 550px) {\n.about {\n      padding: 50px 25px 55px;\n}\n}\n.about__hd {\n    margin: 10vh 0 0;\n    transition: all 0.4s ease 0s;\n}\n@media (max-height: 800px) {\n.about__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        margin: 9vh 0 0;\n}\n}\n@media (max-height: 750px) {\n.about__hd {\n        margin: 6vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.about__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 9vh 0 0;\n}\n}\n@media (max-height: 650px) {\n.about__hd {\n        margin: 5vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.about__hd {\n        margin: 8vh 0 0;\n}\n}\n@media (max-height: 550px) {\n.about__hd {\n        font-size: 40px;\n        font-size: 4rem;\n        margin: 5vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.about__hd {\n        margin: 0;\n}\n}\n@media (max-width: 550px) {\n.about__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n.about__lead {\n    color: #3C3C3C;\n    font-size: 15px;\n    font-size: 1.5rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    line-height: 1.5;\n    margin: 30px auto 60px;\n    max-width: 1024px;\n    opacity: 0;\n    text-align: center;\n    transition: all 0.4s ease 0.2s;\n    transform: translateY(30px);\n    width: 95%;\n}\n@media (max-height: 800px) {\n.about__lead {\n        margin: 25px auto 50px;\n}\n}\n@media (max-height: 700px) {\n.about__lead {\n        margin: 15px auto 40px;\n}\n}\n@media (max-height: 600px) {\n.about__lead {\n        margin: 10px auto 25px;\n}\n}\n@media (max-width: 1200px) {\n.about__lead {\n        max-width: 800px;\n}\n}\n@media (max-width: 1024px) {\n.about__lead {\n        max-width: 700px;\n}\n}\n@media (max-width: 900px) {\n.about__lead {\n        font-size: 14px;\n        font-size: 1.4rem;\n        font-weight: 400;\n        max-width: 660px;\n}\n}\n.wrapper {\n  display: flex;\n  justify-content: space-between;\n  margin: auto;\n  max-width: 1024px;\n  width: 95%;\n}\n@media (max-width: 1024px) {\n.wrapper {\n      width: 85%;\n}\n}\n@media (max-width: 900px) {\n.wrapper {\n      display: block;\n      width: 100%;\n}\n}\n.what-i {\n  width: 100%;\n}\n@media (max-width: 900px) {\n.what-i {\n      margin: 0 auto;\n}\n}\n.what-i-can {\n    border-right: solid 1px #A8A8A0;\n    padding: 0 50px 0 0;\n}\n@media (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i-can {\n        padding: 0 20px 0 0;\n}\n}\n@media (max-width: 900px) {\n.what-i-can {\n        border: 0;\n        margin: 0 auto 60px;\n        max-width: 485px;\n        padding: 0;\n}\n}\n.what-i-use {\n    padding: 0 0 0 50px;\n}\n@media (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i-use {\n        padding: 0 0 0 20px;\n}\n}\n@media (max-width: 900px) {\n.what-i-use {\n        max-width: 480px;\n        padding: 0;\n}\n}\n.what-i__another {\n    line-height: 1.44;\n}\n.what-i__another span {\n      display: block;\n}\n@media (max-width: 740px) {\n.what-i__another span {\n          display: inline-block;\n}\n}\n@media (max-width: 378px) {\n.what-i__another span {\n          display: inline;\n}\n.what-i__another span:before {\n            content: \" / \";\n}\n}\n.what-i h2 {\n    font-size: 30px;\n    font-size: 3rem;\n    font-weight: 300;\n    letter-spacing: 0.08em;\n    margin: 0 auto 50px;\n    opacity: 0;\n    text-align: center;\n    text-transform: uppercase;\n    transition: all 0.4s ease 0.4s;\n    transform: translateY(30px);\n}\n@media (max-height: 700px) {\n.what-i h2 {\n        font-size: 24px;\n        font-size: 2.4rem;\n        margin: 0 auto 30px;\n}\n}\n@media (max-width: 900px) {\n.what-i h2 {\n        font-size: 30px;\n        font-size: 3rem;\n        margin: 0 auto 35px;\n}\n}\n.what-i__images {\n    margin: auto;\n    max-width: 300px;\n    opacity: 0;\n    text-align: center;\n    transition: all 0.4s ease 0.6s;\n    transform: translateY(30px);\n    width: 90%;\n}\n@media (max-height: 700px), (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i__images {\n        max-width: 240px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images {\n        max-width: 485px;\n        width: 100%;\n}\n}\n@media (max-width: 740px) {\n.what-i__images {\n        max-width: 400px;\n}\n}\n@media (max-width: 550px) {\n.what-i__images {\n        max-width: 300px;\n}\n}\n.what-i__images img {\n      display: inline-block;\n      margin: 0 50px 40px 0;\n      vertical-align: bottom;\n}\n.what-i__images img:nth-of-type(3n) {\n        margin: 0 0 40px;\n}\n.what-i__images img:last-of-type {\n        margin: 0 0 40px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.what-i__images img {\n          margin: 0 20px 25px 0;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 0 25px;\n}\n.what-i__images img:last-of-type {\n            margin: 0 0 25px;\n}\n}\n@media (max-height: 600px), (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i__images img {\n          margin: 0 20px 20px 0;\n          max-width: 85px;\n          max-height: 45px;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 0 20px;\n}\n.what-i__images img:last-of-type {\n            margin: 0 0 20px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images img {\n          margin: 0 50px 38px 0;\n          max-height: inherit;\n          max-width: inherit;\n          vertical-align: middle;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 50px 38px 0;\n}\n.what-i__images img:nth-of-type(4n) {\n            margin: 0 0 38px;\n}\n}\n@media (max-width: 740px) {\n.what-i__images img {\n          margin: 0 30px 30px 0;\n          max-width: 85px;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 30px 30px 0;\n}\n.what-i__images img:nth-of-type(4n) {\n            margin: 0 0 30px;\n}\n}\n@media (max-width: 550px) {\n.what-i__images img {\n          max-width: inherit;\n          vertical-align: bottom;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 0 30px 0;\n}\n.what-i__images img:nth-of-type(4n) {\n            margin: 0 30px 30px 0;\n}\n.what-i__images img:last-of-type {\n            margin: 0 0 30px;\n}\n}\n.what-i p {\n    color: #3c3c3c;\n    font-size: 14px;\n    font-size: 1.4rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    margin: 0 0 5px;\n    opacity: 0;\n    text-align: center;\n    transition: all 0.4s ease 0s;\n    transform: translateY(30px);\n}\n.about-active .about__hd {\n  opacity: 1;\n  transition: all 0.4s ease 0.4s;\n  transform: translateY(0px);\n}\n.about-active .about__lead {\n  opacity: 1;\n  transition: all 0.4s ease 0.6s;\n  transform: translateY(0px);\n}\n.about-active .what-i h2 {\n  opacity: 1;\n  transition: all 0.4s ease 0.8s;\n  transform: translateY(0px);\n}\n.about-active .what-i__images {\n  opacity: 1;\n  transition: all 0.4s ease 1.0s;\n  transform: translateY(0px);\n}\n.about-active .what-i p {\n  opacity: 1;\n  transition: all 0.4s ease 1.2s;\n  transform: translateY(0px);\n}\n.scrollNav {\n  bottom: 55px;\n  left: 50%;\n  margin: 0 0 0 -15px;\n  position: absolute;\n  transform: rotateZ(-45deg);\n  text-align: center;\n  z-index: 5;\n}\n@media (max-height: 800px) {\n.scrollNav {\n      bottom: 45px;\n}\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.scrollNav {\n      bottom: 32px;\n      margin: 0 0 0 -10px;\n}\n}\n@media (max-height: 600px), (max-width: 900px) {\n.scrollNav {\n      display: none;\n}\n}\n.scrollNav span {\n    border: solid 1px #979797;\n    border-top: 0;\n    border-right: 0;\n    display: inline-block;\n    height: 30px;\n    width: 30px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.scrollNav span {\n        height: 20px;\n        width: 20px;\n}\n}\n", ""]);
+exports.push([module.i, "\n@keyframes loading-text {\n0% {\n    content: \"Sending\";\n}\n25% {\n    content: \"Sending.\";\n}\n50% {\n    content: \"Sending..\";\n}\n75% {\n    content: \"Sending...\";\n}\n}\n@keyframes loader {\n0% {\n    opacity: 0;\n}\n30% {\n    opacity: 0;\n}\n90% {\n    opacity: 1;\n}\n100% {\n    opacity: 0;\n}\n}\n.contact {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.contact {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.contact {\n      background: #fff;\n      padding: 90px 0;\n}\n}\n@media (max-width: 550px) {\n.contact {\n      padding: 50px 0;\n}\n}\n.contact__hd {\n    color: #3c3c3c;\n    font-size: 60px;\n    font-size: 6rem;\n    font-weight: 300;\n    letter-spacing: 0.02em;\n    line-height: 1.2;\n    margin: 70px 0 0;\n    opacity: 0;\n    text-align: center;\n    text-transform: uppercase;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n}\n@media (max-height: 800px) {\n.contact__hd {\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 750px) {\n.contact__hd {\n        font-size: 55px;\n        font-size: 5.5rem;\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 700px) {\n.contact__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 650px) {\n.contact__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 600px) {\n.contact__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-height: 550px) {\n.contact__hd {\n        margin: 2.5% 0 0;\n}\n}\n@media (max-width: 900px) {\n.contact__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        line-height: 1;\n        margin: 0;\n}\n}\n@media (max-width: 740px) {\n.contact__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n.contact__form {\n    margin: 70px auto 0;\n    max-width: 560px;\n}\n@media (max-height: 800px) {\n.contact__form {\n        margin: 3% auto 0;\n}\n}\n@media (max-height: 600px) {\n.contact__form {\n        margin: 2% auto 0;\n}\n}\n@media (max-width: 740px) {\n.contact__form {\n        margin: 30px auto 0;\n        width: 80%;\n}\n}\n.contact .ttl {\n    color: #3c3c3c;\n    display: block;\n    font-size: 22px;\n    font-size: 2.2rem;\n    font-weight: 300;\n    opacity: 0;\n    text-transform: uppercase;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n}\n@media (max-height: 700px) {\n.contact .ttl {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n.contact .require {\n    color: #E00606;\n}\n.contact input, .contact textarea {\n    background: none;\n    border: 0;\n    border-bottom: solid 1px #979797;\n    border-radius: 0;\n    display: block;\n    font-size: 22px;\n    font-size: 2.2rem;\n    font-weight: 300;\n    margin: 10px 0 35px;\n    padding: 5px 10px;\n    width: 100%;\n}\n@media (max-height: 700px) {\n.contact input, .contact textarea {\n        font-size: 18px;\n        font-size: 1.8rem;\n        margin: 10px 0 25px;\n}\n}\n@media (max-height: 600px) {\n.contact input, .contact textarea {\n        margin: 0px 0 25px;\n}\n}\n.contact input:-ms-input-placeholder, .contact textarea:-ms-input-placeholder {\n      color: #999;\n      font-weight: 300;\n}\n.contact input::-webkit-input-placeholder, .contact textarea::-webkit-input-placeholder {\n      color: #999;\n      font-weight: 300;\n}\n.contact input:placeholder-shown, .contact textarea:placeholder-shown {\n      color: #999;\n      font-weight: 300;\n}\n.contact .btn {\n    opacity: 0;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n}\n.contact .submit {\n    background: transparent;\n    border: solid 1px #3c3c3c;\n    color: #3c3c3c;\n    display: inline-block;\n    font-size: 14px;\n    font-size: 1.4rem;\n    overflow: hidden;\n    padding: 10px 20px;\n    position: relative;\n    text-transform: uppercase;\n    transition: color .4s ease 0s;\n    width: 180px;\n    z-index: 1;\n}\n.contact .submit:after {\n      background: #3c3c3c;\n      content: \"\";\n      height: 100%;\n      left: 50%;\n      position: absolute;\n      top: 0;\n      transform: matrix(1, 0, -1, 1, 0, 0);\n      transition: all .5s ease 0s;\n      width: 0;\n      z-index: -1;\n}\n.contact .submit:hover {\n      color: #fff;\n}\n.contact .submit:hover:after {\n        left: -25%;\n        width: 150%;\n}\n.contact-active .contact__hd {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 0.2s;\n}\n.contact-active .ttl {\n  opacity: 1;\n  transform: translateY(0);\n}\n.contact-active .ttl:first-of-type {\n    transition: all 0.4s ease 0.4s;\n}\n.contact-active .ttl:nth-of-type(2) {\n    transition: all 0.4s ease 0.6s;\n}\n.contact-active .ttl:nth-of-type(3) {\n    transition: all 0.4s ease 0.8s;\n}\n.contact-active .ttl:last-of-type {\n    transition: all 0.4s ease 1s;\n}\n.contact-active .btn {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 1.2s;\n}\n.submitMsg {\n  color: #e00;\n  font-size: 20px;\n  font-size: 2rem;\n  font-weight: 300;\n  margin: 20px 0 0;\n  text-align: center;\n}\n.submitMsg--error {\n    font-size: 16px;\n    font-size: 1.6rem;\n    text-align: left;\n}\n.sendingLoader {\n  display: block;\n  height: 30px;\n  margin: auto;\n  position: relative;\n  width: 30px;\n}\n.sendingLoader__box {\n    animation: loader 1s linear infinite;\n    background: rgba(0, 0, 0, 0.7);\n    filter: blur(0.7px);\n    height: 45%;\n    opacity: 0;\n    width: 45%;\n}\n.sendingLoader__box:nth-of-type(1) {\n      position: absolute;\n      top: 2.5%;\n      left: 2.5%;\n}\n.sendingLoader__box:nth-of-type(2) {\n      position: absolute;\n      top: 2.5%;\n      right: 2.5%;\n      animation-delay: -0.25s;\n}\n.sendingLoader__box:nth-of-type(3) {\n      position: absolute;\n      bottom: 2.5%;\n      right: 2.5%;\n      animation-delay: -0.5s;\n}\n.sendingLoader__box:nth-of-type(4) {\n      position: absolute;\n      bottom: 2.5%;\n      left: 2.5%;\n      animation-delay: -0.75s;\n}\n.sendingLoader__text {\n    left: -51%;\n    margin: auto;\n    position: absolute;\n    top: 130%;\n    width: 6.5em;\n}\n.sendingLoader__text:after {\n      animation: loading-text 3s infinite;\n      color: #3c3c3c;\n      content: \"Sending\";\n      display: inline-block;\n      font-size: 16px;\n      font-size: 1.6rem;\n      font-weight: 400;\n      /*text-transform: uppercase;*/\n}\n", ""]);
 
 // exports
 
@@ -10993,7 +11032,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.frame {\n  border: solid 25px #fff;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: fixed;\n  top: 0;\n  width: 100%;\n  z-index: 10;\n}\n@media (max-height: 800px), (max-width: 1024px) {\n.frame {\n      border: solid 15px #fff;\n}\n}\n@media (max-width: 900px) {\n.frame {\n      display: none;\n}\n}\n.touchWrapper {\n  height: 100%;\n  user-select: initial !important;\n}\n.mainFrame {\n  height: 100%;\n  overflow: hidden;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.mainFrame {\n      overflow: initial;\n}\n}\n.content-wrapper {\n  height: 100%;\n}\n.scroll-enter-active, .scroll-leave-active {\n  transition: all 0.5s ease 0s;\n}\n.scroll-enter {\n  transform: translateY(-100vh);\n}\n.scroll-leave-to {\n  transform: translateY(0);\n}\n", ""]);
+exports.push([module.i, "\n.about {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.about {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.about {\n      height: initial;\n      padding: 90px 25px 95px;\n}\n}\n@media (max-width: 550px) {\n.about {\n      padding: 50px 25px 55px;\n}\n}\n.about__hd {\n    margin: 10vh 0 0;\n    transition: all 0.4s ease 0s;\n}\n@media (max-height: 800px) {\n.about__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        margin: 9vh 0 0;\n}\n}\n@media (max-height: 750px) {\n.about__hd {\n        margin: 6vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.about__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 9vh 0 0;\n}\n}\n@media (max-height: 650px) {\n.about__hd {\n        margin: 5vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.about__hd {\n        margin: 8vh 0 0;\n}\n}\n@media (max-height: 550px) {\n.about__hd {\n        font-size: 40px;\n        font-size: 4rem;\n        margin: 5vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.about__hd {\n        margin: 0;\n}\n}\n@media (max-width: 550px) {\n.about__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n.about__lead {\n    color: #3C3C3C;\n    font-size: 15px;\n    font-size: 1.5rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    line-height: 1.5;\n    margin: 30px auto 60px;\n    max-width: 1024px;\n    opacity: 0;\n    text-align: center;\n    transition: all 0.4s ease 0.2s;\n    transform: translateY(30px);\n    width: 95%;\n}\n@media (max-height: 800px) {\n.about__lead {\n        margin: 25px auto 50px;\n}\n}\n@media (max-height: 700px) {\n.about__lead {\n        margin: 15px auto 40px;\n}\n}\n@media (max-height: 600px) {\n.about__lead {\n        margin: 10px auto 25px;\n}\n}\n@media (max-width: 1200px) {\n.about__lead {\n        max-width: 800px;\n}\n}\n@media (max-width: 1024px) {\n.about__lead {\n        max-width: 700px;\n}\n}\n@media (max-width: 900px) {\n.about__lead {\n        font-size: 14px;\n        font-size: 1.4rem;\n        font-weight: 400;\n        max-width: 660px;\n}\n}\n.wrapper {\n  display: flex;\n  justify-content: space-between;\n  margin: auto;\n  max-width: 1024px;\n  width: 95%;\n}\n@media (max-width: 1024px) {\n.wrapper {\n      width: 85%;\n}\n}\n@media (max-width: 900px) {\n.wrapper {\n      display: block;\n      width: 100%;\n}\n}\n.what-i {\n  width: 100%;\n}\n@media (max-width: 900px) {\n.what-i {\n      margin: 0 auto;\n}\n}\n.what-i-can {\n    border-right: solid 1px #A8A8A0;\n    padding: 0 50px 0 0;\n}\n@media (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i-can {\n        padding: 0 20px 0 0;\n}\n}\n@media (max-width: 900px) {\n.what-i-can {\n        border: 0;\n        margin: 0 auto 60px;\n        max-width: 410px;\n        padding: 0;\n}\n}\n.what-i-use {\n    padding: 0 0 0 50px;\n}\n@media (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i-use {\n        padding: 0 0 0 20px;\n}\n}\n@media (max-width: 900px) {\n.what-i-use {\n        max-width: 480px;\n        padding: 0;\n}\n}\n.what-i__another {\n    line-height: 1.44;\n}\n.what-i__another span {\n      display: inline-block;\n}\n.what-i__another span:before {\n        content: \" / \";\n}\n@media (max-width: 378px) {\n.what-i__another span {\n          display: inline;\n}\n.what-i__another span:before {\n            content: none;\n}\n}\n.what-i h2 {\n    font-size: 30px;\n    font-size: 3rem;\n    font-weight: 300;\n    letter-spacing: 0.08em;\n    margin: 0 auto 50px;\n    opacity: 0;\n    text-align: center;\n    text-transform: uppercase;\n    transition: all 0.4s ease 0.4s;\n    transform: translateY(30px);\n}\n@media (max-height: 700px) {\n.what-i h2 {\n        font-size: 24px;\n        font-size: 2.4rem;\n        margin: 0 auto 30px;\n}\n}\n@media (max-width: 900px) {\n.what-i h2 {\n        font-size: 30px;\n        font-size: 3rem;\n        margin: 0 auto 35px;\n}\n}\n.what-i__images {\n    margin: auto;\n    max-width: 300px;\n    opacity: 0;\n    text-align: center;\n    transition: all 0.4s ease 0.6s;\n    transform: translateY(30px);\n    width: 90%;\n}\n@media (max-height: 700px), (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i__images {\n        max-width: 240px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images {\n        max-width: 485px;\n        width: 100%;\n}\n}\n@media (max-width: 740px) {\n.what-i__images {\n        max-width: 400px;\n}\n}\n@media (max-width: 550px) {\n.what-i__images {\n        max-width: 269px;\n}\n}\n.what-i__images img {\n      display: inline-block;\n      margin: 0 50px 40px 0;\n      vertical-align: middle;\n}\n.what-i__images img:nth-of-type(3n) {\n        margin: 0 0 40px;\n}\n.what-i__images img:nth-of-type(n+7) {\n        margin: 0 30px 40px 0;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.what-i__images img:nth-of-type(n+7) {\n            margin: 0 15px 25px 0;\n}\n}\n.what-i__images img:last-of-type {\n        margin: 0 0 40px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.what-i__images img {\n          margin: 0 20px 25px 0;\n          max-height: 50px;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 0 25px;\n}\n.what-i__images img:last-of-type {\n            margin: 0 0 25px;\n}\n}\n@media (max-height: 600px), (max-width: 1024px), (max-height: 750px) and (max-width: 1200px) {\n.what-i__images img {\n          margin: 0 25px 20px 0;\n          max-width: 85px;\n          max-height: 45px;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 0 20px;\n}\n.what-i__images img:last-of-type {\n            margin: 0 0 20px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images img {\n          margin: 0 50px 38px 0;\n          max-height: inherit;\n          max-width: inherit;\n          vertical-align: middle;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 50px 38px 0;\n}\n.what-i__images img:nth-of-type(4n) {\n            margin: 0 0 38px;\n}\n}\n@media (max-width: 740px) {\n.what-i__images img {\n          margin: 0 30px 30px 0;\n          max-width: 85px;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 30px 30px 0;\n}\n.what-i__images img:nth-of-type(4n) {\n            margin: 0 0 30px;\n}\n}\n@media (max-width: 550px) {\n.what-i__images img {\n          max-width: inherit;\n          vertical-align: middle;\n}\n.what-i__images img:nth-of-type(3n) {\n            margin: 0 0 30px 0;\n}\n.what-i__images img:nth-of-type(4n) {\n            margin: 0 30px 30px 0;\n}\n.what-i__images img:last-of-type {\n            margin: 0 0 30px;\n}\n}\n.what-i__images img.ico-react {\n        width: 60px;\n}\n@media (max-width: 740px) {\n.what-i__images img.ico-react {\n            margin: 0 30px 30px 0;\n}\n}\n.what-i__images img.ico-node {\n        width: 70px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.what-i__images img.ico-node {\n            width: 60px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images img.ico-node {\n            margin: 0 0 38px;\n            width: 90px;\n}\n}\n@media (max-width: 740px) {\n.what-i__images img.ico-node {\n            margin: 0 30px 30px 0;\n}\n}\n@media (max-width: 550px) {\n.what-i__images img.ico-node {\n            margin: 0 15px 30px 0;\n            width: 70px;\n}\n}\n.what-i__images img.ico-mongo {\n        width: 90px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.what-i__images img.ico-mongo {\n            width: 75px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images img.ico-mongo {\n            margin: 0 40px 38px 0;\n            width: 110px;\n}\n}\n@media (max-width: 740px) {\n.what-i__images img.ico-mongo {\n            margin: 0 30px 30px 0;\n}\n}\n@media (max-width: 550px) {\n.what-i__images img.ico-mongo {\n            margin: 0 15px 30px 0;\n            width: 90px;\n}\n}\n.what-i__images img.ico-jq {\n        width: 74px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.what-i__images img.ico-jq {\n            width: 65px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images img.ico-jq {\n            margin: 0 0 38px;\n            width: 100px;\n}\n}\n@media (max-width: 550px) {\n.what-i__images img.ico-jq {\n            margin: 10px 0 30px;\n            width: 70px;\n}\n}\n@media (max-width: 900px) {\n.what-i__images img.ico-ejs {\n          margin: 0 45px 38px 0;\n}\n}\n.what-i p {\n    color: #3c3c3c;\n    font-size: 14px;\n    font-size: 1.4rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    margin: 0 0 5px;\n    opacity: 0;\n    text-align: center;\n    transition: all 0.4s ease 0s;\n    transform: translateY(30px);\n}\n.about-active .about__hd {\n  opacity: 1;\n  transition: all 0.4s ease 0.4s;\n  transform: translateY(0px);\n}\n.about-active .about__lead {\n  opacity: 1;\n  transition: all 0.4s ease 0.6s;\n  transform: translateY(0px);\n}\n.about-active .what-i h2 {\n  opacity: 1;\n  transition: all 0.4s ease 0.8s;\n  transform: translateY(0px);\n}\n.about-active .what-i__images {\n  opacity: 1;\n  transition: all 0.4s ease 1.0s;\n  transform: translateY(0px);\n}\n.about-active .what-i p {\n  opacity: 1;\n  transition: all 0.4s ease 1.2s;\n  transform: translateY(0px);\n}\n.scrollNav {\n  bottom: 55px;\n  left: 50%;\n  margin: 0 0 0 -15px;\n  position: absolute;\n  transform: rotateZ(-45deg);\n  text-align: center;\n  z-index: 5;\n}\n@media (max-height: 800px) {\n.scrollNav {\n      bottom: 45px;\n}\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.scrollNav {\n      bottom: 32px;\n      margin: 0 0 0 -10px;\n}\n}\n@media (max-height: 600px), (max-width: 900px), (max-height: 640px) and (max-width: 1024px) {\n.scrollNav {\n      display: none;\n}\n}\n.scrollNav span {\n    border: solid 1px #979797;\n    border-top: 0;\n    border-right: 0;\n    display: inline-block;\n    height: 30px;\n    width: 30px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.scrollNav span {\n        height: 20px;\n        width: 20px;\n}\n}\n", ""]);
 
 // exports
 
@@ -11007,7 +11046,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.pagination {\n  left: 60px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-45%);\n  z-index: 10;\n}\n@media (max-height: 800px) {\n.pagination {\n      left: 45px;\n}\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.pagination {\n      left: 35px;\n}\n}\n.pagination--right {\n    left: auto;\n    right: 70px;\n}\n@media (max-height: 800px) {\n.pagination--right {\n        right: 45px;\n}\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.pagination--right {\n        right: 35px;\n}\n}\n.pagination__list {\n    color: #3c3c3c;\n    cursor: pointer;\n    font-weight: 300;\n    font-size: 20px;\n    font-size: 2rem;\n    letter-spacing: 0.25px;\n    margin: 0 0 30px;\n    position: relative;\n    transition: all 0.5s ease 0.2s;\n}\n.pagination__list:after {\n      background: #E00606;\n      bottom: 3px;\n      content: '';\n      display: block;\n      height: 2px;\n      opacity: 0;\n      position: absolute;\n      right: -15px;\n      transition: all 0.5s ease 0.2s;\n      width: 10px;\n}\n.pagination--first .pagination__list {\n    color: #fff;\n}\n.pagination__works {\n    margin: -15px 0px -15px 13px;\n    width: 15px;\n}\n.active {\n  font-weight: 700;\n}\n.active:after {\n    opacity: 1;\n}\n.works__list {\n  background: #fff;\n  border-radius: 50%;\n  height: 8px;\n  margin: 0 0 10px;\n  width: 8px;\n}\n.works__list.active {\n    background: #3c3c3c;\n}\n", ""]);
+exports.push([module.i, "\n.frame {\n  border: solid 25px #fff;\n  height: 100%;\n  left: 0;\n  pointer-events: none;\n  position: fixed;\n  top: 0;\n  width: 100%;\n  z-index: 10;\n}\n@media (max-height: 800px), (max-width: 1024px) {\n.frame {\n      border: solid 15px #fff;\n}\n}\n@media (max-width: 900px) {\n.frame {\n      display: none;\n}\n}\n.touchWrapper {\n  height: 100%;\n  user-select: initial !important;\n}\n.mainFrame {\n  height: 100%;\n  overflow: hidden;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.mainFrame {\n      overflow: initial;\n}\n}\n.content-wrapper {\n  height: 100%;\n}\n.scroll-enter-active, .scroll-leave-active {\n  transition: all 0.5s ease 0s;\n}\n.scroll-enter {\n  transform: translateY(-100vh);\n}\n.scroll-leave-to {\n  transform: translateY(0);\n}\n", ""]);
 
 // exports
 
@@ -11021,7 +11060,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n.pagination {\n  left: 60px;\n  position: absolute;\n  top: 50%;\n  transform: translateY(-45%);\n  z-index: 10;\n}\n@media (max-height: 800px) {\n.pagination {\n      left: 45px;\n}\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.pagination {\n      left: 35px;\n}\n}\n.pagination--right {\n    left: auto;\n    right: 70px;\n}\n@media (max-height: 800px) {\n.pagination--right {\n        right: 45px;\n}\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.pagination--right {\n        right: 35px;\n}\n}\n.pagination__list {\n    color: #3c3c3c;\n    cursor: pointer;\n    font-weight: 300;\n    font-size: 20px;\n    font-size: 2rem;\n    letter-spacing: 0.25px;\n    margin: 0 0 30px;\n    position: relative;\n    transition: all 0.5s ease 0.2s;\n}\n.pagination__list:after {\n      background: #E00606;\n      bottom: 3px;\n      content: '';\n      display: block;\n      height: 2px;\n      opacity: 0;\n      position: absolute;\n      right: -15px;\n      transition: all 0.5s ease 0.2s;\n      width: 10px;\n}\n.pagination--first .pagination__list {\n    color: #fff;\n}\n.pagination__works {\n    margin: -15px 0px -15px 13px;\n    width: 15px;\n}\n.active {\n  font-weight: 700;\n}\n.active:after {\n    opacity: 1;\n}\n.works__list {\n  background: #fff;\n  border-radius: 50%;\n  height: 8px;\n  margin: 0 0 10px;\n  width: 8px;\n}\n.works__list.active {\n    background: #3c3c3c;\n}\n", ""]);
 
 // exports
 
@@ -11035,7 +11074,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n@charset \"UTF-8\";\n@keyframes scrollAnimation {\n0% {\n    opacity: 0;\n    transform: translateY(0px);\n}\n37.5% {\n    opacity: 1;\n}\n75% {\n    opacity: 0;\n    transform: translateY(7px);\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes scrollAnimation-touch {\nfrom, 20%, 55%, 80%, to {\n    transform: translate3d(0, 0, 0);\n}\n40%, 45% {\n    transform: translate3d(0, -30px, 0);\n}\n70% {\n    transform: translate3d(0, -20px, 0);\n}\n90% {\n    transform: translate3d(0, 0px, 0);\n}\n}\n.firstView {\n  background: url(/dist/img/topBg.jpg) no-repeat center center;\n  background-size: cover;\n  height: 100%;\n  position: relative;\n  transition: all 0.5s ease 0s;\n  width: 100%;\n  z-index: 0;\n}\n@media (max-width: 900px) {\n.firstView {\n      height: 100vh;\n      min-height: 500px;\n}\n}\n.mainlogo {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  padding: 30vh 0 0;\n  pointer-events: none;\n}\n.mainlogo__image {\n    background: rgba(255, 255, 255, 0.6);\n    padding: 32px 34px 28px 34px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.mainlogo {\n      padding: 32vh 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n.mainlogo__image object {\n          width: 100%;\n}\n}\n@media (max-height: 600px) {\n.mainlogo {\n      padding: 27vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.mainlogo {\n      padding: 35vh 0 0 0;\n}\n.mainlogo__image {\n        width: 270px;\n}\n}\n@media (max-width: 900px) and (max-height: 700px) {\n.mainlogo {\n      padding: 30vh 0 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.mainlogo {\n      padding: 24vh 0 0 0;\n}\n}\n@media (max-width: 550px) {\n.mainlogo {\n      padding: 28vh 0 0 0;\n}\n.mainlogo__image {\n        padding: 18px 22px;\n        width: 200px;\n}\n}\n.sns {\n  margin: 15px 0;\n  text-align: center;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.sns {\n      margin: 32px 0 0;\n}\n}\n@media (max-width: 900px) and (max-height: 550px), (max-width: 550px) {\n.sns {\n      margin: 20px 0 0;\n}\n}\n.sns__list {\n    display: inline-block;\n    margin: 0 7px;\n}\n@media (max-width: 550px) {\n.sns__list {\n        margin: 0 12px;\n}\n}\n.sns__link {\n    display: block;\n}\n.sns__link:before {\n      color: rgba(255, 255, 255, 0.8);\n      display: block;\n      font-family: fontawesome;\n      font-size: 36px;\n      font-size: 3.6rem;\n      line-height: 1;\n}\n@media (max-width: 900px) {\n.sns__link:before {\n          font-size: 40px;\n          font-size: 4rem;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.sns__link:before {\n          font-size: 34px;\n          font-size: 3.4rem;\n}\n}\n.sns__link--nav:before {\n      color: #fff;\n      font-size: 30px;\n      font-size: 3rem;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.sns__link--nav:before {\n          font-size: 24px;\n          font-size: 2.4rem;\n}\n}\n.github:before {\n  content: '\\F092';\n}\n.linkedin:before {\n  content: '\\F08C';\n}\n.email:before {\n  content: '\\F003';\n  cursor: pointer;\n}\n.scroll-icon {\n  bottom: 4%;\n  left: 50%;\n  margin: 0 0 0 -23px;\n  text-align: center;\n  position: absolute;\n  /*Landscape（画面横）*/\n}\n@media (max-device-width: 1024px) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {\n.scroll-icon {\n      bottom: 11%;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon {\n      animation: scrollAnimation-touch 1.5s infinite;\n      bottom: 8%;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon {\n      margin: 0 0 0 -18px;\n}\n}\n@media (max-width: 550px) {\n.scroll-icon {\n      bottom: 12%;\n}\n}\n.scroll-icon__main {\n    border: solid 2px #fff;\n    border-radius: 15px;\n    display: inline-block;\n    height: 46px;\n    position: relative;\n    width: 30px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main {\n        border: solid 3px #fff;\n        border-top: 0;\n        border-right: 0;\n        border-radius: 0;\n        height: 36px;\n        opacity: 0.8;\n        transform: rotateZ(-45deg);\n        width: 36px;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon__main {\n        height: 28px;\n        width: 28px;\n}\n}\n.scroll-icon__main:before {\n      animation: scrollAnimation 1.5s ease infinite;\n      background: #fff;\n      border-radius: 50%;\n      content: \"\";\n      display: block;\n      height: 8px;\n      left: 50%;\n      margin: 0 0 0 -4px;\n      position: absolute;\n      top: 8px;\n      width: 8px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main:before {\n          content: none;\n}\n}\n.scroll-icon__text {\n    color: #fff;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 700;\n    letter-spacing: 1px;\n}\n@media (max-height: 800px) {\n.scroll-icon__text {\n        font-size: 15px;\n        font-size: 1.5rem;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon__text {\n        display: none;\n}\n}\n.scroll-out {\n  transform: translateY(-100vh);\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -11049,7 +11088,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n@charset \"UTF-8\";\n@keyframes scrollAnimation {\n0% {\n    opacity: 0;\n    transform: translateY(0px);\n}\n37.5% {\n    opacity: 1;\n}\n75% {\n    opacity: 0;\n    transform: translateY(7px);\n}\n100% {\n    opacity: 0;\n}\n}\n@keyframes scrollAnimation-touch {\nfrom, 20%, 55%, 80%, to {\n    transform: translate3d(0, 0, 0);\n}\n40%, 45% {\n    transform: translate3d(0, -30px, 0);\n}\n70% {\n    transform: translate3d(0, -20px, 0);\n}\n90% {\n    transform: translate3d(0, 0px, 0);\n}\n}\n.firstView {\n  background: url(/dist/img/topBg.jpg) no-repeat center center;\n  background-size: cover;\n  height: 100%;\n  position: relative;\n  transition: all 0.5s ease 0s;\n  width: 100%;\n  z-index: 0;\n}\n@media (max-width: 900px) {\n.firstView {\n      height: 100vh;\n      min-height: 500px;\n}\n}\n.mainlogo {\n  align-items: center;\n  display: flex;\n  justify-content: center;\n  padding: 30vh 0 0;\n  pointer-events: none;\n}\n.mainlogo__image {\n    background: rgba(255, 255, 255, 0.6);\n    padding: 32px 34px 28px 34px;\n}\n@media (max-height: 700px), (max-width: 1024px) {\n.mainlogo {\n      padding: 32vh 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n.mainlogo__image object {\n          width: 100%;\n}\n}\n@media (max-height: 600px) {\n.mainlogo {\n      padding: 27vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.mainlogo {\n      padding: 35vh 0 0 0;\n}\n.mainlogo__image {\n        width: 270px;\n}\n}\n@media (max-width: 900px) and (max-height: 700px) {\n.mainlogo {\n      padding: 30vh 0 0 0;\n}\n.mainlogo__image {\n        width: 240px;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.mainlogo {\n      padding: 24vh 0 0 0;\n}\n}\n@media (max-width: 550px) {\n.mainlogo {\n      padding: 28vh 0 0 0;\n}\n.mainlogo__image {\n        padding: 18px 22px;\n        width: 200px;\n}\n}\n.sns {\n  margin: 15px 0;\n  text-align: center;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.sns {\n      margin: 32px 0 0;\n}\n}\n@media (max-width: 900px) and (max-height: 550px), (max-width: 550px) {\n.sns {\n      margin: 20px 0 0;\n}\n}\n.sns__list {\n    display: inline-block;\n    margin: 0 7px;\n}\n@media (max-width: 550px) {\n.sns__list {\n        margin: 0 12px;\n}\n}\n.sns__link {\n    display: block;\n}\n.sns__link:before {\n      color: rgba(255, 255, 255, 0.8);\n      display: block;\n      font-family: fontawesome;\n      font-size: 36px;\n      font-size: 3.6rem;\n      line-height: 1;\n}\n@media (max-width: 900px) {\n.sns__link:before {\n          font-size: 40px;\n          font-size: 4rem;\n}\n}\n@media (max-width: 900px) and (max-height: 550px) {\n.sns__link:before {\n          font-size: 34px;\n          font-size: 3.4rem;\n}\n}\n.sns__link--nav:before {\n      color: #fff;\n      font-size: 30px;\n      font-size: 3rem;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.sns__link--nav:before {\n          font-size: 24px;\n          font-size: 2.4rem;\n}\n}\n.github:before {\n  content: '\\F092';\n}\n.linkedin:before {\n  content: '\\F08C';\n}\n.email:before {\n  content: '\\F003';\n  cursor: pointer;\n}\n.scroll-icon {\n  bottom: 4%;\n  left: 50%;\n  margin: 0 0 0 -23px;\n  text-align: center;\n  position: absolute;\n  /*Landscape（画面横）*/\n}\n@media (max-device-width: 1024px) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 1) and (orientation: landscape), (device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape) {\n.scroll-icon {\n      bottom: 11%;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon {\n      animation: scrollAnimation-touch 1.5s infinite;\n      bottom: 8%;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon {\n      margin: 0 0 0 -18px;\n}\n}\n@media (max-width: 550px) {\n.scroll-icon {\n      bottom: 12%;\n}\n}\n.scroll-icon__main {\n    border: solid 2px #fff;\n    border-radius: 15px;\n    display: inline-block;\n    height: 46px;\n    position: relative;\n    width: 30px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main {\n        border: solid 3px #fff;\n        border-top: 0;\n        border-right: 0;\n        border-radius: 0;\n        height: 36px;\n        opacity: 0.8;\n        transform: rotateZ(-45deg);\n        width: 36px;\n}\n}\n@media (max-width: 900px) and (max-height: 600px) {\n.scroll-icon__main {\n        height: 28px;\n        width: 28px;\n}\n}\n.scroll-icon__main:before {\n      animation: scrollAnimation 1.5s ease infinite;\n      background: #fff;\n      border-radius: 50%;\n      content: \"\";\n      display: block;\n      height: 8px;\n      left: 50%;\n      margin: 0 0 0 -4px;\n      position: absolute;\n      top: 8px;\n      width: 8px;\n}\n@media (max-width: 900px) {\n.scroll-icon__main:before {\n          content: none;\n}\n}\n.scroll-icon__text {\n    color: #fff;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 700;\n    letter-spacing: 1px;\n}\n@media (max-height: 800px) {\n.scroll-icon__text {\n        font-size: 15px;\n        font-size: 1.5rem;\n}\n}\n@media (max-width: 900px) {\n.scroll-icon__text {\n        display: none;\n}\n}\n.scroll-out {\n  transform: translateY(-100vh);\n}\n", ""]);
 
 // exports
 
@@ -11063,7 +11102,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.blogs {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.blogs {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.blogs {\n      padding: 90px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs {\n      padding: 50px 0;\n}\n}\n.blogs__hd {\n    margin: 9% 0 0;\n    transition: all 0.4s ease 0.2s;\n}\n@media (max-height: 900px) {\n.blogs__hd {\n        margin: 6% 0 0;\n}\n}\n@media (max-height: 850px) {\n.blogs__hd {\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 800px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-height: 750px) {\n.blogs__hd {\n        font-size: 55px;\n        font-size: 5.5rem;\n        margin: 2% 0 0;\n}\n}\n@media (max-height: 700px) {\n.blogs__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__hd {\n        font-size: 40px;\n        font-size: 4rem;\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 550px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        line-height: 1;\n        margin: 0 auto;\n}\n}\n.blogs__container {\n    display: flex;\n    justify-content: space-between;\n    margin: 2.5% auto;\n    max-width: 1180px;\n    position: relative;\n    width: 80%;\n}\n@media (max-height: 800px) {\n.blogs__container {\n        margin: 2% auto;\n}\n}\n@media (max-height: 700px) {\n.blogs__container {\n        width: 85%;\n}\n}\n@media (max-height: 650px) {\n.blogs__container {\n        margin: 1% auto;\n}\n}\n@media (max-width: 900px) {\n.blogs__container {\n        flex-direction: column;\n        justify-content: flex-start;\n        margin: 35px auto 0;\n        max-width: 650px;\n        width: 90%;\n}\n}\n@media (max-width: 740px) {\n.blogs__container {\n        margin: 20px auto 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__container {\n        max-width: 400px;\n}\n}\n.blogs__list {\n    background: #fff;\n    margin: 0 3% 0 0;\n    overflow: hidden;\n    position: relative;\n    width: 33.3333333%;\n}\n.blogs__list:before, .blogs__list:after {\n      content: '';\n      display: block;\n      height: 100%;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n.blogs__list:before {\n      background: #3c3c3c;\n      left: -103%;\n}\n.blogs__list:after {\n      background: #fff;\n      left: 0;\n}\n@media (max-width: 900px) {\n.blogs__list {\n        background: none;\n        display: flex;\n        justify-content: flex-end;\n        margin: 25px auto;\n        width: 100%;\n}\n.blogs__list:before, .blogs__listafter {\n          content: none;\n}\n}\n@media (max-width: 550px) {\n.blogs__list {\n        display: block;\n}\n}\n.blogs__list:first-of-type:before, .blogs__list:first-of-type:after {\n      transition: left 0.4s ease 0.4s;\n}\n.blogs__list:nth-of-type(2):before, .blogs__list:nth-of-type(2):after {\n      transition: left 0.4s ease 0.8s;\n}\n.blogs__list:last-of-type {\n      margin: 0;\n}\n.blogs__list:last-of-type:before, .blogs__list:last-of-type:after {\n        transition: left 0.4s ease 1.2s;\n}\n.blogs__list time {\n      color: #7c7c7c;\n      display: block;\n      font-size: 12px;\n      font-size: 1.2rem;\n      font-weight: 500;\n      letter-spacing: 0.04em;\n      padding: 20px 25px 0;\n      text-align: center;\n      text-transform: uppercase;\n      width: 100%;\n}\n@media (max-height: 700px) {\n.blogs__list time {\n          padding: 15px 20px 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__list time {\n          padding: 10px 20px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list time {\n          padding: 20px 25px 0 75px;\n          text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs__list time {\n          padding: 85px 25px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__list time {\n          padding: 15px 15px 0;\n          text-align: center;\n}\n}\n@media (max-width: 900px) {\n.blogs__thumbnail {\n      left: 0;\n      max-width: 260px;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n}\n@media (max-width: 740px) {\n.blogs__thumbnail {\n      max-width: 300px;\n}\n}\n@media (max-width: 550px) {\n.blogs__thumbnail {\n      position: static;\n      max-width: 100%;\n}\n}\n.blogs__thumbnail img {\n    display: block;\n    width: 100%;\n}\n@media (max-width: 900px) {\n.blogs__desc {\n      background: #fff;\n      margin: 30px 0 0;\n      max-width: 440px;\n      width: 100%;\n}\n}\n@media (max-width: 740px) {\n.blogs__desc {\n      margin: 85px 0 0;\n      max-width: 600px;\n      width: 88%;\n}\n}\n@media (max-width: 550px) {\n.blogs__desc {\n      margin: 0;\n      width: 100%;\n}\n}\n.blogs .title {\n    color: #3c3c3c;\n    font-size: 24px;\n    font-size: 2.4rem;\n    font-weight: 500;\n    letter-spacing: 0.02em;\n    margin: 5px 0 10px;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 700px), (max-width: 900px) {\n.blogs .title {\n        font-size: 20px;\n        font-size: 2rem;\n}\n}\n@media (max-height: 600px) {\n.blogs .title {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .title {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .title {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .title:after {\n      background: #3c3c3c;\n      content: '';\n      display: block;\n      height: 2px;\n      margin: 12px auto 10px;\n      width: 44px;\n}\n@media (max-width: 900px) {\n.blogs .title:after {\n          margin: 12px 0 10px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title:after {\n          margin: 12px auto 10px;\n}\n}\n.blogs .summary {\n    color: #3c3c3c;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 500;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 600px), (max-width: 900px) {\n.blogs .summary {\n        font-size: 14px;\n        font-size: 1.4rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .summary {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .summary {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .summary {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost {\n    margin: 20px 0 0;\n    padding: 0 20px 25px;\n    text-align: center;\n}\n@media (max-height: 700px) {\n.blogs .viewPost {\n        padding: 0 15px 20px;\n}\n}\n@media (max-height: 600px) {\n.blogs .viewPost {\n        margin: 10px 0 0;\n        padding: 0 15px 12px;\n}\n}\n@media (max-width: 900px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .viewPost {\n        padding: 0 15px 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost a {\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      font-weight: 700;\n      letter-spacing: 0.04em;\n      position: relative;\n      text-transform: uppercase;\n}\n.blogs .viewPost a:active, .blogs .viewPost a:link, .blogs .viewPost a:visited {\n        color: #3c3c3c;\n}\n@media (max-width: 900px) {\n.blogs__list--right {\n      justify-content: flex-start;\n}\n.blogs__list--right .blogs__thumbnail {\n        left: auto;\n        right: 0;\n}\n.blogs__list--right time {\n        padding: 20px 75px 0 25px;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.blogs__list--right time {\n        padding: 85px 25px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list--right .title,\n      .blogs__list--right .summary {\n        padding: 0 75px 0 25px;\n}\n.blogs__list--right .viewPost {\n        padding: 0 75px 20px 25px;\n}\n}\n@media (max-width: 740px) {\n.blogs__list--right time {\n      padding: 85px 25px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 25px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs__list--right time {\n      padding: 15px 15px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 15px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 15px 15px 15px;\n}\n}\n.blog-active .blogs__hd {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 0.2s;\n}\n.blog-active .blogs__list:before {\n  left: 103%;\n}\n.blog-active .blogs__list:after {\n  left: 203%;\n}\n.blog-active .blogs__list:first-of-type:before, .blog-active .blogs__list:first-of-type:after {\n  transition: left .6s ease 0.4s;\n}\n.blog-active .blogs__list:nth-of-type(2):before, .blog-active .blogs__list:nth-of-type(2):after {\n  transition: left .6s ease 0.67s;\n}\n.blog-active .blogs__list:last-of-type {\n  margin: 0;\n}\n@media (max-width: 900px) {\n.blog-active .blogs__list:last-of-type {\n      margin: 25px 0;\n}\n}\n.blog-active .blogs__list:last-of-type:before, .blog-active .blogs__list:last-of-type:after {\n    transition: left .6s ease 0.92s;\n}\n.blog-active .more {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.5s ease 1.1s;\n}\n.more {\n  opacity: 0;\n  transform: translateY(30px);\n  transition: all 0.4s ease 0.7s;\n}\n.more a {\n    border: solid 1px #3c3c3c;\n    color: #3c3c3c;\n    display: block;\n    font-size: 14px;\n    font-size: 1.4rem;\n    line-height: 1;\n    margin: 30px auto 0;\n    overflow: hidden;\n    padding: 12px 0 11px;\n    position: relative;\n    text-align: center;\n    text-transform: uppercase;\n    transition: color .5s ease 0s;\n    width: 160px;\n    z-index: 0;\n}\n@media (max-height: 650px) {\n.more a {\n        margin: 15px auto 0;\n}\n}\n@media (max-height: 650px) {\n.more a {\n        font-size: 12px;\n        font-size: 1.2rem;\n}\n}\n@media (max-width: 900px) {\n.more a {\n        background: #3c3c3c;\n        color: #fff;\n        padding: 15px 0;\n        width: 200px;\n}\n}\n.more a:after {\n      background: #3c3c3c;\n      content: \"\";\n      height: 100%;\n      left: 50%;\n      position: absolute;\n      top: 0;\n      transform: matrix(1, 0, -1, 1, 0, 0);\n      transition: all .5s ease 0s;\n      width: 0;\n      z-index: -1;\n}\n.more a:hover {\n      color: #fff;\n}\n.more a:hover:after {\n        left: -25%;\n        width: 150%;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -11077,7 +11116,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.container {\n  background: #fff;\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.container {\n      overflow: initial;\n      height: auto;\n}\n}\n", ""]);
+exports.push([module.i, "\n.blogs {\n  background: #E8E8E0;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  width: 100%;\n}\n@media (max-height: 800px) {\n.blogs {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.blogs {\n      padding: 90px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs {\n      padding: 50px 0;\n}\n}\n.blogs__hd {\n    margin: 9% 0 0;\n    transition: all 0.4s ease 0.2s;\n}\n@media (max-height: 900px) {\n.blogs__hd {\n        margin: 6% 0 0;\n}\n}\n@media (max-height: 850px) {\n.blogs__hd {\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 750px) {\n.blogs__hd {\n        font-size: 55px;\n        font-size: 5.5rem;\n        margin: 2.5% 0 0;\n}\n}\n@media (max-height: 700px) {\n.blogs__hd {\n        font-size: 45px;\n        font-size: 4.5rem;\n        margin: 4% 0 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__hd {\n        font-size: 40px;\n        font-size: 4rem;\n        margin: 5% 0 0;\n}\n}\n@media (max-height: 550px) {\n.blogs__hd {\n        margin: 3% 0 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__hd {\n        font-size: 50px;\n        font-size: 5rem;\n        line-height: 1;\n        margin: 0 auto;\n}\n}\n.blogs__container {\n    display: flex;\n    justify-content: space-between;\n    margin: 2.5% auto;\n    max-width: 1180px;\n    position: relative;\n    width: 80%;\n}\n@media (max-height: 800px) {\n.blogs__container {\n        margin: 1% auto;\n}\n}\n@media (max-height: 700px) {\n.blogs__container {\n        width: 85%;\n}\n}\n@media (max-width: 900px) {\n.blogs__container {\n        flex-direction: column;\n        justify-content: flex-start;\n        margin: 35px auto 0;\n        max-width: 650px;\n        width: 90%;\n}\n}\n@media (max-width: 740px) {\n.blogs__container {\n        margin: 20px auto 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__container {\n        max-width: 400px;\n}\n}\n.blogs__list {\n    background: #fff;\n    margin: 0 3% 0 0;\n    overflow: hidden;\n    position: relative;\n    width: 33.3333333%;\n}\n.blogs__list:before, .blogs__list:after {\n      content: '';\n      display: block;\n      height: 100%;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n.blogs__list:before {\n      background: #3c3c3c;\n      left: -103%;\n}\n.blogs__list:after {\n      background: #fff;\n      left: 0;\n}\n@media (max-width: 900px) {\n.blogs__list {\n        background: none;\n        display: flex;\n        justify-content: flex-end;\n        margin: 25px auto;\n        width: 100%;\n}\n.blogs__list:before, .blogs__listafter {\n          content: none;\n}\n}\n@media (max-width: 550px) {\n.blogs__list {\n        display: block;\n}\n}\n.blogs__list:first-of-type:before, .blogs__list:first-of-type:after {\n      transition: left 0.4s ease 0.4s;\n}\n.blogs__list:nth-of-type(2):before, .blogs__list:nth-of-type(2):after {\n      transition: left 0.4s ease 0.8s;\n}\n.blogs__list:last-of-type {\n      margin: 0;\n}\n.blogs__list:last-of-type:before, .blogs__list:last-of-type:after {\n        transition: left 0.4s ease 1.2s;\n}\n.blogs__list time {\n      color: #7c7c7c;\n      display: block;\n      font-size: 12px;\n      font-size: 1.2rem;\n      font-weight: 500;\n      letter-spacing: 0.04em;\n      padding: 20px 10px 0;\n      text-align: center;\n      text-transform: uppercase;\n      width: 100%;\n}\n@media (max-height: 700px) {\n.blogs__list time {\n          padding: 15px 20px 0;\n}\n}\n@media (max-height: 600px) {\n.blogs__list time {\n          padding: 10px 20px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list time {\n          padding: 20px 25px 0 75px;\n          text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs__list time {\n          padding: 85px 25px 0;\n}\n}\n@media (max-width: 550px) {\n.blogs__list time {\n          padding: 15px 15px 0;\n          text-align: center;\n}\n}\n@media (max-width: 900px) {\n.blogs__thumbnail {\n      left: 0;\n      max-width: 260px;\n      position: absolute;\n      top: 0;\n      width: 100%;\n      z-index: 10;\n}\n}\n@media (max-width: 740px) {\n.blogs__thumbnail {\n      max-width: 300px;\n}\n}\n@media (max-width: 550px) {\n.blogs__thumbnail {\n      position: static;\n      max-width: 100%;\n}\n}\n.blogs__thumbnail img {\n    display: block;\n    width: 100%;\n}\n@media (max-width: 900px) {\n.blogs__desc {\n      background: #fff;\n      margin: 30px 0 0;\n      max-width: 440px;\n      width: 100%;\n}\n}\n@media (max-width: 740px) {\n.blogs__desc {\n      margin: 85px 0 0;\n      max-width: 600px;\n      width: 88%;\n}\n}\n@media (max-width: 550px) {\n.blogs__desc {\n      margin: 0;\n      width: 100%;\n}\n}\n.blogs .title {\n    color: #3c3c3c;\n    font-size: 24px;\n    font-size: 2.4rem;\n    font-weight: 500;\n    hyphens: auto;\n    letter-spacing: 0.02em;\n    margin: 5px 0 10px;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 700px), (max-width: 900px) {\n.blogs .title {\n        font-size: 20px;\n        font-size: 2rem;\n}\n}\n@media (max-height: 600px) {\n.blogs .title {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .title {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .title {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .title:after {\n      background: #3c3c3c;\n      content: '';\n      display: block;\n      height: 2px;\n      margin: 12px auto 10px;\n      width: 44px;\n}\n@media (max-width: 900px) {\n.blogs .title:after {\n          margin: 12px 0 10px;\n}\n}\n@media (max-width: 550px) {\n.blogs .title:after {\n          margin: 12px auto 10px;\n}\n}\n.blogs .summary {\n    color: #3c3c3c;\n    font-size: 16px;\n    font-size: 1.6rem;\n    font-weight: 500;\n    padding: 0 20px;\n    text-align: center;\n}\n@media (max-height: 600px), (max-width: 900px) {\n.blogs .summary {\n        font-size: 14px;\n        font-size: 1.4rem;\n}\n}\n@media (max-width: 900px) {\n.blogs .summary {\n        padding: 0 25px 0 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .summary {\n        padding: 0 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .summary {\n        padding: 0 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost {\n    margin: 20px 0 0;\n    padding: 0 20px 25px;\n    text-align: center;\n}\n@media (max-height: 700px) {\n.blogs .viewPost {\n        padding: 0 15px 20px;\n}\n}\n@media (max-height: 600px) {\n.blogs .viewPost {\n        margin: 10px 0 0;\n        padding: 0 15px 12px;\n}\n}\n@media (max-width: 900px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 75px;\n        text-align: left;\n}\n}\n@media (max-width: 740px) {\n.blogs .viewPost {\n        padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs .viewPost {\n        padding: 0 15px 15px;\n        text-align: center;\n}\n}\n.blogs .viewPost a {\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      font-weight: 700;\n      letter-spacing: 0.04em;\n      position: relative;\n      text-transform: uppercase;\n}\n.blogs .viewPost a:active, .blogs .viewPost a:link, .blogs .viewPost a:visited {\n        color: #3c3c3c;\n}\n@media (max-width: 900px) {\n.blogs__list--right {\n      justify-content: flex-start;\n}\n.blogs__list--right .blogs__thumbnail {\n        left: auto;\n        right: 0;\n}\n.blogs__list--right time {\n        padding: 20px 75px 0 25px;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.blogs__list--right time {\n        padding: 85px 25px 0;\n}\n}\n@media (max-width: 900px) {\n.blogs__list--right .title,\n      .blogs__list--right .summary {\n        padding: 0 75px 0 25px;\n}\n.blogs__list--right .viewPost {\n        padding: 0 75px 20px 25px;\n}\n}\n@media (max-width: 740px) {\n.blogs__list--right time {\n      padding: 85px 25px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 25px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 25px 20px 25px;\n}\n}\n@media (max-width: 550px) {\n.blogs__list--right time {\n      padding: 15px 15px 0;\n}\n.blogs__list--right .title,\n    .blogs__list--right .summary {\n      padding: 0 15px;\n}\n.blogs__list--right .viewPost {\n      padding: 0 15px 15px 15px;\n}\n}\n.blog-active .blogs__hd {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.4s ease 0.2s;\n}\n.blog-active .blogs__list:before {\n  left: 103%;\n}\n.blog-active .blogs__list:after {\n  left: 203%;\n}\n.blog-active .blogs__list:first-of-type:before, .blog-active .blogs__list:first-of-type:after {\n  transition: left .6s ease 0.4s;\n}\n.blog-active .blogs__list:nth-of-type(2):before, .blog-active .blogs__list:nth-of-type(2):after {\n  transition: left .6s ease 0.67s;\n}\n.blog-active .blogs__list:last-of-type {\n  margin: 0;\n}\n@media (max-width: 900px) {\n.blog-active .blogs__list:last-of-type {\n      margin: 25px 0;\n}\n}\n.blog-active .blogs__list:last-of-type:before, .blog-active .blogs__list:last-of-type:after {\n    transition: left .6s ease 0.92s;\n}\n.blog-active .more {\n  opacity: 1;\n  transform: translateY(0);\n  transition: all 0.5s ease 1.1s;\n}\n.more {\n  opacity: 0;\n  transform: translateY(30px);\n  transition: all 0.4s ease 0.7s;\n}\n.more a {\n    border: solid 1px #3c3c3c;\n    color: #3c3c3c;\n    display: block;\n    font-size: 14px;\n    font-size: 1.4rem;\n    line-height: 1;\n    margin: 30px auto 0;\n    overflow: hidden;\n    padding: 12px 0 11px;\n    position: relative;\n    text-align: center;\n    text-transform: uppercase;\n    transition: color .5s ease 0s;\n    width: 160px;\n    z-index: 0;\n}\n@media (max-height: 650px) {\n.more a {\n        margin: 15px auto 0;\n}\n}\n@media (max-height: 650px) {\n.more a {\n        font-size: 12px;\n        font-size: 1.2rem;\n}\n}\n@media (max-width: 900px) {\n.more a {\n        background: #3c3c3c;\n        color: #fff;\n        padding: 15px 0;\n        width: 200px;\n}\n}\n.more a:after {\n      background: #3c3c3c;\n      content: \"\";\n      height: 100%;\n      left: 50%;\n      position: absolute;\n      top: 0;\n      transform: matrix(1, 0, -1, 1, 0, 0);\n      transition: all .5s ease 0s;\n      width: 0;\n      z-index: -1;\n}\n.more a:hover {\n      color: #fff;\n}\n.more a:hover:after {\n        left: -25%;\n        width: 150%;\n}\n", ""]);
 
 // exports
 
@@ -11091,7 +11130,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "\n.container {\n  background: #fff;\n  height: 100vh;\n  overflow: hidden;\n  position: relative;\n  width: 100%;\n}\n@media (max-width: 900px) {\n.container {\n      overflow: initial;\n      height: auto;\n}\n}\n", ""]);
 
 // exports
 
@@ -11105,7 +11144,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.works1 {\n  background: url(/dist/img/camping.jpg) no-repeat center center;\n}\n@media (max-width: 1200px) {\n.works1 {\n      background-position: 3vw top;\n}\n}\n@media (max-width: 900px) {\n.works1 {\n      background: none;\n}\n}\n.works2 {\n  background: url(/dist/img/blog_thumbnail.png) no-repeat 18vw 4vh;\n}\n@media (max-width: 900px) {\n.works2 {\n      background: none;\n}\n}\n.works3 {\n  background: url(/dist/img/topBg.jpg) no-repeat left top;\n}\n@media (max-width: 900px) {\n.works3 {\n      background: none;\n}\n}\n.works4 {\n  background: url(/dist/img/ballet_bg.jpg) no-repeat 10vw center;\n}\n.works5 {\n  background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;\n}\n@media (max-width: 900px) {\n.works5 {\n      background: none;\n}\n}\n.works {\n  background-size: cover;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  transition: all 0.4s ease 0s;\n  width: 100%;\n  z-index: 1;\n}\n@media (max-height: 800px), (max-width: 1024px) {\n.works {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.works {\n      height: inherit;\n      padding: 90px 0 95px;\n      position: static;\n}\n}\n@media (max-width: 550px) {\n.works {\n      padding: 50px 0 55px;\n}\n}\n.works:after {\n    background: #E8E8E0;\n    content: \"\";\n    display: block;\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    transition: all 0.4s ease 0s;\n    width: 100vw;\n    z-index: 0;\n}\n@media (max-width: 900px) {\n.works:after {\n        content: none;\n}\n}\n.works__caption, .works__hd, .works__lead, .works__view {\n    opacity: 0;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n    z-index: 1;\n}\n.works__caption {\n    color: #3c3c3c;\n    font-size: 20px;\n    font-size: 2rem;\n    position: relative;\n    text-transform: uppercase;\n    z-index: 2;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__caption {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works__caption {\n        font-size: 16px;\n        font-size: 1.6rem;\n}\n}\n.works__hd {\n    color: #3c3c3c;\n    font-size: 55px;\n    font-size: 5.5rem;\n    font-weight: 700;\n    line-height: 1;\n    margin: 5px 0 12px;\n    position: relative;\n    text-transform: uppercase;\n    width: 88%;\n    z-index: 2;\n}\n@media (max-height: 800px) {\n.works__hd {\n        font-size: 43px;\n        font-size: 4.3rem;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-height: 620px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-width: 1024px) {\n.works__hd {\n        font-size: 36px;\n        font-size: 3.6rem;\n        max-width: 450px;\n}\n}\n.works__lead {\n    color: #3c3c3c;\n    font-size: 14px;\n    font-size: 1.4rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    line-height: 1.5;\n    max-width: 600px;\n    position: relative;\n    z-index: 2;\n    width: 85%;\n}\n@media (max-width: 1200px) {\n.works__lead {\n        max-width: 540px;\n}\n}\n@media (max-width: 1024px) {\n.works__lead {\n        max-width: 470px;\n}\n}\n.works__view {\n    position: relative;\n}\n.works__view a {\n      border: solid 1px #3c3c3c;\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      line-height: 1;\n      margin: 10px 20px 0 0;\n      overflow: hidden;\n      padding: 12px 0 11px;\n      position: relative;\n      text-align: center;\n      text-transform: uppercase;\n      transition: color .5s ease 0s;\n      width: 160px;\n      z-index: 2;\n}\n@media (max-height: 700px) {\n.works__view a {\n          margin: 10px 20px 0 0;\n}\n}\n@media (max-height: 650px), (max-width: 1024px) {\n.works__view a {\n          font-size: 12px;\n          font-size: 1.2rem;\n          padding: 13px 0 12px;\n          width: 120px;\n}\n}\n.works__view a:after {\n        background: #3c3c3c;\n        content: \"\";\n        height: 100%;\n        left: 50%;\n        position: absolute;\n        top: 0;\n        transform: matrix(1, 0, -1, 1, 0, 0);\n        transition: all .5s ease 0s;\n        width: 0;\n        z-index: -1;\n}\n.works__view a:hover {\n        color: #fff;\n}\n.works__view a:hover:after {\n          left: -25%;\n          width: 150%;\n}\n.works__view a.works__github {\n        padding: 7px 0 6px;\n}\n.works__view a.works__github:before {\n          content: \"\\F09B\";\n          display: inline-block;\n          font-family: fontawesome;\n          font-size: 24px;\n          font-size: 2.4rem;\n          line-height: 1;\n          margin: 0 10px 0 0;\n          vertical-align: sub;\n}\n.works--left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-45%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--left:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-38%);\n}\n}\n.works--right:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(42%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--right:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(35%);\n}\n}\n@media (max-width: 900px) {\n.works__ttl {\n      background-size: 115%;\n      height: 380px;\n      overflow: hidden;\n      position: relative;\n      width: 87.23958333333334%;\n      z-index: -1;\n}\n}\n@media (max-width: 740px) {\n.works__ttl {\n      height: 320px;\n}\n}\n@media (max-width: 550px) {\n.works__ttl {\n      height: 230px;\n}\n}\n@media (max-width: 900px) {\n.works__desc {\n      background: rgba(60, 60, 60, 0.97);\n      margin: -140px 0 0;\n      padding: 30px 40px;\n      width: 62.5%;\n      /*z-index: 3;*/\n}\n.works__desc:after {\n        background: #3c3c3c;\n        bottom: -50px;\n        content: '';\n        display: block;\n        height: 2px;\n        left: 50%;\n        position: absolute;\n        transform: translateX(-50%);\n        width: 160px;\n}\n.works__desc .works__lead {\n        color: #fff;\n        font-size: 14px;\n        font-size: 1.4rem;\n        letter-spacing: 0.02em;\n        line-height: 1.42857;\n        margin: 0;\n        max-width: 100%;\n        width: 100%;\n}\n.works__desc .works__view a {\n        border: solid 1px #fff;\n        color: #fff;\n        margin: 10px 10px 0 0;\n        padding: 13px 0;\n        width: 113px;\n}\n.works__desc .works__view a:after {\n          content: none;\n}\n.works__desc .works__view a:hover {\n          color: #fff;\n}\n.works__desc .works__view a.works__github {\n          padding: 7px 0;\n}\n.works__desc .using {\n        margin: 20px 0 0;\n        max-width: inherit;\n        width: 100%;\n}\n.works__desc .using__list {\n          background: #fff;\n          color: #3c3c3c;\n}\n}\n@media (max-width: 740px) {\n.works__desc {\n      margin: -100px 0 0;\n      width: 85%;\n}\n}\n@media (max-width: 550px) {\n.works__desc {\n      margin: -55px 0 0;\n      padding: 20px;\n      width: 90%;\n}\n}\n.works__details--right {\n    margin: 47vh 0 0;\n    padding: 0 0 0 45vw;\n    transition: all 0.4s ease 0s;\n}\n.works__details--right.anotherWorks {\n      margin: 55vh 0 0;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right.anotherWorks {\n          margin: 54vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks {\n          margin: 0;\n}\n}\n@media (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-width: 1024px) {\n.works__details--right {\n        margin: 55vh 0 0;\n        padding: 0 0 0 40vw;\n}\n}\n@media (max-height: 800px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-height: 700px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 650px) {\n.works__details--right {\n        margin: 44vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right {\n        margin: 0;\n        padding: 0;\n        position: relative;\n}\n.works__details--right:before {\n          color: #3c3c3c;\n          content: \"design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 112px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:before {\n        top: 62px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right:after {\n          color: #3c3c3c;\n          content: \"YelpCamp\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 130px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:after {\n        top: 80px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__ttl {\n          background: url(/dist/img/camping.jpg) no-repeat left center;\n          background-size: 120%;\n          margin: 45px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .works__ttl {\n        margin: 20px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__caption {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 110px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__caption {\n        top: 60px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__hd {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 125px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__hd {\n        top: 75px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks:before, .works__details--right.anotherWorks:after {\n          content: none;\n}\n.works__details--right .anotherWorks__ttl {\n          background: none;\n          height: inherit;\n          margin: 95px 0 0;\n          padding: 0;\n          width: 100%;\n}\n.works__details--right .anotherWorks__hd {\n          color: #3c3c3c;\n          font-size: 30px;\n          font-size: 3rem;\n          font-weight: 300;\n          line-height: 1;\n          margin: 0 0 25px;\n          max-width: 100%;\n          position: static;\n          text-align: center;\n          width: 100%;\n}\n.works__details--right .anotherWorks__desc {\n          background: none;\n          margin: 0 auto;\n          max-width: 670px;\n          padding: 0;\n          text-align: center;\n          width: 95%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .anotherWorks__desc {\n        width: 85%;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .anotherWorks__desc:after {\n            content: none;\n}\n.works__details--right .anotherWorks__desc .works__lead {\n            color: #3c3c3c;\n            font-size: 16px;\n            font-size: 1.6rem;\n            font-weight: 300;\n            line-height: 1.625;\n            text-align: center;\n}\n}\n.works__details--left {\n    margin: 10vh 0 0;\n    padding: 0 0 0 8vw;\n    transition: all 0.4s ease 0s;\n}\n@media (max-width: 900px) {\n.works__details--left {\n        margin: 100px 0 0;\n        padding: 0;\n        position: relative;\n        text-align: right;\n}\n.works__details--left:before {\n          color: #3c3c3c;\n          content: \"design / logo design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          right: 0%;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 112px;\n          width: 317px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:before {\n        top: 62px;\n        width: 293px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left:after {\n          color: #3c3c3c;\n          content: \"portfolio site\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          right: 0;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 131px;\n          width: 320px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:after {\n        width: 296px;\n        top: 81px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__ttl {\n          background: url(/dist/img/topBg.jpg) no-repeat left center;\n          background-size: 105%;\n          margin: 45px 12.7604166666% 0 0;\n          text-align: left;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__caption {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 110px;\n          width: 320px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__caption {\n        top: 60px;\n        width: 295px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__hd {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 125px;\n          width: 322px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__hd {\n        top: 75px;\n        width: 296px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__desc {\n          display: inline-block;\n          text-align: left;\n}\n}\n.works.right-to-left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-30%);\n    transition: all 0.3s ease 0s;\n    width: 200vw;\n}\n.works.right-to-left .works__details--right {\n    transition: all 0.3s ease 0s;\n}\n.works.right-to-left .works__details--left {\n    transition: all 0.3s ease 0s;\n}\n.using {\n  display: flex;\n  flex-wrap: wrap;\n  max-width: 650px;\n  opacity: 0;\n  position: relative;\n  transform: translateY(20px);\n  transition: all 0.4s ease 0s;\n  width: 85%;\n  z-index: 2;\n}\n@media (max-width: 1200px) {\n.using {\n      max-width: 470px;\n}\n}\n.using__list {\n    background: #3c3c3c;\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    font-weight: bold;\n    letter-spacing: 0.04em;\n    margin: 0 10px 10px 0;\n    padding: 7px 10px;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.using__list {\n        font-size: 10px;\n        font-size: 1rem;\n        padding: 5px 7px;\n}\n}\n.works--right .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works--right .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--right .using {\n      margin: 20px 0 0;\n}\n}\n.works--left .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px) {\n.works--left .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--left .using {\n      margin: 20px 0 0;\n}\n}\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.2s;\n}\n@media (max-width: 740px) {\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n      transition: none;\n}\n}\n.active-works .works__hd {\n  transition: all 0.4s ease 0.4s;\n}\n@media (max-width: 740px) {\n.active-works .works__hd {\n      transition: none;\n}\n}\n.active-works .works__lead {\n  transition: all 0.4s ease 0.6s;\n}\n@media (max-width: 740px) {\n.active-works .works__lead {\n      transition: none;\n}\n}\n.active-works .works__view {\n  transition: opacity 0.4s ease 1s, transform 0.4s ease 1s;\n}\n@media (max-width: 740px) {\n.active-works .works__view {\n      transition: none;\n}\n}\n.active-works .using {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.8s;\n}\n@media (max-width: 740px) {\n.active-works .using {\n      transition: none;\n}\n}\n.imgPreload {\n  display: inline;\n  height: 0;\n  left: -10px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  width: 0;\n}\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -11119,7 +11158,7 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n.footer {\n  background: #3c3c3c;\n  padding: 20px 0;\n  text-align: center;\n}\n.footer__logo {\n    display: inline-block;\n    margin: 0 0 10px;\n}\n.footer__copy {\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    letter-spacing: 0.02em;\n    line-height: 1;\n}\n", ""]);
+exports.push([module.i, "\n.works1 {\n  background: url(/dist/img/camping.jpg) no-repeat center center;\n}\n@media (max-width: 1200px) {\n.works1 {\n      background-position: 3vw top;\n}\n}\n@media (max-width: 900px) {\n.works1 {\n      background: none;\n}\n}\n.works2 {\n  background: url(/dist/img/blogImage.jpg) no-repeat 20vw 0vh;\n}\n@media (max-width: 900px) {\n.works2 {\n      background: none;\n}\n}\n.works3 {\n  background: url(/dist/img/topBg.jpg) no-repeat left top;\n}\n@media (max-width: 900px) {\n.works3 {\n      background: none;\n}\n}\n.works4 {\n  background: url(/dist/img/ballet_bg.jpg) no-repeat 10vw center;\n}\n.works5 {\n  background: url(/dist/img/tokyo.jpg) no-repeat -30vw center;\n}\n@media (max-width: 900px) {\n.works5 {\n      background: none;\n}\n}\n.works {\n  background-size: cover;\n  height: 100%;\n  padding: 25px;\n  position: relative;\n  transition: all 0.4s ease 0s;\n  width: 100%;\n  z-index: 1;\n}\n@media (max-height: 800px), (max-width: 1024px) {\n.works {\n      padding: 15px;\n}\n}\n@media (max-width: 900px) {\n.works {\n      height: inherit;\n      padding: 90px 0 95px;\n      position: static;\n}\n}\n@media (max-width: 550px) {\n.works {\n      padding: 50px 0 55px;\n}\n}\n.works:after {\n    background: #E8E8E0;\n    content: \"\";\n    display: block;\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    transition: all 0.4s ease 0s;\n    width: 100vw;\n    z-index: 0;\n}\n@media (max-width: 900px) {\n.works:after {\n        content: none;\n}\n}\n.works__caption, .works__hd, .works__lead, .works__view {\n    opacity: 0;\n    transform: translateY(30px);\n    transition: all 0.4s ease 0s;\n    z-index: 1;\n}\n.works__caption {\n    color: #3c3c3c;\n    font-size: 20px;\n    font-size: 2rem;\n    position: relative;\n    text-transform: uppercase;\n    z-index: 2;\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__caption {\n        font-size: 18px;\n        font-size: 1.8rem;\n}\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works__caption {\n        font-size: 16px;\n        font-size: 1.6rem;\n}\n}\n.works__hd {\n    color: #3c3c3c;\n    font-size: 55px;\n    font-size: 5.5rem;\n    font-weight: 700;\n    line-height: 1;\n    margin: 5px 0 12px;\n    position: relative;\n    text-transform: uppercase;\n    width: 88%;\n    z-index: 2;\n}\n@media (max-height: 800px) {\n.works__hd {\n        font-size: 43px;\n        font-size: 4.3rem;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-height: 620px) {\n.works__hd {\n        font-size: 40px;\n        font-size: 4rem;\n}\n}\n@media (max-width: 1024px) {\n.works__hd {\n        font-size: 36px;\n        font-size: 3.6rem;\n        max-width: 450px;\n}\n}\n.works__lead {\n    color: #3c3c3c;\n    font-size: 14px;\n    font-size: 1.4rem;\n    font-weight: 500;\n    letter-spacing: 0.05em;\n    line-height: 1.5;\n    max-width: 600px;\n    position: relative;\n    z-index: 2;\n    width: 85%;\n}\n@media (max-width: 1200px) {\n.works__lead {\n        max-width: 540px;\n}\n}\n@media (max-width: 1024px) {\n.works__lead {\n        max-width: 470px;\n}\n}\n.works__view {\n    position: relative;\n}\n.works__view a {\n      border: solid 1px #3c3c3c;\n      color: #3c3c3c;\n      display: inline-block;\n      font-size: 14px;\n      font-size: 1.4rem;\n      line-height: 1;\n      margin: 10px 20px 0 0;\n      overflow: hidden;\n      padding: 12px 0 11px;\n      position: relative;\n      text-align: center;\n      text-transform: uppercase;\n      transition: color .5s ease 0s;\n      width: 160px;\n      z-index: 2;\n}\n@media (max-height: 700px) {\n.works__view a {\n          margin: 10px 20px 0 0;\n}\n}\n@media (max-height: 650px), (max-width: 1024px) {\n.works__view a {\n          font-size: 12px;\n          font-size: 1.2rem;\n          padding: 13px 0 12px;\n          width: 120px;\n}\n}\n.works__view a:after {\n        background: #3c3c3c;\n        content: \"\";\n        height: 100%;\n        left: 50%;\n        position: absolute;\n        top: 0;\n        transform: matrix(1, 0, -1, 1, 0, 0);\n        transition: all .5s ease 0s;\n        width: 0;\n        z-index: -1;\n}\n.works__view a:hover {\n        color: #fff;\n}\n.works__view a:hover:after {\n          left: -25%;\n          width: 150%;\n}\n.works__view a.works__github {\n        padding: 7px 0 6px;\n}\n.works__view a.works__github:before {\n          content: \"\\F09B\";\n          display: inline-block;\n          font-family: fontawesome;\n          font-size: 24px;\n          font-size: 2.4rem;\n          line-height: 1;\n          margin: 0 10px 0 0;\n          vertical-align: sub;\n}\n.works--left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-45%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--left:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-38%);\n}\n}\n.works--right:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(42%);\n}\n@media (max-width: 1024px) and (max-height: 800px) {\n.works--right:after {\n        transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(35%);\n}\n}\n@media (max-width: 900px) {\n.works__ttl {\n      background-size: 115%;\n      height: 380px;\n      overflow: hidden;\n      position: relative;\n      width: 87.23958333333334%;\n      z-index: -1;\n}\n}\n@media (max-width: 740px) {\n.works__ttl {\n      height: 320px;\n}\n}\n@media (max-width: 550px) {\n.works__ttl {\n      height: 230px;\n}\n}\n@media (max-width: 900px) {\n.works__desc {\n      background: rgba(60, 60, 60, 0.97);\n      margin: -140px 0 0;\n      padding: 30px 40px;\n      width: 62.5%;\n      /*z-index: 3;*/\n}\n.works__desc:after {\n        background: #3c3c3c;\n        bottom: -50px;\n        content: '';\n        display: block;\n        height: 2px;\n        left: 50%;\n        position: absolute;\n        transform: translateX(-50%);\n        width: 160px;\n}\n.works__desc .works__lead {\n        color: #fff;\n        font-size: 14px;\n        font-size: 1.4rem;\n        letter-spacing: 0.02em;\n        line-height: 1.42857;\n        margin: 0;\n        max-width: 100%;\n        width: 100%;\n}\n.works__desc .works__view a {\n        border: solid 1px #fff;\n        color: #fff;\n        margin: 10px 10px 0 0;\n        padding: 13px 0;\n        width: 113px;\n}\n.works__desc .works__view a:after {\n          content: none;\n}\n.works__desc .works__view a:hover {\n          color: #fff;\n}\n.works__desc .works__view a.works__github {\n          padding: 7px 0;\n}\n.works__desc .using {\n        margin: 20px 0 0;\n        max-width: inherit;\n        width: 100%;\n}\n.works__desc .using__list {\n          background: #fff;\n          color: #3c3c3c;\n}\n}\n@media (max-width: 740px) {\n.works__desc {\n      margin: -100px 0 0;\n      width: 85%;\n}\n}\n@media (max-width: 550px) {\n.works__desc {\n      margin: -55px 0 0;\n      padding: 20px;\n      width: 90%;\n}\n}\n.works__details--right {\n    margin: 47vh 0 0;\n    padding: 0 0 0 45vw;\n    transition: all 0.4s ease 0s;\n}\n.works__details--right.anotherWorks {\n      margin: 52vh 0 0;\n}\n@media (max-width: 1024px) {\n.works__details--right.anotherWorks {\n          margin: 58vh 0 0;\n}\n}\n@media (max-height: 800px) {\n.works__details--right.anotherWorks {\n          margin: 51vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.works__details--right.anotherWorks {\n          margin: 50vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.works__details--right.anotherWorks {\n          margin: 47vh 0 0;\n}\n}\n@media (max-height: 550px) {\n.works__details--right.anotherWorks {\n          margin: 40vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks {\n          margin: 0;\n}\n}\n@media (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-height: 800px) and (max-width: 1200px) {\n.works__details--right {\n        margin: 48vh 0 0;\n}\n}\n@media (max-width: 1024px) {\n.works__details--right {\n        margin: 55vh 0 0;\n        padding: 0 0 0 40vw;\n}\n}\n@media (max-height: 800px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 700px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-height: 700px) and (max-width: 1024px) {\n.works__details--right {\n        margin: 49vh 0 0;\n}\n}\n@media (max-height: 650px) {\n.works__details--right {\n        margin: 44vh 0 0;\n}\n}\n@media (max-height: 600px) {\n.works__details--right {\n        margin: 46vh 0 0;\n}\n}\n@media (max-width: 900px) {\n.works__details--right {\n        margin: 0;\n        padding: 0;\n        position: relative;\n}\n.works__details--right:before {\n          color: #3c3c3c;\n          content: \"design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 112px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:before {\n        top: 62px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right:after {\n          color: #3c3c3c;\n          content: \"YelpCamp\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          left: 5%;\n          line-height: 1;\n          position: absolute;\n          text-transform: uppercase;\n          top: 130px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right:after {\n        top: 80px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__ttl {\n          background: url(/dist/img/camping.jpg) no-repeat left center;\n          background-size: 120%;\n          margin: 45px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .works__ttl {\n        margin: 20px 0 0 12.7604166666%;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__caption {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 110px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__caption {\n        top: 60px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .works__hd {\n          color: #fff;\n          left: -9%;\n          position: absolute;\n          top: 125px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--right .works__hd {\n        top: 75px;\n}\n}\n@media (max-width: 900px) {\n.works__details--right.anotherWorks:before, .works__details--right.anotherWorks:after {\n          content: none;\n}\n.works__details--right .anotherWorks__ttl {\n          background: none;\n          height: inherit;\n          margin: 95px 0 0;\n          padding: 0;\n          width: 100%;\n}\n.works__details--right .anotherWorks__hd {\n          color: #3c3c3c;\n          font-size: 30px;\n          font-size: 3rem;\n          font-weight: 300;\n          line-height: 1;\n          margin: 0 0 25px;\n          max-width: 100%;\n          position: static;\n          text-align: center;\n          width: 100%;\n}\n.works__details--right .anotherWorks__desc {\n          background: none;\n          margin: 0 auto;\n          max-width: 670px;\n          padding: 0;\n          text-align: center;\n          width: 95%;\n}\n}\n@media (max-width: 900px) and (max-width: 740px) {\n.works__details--right .anotherWorks__desc {\n        width: 85%;\n}\n}\n@media (max-width: 900px) {\n.works__details--right .anotherWorks__desc:after {\n            content: none;\n}\n.works__details--right .anotherWorks__desc .works__lead {\n            color: #3c3c3c;\n            font-size: 16px;\n            font-size: 1.6rem;\n            font-weight: 300;\n            line-height: 1.625;\n            text-align: center;\n}\n}\n@media (max-width: 900px) and (max-width: 900px) {\n.works__details--right .anotherWorks__view {\n      text-align: center;\n}\n}\n.works__details--left {\n    margin: 10vh 0 0;\n    padding: 0 0 0 8vw;\n    transition: all 0.4s ease 0s;\n}\n@media (max-width: 900px) {\n.works__details--left {\n        margin: 100px 0 0;\n        padding: 0;\n        position: relative;\n        text-align: right;\n}\n.works__details--left:before {\n          color: #3c3c3c;\n          content: \"design / logo design / coding\";\n          font-size: 16px;\n          font-size: 1.6rem;\n          right: 0%;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 112px;\n          width: 317px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:before {\n        top: 62px;\n        width: 293px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left:after {\n          color: #3c3c3c;\n          content: \"personal blog\";\n          font-size: 36px;\n          font-size: 3.6rem;\n          font-weight: 700;\n          right: 0;\n          line-height: 1;\n          position: absolute;\n          text-align: left;\n          text-transform: uppercase;\n          top: 130px;\n          width: 320px;\n          z-index: -2;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left:after {\n        width: 295px;\n        top: 80px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__ttl {\n          background: url(/dist/img/blogImage.jpg) no-repeat left bottom;\n          background-size: 100%;\n          margin: 45px 12.7604166666% 0 0;\n          text-align: left;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__ttl {\n        background-size: cover;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__caption {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 110px;\n          width: 320px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__caption {\n        top: 60px;\n        width: 295px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__hd {\n          color: #fff;\n          right: -15%;\n          position: absolute;\n          top: 125px;\n          width: 322px;\n}\n}\n@media (max-width: 900px) and (max-width: 550px) {\n.works__details--left .works__hd {\n        top: 75px;\n        width: 296px;\n}\n}\n@media (max-width: 900px) {\n.works__details--left .works__desc {\n          display: inline-block;\n          text-align: left;\n}\n}\n.works.right-to-left:after {\n    transform: matrix(1, 0, -0.8, 1, 0, 0) translateX(-30%);\n    transition: all 0.3s ease 0s;\n    width: 200vw;\n}\n.works.right-to-left .works__details--right {\n    transition: all 0.3s ease 0s;\n}\n.works.right-to-left .works__details--left {\n    transition: all 0.3s ease 0s;\n}\n.using {\n  display: flex;\n  flex-wrap: wrap;\n  max-width: 650px;\n  opacity: 0;\n  position: relative;\n  transform: translateY(20px);\n  transition: all 0.4s ease 0s;\n  width: 85%;\n  z-index: 2;\n}\n@media (max-width: 1200px) {\n.using {\n      max-width: 470px;\n}\n}\n.using__list {\n    background: #3c3c3c;\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    font-weight: bold;\n    letter-spacing: 0.04em;\n    margin: 0 10px 10px 0;\n    padding: 7px 10px;\n}\n@media (max-height: 600px), (max-width: 1024px) {\n.using__list {\n        font-size: 10px;\n        font-size: 1rem;\n        padding: 5px 7px;\n}\n}\n.works--right .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px), (max-width: 1024px) {\n.works--right .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--right .using {\n      margin: 20px 0 0;\n}\n}\n.works--left .using {\n  margin: 20px 0 0;\n}\n@media (max-height: 620px) {\n.works--left .using {\n      margin: 10px 0 0;\n}\n}\n@media (max-width: 900px) {\n.works--left .using {\n      margin: 20px 0 0;\n}\n}\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.2s;\n}\n@media (max-width: 740px) {\n.active-works .works__caption, .active-works .works__hd, .active-works .works__lead, .active-works .works__view {\n      transition: none;\n}\n}\n.active-works .works__hd {\n  transition: all 0.4s ease 0.4s;\n}\n@media (max-width: 740px) {\n.active-works .works__hd {\n      transition: none;\n}\n}\n.active-works .works__lead {\n  transition: all 0.4s ease 0.6s;\n}\n@media (max-width: 740px) {\n.active-works .works__lead {\n      transition: none;\n}\n}\n.active-works .works__view {\n  transition: opacity 0.4s ease 1s, transform 0.4s ease 1s;\n}\n@media (max-width: 740px) {\n.active-works .works__view {\n      transition: none;\n}\n}\n.active-works .using {\n  opacity: 1;\n  transform: translateY(0px);\n  transition: all 0.4s ease 0.8s;\n}\n@media (max-width: 740px) {\n.active-works .using {\n      transition: none;\n}\n}\n.imgPreload {\n  display: inline;\n  height: 0;\n  left: -10px;\n  opacity: 0;\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  width: 0;\n}\n", ""]);
 
 // exports
 
@@ -11133,13 +11172,27 @@ exports = module.exports = __webpack_require__(1)(undefined);
 
 
 // module
-exports.push([module.i, "\n@media (max-width: 1480px) {\n.works__hd--ballet {\n    font-size: 46px;\n    font-size: 4.6rem;\n}\n}\n@media (max-width: 1200px) {\n.works__hd--ballet {\n    font-size: 39px;\n    font-size: 3.9rem;\n}\n}\n", ""]);
+exports.push([module.i, "\n.footer {\n  background: #3c3c3c;\n  padding: 20px 0;\n  text-align: center;\n}\n.footer__logo {\n    display: inline-block;\n    margin: 0 0 10px;\n}\n.footer__copy {\n    color: #fff;\n    font-size: 12px;\n    font-size: 1.2rem;\n    letter-spacing: 0.02em;\n    line-height: 1;\n}\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n@media (max-width: 1480px) {\n.works__hd--ballet {\n    font-size: 46px;\n    font-size: 4.6rem;\n}\n}\n@media (max-width: 1200px) {\n.works__hd--ballet {\n    font-size: 39px;\n    font-size: 3.9rem;\n}\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*! Hammer.JS - v2.0.7 - 2016-04-22
@@ -13789,7 +13842,7 @@ if (true) {
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports) {
 
 /*!
@@ -13816,7 +13869,7 @@ function isSlowBuffer (obj) {
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -14006,7 +14059,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports) {
 
 /*
@@ -14258,19 +14311,19 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(114)
+  __webpack_require__(117)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(34),
   /* template */
-  __webpack_require__(99),
+  __webpack_require__(102),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14302,19 +14355,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(105)
+  __webpack_require__(108)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(35),
   /* template */
-  __webpack_require__(90),
+  __webpack_require__(92),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14346,19 +14399,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(104)
+  __webpack_require__(107)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(36),
   /* template */
-  __webpack_require__(89),
+  __webpack_require__(91),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14390,7 +14443,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -14398,7 +14451,7 @@ var Component = __webpack_require__(0)(
   /* script */
   null,
   /* template */
-  __webpack_require__(86),
+  __webpack_require__(88),
   /* styles */
   null,
   /* scopeId */
@@ -14430,19 +14483,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(110)
+  __webpack_require__(113)
 }
 var Component = __webpack_require__(0)(
   /* script */
   __webpack_require__(38),
   /* template */
-  __webpack_require__(95),
+  __webpack_require__(97),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14474,19 +14527,59 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 74 */
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(0)(
+  /* script */
+  __webpack_require__(39),
+  /* template */
+  __webpack_require__(101),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/blogListItem.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] blogListItem.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-905f97d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-905f97d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(103)
+  __webpack_require__(106)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(39),
+  __webpack_require__(40),
   /* template */
-  __webpack_require__(88),
+  __webpack_require__(90),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14518,19 +14611,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(108)
+  __webpack_require__(111)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(40),
+  __webpack_require__(41),
   /* template */
-  __webpack_require__(93),
+  __webpack_require__(95),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14562,19 +14655,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(101)
+  __webpack_require__(104)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(41),
+  __webpack_require__(42),
   /* template */
-  __webpack_require__(84),
+  __webpack_require__(86),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14606,19 +14699,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(107)
+  __webpack_require__(110)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(42),
+  __webpack_require__(43),
   /* template */
-  __webpack_require__(92),
+  __webpack_require__(94),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14650,19 +14743,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(106)
+  __webpack_require__(109)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(43),
+  __webpack_require__(44),
   /* template */
-  __webpack_require__(91),
+  __webpack_require__(93),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14694,19 +14787,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(112)
+  __webpack_require__(115)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(44),
+  __webpack_require__(45),
   /* template */
-  __webpack_require__(97),
+  __webpack_require__(99),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14738,19 +14831,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(109)
+  __webpack_require__(112)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(45),
+  __webpack_require__(46),
   /* template */
-  __webpack_require__(94),
+  __webpack_require__(96),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14782,19 +14875,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(113)
+  __webpack_require__(116)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(46),
+  __webpack_require__(47),
   /* template */
-  __webpack_require__(98),
+  __webpack_require__(100),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14826,7 +14919,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -14834,7 +14927,7 @@ var Component = __webpack_require__(0)(
   /* script */
   null,
   /* template */
-  __webpack_require__(87),
+  __webpack_require__(89),
   /* styles */
   null,
   /* scopeId */
@@ -14866,19 +14959,19 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(102)
+  __webpack_require__(105)
 }
 var Component = __webpack_require__(0)(
   /* script */
-  __webpack_require__(47),
+  __webpack_require__(48),
   /* template */
-  __webpack_require__(85),
+  __webpack_require__(87),
   /* styles */
   injectStyle,
   /* scopeId */
@@ -14910,7 +15003,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -14952,7 +15045,7 @@ if (false) {
 }
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15117,7 +15210,7 @@ if (false) {
 }
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15133,7 +15226,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "works__desc anotherWorks__desc"
   }, [_c('p', {
     staticClass: "works__lead anotherWorks__lead"
-  }, [_vm._v("I have 4 years experience in the field at a Japanese company. I've coded many websites' including responsive web design, but unfortunately I can't publish those websites in this portfolio. If you want to know what I coded, please ask me via contact form or when we meet in the interview, I'll talk about them at that time.")])])])
+  }, [_vm._v("I have 4 years experience in the field at a Japanese company. I've coded many websites' including responsive web design, but unfortunately I can't publish those websites in this portfolio. If you want to know what I coded, please ask me via contact form or when we meet in the interview, I'll talk about them at that time."), _c('br'), _vm._v("Also I'm releasing my some projects and code on Github other than projects showing on this portfolio. Please take a look them.")])]), _vm._v(" "), _c('div', {
+    staticClass: "works__view anotherWorks__view"
+  }, [_c('a', {
+    staticClass: "works__github",
+    attrs: {
+      "href": "https://github.com/Masayuki-Suzuki?tab=repositories",
+      "target": "_blank"
+    }
+  }, [_vm._v("github")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -15144,7 +15245,7 @@ if (false) {
 }
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15204,7 +15305,7 @@ if (false) {
 }
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15302,7 +15403,7 @@ if (false) {
 }
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15332,92 +15433,99 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('h2', [_vm._v("What I can ?")]), _vm._v(" "), _c('div', {
     staticClass: "what-i__images"
   }, [_c('img', {
+    staticClass: "ico-js",
     attrs: {
       "src": "/dist/img/js.svg",
-      "alt": ""
+      "alt": "Javascript"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-html",
     attrs: {
       "src": "/dist/img/html5.svg",
-      "alt": ""
+      "alt": "html5"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-css",
     attrs: {
       "src": "/dist/img/css3.svg",
-      "alt": ""
+      "alt": "css3"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-react",
     attrs: {
-      "src": "/dist/img/node.svg",
-      "alt": ""
+      "src": "/dist/img/react.svg",
+      "alt": "react.js"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-vue",
     attrs: {
       "src": "/dist/img/vue.svg",
-      "alt": ""
+      "alt": "vue.js"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-wp",
     attrs: {
       "src": "/dist/img/wordpress.svg",
-      "alt": ""
+      "alt": "wordpress"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-node",
+    attrs: {
+      "src": "/dist/img/node.svg",
+      "alt": "node.js"
+    }
+  }), _vm._v(" "), _c('img', {
+    staticClass: "ico-mongo",
     attrs: {
       "src": "/dist/img/mongodb.svg",
-      "alt": ""
+      "alt": "mongodb"
     }
   }), _vm._v(" "), _c('img', {
+    staticClass: "ico-jq",
     attrs: {
       "src": "/dist/img/jquery.svg",
-      "alt": ""
+      "alt": "jquery"
     }
   })]), _vm._v(" "), _c('p', {
     staticClass: "what-i__another"
-  }, [_vm._v("Express / Bootstrap / Semantic UI / JSON / AJAX "), _c('span', [_vm._v("PHP / SQL / C & C++ / C# / ASP.NET")])])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Express / Bootstrap / JSON / AJAX / PHP / SQL"), _c('span')])]), _vm._v(" "), _c('div', {
     staticClass: "what-i what-i-use"
   }, [_c('h2', [_vm._v("What I use ?")]), _vm._v(" "), _c('div', {
     staticClass: "what-i__images"
   }, [_c('img', {
     attrs: {
-      "src": "/dist/img/sass.svg",
-      "alt": ""
+      "src": "/dist/img/sass.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/gulp.svg",
-      "alt": ""
+      "src": "/dist/img/gulp.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/webpack.svg",
-      "alt": ""
+      "src": "/dist/img/webpack.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/git.svg",
-      "alt": ""
+      "src": "/dist/img/git.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/github.svg",
-      "alt": ""
+      "src": "/dist/img/github.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/photoshop.svg",
-      "alt": ""
+      "src": "/dist/img/photoshop.svg"
+    }
+  }), _vm._v(" "), _c('img', {
+    staticClass: "ico-ejs",
+    attrs: {
+      "src": "/dist/img/ejs.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/ejs.svg",
-      "alt": ""
+      "src": "/dist/img/sketch.svg"
     }
-  }), _vm._v(" "), _c('img', {
-    attrs: {
-      "src": "/dist/img/sketch.svg",
-      "alt": ""
-    }
-  })]), _vm._v(" "), _c('p', [_vm._v("BEM / OOCSS / SMACSS / RESTful / illustrator")])])])
+  })]), _vm._v(" "), _c('p', [_vm._v("BEM / OOCSS / RESTful / illustrator")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -15428,7 +15536,7 @@ if (false) {
 }
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15464,7 +15572,7 @@ if (false) {
 }
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15566,7 +15674,7 @@ if (false) {
 }
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15614,7 +15722,7 @@ if (false) {
 }
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15681,7 +15789,7 @@ if (false) {
 }
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15690,7 +15798,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', {
     staticClass: "works__details works__details--left"
   }, [_c('div', {
-    staticClass: "works__ttl"
+    staticClass: "works__ttl anon"
   }, [_c('p', {
     staticClass: "works__caption"
   }, [_vm._v("design / logo design / coding")]), _vm._v(" "), _c('h1', {
@@ -15741,7 +15849,7 @@ if (false) {
 }
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15752,7 +15860,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_c('h1', {
     staticClass: "common__hd blogs__hd"
-  }, [_vm._v("Blogs")]), _vm._v(" "), _vm._m(0), _vm._v(" "), _vm._m(1), _vm._v(" "), _c('p', [_vm._v(_vm._s(_vm.blogPostData))]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Blogs")]), _vm._v(" "), _c('div', {
+    staticClass: "blogs__container"
+  }, [_vm._l((3), function(n) {
+    return [_c('blog-list-item', {
+      attrs: {
+        "num": n
+      }
+    })]
+  })], 2), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('div', {
     staticClass: "scrollNav"
   }, [_c('span', {
     attrs: {
@@ -15765,75 +15881,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "blogs__container"
-  }, [_c('div', {
-    staticClass: "blogs__list"
-  }, [_c('div', {
-    staticClass: "blogs__thumbnail"
-  }, [_c('img', {
-    attrs: {
-      "src": "/dist/img/blog/aa.jpg",
-      "alt": "Angular Academy"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "blogs__desc"
-  }, [_c('time', [_vm._v("August / 19 / 2017 - Javascript")]), _vm._v(" "), _c('h2', {
-    staticClass: "title"
-  }, [_vm._v("the Angular Academy in Vancouver Report")]), _vm._v(" "), _c('p', {
-    staticClass: "summary"
-  }, [_vm._v("I participated Angular Academy which is Angular’s workshop held over two days on 13th and 14th July.")]), _vm._v(" "), _c('div', {
-    staticClass: "viewPost"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://anon.one/javascript/the-angular-academy-in-vancouver-report/",
-      "target": "_blank"
-    }
-  }, [_vm._v("Read the post")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "blogs__list blogs__list--right"
-  }, [_c('div', {
-    staticClass: "blogs__thumbnail"
-  }, [_c('img', {
-    attrs: {
-      "src": "/dist/img/blog/seashore.jpg",
-      "alt": "seashore"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "blogs__desc"
-  }, [_c('time', [_vm._v("July / 31 / 2017 - Life")]), _vm._v(" "), _c('h2', {
-    staticClass: "title"
-  }, [_vm._v("Why I started the medium.")]), _vm._v(" "), _c('p', {
-    staticClass: "summary"
-  }, [_vm._v("Hi there!! I’m Masa, Masayuki Suzuki and a front-end developer based in Vancouver, Canada. I wa...")]), _vm._v(" "), _c('div', {
-    staticClass: "viewPost"
-  }, [_c('a', {
-    attrs: {
-      "href": "https://anon.one/life/why-i-started-this-blog/",
-      "target": "_blank"
-    }
-  }, [_vm._v("Read the post")])])])]), _vm._v(" "), _c('div', {
-    staticClass: "blogs__list"
-  }, [_c('div', {
-    staticClass: "blogs__thumbnail"
-  }, [_c('img', {
-    attrs: {
-      "src": "/dist/img/dummy1.jpg",
-      "alt": "dummy"
-    }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "blogs__desc"
-  }, [_c('time', [_vm._v("coming soon")]), _vm._v(" "), _c('h2', {
-    staticClass: "title"
-  }, [_vm._v("Coming Soon.")]), _vm._v(" "), _c('p', {
-    staticClass: "summary"
-  }, [_vm._v("I'll write new post soon!!")]), _vm._v(" "), _c('div', {
-    staticClass: "viewPost"
-  }, [_c('a', {
-    attrs: {
-      "href": "/"
-    }
-  }, [_vm._v("Read the post")])])])])])
-},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "more"
   }, [_c('a', {
@@ -15852,7 +15899,7 @@ if (false) {
 }
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15869,7 +15916,7 @@ if (false) {
 }
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -15922,7 +15969,7 @@ if (false) {
 }
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16000,7 +16047,47 @@ if (false) {
 }
 
 /***/ }),
-/* 99 */
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "blogs__list",
+    class: {
+      'blogs__list--right': ((_vm.num % 2) == 0) ? true: false
+    }
+  }, [_c('div', {
+    staticClass: "blogs__thumbnail"
+  }, [_c('img', {
+    attrs: {
+      "src": _vm.sharedState.blogImages[_vm.num - 1],
+      "alt": _vm.sharedState.blogTitles[_vm.num - 1]
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "blogs__desc"
+  }, [_c('time', [_vm._v(_vm._s(_vm.sharedState.blogDates[_vm.num - 1].month) + " / " + _vm._s(_vm.sharedState.blogDates[_vm.num - 1].day) + " / " + _vm._s(_vm.sharedState.blogDates[_vm.num - 1].year) + " - " + _vm._s(_vm.sharedState.blogCategories[_vm.num - 1]))]), _vm._v(" "), _c('h2', {
+    staticClass: "title"
+  }, [_vm._v(_vm._s(_vm.sharedState.blogTitles[_vm.num - 1]))]), _vm._v(" "), _c('p', {
+    staticClass: "summary"
+  }, [_vm._v(_vm._s(_vm.sharedState.blogContents[_vm.num - 1]))]), _vm._v(" "), _c('div', {
+    staticClass: "viewPost"
+  }, [_c('a', {
+    attrs: {
+      "href": _vm.sharedState.blogURLs[_vm.num - 1],
+      "target": "_blank"
+    }
+  }, [_vm._v("Read the post")])])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-905f97d2", module.exports)
+  }
+}
+
+/***/ }),
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16039,7 +16126,7 @@ if (false) {
 }
 
 /***/ }),
-/* 100 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -16085,13 +16172,13 @@ if (false) {
 }
 
 /***/ }),
-/* 101 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(50);
+var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16111,13 +16198,13 @@ if(false) {
 }
 
 /***/ }),
-/* 102 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(51);
+var content = __webpack_require__(52);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16137,13 +16224,13 @@ if(false) {
 }
 
 /***/ }),
-/* 103 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(52);
+var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16163,13 +16250,13 @@ if(false) {
 }
 
 /***/ }),
-/* 104 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(53);
+var content = __webpack_require__(54);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16189,13 +16276,13 @@ if(false) {
 }
 
 /***/ }),
-/* 105 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(54);
+var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16215,13 +16302,13 @@ if(false) {
 }
 
 /***/ }),
-/* 106 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(55);
+var content = __webpack_require__(56);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16241,13 +16328,13 @@ if(false) {
 }
 
 /***/ }),
-/* 107 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(56);
+var content = __webpack_require__(57);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16267,13 +16354,13 @@ if(false) {
 }
 
 /***/ }),
-/* 108 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(57);
+var content = __webpack_require__(58);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16293,13 +16380,13 @@ if(false) {
 }
 
 /***/ }),
-/* 109 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(58);
+var content = __webpack_require__(59);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16319,13 +16406,13 @@ if(false) {
 }
 
 /***/ }),
-/* 110 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(59);
+var content = __webpack_require__(60);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16345,13 +16432,13 @@ if(false) {
 }
 
 /***/ }),
-/* 111 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(60);
+var content = __webpack_require__(61);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16371,13 +16458,13 @@ if(false) {
 }
 
 /***/ }),
-/* 112 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(61);
+var content = __webpack_require__(62);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16397,13 +16484,13 @@ if(false) {
 }
 
 /***/ }),
-/* 113 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(62);
+var content = __webpack_require__(63);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16423,13 +16510,13 @@ if(false) {
 }
 
 /***/ }),
-/* 114 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(63);
+var content = __webpack_require__(64);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16449,13 +16536,13 @@ if(false) {
 }
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(64);
+var content = __webpack_require__(65);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
@@ -16475,7 +16562,7 @@ if(false) {
 }
 
 /***/ }),
-/* 116 */
+/* 119 */
 /***/ (function(module, exports) {
 
 /**
@@ -16508,11 +16595,11 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 117 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function (global, factory) {
-   true ? factory(__webpack_require__(65)) :
+   true ? factory(__webpack_require__(66)) :
   typeof define === 'function' && define.amd ? define(['hammerjs'], factory) :
   (factory(global.Hammer));
 }(this, (function (Hammer) { 'use strict';
@@ -16779,7 +16866,7 @@ if (true) {
 
 
 /***/ }),
-/* 118 */
+/* 121 */
 /***/ (function(module, exports) {
 
 var g;

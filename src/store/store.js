@@ -32,11 +32,13 @@ let store = {
     showBlog: false,
     showContact: false,
     URL: "https://anon.one/wp-json/wp/v2/posts?per_page=3&_embed",
-    blogPostData: [],
     blogTitles: [],
-    blogDates: [],
-    blogImage: [],
-    blogURL: []
+    blogDates: [{month:null},{year:null},{day:null}],
+    blogImages: [],
+    blogURLs: [],
+    blogCategories: [],
+    blogContents: [],
+    months:['January','February','March','April','May','June','July','August','September','October','November','December']
   },
   setIsColor(){
     if(this.state.location > 1){
@@ -97,7 +99,7 @@ let store = {
       case 2:
         // Works ( Yelp Camp )
         if(direction){
-          this.state.isColorClass = false;
+          this.state.isColorClass = true;
           setTimeout( () => {
             this.state.position++;
             this.state.location++;
@@ -162,7 +164,7 @@ let store = {
             this.state.worksB = true;
           }, 500);
         } else {
-          this.state.isColorClass = false;
+          this.state.isColorClass = true;
           setTimeout(() => {
             this.state.position--;
             this.state.location--;
@@ -347,7 +349,6 @@ let store = {
         if(this.state.location !== 8){
           history.replaceState('','','/blogs');
           this.setLocation(7 , false);
-          this.getPostData();
         }
         break;
       case 9:
@@ -493,21 +494,44 @@ let store = {
     }
   },
   getPostData(){
-    axios.get(store.state.URL)
+    axios.get(this.state.URL)
       .then((res) =>{
-        store.state.blogPostData = res.data;
-      });
-    for(var i = 0, len = this.state.blogPostData.length; i < len; i++){
-      //Image
-      this.state.blogImage.push(this.state.blogPostData[i]._embedded["wp:featuredmedia"][0].source_url);
-      //
-      // this.state.blogDates.push(this.state.blogPostData[i].)
-      //Title
-      this.state.blogTitles.push(this.state.blogPostData[i].title.rendered);
+        this.state.blogTitles = [];
+        this.state.blogDates = [];
+        this.state.blogImages = [];
+        this.state.blogURLs = [];
+        this.state.blogCategories = [];
+        this.state.blogContents = [];
+        for(let i = 0, len = res.data.length; i < len; i++){
+          const bData = res.data[i],
+                state = this.state;
+          let tempTitle = (bData.title.rendered.slice(0,45));
+          if(tempTitle.slice(-1) != '.' && tempTitle.slice(-1) != '?'){
+            tempTitle += '...';
+          }
+          state.blogTitles.push(tempTitle);
+          state.blogURLs.push(bData.link);
+          state.blogImages.push(bData["_embedded"]["wp:featuredmedia"][0]["source_url"]);
+          state.blogCategories.push(bData["_embedded"]["wp:term"][0][0]["name"]);
 
-    }
-    console.log(this.state.blogPostData);
-    return store.state.blogPostData;
+          // Transform to Date Obj
+          let datesObj ={},
+              tempDate = new Date(bData.date);
+          datesObj.year = tempDate.getFullYear();
+          datesObj.month = this.state.months[tempDate.getMonth()];
+          datesObj.day = tempDate.getDate();
+          state.blogDates.push(datesObj);
+
+          // Transform to 100 characters string.
+          let contentData;
+          contentData = (bData.excerpt.rendered.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g,'').slice(0,110));
+          if(contentData.slice(-1) !== '.' || contentData.slice(-1) !== '?'){
+            contentData += '...';
+          }
+          state.blogContents.push(contentData);
+        }// end for
+
+      });
   }
 }
 

@@ -1,51 +1,14 @@
-<template lang="ejs">
+<template>
   <section class="blogs" :class="{'blog-active': pageController()}">
     <h1 class="common__hd blogs__hd">Blogs</h1>
     <div class="blogs__container">
-      <div class="blogs__list">
-        <div class="blogs__thumbnail">
-          <img src="/dist/img/blog/aa.jpg" alt="Angular Academy">
-        </div>
-        <div class="blogs__desc">
-          <time>August / 19 / 2017 - Javascript</time>
-          <h2 class="title">the Angular Academy in Vancouver Report</h2>
-          <p class="summary">I participated Angular Academy which is Angular’s workshop held over two days on 13th and 14th July.</p>
-          <div class="viewPost">
-            <a href="https://anon.one/javascript/the-angular-academy-in-vancouver-report/" target="_blank">Read the post</a>
-          </div>
-        </div>
-      </div>
-      <div class="blogs__list blogs__list--right">
-        <div class="blogs__thumbnail">
-          <img src="/dist/img/blog/seashore.jpg" alt="seashore">
-        </div>
-        <div class="blogs__desc">
-          <time>July / 31 / 2017 - Life</time>
-          <h2 class="title">Why I started the medium.</h2>
-          <p class="summary">Hi there!! I’m Masa, Masayuki Suzuki and a front-end developer based in Vancouver, Canada. I wa...</p>
-          <div class="viewPost">
-            <a href="https://anon.one/life/why-i-started-this-blog/" target="_blank">Read the post</a>
-          </div>
-        </div>
-      </div>
-      <div class="blogs__list">
-        <div class="blogs__thumbnail">
-          <img src="/dist/img/dummy1.jpg" alt="dummy">
-        </div>
-        <div class="blogs__desc">
-          <time>coming soon</time>
-          <h2 class="title">Coming Soon.</h2>
-          <p class="summary">I'll write new post soon!!</p>
-          <div class="viewPost">
-            <a href="/">Read the post</a>
-          </div>
-        </div>
-      </div>
+      <template v-for=" n in 3">
+        <blog-list-item :num="n"></blog-list-item>
+      </template>
     </div>
     <div class="more">
       <a href="https://medium.com/@masayuki.s" target="_blank">read more post</a>
     </div>
-    <p>{{ blogPostData }}</p>
     <div class="scrollNav">
       <span @click="paginationClick(9)" href=""></span>
     </div>
@@ -55,15 +18,19 @@
 <script>
   import Vue from 'vue';
   import store from '../../store/store';
+  import blogListItem from './blogListItem.vue';
+
+  Vue.component('blog-list-item', blogListItem);
 
   export default {
     data: function () {
       return {
-        blogPostData: []
       }
     },
     created(){
-      this.blogPostData = store.getPostData();
+      setTimeout( () => {
+        this.sharedState = store.state;
+      }, 0);
     },
     methods: {
       pageController(){
@@ -106,12 +73,9 @@
       @media (max-height: 850px){
         margin: 4% 0 0;
       }
-      @media (max-height: 800px){
-        margin: 3% 0 0;
-      }
       @media (max-height: 750px){
         @include rem(55);
-        margin: 2% 0 0;
+        margin: 2.5% 0 0;
       }
       @media (max-height: 700px){
         @include rem(45);
@@ -138,13 +102,10 @@
       position: relative;
       width: 80%;
       @media (max-height: 800px){
-        margin: 2% auto;
+        margin: 1% auto;
       }
       @media (max-height: 700px){
         width: 85%;
-      }
-      @media (max-height: 650px){
-        margin: 1% auto;
       }
       @media (max-width: 900px){
         flex-direction: column;
@@ -223,7 +184,7 @@
         @include rem(12);
         font-weight: 500;
         letter-spacing: 0.04em;
-        padding: 20px 25px 0;
+        padding: 20px 10px 0;
         text-align: center;
         text-transform: uppercase;
         width: 100%;
@@ -288,6 +249,7 @@
       color: $main-text-color;
       @include rem(24);
       font-weight: 500;
+      hyphens: auto;
       letter-spacing: 0.02em;
       margin: 5px 0 10px;
       padding: 0 20px;
