@@ -19,7 +19,7 @@
     </div>
     <div class="imgPreload">
       <img src="/dist/img/ballet_bg.jpg" alt="">
-      <img src="/dist/img/blog_thumbnail.png" alt="">
+      <img src="/dist/img/blogImage.jpg" alt="">
       <img src="/dist/img/tokyo.jpg" alt="">
     </div>
   </section>

@@ -16028,7 +16028,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
-      "src": "/dist/img/blog_thumbnail.png",
+      "src": "/dist/img/blogImage.jpg",
       "alt": ""
     }
   }), _vm._v(" "), _c('img', {
