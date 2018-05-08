@@ -19,7 +19,7 @@
     </div>
     <div class="imgPreload">
       <img src="/dist/img/ballet_bg.jpg" alt="">
-      <img src="/dist/img/blog_thumbnail.png" alt="">
+      <img src="/dist/img/blogImage.jpg" alt="">
       <img src="/dist/img/tokyo.jpg" alt="">
     </div>
   </section>
@@ -92,7 +92,7 @@
     }
   }
   .works2 {
-    background: url(/dist/img/blog_thumbnail.png) no-repeat 18vw 4vh;
+    background: url(/dist/img/blogImage.jpg) no-repeat 20vw 0vh;
     @media (max-width: 900px){
       background: none;
     }
@@ -380,9 +380,21 @@
         //  margin: 47vh 0 0;
         //}
         &.anotherWorks {
-          margin: 55vh 0 0;
-          @media (max-height: 800px) and (max-width: 1200px) {
-            margin: 54vh 0 0;
+          margin: 52vh 0 0;
+          @media (max-width: 1024px){
+            margin: 58vh 0 0;
+          }
+          @media (max-height: 800px){
+            margin: 51vh 0 0;
+          }
+          @media (max-height: 700px){
+            margin: 50vh 0 0;
+          }
+          @media (max-height: 600px){
+            margin: 47vh 0 0;
+          }
+          @media (max-height: 550px){
+            margin: 40vh 0 0;
           }
           @media (max-width: 900px){
             margin: 0;
@@ -525,6 +537,11 @@
                 }
               }
             }
+            &__view{
+              @media (max-width: 900px){
+                text-align: center;
+              }
+            }
           }
         }
       }
@@ -557,7 +574,7 @@
           }
           &:after{
             color: $main-color;
-            content:"portfolio site";
+            content:"personal blog";
             @include rem(36);
             font-weight: 700;
             right: 0;
@@ -565,18 +582,18 @@
             position: absolute;
             text-align: left;
             text-transform: uppercase;
-            top: 131px;
+            top: 130px;
             width: 320px;
             z-index: -2;
             @media (max-width: 550px){
-              width: 296px;
-              top: 81px;
+              width: 295px;
+              top: 80px;
             }
           }
           .works{
             &__ttl{
-              background: url(/dist/img/topBg.jpg) no-repeat left center;
-              background-size: 105%;
+              background: url(/dist/img/blogImage.jpg) no-repeat left bottom;
+              background-size: 100%;
               margin: 45px 12.7604166666% 0 0;
               text-align: left;
               @media (max-width: 550px){

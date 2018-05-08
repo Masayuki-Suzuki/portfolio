@@ -11,6 +11,8 @@ See actual website : <http://masa.works>
 * CSS
 * SASS / SCSS
 * Javascript (Including ES6)
+* AJAX / JSON - Get blog post data automatically from my personal blog.  
+ [Anonymous Front-end Developer in Vancouver](https://anon.one/)
 * [Vue.js](https://github.com/vuejs/vue) - The Progressive JavaScript Framework
 * [Vue-touch](https://github.com/vuejs/vue-touch) - For a Vue.js plugin for getting touch event.
 * [Node.js](https://github.com/nodejs/node) - A JavaScript runtime built on Chrome's V8 JavaScript engine for a back-end.
@@ -22,7 +24,7 @@ See actual website : <http://masa.works>
 * Webpack
 
 ## Applications I used
-* WebStorm
+* PHPStorm (WebStorm)
 * Sketch
 * Photoshop
 * illustrator
@@ -31,6 +33,7 @@ See actual website : <http://masa.works>
 * Ubuntu 16.04 on VPS.
 * Node.js - Web server.
 * Nginx - For reverse proxy.
+* TLS 1.2
 
 ## Design process
 ### 1. Planing
@@ -72,6 +75,5 @@ OOCSS(<http://oocss.org/>)
 * Refactor javascript code to write DRY, small, readable and effectively.
 * Using svg sprite to decrease http request.
 * Opening load animation.
-* Load blog post using ajax from wordpress.
 * Add Parallax animation when site is touch devices.
 * Learn Vue.js more.

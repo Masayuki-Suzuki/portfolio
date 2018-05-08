@@ -39,6 +39,7 @@
       }
     },
     created: function() {
+      store.getPostData();
       if(document.body.clientWidth > 900){
         window.addEventListener('keydown', this.callKeyEvent);
       } else if(document.body.clientWidth <= 900) {

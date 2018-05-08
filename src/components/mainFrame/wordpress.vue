@@ -1,6 +1,6 @@
 <template>
   <div class="works__details works__details--left">
-    <div class="works__ttl">
+    <div class="works__ttl anon">
       <p class="works__caption">design / logo design / coding</p>
       <h1 class="works__hd">Personal Blog</h1>
     </div>

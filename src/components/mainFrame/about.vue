@@ -6,30 +6,31 @@
       <div class="what-i what-i-can">
         <h2>What I can ?</h2>
         <div class="what-i__images">
-          <img src="/dist/img/js.svg" alt="">
-          <img src="/dist/img/html5.svg" alt="">
-          <img src="/dist/img/css3.svg" alt="">
-          <img src="/dist/img/node.svg" alt="">
-          <img src="/dist/img/vue.svg" alt="">
-          <img src="/dist/img/wordpress.svg" alt="">
-          <img src="/dist/img/mongodb.svg" alt="">
-          <img src="/dist/img/jquery.svg" alt="">
+          <img class="ico-js" src="/dist/img/js.svg" alt="Javascript">
+          <img class="ico-html" src="/dist/img/html5.svg" alt="html5">
+          <img class="ico-css" src="/dist/img/css3.svg" alt="css3">
+          <img class="ico-react" src="/dist/img/react.svg" alt="react.js">
+          <img class="ico-vue" src="/dist/img/vue.svg" alt="vue.js">
+          <img class="ico-wp" src="/dist/img/wordpress.svg" alt="wordpress">
+          <img class="ico-node" src="/dist/img/node.svg" alt="node.js">
+          <img class="ico-mongo" src="/dist/img/mongodb.svg" alt="mongodb">
+          <img class="ico-jq" src="/dist/img/jquery.svg" alt="jquery">
         </div>
-        <p class="what-i__another">Express / Bootstrap / Semantic UI / JSON / AJAX <span>PHP / SQL / C & C++ / C# / ASP.NET</span></p>
+        <p class="what-i__another">Express / Bootstrap / JSON / AJAX / PHP / SQL<span> </span></p>
       </div>
       <div class="what-i what-i-use">
         <h2>What I use ?</h2>
         <div class="what-i__images">
-          <img src="/dist/img/sass.svg" alt="">
-          <img src="/dist/img/gulp.svg" alt="">
-          <img src="/dist/img/webpack.svg" alt="">
-          <img src="/dist/img/git.svg" alt="">
-          <img src="/dist/img/github.svg" alt="">
-          <img src="/dist/img/photoshop.svg" alt="">
-          <img src="/dist/img/ejs.svg" alt="">
-          <img src="/dist/img/sketch.svg" alt="">
+          <img src="/dist/img/sass.svg">
+          <img src="/dist/img/gulp.svg">
+          <img src="/dist/img/webpack.svg">
+          <img src="/dist/img/git.svg">
+          <img src="/dist/img/github.svg">
+          <img src="/dist/img/photoshop.svg">
+          <img class="ico-ejs" src="/dist/img/ejs.svg">
+          <img src="/dist/img/sketch.svg">
         </div>
-        <p>BEM / OOCSS / SMACSS / RESTful / illustrator</p>
+        <p>BEM / OOCSS / RESTful / illustrator</p>
       </div>
     </div>
     <div v-if="!sharedState.isTablet" class="scrollNav">
@@ -176,7 +177,7 @@
       @media (max-width: 900px){
         border: 0;
         margin: 0 auto 60px;
-        max-width: 485px;
+        max-width: 410px;
         padding: 0;
       }
     }
@@ -193,14 +194,14 @@
     &__another{
       line-height: 1.44;
       span{
-        display: block;
-        @media (max-width: 740px){
-          display: inline-block;
+        display: inline-block;
+        &:before{
+          content:" / ";
         }
         @media (max-width: 378px){
           display: inline;
           &:before{
-            content:" / ";
+            content: none;
           }
         }
       }
@@ -244,20 +245,27 @@
         max-width: 400px;
       }
       @media (max-width: 550px){
-        max-width: 300px;
+        max-width: 269px;
       }
       img {
         display: inline-block;
         margin: 0 50px 40px 0;
-        vertical-align: bottom;
+        vertical-align: middle;
         &:nth-of-type(3n){
           margin: 0 0 40px;
+        }
+        &:nth-of-type(n+7){
+          margin: 0 30px 40px 0;
+          @media (max-height: 700px), (max-width: 1024px){
+            margin: 0 15px 25px 0;
+          }
         }
         &:last-of-type{
           margin: 0 0 40px;
         }
         @media (max-height: 700px), (max-width: 1024px){
           margin: 0 20px 25px 0;
+          max-height: 50px;
           &:nth-of-type(3n){
             margin: 0 0 25px;
           }
@@ -267,7 +275,7 @@
         }
         @media (max-height: 600px), (max-width: 1024px),
         (max-height: 750px) and (max-width: 1200px){
-          margin: 0 20px 20px 0;
+          margin: 0 25px 20px 0;
           max-width: 85px;
           max-height: 45px;
           &:nth-of-type(3n){
@@ -301,7 +309,7 @@
         }
         @media (max-width: 550px){
           max-width: inherit;
-          vertical-align: bottom;
+          vertical-align: middle;
           &:nth-of-type(3n){
             margin: 0 0 30px 0;
           }
@@ -310,6 +318,67 @@
           }
           &:last-of-type{
             margin: 0 0 30px;
+          }
+        }
+        &.ico-{
+          &react{
+            width: 60px;
+            @media (max-width: 740px){
+              margin: 0 30px 30px 0;
+            }
+          }
+          &node{
+            width: 70px;
+            @media (max-height: 700px), (max-width: 1024px){
+              width: 60px;
+            }
+            @media (max-width: 900px){
+              margin: 0 0 38px;
+              width: 90px;
+            }
+            @media (max-width: 740px){
+              margin: 0 30px 30px 0;
+            }
+            @media (max-width: 550px){
+              margin: 0 15px 30px 0;
+              width: 70px;
+            }
+          }
+          &mongo{
+            width: 90px;
+            @media (max-height: 700px), (max-width: 1024px){
+              width: 75px;
+            }
+            @media (max-width: 900px){
+              margin: 0 40px 38px 0;
+              width: 110px;
+            }
+            @media (max-width: 740px){
+              margin: 0 30px 30px 0;
+            }
+            @media (max-width: 550px){
+              margin: 0 15px 30px 0;
+              width: 90px;
+            }
+          }
+          &jq{
+            width: 74px;
+            @media (max-height: 700px), (max-width: 1024px){
+              width: 65px;
+            }
+            @media (max-width: 900px){
+              margin: 0 0 38px;
+              width: 100px;
+            }
+            @media (max-width: 550px){
+              margin: 10px 0 30px;
+              width: 70px;
+            }
+          }
+          &ejs{
+            @media (max-width: 900px) {
+              margin: 0 45px 38px 0;
+            }
           }
         }
       }
@@ -372,7 +441,9 @@
       bottom: 32px;
       margin: 0 0 0 -10px;
     }
-    @media (max-height: 600px), (max-width: 900px){
+    @media (max-height: 600px),
+    (max-width: 900px),
+    (max-height: 640px) and (max-width: 1024px){
       display: none;
     }
     span{

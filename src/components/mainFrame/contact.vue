@@ -205,6 +205,7 @@
         margin: 2% auto 0;
       }
       @media (max-width: 740px){
+        margin: 30px auto 0;
         width: 80%;
       }
     }
