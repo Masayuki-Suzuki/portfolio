@@ -12,7 +12,7 @@
     <yelp-camp v-if="changeWorks(3)" :class="{ 'active-works': changeWorksA() }"></yelp-camp>
     <wordpress v-if="changeWorks(4)" :class="{ 'active-works': changeWorksB() }"></wordpress>
     <portfolio v-if="changeWorks(5)" :class="{ 'active-works': changeWorksA() }"></portfolio>
-    <ballet v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></ballet>
+    <pinstagram v-if="changeWorks(6)" :class="{ 'active-works': changeWorksB() }"></pinstagram>
     <another v-if="changeWorks(7)" :class="{ 'active-works': changeWorksA() }"></another>
     <div class="scrollNav">
       <span @click="paginationClick(8)" href=""></span>
@@ -33,6 +33,7 @@
   import wordpress from './wordpress.vue';
   import ballet from './ballet.vue';
   import marketas from './marketas.vue';
+  import pinstagram from './pinstagram.vue'
   import another from './another.vue';
 
   export default {
@@ -73,6 +74,7 @@
   Vue.component('yelp-camp',yelpCamp);
   Vue.component('portfolio', portfolio);
   Vue.component('wordpress', wordpress);
+  Vue.component('pinstagram', pinstagram);
   Vue.component('ballet', ballet);
   Vue.component('marketas', marketas);
   Vue.component('another', another);
@@ -104,8 +106,11 @@
     }
   }
   .works4 {
-    background: url(/dist/img/ballet_bg.jpg) no-repeat 10vw center;
+    background: url(/dist/img/pinstagram.jpg) no-repeat 10vw center;
   }
+  //.works4 {
+  //  background: url(/dist/img/ballet_bg.jpg) no-repeat 10vw center;
+  //}
   //.works4 {
   //  background: url(/dist/img/marketas.jpg) no-repeat 15vw center;
   //}
@@ -214,7 +219,8 @@
     }
     &__view{
       position: relative;
-      a{
+      a,
+      span {
         border: solid 1px $main-color;
         color: $main-text-color;
         display: inline-block;
@@ -651,7 +657,7 @@
   .using{
     display: flex;
     flex-wrap: wrap;
-    max-width: 650px;
+    max-width: 610px;
     opacity: 0;
     position: relative;
     transform: translateY(20px);
