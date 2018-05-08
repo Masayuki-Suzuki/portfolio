@@ -267,7 +267,7 @@ let store = {
             this.state.isHidden = false;
           },1000);
         }
-        
+
         break;
       case 8:
         if(!direction){
