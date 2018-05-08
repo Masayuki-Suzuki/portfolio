@@ -16883,7 +16883,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]), _vm._v(" "), _c('p', {
     staticClass: "what-i__another"
-  }, [_vm._v("Express / Bootstrap / JSON / AJAX / PHP / SQL"), _c('span')])]), _vm._v(" "), _c('div', {
+  }, [_vm._v("Express / Bootstrap / JSON / AJAX / PHP / SQL")])]), _vm._v(" "), _c('div', {
     staticClass: "what-i what-i-use"
   }, [_c('h2', [_vm._v("What I use ?")]), _vm._v(" "), _c('div', {
     staticClass: "what-i__images"
@@ -16914,13 +16914,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }), _vm._v(" "), _c('img', {
     staticClass: "ico-ejs",
     attrs: {
-      "src": "/dist/img/ejs.svg"
+      "src": "/dist/img/pug.svg"
     }
   }), _vm._v(" "), _c('img', {
     attrs: {
       "src": "/dist/img/sketch.svg"
     }
-  })]), _vm._v(" "), _c('p', [_vm._v("BEM / OOCSS / RESTful / illustrator")])])])
+  })]), _vm._v(" "), _c('p', [_vm._v("EJS / BEM / OOCSS / illustrator")])])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
