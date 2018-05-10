@@ -614,620 +614,6 @@ function remove (arr, item) {
     if (index > -1) {
       return arr.splice(index, 1)
     }
-<<<<<<< HEAD
-  },
-  ScrollAction: function ScrollAction() {
-    var tag = document.getElementsByClassName('content-wrapper')[0];
-    tag.style.transition = "all 0.5s cubic-bezier(.69,.06,.34,.99) 0s";
-    this.state.translate = 'translateY(' + this.state.position * -100 + '%)';
-    setTimeout(function () {
-      tag.style.transition = "";
-    }, 500);
-  },
-  scrollEvent: function scrollEvent(direction) {
-    var _this = this;
-
-    switch (this.state.position) {
-      case 0:
-        // First view
-        if (direction) {
-          history.replaceState('', '', '/about');
-          this.state.position++;
-          this.state.location++;
-          this.ScrollAction();
-          this.setIsColor();
-          this.state.showAbout = true;
-        }
-        break;
-      case 1:
-        // About ( Who I am )
-        if (direction) {
-          history.replaceState('', '', '/works');
-          this.state.isHidden = true;
-          this.state.rtl = true;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.isRight = true;
-          }, 310);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-            _this.state.rtl = false;
-            _this.state.worksA = true;
-            _this.state.showAbout = false;
-          }, 700);
-        } else {
-          history.replaceState('', '', '/');
-          this.state.position--;
-          this.state.location--;
-          this.ScrollAction();
-          this.setIsColor();
-          setTimeout(function () {
-            _this.state.showAbout = false;
-          }, 500);
-        }
-        break;
-      case 2:
-        // Works ( Yelp Camp )
-        if (direction) {
-          this.state.isColorClass = true;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.worksA = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksB = true;
-          }, 500);
-        } else {
-          history.replaceState('', '', '/about');
-          this.state.isHidden = true;
-          this.state.ltr = true;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.isRight = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.ltr = false;
-            _this.state.showAbout = true;
-          }, 700);
-          setTimeout(function () {
-            _this.state.worksA = false;
-            _this.state.isHidden = false;
-          }, 1000);
-        }
-        break;
-      case 3:
-        // Works ( wordpress )
-        if (direction) {
-          this.state.isColorClass = false;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.worksB = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksA = true;
-          }, 500);
-        } else {
-          this.state.isColorClass = false;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.worksB = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksA = true;
-          }, 500);
-        }
-        break;
-      case 4:
-        // Works ( portfolio )
-        if (direction) {
-          this.state.isColorClass = true;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.worksA = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksB = true;
-          }, 500);
-        } else {
-          this.state.isColorClass = true;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.worksA = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksB = true;
-          }, 500);
-        }
-        break;
-      case 5:
-        // Works ( ballet )
-        if (direction) {
-          this.state.isColorClass = false;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.worksB = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksA = true;
-          }, 500);
-        } else {
-          this.state.isColorClass = false;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.worksB = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksA = true;
-          }, 500);
-        }
-        break;
-      case 6:
-        // Works ( Another works )
-        if (direction) {
-          this.state.isColorClass = false;
-          history.replaceState('', '', '/blogs');
-          this.state.isHidden = true;
-          this.state.ltr = true;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.worksB = false;
-            _this.state.isRight = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.ltr = false;
-            _this.state.showBlog = true;
-          }, 700);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-          }, 1000);
-        } else {
-          this.state.isColorClass = true;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.worksA = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.worksB = true;
-          }, 500);
-        }
-        break;
-      case 7:
-        if (direction) {
-          history.replaceState('', '', '/contact');
-          this.state.isHidden = true;
-          this.state.rtl = true;
-          setTimeout(function () {
-            _this.state.position++;
-            _this.state.location++;
-            _this.state.isRight = true;
-          }, 310);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-            _this.state.rtl = false;
-            _this.state.showBlog = false;
-            _this.state.showContact = true;
-          }, 700);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-          }, 1000);
-        } else {
-          history.replaceState('', '', '/works');
-          this.state.isHidden = true;
-          this.state.rtl = true;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.isRight = true;
-          }, 310);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-            _this.state.rtl = false;
-            _this.state.worksA = true;
-            _this.state.showBlog = false;
-          }, 700);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-          }, 1000);
-        }
-
-        break;
-      case 8:
-        if (!direction) {
-          history.replaceState('', '', '/blogs');
-          this.state.isHidden = true;
-          this.state.ltr = true;
-          setTimeout(function () {
-            _this.state.position--;
-            _this.state.location--;
-            _this.state.isRight = false;
-            _this.state.showContact = false;
-          }, 310);
-          setTimeout(function () {
-            _this.state.ltr = false;
-            _this.state.showBlog = true;
-          }, 700);
-          setTimeout(function () {
-            _this.state.isHidden = false;
-          }, 1000);
-        }
-        break;
-      default:
-        break;
-    }
-  },
-  scrollMain: function scrollMain(e) {
-    var _this2 = this;
-
-    e.preventDefault();
-    this.state.clock = e.timeStamp - this.state.save;
-    this.state.save = e.timeStamp;
-    this.state.delta = e.deltaY ? -e.deltaY : 0;
-    if (!this.state.delta) {
-      return;
-    }
-    if (!this.state.isFired && this.state.clock > 50) {
-      this.state.isFired = true;
-      if (this.state.delta < 0) {
-        this.scrollEvent(true);
-      } else {
-        this.scrollEvent(false);
-      }
-      this.state.isScroll = setTimeout(function () {
-        _this2.state.isFired = false;
-      }, this.state.sleep);
-    } else {
-      return;
-    }
-  },
-  paginationLinkAction: function paginationLinkAction(num) {
-    switch (num) {
-      case 1:
-        if (this.state.location !== 1) {
-          if (this.state.location === 2) {
-            this.scrollEvent(false);
-          } else {
-            history.replaceState('', '', '/');
-            this.setLocation(0, false);
-          }
-        }
-        break;
-      case 2:
-        if (this.state.location !== 2) {
-          if (this.state.location === 1) {
-            this.scrollEvent(true);
-          } else {
-            history.replaceState('', '', '/about');
-            this.setLocation(1, false);
-          }
-        }
-        break;
-      case 3:
-        if (this.state.location !== 3) {
-          history.replaceState('', '', '/works');
-          this.setLocation(2, true);
-        }
-        break;
-      case 8:
-        if (this.state.location !== 8) {
-          history.replaceState('', '', '/blogs');
-          this.setLocation(7, false);
-        }
-        break;
-      case 9:
-        console.log(this.state.location);
-        if (this.state.location !== 9) {
-          history.replaceState('', '', '/contact');
-          this.setLocation(8, true);
-        }
-        break;
-      default:
-        break;
-    }
-  },
-  setLocation: function setLocation(pos, right) {
-    var _this3 = this;
-
-    this.state.isHidden = true;
-    this.state.showAbout = false;
-    this.state.showBlog = false;
-    this.state.showContact = false;
-    if (this.state.isRight) {
-      this.state.ltr = true;
-    } else {
-      this.state.rtl = true;
-    }
-    setTimeout(function () {
-      _this3.state.position = pos;
-      _this3.state.location = pos + 1;
-      if (pos === 0) {
-        _this3.state.translate = 'translateY(0%)';
-      } else {
-        _this3.state.translate = 'translateY(-100%)';
-      }
-      _this3.setIsColor();
-    }, 310);
-    setTimeout(function () {
-      if (_this3.state.isRight) {
-        _this3.state.ltr = false;
-      } else {
-        _this3.state.rtl = false;
-      }
-      _this3.state.isRight = right;
-      if (pos === 1) {
-        _this3.state.showAbout = true;
-      }
-      if (pos === 2) {
-        _this3.state.worksA = true;
-      }
-      if (pos === 7) {
-        _this3.state.showBlog = true;
-      }
-      if (pos === 8) {
-        _this3.state.showContact = true;
-      }
-    }, 700);
-    setTimeout(function () {
-      _this3.state.isHidden = false;
-    }, 1000);
-  },
-  arrowKeyEvent: function arrowKeyEvent(direction) {
-    var _this4 = this;
-
-    if (!this.isKeyFired) {
-      this.isKeyFired = true;
-      if (direction) {
-        this.scrollEvent(true);
-      } else {
-        this.scrollEvent(false);
-      }
-      setTimeout(function () {
-        _this4.isKeyFired = false;
-      }, 1500);
-    }
-  },
-  checkDeviceWidth: function checkDeviceWidth() {
-    if (document.body.clientWidth <= 900) {
-      this.state.translate = 'translateY(0)';
-      this.isRight = false;
-      this.isTablet = true;
-    } else {
-      this.isTablet = false;
-    }
-    return this.isTablet;
-  },
-  navColourChange: function navColourChange() {
-    var tag = document.getElementsByClassName('firstView')[0];
-    var tagHeight = tag.clientHeight;
-    if (window.pageYOffset + 60 >= tagHeight) {
-      this.isColorClass = false;
-      document.querySelector('path').classList.add('logoBlack');
-      document.querySelector('path').classList.remove('logoWhite');
-    } else {
-      this.isColorClass = true;
-      document.querySelector('path').classList.add('logoWhite');
-      document.querySelector('path').classList.remove('logoBlack');
-    }
-  },
-  targetController: function targetController(num) {
-    switch (num) {
-      case 1:
-        this.smoothScroll('.firstView');
-        this.isColorClass = true;
-        break;
-      case 2:
-        this.smoothScroll('.about');
-        this.isColorClass = false;
-        break;
-      case 3:
-        this.smoothScroll('.works');
-        this.isColorClass = false;
-        break;
-      case 8:
-        this.smoothScroll('.blogs');
-        this.isColorClass = false;
-        break;
-      case 9:
-        this.smoothScroll('.contact');
-        this.isColorClass = false;
-        break;
-      default:
-        break;
-    }
-  },
-  smoothScroll: function smoothScroll(t) {
-    var _this5 = this;
-
-    if (this.state.isScrollClick == null) {
-      var tag = document.querySelector(t);
-      tag.rect = tag.getBoundingClientRect();
-      tag.posY = tag.rect.top + window.pageYOffset;
-
-      var direction = void 0,
-          move = void 0,
-          totalScroll = void 0;
-      direction = tag.posY < window.pageYOffset ? -1 : 1;
-      move = 50 * direction;
-      totalScroll = window.pageYOffset;
-
-      this.state.isScrollClick = setInterval(function () {
-        if (direction === 1 && totalScroll >= tag.posY || direction === -1 && totalScroll <= tag.posY) {
-          window.scrollTo(0, tag.posY);
-          clearInterval(_this5.state.isScrollClick);
-          _this5.state.isScrollClick = null;
-          return;
-        }
-
-        window.scrollBy(0, move);
-        totalScroll += move;
-      }, 10);
-    }
-  },
-  getPostData: function getPostData() {
-    var _this6 = this;
-
-    _axios2.default.get(this.state.URL).then(function (res) {
-      _this6.state.blogTitles = [];
-      _this6.state.blogDates = [];
-      _this6.state.blogImages = [];
-      _this6.state.blogURLs = [];
-      _this6.state.blogCategories = [];
-      _this6.state.blogContents = [];
-      for (var i = 0, len = res.data.length; i < len; i++) {
-        var bData = res.data[i],
-            state = _this6.state;
-        var tempTitle = bData.title.rendered.slice(0, 45);
-        if (tempTitle.slice(-1) != '.' && tempTitle.slice(-1) != '?') {
-          tempTitle += '...';
-        }
-        state.blogTitles.push(tempTitle);
-        state.blogURLs.push(bData.link);
-        state.blogImages.push(bData["_embedded"]["wp:featuredmedia"][0]["source_url"]);
-        state.blogCategories.push(bData["_embedded"]["wp:term"][0][0]["name"]);
-
-        // Transform to Date Obj
-        var datesObj = {},
-            tempDate = new Date(bData.date);
-        datesObj.year = tempDate.getFullYear();
-        datesObj.month = _this6.state.months[tempDate.getMonth()];
-        datesObj.day = tempDate.getDate();
-        state.blogDates.push(datesObj);
-
-        // Transform to 100 characters string.
-        var contentData = void 0;
-        contentData = bData.excerpt.rendered.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').slice(0, 110);
-        if (contentData.slice(-1) !== '.' || contentData.slice(-1) !== '?') {
-          contentData += '...';
-        }
-        state.blogContents.push(contentData);
-      } // end for
-    });
-  }
-};
-
-exports.default = store;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(global) {/*!
- * Vue.js v2.3.2
- * (c) 2014-2017 Evan You
- * Released under the MIT License.
- */
-/*  */
-
-// these helpers produces better vm code in JS engines due to their
-// explicitness and function inlining
-function isUndef (v) {
-  return v === undefined || v === null
-}
-
-function isDef (v) {
-  return v !== undefined && v !== null
-}
-
-function isTrue (v) {
-  return v === true
-}
-
-/**
- * Check if value is primitive
- */
-function isPrimitive (value) {
-  return typeof value === 'string' || typeof value === 'number'
-}
-
-/**
- * Quick object check - this is primarily used to tell
- * Objects from primitive values when we know the value
- * is a JSON-compliant type.
- */
-function isObject (obj) {
-  return obj !== null && typeof obj === 'object'
-}
-
-var _toString = Object.prototype.toString;
-
-/**
- * Strict object type check. Only returns true
- * for plain JavaScript objects.
- */
-function isPlainObject (obj) {
-  return _toString.call(obj) === '[object Object]'
-}
-
-function isRegExp (v) {
-  return _toString.call(v) === '[object RegExp]'
-}
-
-/**
- * Convert a value to a string that is actually rendered.
- */
-function toString (val) {
-  return val == null
-    ? ''
-    : typeof val === 'object'
-      ? JSON.stringify(val, null, 2)
-      : String(val)
-}
-
-/**
- * Convert a input value to a number for persistence.
- * If the conversion fails, return original string.
- */
-function toNumber (val) {
-  var n = parseFloat(val);
-  return isNaN(n) ? val : n
-}
-
-/**
- * Make a map and return a function for checking if a key
- * is in that map.
- */
-function makeMap (
-  str,
-  expectsLowerCase
-) {
-  var map = Object.create(null);
-  var list = str.split(',');
-  for (var i = 0; i < list.length; i++) {
-    map[list[i]] = true;
-  }
-  return expectsLowerCase
-    ? function (val) { return map[val.toLowerCase()]; }
-    : function (val) { return map[val]; }
-}
-
-/**
- * Check if a tag is a built-in tag.
- */
-var isBuiltInTag = makeMap('slot,component', true);
-
-/**
- * Remove an item from an array
- */
-function remove (arr, item) {
-  if (arr.length) {
-    var index = arr.indexOf(item);
-    if (index > -1) {
-      return arr.splice(index, 1)
-    }
-=======
->>>>>>> 28408e9e25e70608487db193fbcfb685b60dbffc
   }
 }
 
@@ -9578,7 +8964,6 @@ var store = {
     }
   },
   targetController: function targetController(num) {
-    console.log('targetController');
     switch (num) {
       case 1:
         this.smoothScroll('.firstView');
@@ -10598,7 +9983,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/ballet.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/ballet.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] ballet.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -10668,7 +10053,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/app.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/app.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] app.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16222,7 +15607,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/footer.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/footer.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] footer.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16266,7 +15651,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/main.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/main.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] main.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16310,7 +15695,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/about.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/about.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] about.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16350,7 +15735,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/another.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/another.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] another.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16394,7 +15779,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/blog.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/blog.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] blog.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16434,7 +15819,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/blogListItem.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/blogListItem.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] blogListItem.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16478,7 +15863,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/contact.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/contact.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] contact.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16522,7 +15907,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/firstView.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/firstView.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] firstView.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16566,7 +15951,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/logo.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/logo.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] logo.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16610,7 +15995,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/marketas.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/marketas.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] marketas.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16654,7 +16039,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/pagination.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/pagination.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] pagination.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16698,7 +16083,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/pinstagram.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/pinstagram.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] pinstagram.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16742,7 +16127,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/portfolio.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/portfolio.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] portfolio.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16786,7 +16171,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/wordpress.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/wordpress.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] wordpress.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16830,7 +16215,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/works.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/works.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] works.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16870,7 +16255,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/mainFrame/yelpCamp.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/mainFrame/yelpCamp.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] yelpCamp.vue: functional components are not supported with templates, they should use render functions.")}
 
@@ -16914,7 +16299,7 @@ var Component = __webpack_require__(0)(
   /* moduleIdentifier (server only) */
   null
 )
-Component.options.__file = "/Users/M.Suzuki/Documents/web project/portfolio/src/components/nav.vue"
+Component.options.__file = "/Users/suzukimasayuki/Documents/WebProject/portfolio/src/components/nav.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
 if (Component.options.functional) {console.error("[vue-loader] nav.vue: functional components are not supported with templates, they should use render functions.")}
 
