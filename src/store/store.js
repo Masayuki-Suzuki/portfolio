@@ -269,7 +269,7 @@ let store = {
             this.state.isHidden = false;
           },1000);
         }
-        
+
         break;
       case 8:
         if(!direction){
@@ -442,7 +442,6 @@ let store = {
     }
   },
   targetController(num){
-    console.log('targetController');
     switch (num){
       case 1:
         this.smoothScroll('.firstView');
@@ -530,7 +529,6 @@ let store = {
           }
           state.blogContents.push(contentData);
         }// end for
-
       });
   }
 }

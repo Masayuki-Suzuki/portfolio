@@ -7,7 +7,7 @@
       </template>
     </div>
     <div class="more">
-      <a href="https://medium.com/@masayuki.s" target="_blank">read more post</a>
+      <a href="https://anon.one/" target="_blank">read more post</a>
     </div>
     <div class="scrollNav">
       <span @click="paginationClick(9)" href=""></span>
@@ -23,15 +23,6 @@
   Vue.component('blog-list-item', blogListItem);
 
   export default {
-    data: function () {
-      return {
-      }
-    },
-    created(){
-      setTimeout( () => {
-        this.sharedState = store.state;
-      }, 0);
-    },
     methods: {
       pageController(){
         if(document.body.clientWidth <= 900){

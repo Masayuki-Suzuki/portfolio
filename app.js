@@ -4,7 +4,7 @@ const express         = require('express'),
       path            = require('path'),
       bodyParser      = require('body-parser'),
       compression     = require('compression'),
-      PORT            = 3000, //本番環境にアップする時は4000
+      PORT            = 3000,
       IP              = '127.0.0.1';
 
 //Routers require
@@ -23,6 +23,6 @@ app.set('view engine','ejs');
 app.use('/', indexRoutes);
 app.use('/privacy-policy', indexRoutes);
 
-app.listen(PORT,IP,() => {
+app.listen(PORT,() => {
   console.log('SERVER HAS STARTED!!');
 });

@@ -42,7 +42,7 @@
             <a class="sns__link linkedin" href="https://www.linkedin.com/in/masayuki-suzuki/"　target="_blank"></a>
           </li>
           <li class="sns__list">
-            <span class="sns__link email" @click="paginationClick(8)"></span>
+            <span class="sns__link email" @click="paginationClick(9)"></span>
           </li>
         </ul>
       </li>

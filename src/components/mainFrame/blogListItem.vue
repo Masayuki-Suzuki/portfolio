@@ -23,7 +23,6 @@
     created(){
       setTimeout( ()=>{
         this.$set(this.sharedState, store.state);
-        console.log(this.sharedState);
       },0);
 
     },

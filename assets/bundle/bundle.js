@@ -839,6 +839,7 @@ var store = {
         }
         break;
       case 9:
+        console.log(this.state.location);
         if (this.state.location !== 9) {
           history.replaceState('', '', '/contact');
           this.setLocation(8, true);
@@ -933,7 +934,6 @@ var store = {
     }
   },
   targetController: function targetController(num) {
-    console.log('targetController');
     switch (num) {
       case 1:
         this.smoothScroll('.firstView');
@@ -10199,17 +10199,6 @@ _vue2.default.component('blog-list-item', _blogListItem2.default); //
 //
 
 exports.default = {
-  data: function data() {
-    return {};
-  },
-  created: function created() {
-    var _this = this;
-
-    setTimeout(function () {
-      _this.sharedState = _store2.default.state;
-    }, 0);
-  },
-
   methods: {
     pageController: function pageController() {
       if (document.body.clientWidth <= 900) {
@@ -10268,7 +10257,6 @@ exports.default = {
 
     setTimeout(function () {
       _this.$set(_this.sharedState, _store2.default.state);
-      console.log(_this.sharedState);
     }, 0);
   },
 
@@ -15148,7 +15136,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "sns__link email",
     on: {
       "click": function($event) {
-        _vm.paginationClick(8)
+        _vm.paginationClick(9)
       }
     }
   })])])])]) : _vm._e()])
@@ -15885,7 +15873,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "more"
   }, [_c('a', {
     attrs: {
-      "href": "https://medium.com/@masayuki.s",
+      "href": "https://anon.one/",
       "target": "_blank"
     }
   }, [_vm._v("read more post")])])
