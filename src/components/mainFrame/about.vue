@@ -16,7 +16,7 @@
           <img class="ico-mongo" src="/dist/img/mongodb.svg" alt="mongodb">
           <img class="ico-jq" src="/dist/img/jquery.svg" alt="jquery">
         </div>
-        <p class="what-i__another">Express / Bootstrap / JSON / AJAX / PHP / SQL<span> </span></p>
+        <p class="what-i__another">Express / Bootstrap / JSON / AJAX / PHP / SQL</p>
       </div>
       <div class="what-i what-i-use">
         <h2>What I use ?</h2>
@@ -27,10 +27,10 @@
           <img src="/dist/img/git.svg">
           <img src="/dist/img/github.svg">
           <img src="/dist/img/photoshop.svg">
-          <img class="ico-ejs" src="/dist/img/ejs.svg">
+          <img class="ico-ejs" src="/dist/img/pug.svg">
           <img src="/dist/img/sketch.svg">
         </div>
-        <p>BEM / OOCSS / RESTful / illustrator</p>
+        <p>EJS / BEM / OOCSS / illustrator</p>
       </div>
     </div>
     <div v-if="!sharedState.isTablet" class="scrollNav">
