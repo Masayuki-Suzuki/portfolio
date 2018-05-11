@@ -18,7 +18,7 @@
       <span @click="paginationClick(8)" href=""></span>
     </div>
     <div class="imgPreload">
-      <img src="/dist/img/ballet_bg.jpg" alt="">
+      <img src="/dist/img/pinstagram.jpg" alt="">
       <img src="/dist/img/blogImage.jpg" alt="">
       <img src="/dist/img/tokyo.jpg" alt="">
     </div>

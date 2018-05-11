@@ -111,7 +111,6 @@
   $nav-size-mid: 74px;
   $nav-size-sml: 60px;
 
-  //---------------------------
   // navigation Icon top
   @keyframes navIcon-top {
     0% {

@@ -17405,7 +17405,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "imgPreload"
   }, [_c('img', {
     attrs: {
-      "src": "/dist/img/ballet_bg.jpg",
+      "src": "/dist/img/pinstagram.jpg",
       "alt": ""
     }
   }), _vm._v(" "), _c('img', {
