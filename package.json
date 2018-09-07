@@ -12,6 +12,7 @@
     "body-parser": "^1.18.3",
     "config": "^2.0.1",
     "dotenv": "^6.0.0",
+    "expres": "^0.0.5",
     "express-session": "^1.15.6",
     "font-awesome": "^4.7.0",
     "nodemailer": "^4.6.8",
@@ -21,6 +22,7 @@
     "vue-property-decorator": "^7.0.0",
     "vue-router": "^3.0.1",
     "vue-router-layout": "^0.1.2",
+    "vue-touch": "^1.1.0",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
