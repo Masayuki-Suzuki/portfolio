@@ -1,7 +1,7 @@
 const express    = require('express'),
-      router     = express.Router(),
-      bodyParser = require('body-parser'),
-      mailer     = require('nodemailer');
+  router     = express.Router(),
+  bodyParser = require('body-parser'),
+  mailer     = require('nodemailer');
 
 const transport = {
   host: "smtp-mail.outlook.com", // hostname
@@ -56,7 +56,7 @@ router.post('/contact', (req, res) =>{
   }
 
   let mailContent =
-      `<h3>Message From Portfolio's Form</h3>
+    `<h3>Message From Portfolio's Form</h3>
        <p><strong>name : </strong>${req.body.name}</p>
        <p><strong>company : </strong>${req.body.company}</p>
        <p style="margin-bottom: 30px;"><strong>e-mail : </strong> ${req.body.email}</p>

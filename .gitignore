@@ -1,16 +1,26 @@
+.DS_Store
+node_modules
+/dist
 
-*.xml
+# local env files
+.env.local
+.env.*.local
 
-*.iml
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-node_modules/
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+.env
 
-old/
-
-materials/
-
-logo/
-
-masa.works_v1.sketch
-
-*.sketch
+/materials
+/old
+/ver 1
