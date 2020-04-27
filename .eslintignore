@@ -1,0 +1,4 @@
+src/types/**/*
+src/test/**/*
+src/static/**/*
+*.config.js

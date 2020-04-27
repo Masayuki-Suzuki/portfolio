@@ -1,0 +1,36 @@
+@import "variables/index"
+
+//******************************
+//font awesome
+//******************************
+
+$eot: url("/fonts/fontawesome-webfont.eot?#iefix") format("embedded-opentype")
+$woff: url("/fonts/fontawesome-webfont.woff") format("woff")
+$ttf: url("/fonts/fontawesome-webfont.ttf") format("truetype")
+$svg: url("/fonts/fontawesome-webfont.svg#fontawesome") format("svg")
+
+@font-face
+    font-family: 'fontawesome'
+    src: url("/fonts/fontawesome-webfont.eot")
+    src: $eot, $woff, $ttf, $svg
+
+html
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    font-size: $base-font-size * 1%
+    height: 100%
+
+body
+    font-family: 'Lato', sans-serif
+    font-weight: $font-weight-origin
+    height: 100%
+    margin: 0
+    padding: 0
+
+h1, h2, h3, h4, h5, h6, p, ul, li, dl, dt, dd
+    list-style: none
+    margin: 0
+    padding: 0
+
+a
+    text-decoration: none

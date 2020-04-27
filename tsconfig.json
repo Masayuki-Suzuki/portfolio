@@ -1,0 +1,64 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "composite": false,
+        "emitDecoratorMetadata": true,
+        "esModuleInterop": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "lib": [
+            "esnext",
+            "esnext.asynciterable",
+            "dom",
+            "dom.iterable",
+            "scripthost"
+        ],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "noEmit": false,
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "paths": {
+            "~/*": [
+                "./src/*"
+            ],
+            "@/*": [
+                "./src/*"
+            ]
+        },
+        "removeComments": true,
+        "resolveJsonModule": true,
+        "sourceMap": true,
+        "strict": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": false,
+        "target": "esnext",
+        "jsxFactory": "h",
+        "jsx": "preserve",
+        "types": [
+            "@types/node",
+            "@nuxt/types",
+            "vue-apollo"
+        ]
+    },
+    "include": [
+        "nuxt.config.ts",
+        "src/**/*.ts",
+        "src/**/*.vue",
+        "src/**/*.tsx",
+        "src/queries/**/*.gql",
+        "vue-apollo"
+    ],
+    "exclude": [
+        "node_modules",
+        "@vue/apollo-composable"
+    ],
+    "files": [
+        "shims-vue.d.ts",
+        "vue-vuex-shims.d.ts",
+        "src/types/vuex/**.ts",
+        "src/types/shims-gql.d.ts"
+    ]
+}

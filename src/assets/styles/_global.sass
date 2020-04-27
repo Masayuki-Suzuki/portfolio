@@ -1,0 +1,110 @@
+#__nuxt,
+#__layout
+    +mdAndUp
+        height: 100%
+
+.sns
+    display: flex
+    align-items: center
+    justify-content: center
+    margin-top: 24px
+    width: 100%
+    text-align: center
+
+    +smAndDown
+        margin-top: 32px
+
+    @media (max-width: 900px) and (max-height: 550px), (max-width: 550px)
+        margin-top: 20px
+
+    &__list
+        margin: 0 12px
+
+        +customMedia(550)
+            margin: 0 16px
+
+    &__link
+        display: block
+
+        &::before
+            color: rgba(255, 255, 255, .8)
+            display: block
+            font-family: fontawesome
+            font-size: 3.6rem
+            line-height: 1
+
+            +smAndDown
+                font-size: 4rem
+
+            +customMediaHV(899, 550, false)
+                font-size: 3.4rem
+
+.github
+    &:before
+        content: '\f092'
+
+.linkedin
+    &:before
+        content: '\f08c'
+
+.email
+    &:before
+        content: '\f003'
+        cursor: pointer
+
+.common-container
+    background: $bg-color
+    height: 100%
+    padding: 25px
+    position: relative
+    width: 100%
+
+    +customMediaV(800, false)
+        padding: 15px
+
+    +smAndDown
+        padding: 25px 0
+
+.common-heading
+    color: $main-color
+    font-size: 6rem
+    font-weight: 300
+    letter-spacing: .02em
+    line-height: 1.2
+    text-align: center
+    text-transform: uppercase
+    margin-top: 10vh
+    opacity: 0
+    transform: translateY(30px)
+    transition: all .4s ease .4s
+
+    +customMediaV(800, false)
+        font-size: 5rem
+        margin-top: 9vh
+
+    +customMediaV(750, false)
+        margin-top: 6vh
+
+    +customMediaV(700, false)
+        font-size: 4.5rem
+        margin-top: 9vh
+
+    +customMediaV(650, false)
+        margin-top: 5vh
+
+    +customMediaV(600, false)
+        margin-top: 8vh
+
+    +customMediaV(550, false)
+        font-size: 4rem
+        margin-top: 5vh
+
+    +smAndDown
+        font-size: 5rem
+        line-height: 1.44
+        margin: 0
+        opacity: 1
+        transform: none
+
+    +customMedia(550, false)
+        font-size: 4rem

@@ -1,0 +1,133 @@
+=xxsOnly
+    @media (max-width: 374px)
+        @content
+
+=xsAndUp
+    @media (min-width: 375px)
+        @content
+
+=xsAndDown
+    @media (max-width: 749px)
+        @content
+
+=xsOnly
+    @media (min-width: 375px) and (max-width: 749px)
+        @content
+
+=smAndUp
+    @media (min-width: 750px)
+        @content
+
+=smAndDown
+    @media (max-width: 899px)
+        @content
+
+=smOnly
+    @media (min-width: 750px) and (max-width: 899px)
+        @content
+
+=mdAndUp
+    @media (min-width: 900px)
+        @content
+
+=mdAndDown
+    @media (max-width: 1023px)
+        @content
+
+=mdOnly
+    @media (min-width: 900px) and (max-width: 1023px)
+        @content
+
+=mdDownAndXxsHeight
+    @media (max-height: 550px) and (max-width: 900px)
+
+=mdDownAndXsHeight
+    @media (max-height: 700px) and (max-width: 900px)
+        @content
+
+=lgAndUp
+    @media (min-width: 1024px)
+        @content
+
+=lgAndDown
+    @media (max-width: 1199px)
+        @content
+
+=lgOnly
+    @media (min-width: 1024px) and (max-width: 1199px)
+        @content
+
+=xlAndUp
+    @media (min-width: 1200px)
+        @content
+
+=xlAndDown
+    @media (max-width: 1399px)
+        @content
+
+=xlOnly
+    @media (min-width: 1200px) and (max-width: 1399px)
+        @content
+
+// Custom media query helper
+=customMedia($width, $min: true)
+    @if (str-index('#{$width}', 'px') == null)
+        $width: '#{$width}px'
+
+    @if $min
+        @media (min-width: #{$width})
+            @content
+
+    @else
+        @media (max-width: #{$width})
+            @content
+
+=customMediaV($height, $min: true)
+    @if (str-index('#{$height}', 'px') == null)
+        $height: '#{$height}px'
+
+    @if $min
+        @media (min-height: #{$height})
+            @content
+
+    @else
+        @media (max-height: #{$height})
+            @content
+
+=customMediaHV($width, $height, $min: true)
+    @if (str-index('#{$width}', 'px') == null)
+        $width: '#{$width}px'
+
+    @if (str-index('#{$height}', 'px') == null)
+        $height: '#{$height}px'
+
+    @if $min
+        @media (min-width: #{$width}) and (min-height: #{$height})
+            @content
+
+    @else
+        @media (max-width: #{$width}) and (max-height: #{$height})
+            @content
+
+=customMediaHVF($width, $height, $min-w: true, $min-h: true)
+    @if (str-index('#{$width}', 'px') == null)
+        $width: '#{$width}px'
+
+    @if (str-index('#{$height}', 'px') == null)
+        $height: '#{$height}px'
+
+    @if $min-w and $min-h
+        @media (min-width: #{$width}) and (min-height: #{$height})
+            @content
+
+    @else if $min-w and not $min-h
+        @media (min-width: #{$width}) and (max-height: #{$height})
+            @content
+
+    @else if not $min-w and $min-h
+        @media (max-width: #{$width}) and (min-height: #{$height})
+            @content
+
+    @else
+        @media (max-width: #{$width}) and (max-height: #{$height})
+            @content
