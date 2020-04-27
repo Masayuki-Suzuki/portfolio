@@ -61,7 +61,7 @@
     "font-awesome": "^4.7.0",
     "mailgun-js": "^0.12.0",
     "method-override": "^2.3.8",
-    "mongoose": "^4.9.2",
+    "mongoose": "^5.7.5",
     "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
