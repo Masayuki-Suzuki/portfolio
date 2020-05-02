@@ -46,7 +46,7 @@ export const head = {
             content: 'This website is a Front-end developer Masayuki Suzuki\'s portfolio website based in' +
                 ' Vancouver Canada.'
         },
-        { name: 'twitter:image', content: 'http://masa.works/dist/img/logoforFB.png' }
+        { name: 'twitter:image', content: 'http://masa.works/images/logoforFB.png' }
     ],
     link: [...link, ...preLoad],
     script: [
