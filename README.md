@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://masa.works/dist/img/mainLogo.svg" alt="logo" style="display:block; margin: auto;">
+  <img src="https://masa.works/images/mainLogo.svg" alt="logo" style="display:block; margin: auto;">
 </p>
 
 # Masayuki Suzuki Portfolio
