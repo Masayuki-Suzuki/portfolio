@@ -33,7 +33,8 @@ const config: Configuration = {
     ** Plugins to load before mounting the App
     */
     plugins: [
-        '~/plugins/composition-api'
+        '~/plugins/composition-api',
+        { src: '~/plugins/ga', mode: 'client' }
     ],
 
     /*
