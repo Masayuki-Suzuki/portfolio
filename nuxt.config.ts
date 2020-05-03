@@ -33,8 +33,7 @@ const config: Configuration = {
     ** Plugins to load before mounting the App
     */
     plugins: [
-        '~/plugins/composition-api',
-        { src: '~/plugins/ga', mode: 'client' }
+        '~/plugins/composition-api'
     ],
 
     /*
@@ -42,7 +41,8 @@ const config: Configuration = {
     */
     buildModules: [
         '@nuxt/typescript-build',
-        '@nuxtjs/eslint-module'
+        '@nuxtjs/eslint-module',
+        ['@nuxtjs/google-analytics', { id: process.env.GA_TRACKING_ID }]
     ],
 
     serverMiddleware: [
