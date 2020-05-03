@@ -1,6 +1,3 @@
-import dotenv from 'dotenv'
-dotenv.config()
-
 /* eslint-disable */
 export default ({ app }) => {
   /*
@@ -17,7 +14,7 @@ export default ({ app }) => {
   /*
   ** 現在のページをセット
   */
-  ga('create', process.env.GA_TRACKING_ID, 'auto')
+  ga('create', 'UA-104792581-1', 'auto')
   /*
   ** ルートが変更されるたびに毎回実行（初期化も実行される）
   */
