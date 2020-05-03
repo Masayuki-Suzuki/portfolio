@@ -107,7 +107,9 @@ const config: Configuration = {
         // @ts-ignore
         MAIL_FROM: process.env.MAIL_FROM,
         // @ts-ignore
-        SCROLL_THRESHOLD: process.env.SCROLL_THRESHOLD
+        SCROLL_THRESHOLD: process.env.SCROLL_THRESHOLD,
+        // @ts-ignore
+        GA_TRACKING_ID: process.env.GA_TRACKING_ID
         /* eslint-enable */
     },
 
