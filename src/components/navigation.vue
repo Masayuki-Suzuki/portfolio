@@ -29,30 +29,33 @@ nav.gNav(:class="navClass")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from '@vue/composition-api'
+import { computed, defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
 import NavMainContent from '~/components/nav-main-content.vue'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useScrollsStore } from '~/stores/scrolls'
+import { useUiStore } from '~/stores/ui'
 
 export default defineComponent({
     name: 'navigation',
     components: {
         NavMainContent
     },
-    setup(_, { root: { $store, $nuxt } }) {
+    setup() {
+        const uiStore = useUiStore()
+
         // --------------------------------
-        // Local State
-        const isOpen = ref(false)
+        // Store state
+        const { isNavOpen: isOpen } = storeToRefs(uiStore)
+        const { isMobile } = storeToRefs(useDevicesStore())
+        const { pageLocation } = storeToRefs(usePageLocationStore())
+        const { delayedActivePage, rightToLeft, leftToRight } = storeToRefs(useScrollsStore())
 
         // --------------------------------
         // Computed
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const pageLocation = computed(() => $store.getters['pageLocation/pageLocation'])
         const isFirstView = computed((): boolean => pageLocation.value === 'first')
         const isHidden = computed((): boolean => false)
-        const delayedActivePage = computed(() => $store.getters['scrolls/delayedActivePage'])
-
-        // Scroll animation flags
-        const rightToLeft = computed(() => $store.getters['scrolls/rightToLeft'])
-        const leftToRight = computed(() => $store.getters['scrolls/leftToRight'])
 
         const activeNavSns = computed((): boolean => {
             return delayedActivePage.value === pageLocation.value && pageLocation.value !== 'first'
@@ -85,12 +88,8 @@ export default defineComponent({
         // --------------------------------
         // Methods
         const navToggle = () => {
-            isOpen.value = !isOpen.value
+            uiStore.toggleNav()
         }
-
-        onMounted(() => {
-            $nuxt.$on('nav-toggle', navToggle)
-        })
 
         return {
             isOpen,

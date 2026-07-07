@@ -10,8 +10,12 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
 import { pageScroller } from '~/libs/pageScroller'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
     name: 'logo',
@@ -21,7 +25,7 @@ export default defineComponent({
             default: 'logo-white'
         }
     },
-    setup(_, { root: { $store, $nuxt } }: SetupContext) {
+    setup() {
         // -------------------------------------------------
         // Local State
         const pathStr = 'M14.573 41.567l5.01-18.199 4.724 22.053 8.446-39.395 8.016 50.957' +
@@ -29,14 +33,13 @@ export default defineComponent({
             ' 22.267L32.323.031l-8.16 39.61-5.01-20.34-5.01 21.196L.115 46.064z'
 
         // -------------------------------------------------
-        // Computed from vuex
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const isRight = computed(() => $store.getters['pageLocation/isRight'])
-        const isRightActive = computed(() => $store.getters['works/isRightActive'])
+        // Store state
+        const { isMobile } = storeToRefs(useDevicesStore())
+        const { isRight } = storeToRefs(usePageLocationStore())
+        const { isRightActive } = storeToRefs(useWorksStore())
 
-        // eslint-disable-next-line
         const logoClick = (): void => {
-            pageScroller($store, $nuxt, 'first', isMobile.value)
+            pageScroller('first', isMobile.value)
         }
 
         return {
