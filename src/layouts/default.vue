@@ -1,5 +1,5 @@
 <template lang="pug">
-div.app-container
+div.app-container(ref="rootEl")
     article.main-frame(
         @wheel="scrollController($event)"
         @touchstart="touchStart($event)"
@@ -9,19 +9,24 @@ div.app-container
         .frame
         logo(:colour-class="logoClass")
         pagination
-        nuxt
+        slot
     navigation
     the-footer
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, onMounted, onUnmounted, ref, watch } from '@vue/composition-api'
+import { computed, defineComponent, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import _debounce from 'lodash.debounce'
 import Logo from '~/components/logo.vue'
 import Pagination from '~/components/pagination.vue'
 import Navigation from '~/components/navigation.vue'
 import TheFooter from '~/components/the-footer.vue'
 import { scrollEventHandler } from '~/libs/scrollEventHandler'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useScrollsStore } from '~/stores/scrolls'
+import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
     name: 'default-layout',
@@ -31,14 +36,19 @@ export default defineComponent({
         Navigation,
         TheFooter
     },
-    setup(_, { root: { $store, $el } }) {
+    setup() {
         const runtimeConfig = useRuntimeConfig()
+
+        const devicesStore = useDevicesStore()
+        const pageLocationStore = usePageLocationStore()
+        const scrollsStore = useScrollsStore()
+        const worksStore = useWorksStore()
 
         // ---------------------------------------------------------------
         // Local State
         let save = 0
         let isFired = false
-        // const isMobile = ref(false)
+        const rootEl = ref<HTMLElement | null>(null)
         const logoClass = ref('logo-white')
         const isTouchDevice = ref(false)
         const swipe = {
@@ -56,10 +66,9 @@ export default defineComponent({
         }
 
         // ---------------------------------------------------------------
-        // Vuex getters
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const prevWidth = computed(() => $store.getters['devices/prevWindowWidth'])
-        const isFirstView = computed(() => $store.getters['scrolls/isFirstView'])
+        // Store state
+        const { isMobile, prevWindowWidth: prevWidth } = storeToRefs(devicesStore)
+        const { isFirstView } = storeToRefs(scrollsStore)
 
         // ---------------------------------------------------------------
         // Watchers
@@ -72,7 +81,7 @@ export default defineComponent({
 
         // Check touch device
         const checkTouchDevice = () => {
-            if (process.client && navigator) {
+            if (import.meta.client && navigator) {
                 if (
                     navigator.userAgent.includes('iPhone') ||
                     navigator.userAgent.includes('android') ||
@@ -87,7 +96,10 @@ export default defineComponent({
 
         // Change logo colour by scroll position
         const logoColourChange = (): void => {
-            const tag = $el.getElementsByClassName('first')[0]
+            const tag = rootEl.value?.getElementsByClassName('first')[0]
+            if (!tag) {
+                return
+            }
             const tagHeight = tag.clientHeight
 
             if (window.pageYOffset + 60 >= tagHeight) {
@@ -99,25 +111,23 @@ export default defineComponent({
 
         // Check device width
         const checkDeviceWidth = (): boolean => {
-            if (process.client && document.body.clientWidth < 900) {
-                $store.commit('devices/setIsMobile', { isMobile: true })
-                $store.commit('pageLocation/setIsRight', { isRight: false })
-                $store.commit('scrolls/setTranslate', { val: 0 })
-                // isMobile.value = true
+            if (import.meta.client && document.body.clientWidth < 900) {
+                devicesStore.setIsMobile(true)
+                pageLocationStore.setIsRight(false)
+                scrollsStore.setTranslate(0)
             } else {
-                $store.commit('devices/setIsMobile', { isMobile: false })
-                // isMobile.value = false
+                devicesStore.setIsMobile(false)
             }
 
             return isMobile.value
         }
 
         // page transition with up/down key
-        const keyDownEvent = ({ which }: KeyboardEvent): void => {
-            if (which === 38) {
-                scrollEventHandler($store, false)
-            } else if (which === 40) {
-                scrollEventHandler($store, true)
+        const keyDownEvent = ({ key }: KeyboardEvent): void => {
+            if (key === 'ArrowUp') {
+                scrollEventHandler(false)
+            } else if (key === 'ArrowDown') {
+                scrollEventHandler(true)
             }
         }
 
@@ -128,19 +138,19 @@ export default defineComponent({
                 if (prevWidth.value >= 900) {
                     window.removeEventListener('keydown', keyDownEvent)
                     window.addEventListener('scroll', logoColourChange)
-                    $store.commit('pageLocation/setPageLocation', { location: 'mobile' })
+                    pageLocationStore.setPageLocation('mobile')
                     history.replaceState(null, '', '/')
                 }
             } else if (prevWidth.value < 900) {
                 window.addEventListener('keydown', keyDownEvent)
                 window.removeEventListener('scroll', logoColourChange)
-                $store.commit('pageLocation/setPageLocation', { location: 'first' })
-                $store.commit('pageLocation/setWorksLocation', { num: 1 })
-                $store.commit('scrolls/setIsFirstView', { isFirstView: true })
-                $store.commit('pageLocation/setWorksSide', { side: null })
-                $store.commit('works/setIsRightActive', { isRight: null })
+                pageLocationStore.setPageLocation('first')
+                pageLocationStore.setWorksLocation(1)
+                scrollsStore.setIsFirstView(true)
+                pageLocationStore.setWorksSide(null)
+                worksStore.setIsRightActive(null)
             }
-            $store.commit('devices/setWindowSize', { val: document.body.clientWidth })
+            devicesStore.setWindowSize(document.body.clientWidth)
         }
 
         // Debounce resize function
@@ -172,7 +182,7 @@ export default defineComponent({
                 if (delta) {
                     if (!isFired && clock > 50) {
                         isFired = true
-                        scrollEventHandler($store, (delta < 0))
+                        scrollEventHandler(delta < 0)
                         setTimeout(() => (isFired = false), speed)
                     }
                 }
@@ -192,11 +202,11 @@ export default defineComponent({
                 swipe.distance.y = swipe.current.y - swipe.start.y
                 if (swipe.flag && swipe.distance.y > 0 && swipe.distance.y >= swipe.threshold) {
                     swipe.flag = false
-                    scrollEventHandler($store, false)
+                    scrollEventHandler(false)
                 }
                 if (swipe.flag && swipe.distance.y < 0 && swipe.distance.y >= swipe.threshold * -1) {
                     swipe.flag = false
-                    scrollEventHandler($store, true)
+                    scrollEventHandler(true)
                 }
             }
         }
@@ -208,18 +218,17 @@ export default defineComponent({
         // ---------------------------------------------------------------
         // Lifecycle Hooks
         onBeforeMount(() => {
-            if (process.client) {
+            if (import.meta.client) {
                 const clientWidth = document.body.clientWidth
-                $store.commit('devices/setWindowSize', { val: clientWidth })
+                devicesStore.setWindowSize(clientWidth)
                 if (clientWidth < 960) {
-                    $store.commit('devices/setIsMobile', { isMobile: true })
+                    devicesStore.setIsMobile(true)
                 }
                 checkTouchDevice()
             }
         })
 
         onMounted(() => {
-            // isMobile.value = $store.getters['devices/isMobile']
             checkDeviceWidth()
             if (window) {
                 debounceResize()
@@ -236,6 +245,7 @@ export default defineComponent({
         })
 
         return {
+            rootEl,
             isMobile,
             logoClass,
             scrollController,
