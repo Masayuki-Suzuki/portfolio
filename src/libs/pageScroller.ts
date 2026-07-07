@@ -1,5 +1,5 @@
-import { StrictStore } from 'vuex/types/index'
-import { NuxtApp } from '@nuxt/types/app'
+import type { StrictStore } from 'vuex/types/index'
+import type { NuxtApp } from '@nuxt/types/app'
 import { directPageController } from '~/libs/scrollEventHandler'
 import smoothScroll, { ISmoothScroll } from '~/libs/smooth-scroll'
 
