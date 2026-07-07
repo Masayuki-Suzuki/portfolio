@@ -25,22 +25,23 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, SetupContext } from '@vue/composition-api'
+import { computed, defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
 import { directPageController } from '~/libs/scrollEventHandler'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
     name: 'pagination',
-    setup(_, { root: { $store } }: SetupContext) {
+    setup() {
         // -----------------------------------------
         // Local State
         const locations = ['first', 'about', 'works', 'blog', 'contact']
 
         // -----------------------------------------
-        // Computed from vuex state
-        const pageLocation = computed(() => $store.getters['pageLocation/pageLocation'])
-        const worksLocation = computed(() => $store.getters['pageLocation/worksLocation'])
-        const isRight = computed(() => $store.getters['pageLocation/isRight'])
-        const isRightActive = computed(() => $store.getters['works/isRightActive'])
+        // Store state
+        const { pageLocation, worksLocation, isRight } = storeToRefs(usePageLocationStore())
+        const { isRightActive } = storeToRefs(useWorksStore())
 
         // -----------------------------------------
         // Computed
@@ -69,7 +70,7 @@ export default defineComponent({
         }
 
         const pageClickAction = (pageLocation: string): void => {
-            directPageController($store, pageLocation)
+            directPageController(pageLocation)
         }
 
         return {

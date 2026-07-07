@@ -6,7 +6,7 @@ ul.gNav__main(:style="{'visibility': isOpen ? 'visible' : 'hidden'}")
         :class="list"
     ) {{ list }}
     li.gNav__list.gNav__list--privacy
-        n-link.text-uppercase(to="/privacy-policy") privacy policy
+        nuxt-link.text-uppercase(to="/privacy-policy") privacy policy
     li.gNav__list.gNav__list--sns
         ul.sns
             li.sns__list
@@ -18,8 +18,11 @@ ul.gNav__main(:style="{'visibility': isOpen ? 'visible' : 'hidden'}")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
 import { pageScroller } from '~/libs/pageScroller'
+import { useDevicesStore } from '~/stores/devices'
+import { useUiStore } from '~/stores/ui'
 
 export default defineComponent({
     name: 'nav-main-content',
@@ -29,7 +32,9 @@ export default defineComponent({
             default: false
         }
     },
-    setup(_, { root: { $store, $nuxt } }) {
+    setup() {
+        const uiStore = useUiStore()
+
         // --------------------------------
         // Local State
         const navList = [
@@ -41,13 +46,13 @@ export default defineComponent({
         ]
 
         // ---------------------------------
-        // Computed from vuex
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
+        // Store state
+        const { isMobile } = storeToRefs(useDevicesStore())
 
         // ---------------------------------
         // Methods
         const navClickAction = (pageLocation: string): void => {
-            pageScroller($store, $nuxt, pageLocation, isMobile.value, true)
+            pageScroller(pageLocation, isMobile.value, uiStore.toggleNav)
         }
 
         return {

@@ -4,8 +4,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@vue/composition-api'
+import { defineComponent, onMounted, ref } from 'vue'
 import { scrollEventHandler } from '~/libs/scrollEventHandler'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
     name: 'scroll-nav',
@@ -19,7 +22,10 @@ export default defineComponent({
             default: false
         }
     },
-    setup({ location, works }, { root: { $store } }) {
+    setup(props) {
+        const pageLocationStore = usePageLocationStore()
+        const worksStore = useWorksStore()
+
         // ------------------------------
         // Local state
         const isMobile = ref(false)
@@ -27,18 +33,18 @@ export default defineComponent({
         // ------------------------------
         // Methods
         const pageScroll = () => {
-            if (location) {
-                $store.commit('pageLocation/setPageLocation', { location })
+            if (props.location) {
+                pageLocationStore.setPageLocation(props.location)
             }
-            if (works) {
-                $store.commit('pageLocation/setWorksLocation', { num: 5 })
+            if (props.works) {
+                pageLocationStore.setWorksLocation(5)
             }
-            $store.commit('works/setIsRightActive', { isRight: null })
-            scrollEventHandler($store, true)
+            worksStore.setIsRightActive(null)
+            scrollEventHandler(true)
         }
 
         onMounted(() => {
-            isMobile.value = $store.getters['devices/isMobile']
+            isMobile.value = useDevicesStore().isMobile
         })
 
         return { isMobile, pageScroll }
