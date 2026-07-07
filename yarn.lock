@@ -2574,16 +2574,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/dotenv@npm:1.4.1":
-  version: 1.4.1
-  resolution: "@nuxtjs/dotenv@npm:1.4.1"
-  dependencies:
-    consola: "npm:^2.10.1"
-    dotenv: "npm:^8.1.0"
-  checksum: 10c0/b8d11eaf8925ff3e229c0503c04aa0fce2aad2a25e5f18a811823743390c0d09648426ec36d0b991622c4918f5d743c3d06d544ddf82ebd1802709bbe0f7a195
-  languageName: node
-  linkType: hard
-
 "@nuxtjs/eslint-config-typescript@npm:1.0.2":
   version: 1.0.2
   resolution: "@nuxtjs/eslint-config-typescript@npm:1.0.2"
@@ -7369,7 +7359,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"consola@npm:^2.10.1, consola@npm:^2.11.3, consola@npm:^2.4.0, consola@npm:^2.5.6":
+"consola@npm:^2.11.3, consola@npm:^2.4.0, consola@npm:^2.5.6":
   version: 2.11.3
   resolution: "consola@npm:2.11.3"
   checksum: 10c0/f9b5797d026570b27767b2294d497d188fe316a1bfe2da8bc52932b772a55da7f7d7ea6b80027a98e5c575df1809c4126ebb3ebce999971e56752db3ef63eae8
@@ -8365,7 +8355,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"dotenv@npm:^8.0.0, dotenv@npm:^8.1.0, dotenv@npm:^8.2.0":
+"dotenv@npm:^8.0.0, dotenv@npm:^8.2.0":
   version: 8.2.0
   resolution: "dotenv@npm:8.2.0"
   checksum: 10c0/b6a07a2c400b13ad4e59c34e4682256e6bb846469781a3963b36861ee608ed312e6125c4a7635a9edcf957bb294a6966e218f0e26b82ff0bda9184211d4bc141
@@ -15199,7 +15189,6 @@ __metadata:
   dependencies:
     "@nuxtjs/apollo": "npm:^4.0.0-rc19"
     "@nuxtjs/axios": "npm:5.10.3"
-    "@nuxtjs/dotenv": "npm:1.4.1"
     "@nuxtjs/eslint-config-typescript": "npm:1.0.2"
     "@nuxtjs/google-analytics": "npm:^2.2.3"
     "@nuxtjs/recaptcha": "npm:^0.6.2"
@@ -15214,7 +15203,6 @@ __metadata:
     "@typescript-eslint/parser": "npm:2.30.0"
     "@vue/test-utils": "npm:^1.0.0-beta.33"
     date-fns: "npm:^2.12.0"
-    dotenv: "npm:^8.2.0"
     eslint: "npm:6.8.0"
     eslint-config-prettier: "npm:^6.11.0"
     eslint-config-standard: "npm:14.1.1"

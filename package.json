@@ -16,7 +16,6 @@
     "dependencies": {
         "@nuxtjs/apollo": "^4.0.0-rc19",
         "@nuxtjs/axios": "5.10.3",
-        "@nuxtjs/dotenv": "1.4.1",
         "@nuxtjs/google-analytics": "^2.2.3",
         "@nuxtjs/recaptcha": "^0.6.2",
         "@sendgrid/mail": "^7.1.0",
@@ -39,7 +38,6 @@
         "@typescript-eslint/eslint-plugin": "2.30.0",
         "@typescript-eslint/parser": "2.30.0",
         "@vue/test-utils": "^1.0.0-beta.33",
-        "dotenv": "^8.2.0",
         "eslint": "6.8.0",
         "eslint-config-prettier": "^6.11.0",
         "eslint-config-standard": "14.1.1",

@@ -32,6 +32,8 @@ export default defineComponent({
         TheFooter
     },
     setup(_, { root: { $store, $el } }) {
+        const runtimeConfig = useRuntimeConfig()
+
         // ---------------------------------------------------------------
         // Local State
         let save = 0
@@ -166,7 +168,7 @@ export default defineComponent({
                 const clock = e.timeStamp - save
                 save = e.timeStamp
                 const delta = e.deltaY ? -(e.deltaY) : 0
-                const speed = parseInt(process.env.SCROLL_THRESHOLD || '0', 10)
+                const speed = Number(runtimeConfig.public.scrollThreshold) || 0
                 if (delta) {
                     if (!isFired && clock > 50) {
                         isFired = true
