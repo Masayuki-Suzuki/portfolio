@@ -1,10 +1,10 @@
 <template lang="pug">
 .pagination(:class="parentClass")
-    template(v-for="(location, index) in locations")
+    //- Vue 3: v-for の key は template タグ側に置く
+    template(v-for="(location, index) in locations" :key="location")
 
         // Just shows page number.
         .pagination__list(
-            :key="location"
             :class="{'active': checkCurrentLocation(location)}"
             @click="pageClickAction(location)"
         ) {{ `0${index + 1}.` }}

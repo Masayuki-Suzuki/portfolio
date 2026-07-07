@@ -15,6 +15,14 @@ export default defineNuxtConfig({
     },
 
     /*
+    ** Global CSS
+    */
+    css: [
+        'ress/dist/ress.min.css',
+        '~/assets/styles/index.sass'
+    ],
+
+    /*
     ** 環境変数は NUXT_ プレフィックスで実行時に注入する(.env.example 参照)
     ** 非 public はサーバ専用 = クライアントバンドルには含まれない
     */
@@ -32,6 +40,18 @@ export default defineNuxtConfig({
     },
 
     vite: {
+        css: {
+            preprocessorOptions: {
+                sass: {
+                    // 旧 @nuxtjs/style-resources 相当: mixins / variables を
+                    // 全コンポーネントの <style lang="sass"> に自動注入する
+                    additionalData: '@import "~/assets/styles/mixins/_index"\n@import "~/assets/styles/variables/_index"\n',
+                    // @import は Dart Sass 3.0 で削除予定。@use への全面移行は
+                    // 規模が大きいため別途検討とし、警告のみ抑制する
+                    silenceDeprecations: ['import']
+                }
+            }
+        },
         resolve: {
             alias: {
                 // 暫定シム: 既存コンポーネントの `@vue/composition-api` import を

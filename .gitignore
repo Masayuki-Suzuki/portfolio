@@ -101,3 +101,6 @@ docker-compose.yml
 !.yarn/patches
 !.yarn/releases
 !.yarn/plugins
+
+# Nuxt 4 build output
+.output
