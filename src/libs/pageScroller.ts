@@ -1,21 +1,19 @@
-import type { StrictStore } from 'vuex/types/index'
-import type { NuxtApp } from '@nuxt/types/app'
 import { directPageController } from '~/libs/scrollEventHandler'
 import smoothScroll, { ISmoothScroll } from '~/libs/smooth-scroll'
 
+// navToggle: ナビゲーションを閉じる必要がある場合に呼ばれるコールバック
+// (旧 $nuxt.$emit('nav-toggle') の置き換え。#36 でストア化予定)
 export const pageScroller = (
-    $store: StrictStore,
-    $nuxt: NuxtApp,
     pageLocation: string,
     isMobile: boolean,
-    nav = false
+    navToggle: (() => void) | null = null
 ): void => {
     if (isMobile) {
         pageLocation = pageLocation.replace('home', 'first')
         const target: HTMLElement | null = document.querySelector(`.${pageLocation}`)
         if (target) {
-            if (nav) {
-                $nuxt.$emit('nav-toggle')
+            if (navToggle) {
+                navToggle()
             }
             const pos = target.offsetTop
             const params: ISmoothScroll = {
@@ -28,6 +26,6 @@ export const pageScroller = (
             smoothScroll(params)
         }
     } else {
-        directPageController($store, pageLocation, $nuxt, nav)
+        directPageController(pageLocation, navToggle)
     }
 }
