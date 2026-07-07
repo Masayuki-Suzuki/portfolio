@@ -13,7 +13,11 @@ section.works.common-container(
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useWorksStore } from '~/stores/works'
 // import YelpCamp from '~/components/yelp-camp.vue'
 import WorldWise from '~/components/world-wise.vue'
 import MyBlog from '~/components/my-blog.vue'
@@ -32,26 +36,25 @@ export default defineComponent({
         Another,
         ScrollNav
     },
-    setup(_, { root: { $store } }) {
-        // ----------------------------------
-        // Local state
+    setup() {
+        const pageLocationStore = usePageLocationStore()
 
         // ----------------------------------
-        // Computed from vuex
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const worksLocation = computed(() => $store.getters['pageLocation/worksLocation'])
-        const isRightActive = computed(() => $store.getters['works/isRightActive'])
+        // Store state
+        const { isMobile } = storeToRefs(useDevicesStore())
+        const { worksLocation } = storeToRefs(pageLocationStore)
+        const { isRightActive } = storeToRefs(useWorksStore())
 
         // ----------------------------------
         // Computed
         const isRightSide = computed(() => {
-            return $store.getters['pageLocation/worksSide'] === 'right' || isMobile.value
+            return pageLocationStore.worksSide === 'right' || isMobile.value
         })
 
         // ----------------------------------
         // Methods
         const checkActiveWorksPage = (index: number): boolean => {
-            return $store.getters['pageLocation/worksLocation'] === index || isMobile.value
+            return pageLocationStore.worksLocation === index || isMobile.value
         }
 
         return {

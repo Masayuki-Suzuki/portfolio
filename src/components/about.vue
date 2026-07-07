@@ -26,16 +26,20 @@ section.common-container.about(:class="{'about--active': pageActive}")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent } from 'vue'
+import { storeToRefs } from 'pinia'
 import { checkPageActivation } from '~/libs/checkPageActivation'
 import ScrollNav from '~/components/scroll-nav.vue'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
     name: 'about',
     components: {
         ScrollNav
     },
-    setup(_, { root: { $store } }) {
+    setup() {
         // --------------------------------------
         // Local state
         const kinds = ['can', 'use']
@@ -70,15 +74,15 @@ export default defineComponent({
         }
 
         // --------------------------------------
-        // Computed from vuex state
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const pageLocation = computed(() => $store.getters['pageLocation/pageLocation'])
-        const delayedActivePage = computed(() => $store.getters['scrolls/delayedActivePage'])
+        // Store state
+        const { isMobile } = storeToRefs(useDevicesStore())
+        const { pageLocation } = storeToRefs(usePageLocationStore())
+        const { delayedActivePage } = storeToRefs(useScrollsStore())
 
         // --------------------------------------
         // Computed
         const pageActive = computed((): boolean =>
-            checkPageActivation($store, delayedActivePage.value, 'about'))
+            checkPageActivation(delayedActivePage.value, 'about'))
 
         return {
             kinds,
