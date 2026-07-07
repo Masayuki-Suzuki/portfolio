@@ -95,3 +95,9 @@ nginx
 .report.*.json
 
 docker-compose.yml
+
+# Yarn Berry (nodeLinker: node-modules)
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
