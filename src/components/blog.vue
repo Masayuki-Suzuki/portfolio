@@ -10,11 +10,15 @@
 
 <script lang="ts">
 /* eslint-disable */
-import { computed, defineComponent, PropType } from '@vue/composition-api'
+import { computed, defineComponent, PropType } from 'vue'
+import { storeToRefs } from 'pinia'
 import { checkPageActivation } from '~/libs/checkPageActivation'
 import BlogCard from '~/components/blog-card.vue'
 import ScrollNav from '~/components/scroll-nav.vue'
 import { BlogData } from '~/types/global'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
     name: 'blog',
@@ -24,21 +28,22 @@ export default defineComponent({
     },
     props: {
         blogData: {
+            // データ取得は #39(Apollo v5)で復旧するため、それまでは null 許容
             type: Array as PropType<BlogData>,
-            required: true as true
+            default: null
         }
     },
-    setup(_, { root: { $store } }) {
+    setup() {
         // --------------------------------------
-        // Computed from vuex state
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const pageLocation = computed(() => $store.getters['pageLocation/pageLocation'])
-        const delayedActivePage = computed(() => $store.getters['scrolls/delayedActivePage'])
+        // Store state
+        const { isMobile } = storeToRefs(useDevicesStore())
+        const { pageLocation } = storeToRefs(usePageLocationStore())
+        const { delayedActivePage } = storeToRefs(useScrollsStore())
 
         // --------------------------------------
         // Computed
         const pageActive = computed((): boolean =>
-            checkPageActivation($store, delayedActivePage.value, 'blog'))
+            checkPageActivation(delayedActivePage.value, 'blog'))
 
         /* eslint-disable no-console */
         /* eslint-enable no-console */

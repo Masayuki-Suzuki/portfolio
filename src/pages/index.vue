@@ -9,36 +9,20 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, getCurrentInstance, onMounted, watch } from '@vue/composition-api'
-import gql from 'graphql-tag'
+import { computed, defineComponent, ref } from 'vue'
+import { storeToRefs } from 'pinia'
+import { useDevicesStore } from '~/stores/devices'
+import { usePageLocationStore } from '~/stores/pageLocation'
+import { useScrollsStore } from '~/stores/scrolls'
 import FirstView from '~/components/first-view.vue'
 import About from '~/components/about.vue'
 import Works from '~/components/works.vue'
 import Blog from '~/components/blog.vue'
 import Contact from '~/components/contact.vue'
 
-const BLOG_ROW_DATA = gql`
-   query blogRowData {
-       posts(sort: "createdAt:desc", pagination: { limit: 3 }) {
-          documentId
-          title
-          slug
-          excerpt
-          thumbnail {
-              url
-              alternativeText
-              width
-              height
-          }
-          tags {
-              name
-              slug
-          }
-          createdAt
-          updatedAt
-      }
-   }
-`
+// NOTE(#39): 旧実装の blogRowData クエリ(graphql-tag)は Apollo v5 移行時に復元する。
+// 旧 graphql-tag は古い graphql との CJS/ESM 相互運用でモジュール読込時にクラッシュ
+// するため、このファイルからは一旦撤去(クエリ全文は git 履歴 / Issue #39 参照)
 
 export default defineComponent({
     name: 'index-page',
@@ -49,25 +33,16 @@ export default defineComponent({
         Blog,
         Contact
     },
-    apollo: {
-        posts: BLOG_ROW_DATA
-    },
-    watch: {
-        posts: {
-            handler(val) { console.log('[apollo posts] updated:', val) },
-            immediate: true
-        }
-    },
-    // ついでに初回
-    mounted() {
-        console.log('[apollo posts] mounted:', this.posts)
-    },
-    setup(_, { root: { $store } }) {
+    setup() {
         // ---------------------------------------------------------
-        // Computed from vuex
-        const isMobile = computed(() => $store.getters['devices/isMobile'])
-        const isFirstView = computed(() => $store.getters['scrolls/isFirstView'])
-        const pageLocation = computed(() => $store.getters['pageLocation/pageLocation'])
+        // Store state
+        const { isMobile } = storeToRefs(useDevicesStore())
+        const { isFirstView } = storeToRefs(useScrollsStore())
+        const { pageLocation } = storeToRefs(usePageLocationStore())
+
+        // TODO(#39): @nuxtjs/apollo v5 の useAsyncQuery(BLOG_ROW_DATA) で
+        // Strapi からブログ一覧を取得する(旧 smart query の置き換え)
+        const posts = ref(null)
 
         // Local computed
         const wrapperClasses = computed(() => {
@@ -81,6 +56,7 @@ export default defineComponent({
             isMobile,
             isFirstView,
             pageLocation,
+            posts,
             wrapperClasses
         }
     }

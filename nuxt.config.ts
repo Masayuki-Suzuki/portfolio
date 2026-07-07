@@ -56,13 +56,6 @@ export default defineNuxtConfig({
                     silenceDeprecations: ['import', 'global-builtin', 'slash-div']
                 }
             }
-        },
-        resolve: {
-            alias: {
-                // 暫定シム: 既存コンポーネントの `@vue/composition-api` import を
-                // Vue 3 本体へ解決させる。コンポーネント移行(#36, #37)完了後に削除。
-                '@vue/composition-api': 'vue'
-            }
         }
     }
 })

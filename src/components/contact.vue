@@ -49,12 +49,14 @@ section.contact.common-container(:class="{'contact--active': pageActive}")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onMounted, ref } from '@vue/composition-api'
+import { computed, defineComponent, ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import { checkPageActivation } from '~/libs/checkPageActivation'
+import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
     name: 'contact',
-    setup(_, { root: { $store, $recaptcha, $axios } }) {
+    setup() {
         // --------------------------------------
         // Local state
         const senderName = ref('')
@@ -66,13 +68,13 @@ export default defineComponent({
         const errorMsg = ref('')
 
         // --------------------------------------
-        // Computed from vuex state
-        const delayedActivePage = computed(() => $store.getters['scrolls/delayedActivePage'])
+        // Store state
+        const { delayedActivePage } = storeToRefs(useScrollsStore())
 
         // --------------------------------------
         // Computed
         const pageActive = computed((): boolean =>
-            checkPageActivation($store, delayedActivePage.value, 'contact'))
+            checkPageActivation(delayedActivePage.value, 'contact'))
 
         // --------------------------------------
         //  Methods
@@ -83,45 +85,16 @@ export default defineComponent({
             body.value = ''
         }
 
+        // TODO(#40): Nitro サーバルート(/api/contact-form)への $fetch 送信に置き換える
+        // TODO(#41): vue-recaptcha-v3 で reCAPTCHA token を取得して params に含める
+        // 送信フローの旧実装(@nuxtjs/axios + @nuxtjs/recaptcha)は Vue 3 で動作しない
+        // ため一時停止中。resetForm は #40 で再利用する。
         const submit = async () => {
             submitted.value = false
-            errorMsg.value = ''
-            connecting.value = true
-            const token = await $recaptcha.execute('login').catch(err => {
-                console.error('recCaptcha Login error', err)
-                errorMsg.value = 'Login error of reCAPTCHA. Please try again later.'
-                connecting.value = false
-            })
-
-            if (token) {
-                // Email API params
-                const params = {
-                    userName: senderName.value,
-                    company: company.value,
-                    email: email.value,
-                    body: body.value,
-                    token
-                }
-
-                // Send email
-                const res = await $axios.post('/contact-form', params).catch(err => {
-                    errorMsg.value = err.response.data.errorMessage
-                    console.error(err.response)
-                })
-                if (res) {
-                    resetForm()
-                    submitted.value = true
-                }
-                connecting.value = false
-            }
-
+            connecting.value = false
+            errorMsg.value = 'Sorry, the contact form is temporarily unavailable. (migration in progress)'
+            void resetForm
         }
-
-        // --------------------------------------
-        // Lifecycle
-        onMounted(() => {
-            $recaptcha.init()
-        })
 
         return {
             senderName,
