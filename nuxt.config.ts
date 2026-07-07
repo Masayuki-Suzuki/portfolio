@@ -50,9 +50,10 @@ export default defineNuxtConfig({
                     // 旧 @nuxtjs/style-resources 相当: mixins / variables を
                     // 全コンポーネントの <style lang="sass"> に自動注入する
                     additionalData: '@import "~/assets/styles/mixins/_index"\n@import "~/assets/styles/variables/_index"\n',
-                    // @import は Dart Sass 3.0 で削除予定。@use への全面移行は
-                    // 規模が大きいため別途検討とし、警告のみ抑制する
-                    silenceDeprecations: ['import']
+                    // @import / 旧ビルトイン関数 / スラッシュ除算は Dart Sass 2.0-3.0 で
+                    // 削除予定。@use への全面移行は規模が大きいため別途検討とし、
+                    // 既存コード由来の警告のみ抑制する
+                    silenceDeprecations: ['import', 'global-builtin', 'slash-div']
                 }
             }
         },

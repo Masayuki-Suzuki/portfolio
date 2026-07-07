@@ -1,16 +1,13 @@
 <template lang="pug">
 .privacy
-    nuxt
+    slot
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'privacy',
-    setup() {
-        return {}
-    }
+    name: 'privacy-layout'
 })
 </script>
 

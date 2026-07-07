@@ -17,18 +17,12 @@
         | by Privacy Policy for Google Analytics and the Google Privacy Policy.
 
     p
-        n-link(to="/") top page
+        nuxt-link(to="/") top page
 </template>
 
-<script lang="ts">
-import { defineComponent } from '@vue/composition-api'
-
-export default defineComponent({
-    name: '',
-    layout: 'privacy',
-    setup() {
-        return {}
-    }
+<script setup lang="ts">
+definePageMeta({
+    layout: 'privacy'
 })
 </script>
 
