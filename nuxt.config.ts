@@ -5,6 +5,10 @@ export default defineNuxtConfig({
 
     srcDir: 'src/',
 
+    modules: [
+        '@pinia/nuxt'
+    ],
+
     // 旧 `src/static` を公開ディレクトリとして維持
     dir: {
         public: 'src/static'
