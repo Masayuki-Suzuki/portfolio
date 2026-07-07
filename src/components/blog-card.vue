@@ -1,21 +1,24 @@
 <template lang="pug">
 .blog-card(:class="[`blog-card-${num + 1}` ,{'blog-card--right': num % 2 === 0}]")
     .blog__thumbnail
-        img(:src="blogData.featuredImage.sourceUrl" :alt="blogData.title")
+        img(:src="imageURL" :alt="blogData.alternativeText || blogData.title")
 
     .blog__desc
-        time.date {{ blogData.date | dateFormatter }} - {{ category }}
+        time.date {{ blogData.createdAt | dateFormatter }} - {{ category }}
         h2.title {{ blogData.title | entityDecoder}}
-        p.summary {{ blogData.content | entityDecoder | deleteContentTag}}
+        p.summary {{ blogData.excerpt | entityDecoder | deleteContentTag}}
         .view-post
-            a(:href="blogData.url" target="_blank") Read the post
+            a(:href="slug" target="_blank") Read the post
 
 </template>
 
 <script lang="ts">
 import { computed, defineComponent, PropType } from '@vue/composition-api'
-import format from 'date-fns/format'
+import { format } from 'date-fns'
 import { BlogNode } from '~/types/global'
+
+const BASE_URL = 'https://anonymous-frontend.dev'
+
 
 export default defineComponent({
     name: '',
@@ -49,11 +52,21 @@ export default defineComponent({
     setup({ blogData }) {
 
         const category = computed(() => {
-            return blogData.categories.edges[0].node.name
+            return blogData.tags[0].name
+        })
+
+        const slug = computed(() => {
+            return `https://anonymous-frontend.dev/posts/${blogData.slug}/`
+        })
+
+        const imageURL = computed(() => {
+            return `https://dashboard.anonymous-frontend.dev${blogData.thumbnail.url}`
         })
 
         return {
-            category
+            category,
+            slug,
+            imageURL
         }
     }
 })

@@ -5,14 +5,17 @@ article.works__details.works__details--left
         h1.works__heading Personal Blog
     .works__desc
         p.works__lead
-            | I made my personal blog using Wordpress with Trellis, Bedrock and Sage.
-            | ( I call these things "Roots 3 combo" ) Especially Sage is almost de facto standard
-            | starter theme in the web industry. I’m posting articles such as web development,
-            | what I studying and studied,  a joined event, daily life and etc as my whim takes one at will.
+            | I used to run this blog on WordPress with Trellis, Bedrock, and Sage (I called “Roots 3 combo”),
+            | which had become something of a de facto starter stack in the industry.
+            | In 2025, though, I rebuilt it entirely: the frontend is now in TypeScript and Next.js,
+            | whilst the backend is powered by Strapi, an open-source headless CMS.
+            | The design carries over much of the previous look, yet beneath the surface
+            | it’s an altogether different system. I still post about web development,
+            | things I’m studying or have studied, events I’ve taken part in, and bits of daily life, whenever I fancy.
         ul.using
             li.using__list(v-for="item in usingList" :key="item") {{ item }}
         .works__view
-            a.works__github(href="https://github.com/Masayuki-Suzuki/Anonymous" target="_blank") github
+            a.works__github(href="https://github.com/Masayuki-Suzuki/Anonymous2025Update" target="_blank") github
             a.view-site.text-capitalised(href="https://anonymous-frontend.dev" target="_blank") view site
 
 </template>
@@ -28,12 +31,11 @@ export default defineComponent({
         const usingList = [
             'HTML5',
             'CSS3',
-            'Sass/Scss',
-            'Wordpress',
-            'PHP',
-            'Trellis',
-            'Bedrock',
-            'Sage'
+            'Tailwind CSS',
+            'TypeScript',
+            'Next.js',
+            'Strapi',
+            'GraphQL',
         ]
         return {
             usingList

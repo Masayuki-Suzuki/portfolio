@@ -4,12 +4,12 @@ article.works__details.works__details--right
         h1.works__heading Another Works
     .works__desc
         p.works__lead
-            | I have 4 years experience in the field at a Japanese company and 1.8 years in Canada.
-            | I've coded many websites' including responsive web design, but unfortunately
-            | I can't publish those websites in this portfolio. If you'd like to know what I did,
-            | please ask me via contact form or when we meet in the interview,
-            | I'll talk about them at that time.<br/>Also I'm releasing my some projects and code on Github
-            | other than projects showing on this portfolio. Please take a look them.
+            |I have over six years of professional experience in Canada, along with prior work in Japan.
+            |During this time, I’ve developed web applications using TypeScript, React, and Vue, as well as
+            |built websites with WordPress. Many of the client projects I’ve worked on cannot be published
+            |in this portfolio, but I’d be happy to share details through the contact form or during an interview.
+            |In addition, I regularly release personal projects and source code on GitHub beyond what is showcased
+            |here in my portfolio. Please feel free to take a look.
         .works__view
             a.works__github(href="https://github.com/Masayuki-Suzuki?tab=repositories" target="_blank") github
 

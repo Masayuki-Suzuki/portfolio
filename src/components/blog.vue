@@ -1,14 +1,15 @@
 <template lang="pug">
-section.common-container.blog(:class="{'blog--active': pageActive}")
-    h1.common-heading.blog__heading Blog
-    .blog__container(v-if="blogData")
-        blog-card(v-for="(item, index) in blogData.edges" :blog-data="item.node" :num="index" :key="index")
-    .more
-        a(href="https://anonymous-frontend.dev/" target="_blank") read more post
-    scroll-nav
+    section.common-container.blog(:class="{'blog--active': pageActive}")
+        h1.common-heading.blog__heading Blog
+        .blog__container(v-if="blogData")
+            blog-card(v-for="(item, index) in blogData" :blog-data="item" :num="index" :key="item.documentId")
+        .more
+            a(href="https://anonymous-frontend.dev/" target="_blank") read more post
+        scroll-nav
 </template>
 
 <script lang="ts">
+/* eslint-disable */
 import { computed, defineComponent, PropType } from '@vue/composition-api'
 import { checkPageActivation } from '~/libs/checkPageActivation'
 import BlogCard from '~/components/blog-card.vue'
@@ -23,7 +24,7 @@ export default defineComponent({
     },
     props: {
         blogData: {
-            type: Object as PropType<BlogData>,
+            type: Array as PropType<BlogData>,
             required: true as true
         }
     },
@@ -38,6 +39,9 @@ export default defineComponent({
         // Computed
         const pageActive = computed((): boolean =>
             checkPageActivation($store, delayedActivePage.value, 'blog'))
+
+        /* eslint-disable no-console */
+        /* eslint-enable no-console */
 
         return {
             pageLocation,

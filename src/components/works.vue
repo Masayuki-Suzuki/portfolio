@@ -4,7 +4,7 @@ section.works.common-container(
 )
 
     h1.common-heading(v-show="isMobile") works
-    yelp-camp(v-if="checkActiveWorksPage(1)" :class="{'active-works': isRightActive || isMobile}")
+    world-wise(v-if="checkActiveWorksPage(1)" :class="{'active-works': isRightActive || isMobile}")
     my-blog(v-if="checkActiveWorksPage(2)" :class="{'active-works': !isRightActive || isMobile}")
     portfolio(v-if="checkActiveWorksPage(3)" :class="{'active-works': isRightActive || isMobile}")
     pinstagram(v-if="checkActiveWorksPage(4)" :class="{'active-works': !isRightActive || isMobile}")
@@ -14,7 +14,8 @@ section.works.common-container(
 
 <script lang="ts">
 import { computed, defineComponent } from '@vue/composition-api'
-import YelpCamp from '~/components/yelp-camp.vue'
+// import YelpCamp from '~/components/yelp-camp.vue'
+import WorldWise from '~/components/world-wise.vue'
 import MyBlog from '~/components/my-blog.vue'
 import Portfolio from '~/components/portfolio.vue'
 import Pinstagram from '~/components/pinstagram.vue'
@@ -24,7 +25,7 @@ import ScrollNav from '~/components/scroll-nav.vue'
 export default defineComponent({
     name: 'works',
     components: {
-        YelpCamp,
+        WorldWise,
         MyBlog,
         Portfolio,
         Pinstagram,
@@ -116,7 +117,7 @@ export default defineComponent({
                 transform: matrix(1, 0, -0.4, 1, 0, 0) translateX(42%)
 
     &-page-1
-        background: url(/images/camping.webp) center center / cover no-repeat
+        background: url(/images/traveling.jpg) center center / cover no-repeat
 
         +lgAndDown
             background-position: 3vw top

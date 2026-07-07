@@ -20,15 +20,34 @@ type FeatureImage = {
     sourceUrl: string
 }
 
-export type BlogNode = {
-    categories: BlogCategory
-    content: string
-    date: string
-    link: string
-    title: string
-    featureImage: FeatureImage
+export type Tag = {
+    name: string
+    slug: string
+    __typename?: string
 }
 
-export type BlogData = {
-    edges: BlogNode[]
+export type Tags = Tag[]
+
+export type Thumbnail = {
+    title: string
+    alternativeText: string
+    height: number
+    width: number
+    url: string
+    updatedAt: string | Date
+    __typename?: string
 }
+
+export type BlogNode = {
+    createdAt: string | Date
+    documentId: string
+    excerpt: string
+    slug: string
+    tags: Tags
+    thumbnail: Thumbnail
+    title: string
+    updatedAt: string | Date
+    __typename?: string
+}
+
+export type BlogData = BlogNode[]

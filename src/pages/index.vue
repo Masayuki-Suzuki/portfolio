@@ -9,13 +9,36 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from '@vue/composition-api'
+import { computed, defineComponent, getCurrentInstance, onMounted, watch } from '@vue/composition-api'
 import gql from 'graphql-tag'
 import FirstView from '~/components/first-view.vue'
 import About from '~/components/about.vue'
 import Works from '~/components/works.vue'
 import Blog from '~/components/blog.vue'
 import Contact from '~/components/contact.vue'
+
+const BLOG_ROW_DATA = gql`
+   query blogRowData {
+       posts(sort: "createdAt:desc", pagination: { limit: 3 }) {
+          documentId
+          title
+          slug
+          excerpt
+          thumbnail {
+              url
+              alternativeText
+              width
+              height
+          }
+          tags {
+              name
+              slug
+          }
+          createdAt
+          updatedAt
+      }
+   }
+`
 
 export default defineComponent({
     name: 'index-page',
@@ -27,30 +50,17 @@ export default defineComponent({
         Contact
     },
     apollo: {
-        posts: gql`
-             query blogRowData {
-                 posts (first: 3) {
-                     edges {
-                         node {
-                             title
-                             content
-                             featuredImage {
-                                 sourceUrl
-                             }
-                             date
-                             link
-                             categories (first: 1) {
-                                 edges {
-                                     node {
-                                         name
-                                     }
-                                 }
-                             }
-                         }
-                     }
-                 }
-             }
-         `
+        posts: BLOG_ROW_DATA
+    },
+    watch: {
+        posts: {
+            handler(val) { console.log('[apollo posts] updated:', val) },
+            immediate: true
+        }
+    },
+    // ついでに初回
+    mounted() {
+        console.log('[apollo posts] mounted:', this.posts)
     },
     setup(_, { root: { $store } }) {
         // ---------------------------------------------------------

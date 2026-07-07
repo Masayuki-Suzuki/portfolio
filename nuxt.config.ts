@@ -83,8 +83,13 @@ const config: Configuration = {
     apollo: {
         clientConfigs: {
             default: {
-                httpEndpoint: 'https://anonymous-frontend.dev/wp/graphql'
-            }
+                httpEndpoint: 'https://anonymous-frontend.dev/graphql',
+                httpLinkOptions: {
+                    headers: {
+                        Authorization: process.env.STRAPI_API_TOKEN ? `Bearer ${process.env.STRAPI_API_TOKEN}` : ''
+                    }
+                }
+            },
         }
     },
 

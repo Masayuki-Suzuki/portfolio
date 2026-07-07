@@ -2,10 +2,12 @@
 section.common-container.about(:class="{'about--active': pageActive}")
     h1.common-heading.about__heading Who I am ?
     p.about__lead
-        | Hi, there. I'm Masayuki Suzuki, a Japanese front-end developer based in Vancouver. My focus is creating
-        | interactive experiences and user-friendly interfaces whilst maintaining semantic, clean markup and SEO
-        | friendly code. I have 4 years experience in this field in Japan. I continue to learn new language,
-        | tools and framework to proceed to the next stage.
+        | Hello! My name is Masayuki Suzuki, a front-end developer from Japan currently based in Vancouver.
+        | With six years of professional experience in Canada and four years in Japan,
+        | I specialize in building modern, scalable applications using TypeScript and React,
+        | and have also delivered projects with Vue. I’m passionate about combining interactive design with clean,
+        | semantic code optimized for performance and accessibility. Always eager to explore new frameworks and
+        | emerging technologies, I strive to bring fresh ideas and reliable solutions to every project.
 
     .wrapper
         .what-i(v-for="kind in kinds" :key="kind" :class="`what-i-${kind}`")
@@ -40,31 +42,31 @@ export default defineComponent({
         const images = {
             can: [
                 { fileName: 'ts', alt: 'ts' },
+                { fileName: 'react', alt: 'react' },
+                { fileName: 'nextjs', alt: 'nextjs' },
                 { fileName: 'vue', alt: 'vue' },
                 { fileName: 'nuxt', alt: 'nuxt' },
                 { fileName: 'js', alt: 'js' },
-                { fileName: 'html5', alt: 'html5' },
-                { fileName: 'css3', alt: 'css3' },
+                { fileName: 'tailwind', alt: 'tailwind' },
                 { fileName: 'golang', alt: 'golang' },
-                { fileName: 'react', alt: 'react' },
                 { fileName: 'wordpress', alt: 'wordpress' }
             ],
             use: [
-                { fileName: 'jetbrain', alt: 'jetbrain' },
-                { fileName: 'pug', alt: 'pug' },
+                { fileName: 'jetbrain', alt: 'jetbrains' },
                 { fileName: 'sass', alt: 'sass' },
-                { fileName: 'babel', alt: 'babel' },
+                { fileName: 'vitejs', alt: 'vite' },
                 { fileName: 'webpack', alt: 'webpack' },
                 { fileName: 'git', alt: 'git' },
                 { fileName: 'github', alt: 'github' },
-                { fileName: 'sketch', alt: 'sketch' },
-                { fileName: 'photoshop', alt: 'photoshop' }
+                { fileName: 'docker', alt: 'docker' },
+                { fileName: 'figma', alt: 'figma' },
+                { fileName: 'photoshop', alt: 'photoshop' },
             ]
         }
 
         const others = {
-            can: 'Vuex / JSON / AJAX / RESTful / Node.js',
-            use: 'BEM / OOCSS / Gulp / EJS'
+            can: 'Redux / Vuex / GraphQL / Go Fiber / Node.js / MongoDB',
+            use: 'Junie / Generative AI / GCP'
         }
 
         // --------------------------------------
