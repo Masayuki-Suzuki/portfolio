@@ -1,13 +1,28 @@
 import { head } from './src/config/head'
 
+// Strapi(ブログCMS)のオリジン。GraphQL とサムネイル画像の両方で使う。
+// ビルド時に NUXT_PUBLIC_STRAPI_URL で上書き可能
+const STRAPI_URL = process.env.NUXT_PUBLIC_STRAPI_URL || 'https://dashboard.anonymous-frontend.dev'
+
 export default defineNuxtConfig({
     compatibilityDate: '2026-07-07',
 
     srcDir: 'src/',
 
     modules: [
-        '@pinia/nuxt'
+        '@pinia/nuxt',
+        '@nuxtjs/apollo'
     ],
+
+    apollo: {
+        // 認証トークンは plugins/apollo-auth.ts の apollo:auth フックで
+        // サーバ専用 runtimeConfig から注入する(クライアントには渡さない)
+        clients: {
+            default: {
+                httpEndpoint: `${STRAPI_URL}/graphql`
+            }
+        }
+    },
 
     // 旧 `src/static` を公開ディレクトリとして維持
     dir: {
@@ -39,7 +54,8 @@ export default defineNuxtConfig({
         public: {
             recaptchaSiteKey: '',    // NUXT_PUBLIC_RECAPTCHA_SITE_KEY
             scrollThreshold: 0,      // NUXT_PUBLIC_SCROLL_THRESHOLD
-            ga4MeasurementId: ''     // NUXT_PUBLIC_GA4_MEASUREMENT_ID(#42 で使用)
+            ga4MeasurementId: '',    // NUXT_PUBLIC_GA4_MEASUREMENT_ID(#42 で使用)
+            strapiUrl: STRAPI_URL    // サムネイル画像の相対 URL 解決に使用
         }
     },
 
