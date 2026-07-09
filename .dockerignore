@@ -1,0 +1,23 @@
+# dependencies / build artifacts
+node_modules
+.nuxt
+.output
+.yarn
+
+# env & secrets (runtimeConfig は起動時に注入する)
+.env
+.env.*
+!.env.example
+
+# vcs / ide / misc
+.git
+.github
+.idea
+.DS_Store
+*.log
+.eslintcache
+
+# legacy infra (removed in #45)
+nginx
+docker-compose.yml
+Dockerfile
