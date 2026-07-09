@@ -1,0 +1,24 @@
+services:
+  masa_works:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: masa-works:latest
+    container_name: masa_works
+    restart: always
+    # runtimeConfig(Resend / reCAPTCHA / Strapi トークン等)は起動時に注入。
+    # 必要なキーは .env.example を参照
+    env_file: .env
+    # ローカル検証用(127.0.0.1 限定公開)。本番は Caddy が
+    # 共有ネットワーク経由で masa_works:3000 へプロキシするため未使用
+    ports:
+      - '127.0.0.1:3000:3000'
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    # 本番の Caddy コンテナが参加している external ネットワーク(caddy_net)。
+    # 異なる環境では CADDY_NETWORK で上書きする
+    name: ${CADDY_NETWORK:-caddy_net}
+    external: true

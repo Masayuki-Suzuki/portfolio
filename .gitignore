@@ -89,12 +89,7 @@ sw.*
 # Vim swap files
 *.swp
 
-# Server setting
-nginx
-
 .report.*.json
-
-docker-compose.yml
 
 # Yarn Berry (nodeLinker: node-modules)
 .yarn/*
