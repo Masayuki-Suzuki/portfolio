@@ -49,16 +49,16 @@ section.contact.common-container(:class="{'contact--active': pageActive}")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
-import { useReCaptcha } from 'vue-recaptcha-v3'
 import { checkPageActivation } from '~/libs/checkPageActivation'
+import { useRecaptcha } from '~/composables/useRecaptcha'
 import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
     name: 'contact',
     setup() {
-        const recaptcha = useReCaptcha()
+        const recaptcha = useRecaptcha()
 
         // --------------------------------------
         // Local state
@@ -95,8 +95,7 @@ export default defineComponent({
 
             let token = ''
             try {
-                await recaptcha?.recaptchaLoaded()
-                token = await recaptcha?.executeRecaptcha('contact') ?? ''
+                token = await recaptcha.execute('contact')
             } catch (err) {
                 console.error('reCAPTCHA error', err)
                 errorMsg.value = 'reCAPTCHA failed to load. Please try again later.'
@@ -125,6 +124,12 @@ export default defineComponent({
                 connecting.value = false
             }
         }
+
+        // --------------------------------------
+        // Lifecycle: スクリプトを事前読込して送信時の待ち時間を短縮
+        onMounted(() => {
+            recaptcha.load().catch(() => { /* 失敗しても送信時に再試行される */ })
+        })
 
         return {
             senderName,

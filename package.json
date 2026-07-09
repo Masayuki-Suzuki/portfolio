@@ -25,8 +25,7 @@
         "nuxt": "^4.4.8",
         "pinia": "^3.0.4",
         "ress": "^2.0.4",
-        "vue": "^3.5.0",
-        "vue-recaptcha-v3": "^2.0.1"
+        "vue": "^3.5.0"
     },
     "devDependencies": {
         "@nuxtjs/eslint-config-typescript": "1.0.2",

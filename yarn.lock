@@ -11316,7 +11316,6 @@ __metadata:
     typescript: "npm:^3.8.3"
     vue: "npm:^3.5.0"
     vue-jest: "npm:^4.0.0-0"
-    vue-recaptcha-v3: "npm:^2.0.1"
   languageName: unknown
   linkType: soft
 
@@ -12260,13 +12259,6 @@ __metadata:
   version: 2.0.0
   resolution: "realpath-native@npm:2.0.0"
   checksum: 10c0/fb97f62f8df62727fdf6abb9a5311005eff103c1921e965a258dbc93461eb82218b31a847478b2cc0855b3e4d16a48cacea009b06f5c6ac33b0d354c703c472c
-  languageName: node
-  linkType: hard
-
-"recaptcha-v3@npm:^1.8.0":
-  version: 1.11.3
-  resolution: "recaptcha-v3@npm:1.11.3"
-  checksum: 10c0/074e10c33ac64f12d0c7903be0940040c7fe8c1fb96704a8e5e863feb617849a84ec44c038c9139b8d515015778e49a1cf421324c3f52811c2e8fd9ffb66aa16
   languageName: node
   linkType: hard
 
@@ -15173,17 +15165,6 @@ __metadata:
     vue: ^2.x
     vue-template-compiler: ^2.x
   checksum: 10c0/6087b03a139fbd4240a83e7445e59a80746651cd972c434e8e46dd70d80d4774cba0884ef243a7318f22e47aeca839a61a5497814089034fb983586961ca5b29
-  languageName: node
-  linkType: hard
-
-"vue-recaptcha-v3@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "vue-recaptcha-v3@npm:2.0.1"
-  dependencies:
-    recaptcha-v3: "npm:^1.8.0"
-  peerDependencies:
-    vue: ^3.0.11
-  checksum: 10c0/a6bdd0caed5bb9e73681733a227ac1cd9a06c3ac2cec1c71a27fc71846259994c70cb5d263c10cef3832cc7ede8e68552d45fbcbb4a8ba51562c0960623fa427
   languageName: node
   linkType: hard
 
