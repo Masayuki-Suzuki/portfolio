@@ -193,6 +193,10 @@ export const scrollEventHandler = (direction: boolean): void => {
 
                 // back to works page 5 (another)
             } else {
+                // ナビ経由で Blog に来た場合は worksLocation が 1 にリセットされて
+                // いるため、Blog からの上スクロールでは常に最終ページ(Another Works)
+                // へ戻るように明示的にセットする
+                pageLocationStore.setWorksLocation(5)
                 commonAction(true, '/works')
                 firstDelayAction('works', true)
                 secondDelayAction('works', 'set')
