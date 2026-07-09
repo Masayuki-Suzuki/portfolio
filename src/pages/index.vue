@@ -9,8 +9,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent } from 'vue'
 import { storeToRefs } from 'pinia'
+import gql from 'graphql-tag'
 import { useDevicesStore } from '~/stores/devices'
 import { usePageLocationStore } from '~/stores/pageLocation'
 import { useScrollsStore } from '~/stores/scrolls'
@@ -19,10 +20,30 @@ import About from '~/components/about.vue'
 import Works from '~/components/works.vue'
 import Blog from '~/components/blog.vue'
 import Contact from '~/components/contact.vue'
+import { BlogData } from '~/types/global'
 
-// NOTE(#39): 旧実装の blogRowData クエリ(graphql-tag)は Apollo v5 移行時に復元する。
-// 旧 graphql-tag は古い graphql との CJS/ESM 相互運用でモジュール読込時にクラッシュ
-// するため、このファイルからは一旦撤去(クエリ全文は git 履歴 / Issue #39 参照)
+const BLOG_ROW_DATA = gql`
+   query blogRowData {
+       posts(sort: "createdAt:desc", pagination: { limit: 3 }) {
+          documentId
+          title
+          slug
+          excerpt
+          thumbnail {
+              url
+              alternativeText
+              width
+              height
+          }
+          tags {
+              name
+              slug
+          }
+          createdAt
+          updatedAt
+      }
+   }
+`
 
 export default defineComponent({
     name: 'index-page',
@@ -33,16 +54,17 @@ export default defineComponent({
         Blog,
         Contact
     },
-    setup() {
+    async setup() {
         // ---------------------------------------------------------
         // Store state
         const { isMobile } = storeToRefs(useDevicesStore())
         const { isFirstView } = storeToRefs(useScrollsStore())
         const { pageLocation } = storeToRefs(usePageLocationStore())
 
-        // TODO(#39): @nuxtjs/apollo v5 の useAsyncQuery(BLOG_ROW_DATA) で
-        // Strapi からブログ一覧を取得する(旧 smart query の置き換え)
-        const posts = ref(null)
+        // ---------------------------------------------------------
+        // Blog posts (SSR で取得し payload 経由でクライアントへ)
+        const { data: blogRes } = await useAsyncQuery<{ posts: BlogData }>(BLOG_ROW_DATA)
+        const posts = computed(() => blogRes.value?.posts ?? null)
 
         // Local computed
         const wrapperClasses = computed(() => {

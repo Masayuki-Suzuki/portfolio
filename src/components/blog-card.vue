@@ -1,14 +1,14 @@
 <template lang="pug">
 .blog-card(:class="[`blog-card-${num + 1}` ,{'blog-card--right': num % 2 === 0}]")
     .blog__thumbnail
-        img(:src="imageURL" :alt="blogData.alternativeText || blogData.title")
+        img(:src="imageURL" :alt="blogData.thumbnail.alternativeText || blogData.title")
 
     .blog__desc
-        time.date {{ blogData.createdAt | dateFormatter }} - {{ category }}
-        h2.title {{ blogData.title | entityDecoder}}
-        p.summary {{ blogData.excerpt | entityDecoder | deleteContentTag}}
+        time.date {{ formattedDate }} - {{ category }}
+        h2.title {{ title }}
+        p.summary {{ summary }}
         .view-post
-            a(:href="slug" target="_blank") Read the post
+            a(:href="postUrl" target="_blank") Read the post
 
 </template>
 
@@ -17,11 +17,22 @@ import { computed, defineComponent, PropType } from 'vue'
 import { format } from 'date-fns'
 import { BlogNode } from '~/types/global'
 
-const BASE_URL = 'https://anonymous-frontend.dev'
+const BLOG_URL = 'https://anonymous-frontend.dev'
 
+// Vue 3 で filters が削除されたため computed へ移行。
+// 旧 entityDecoder は document 依存で SSR 不可だったため、正規表現ベースに変更
+const decodeEntities = (str: string): string =>
+    str
+        .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+        .replace(/&quot;/g, '"')
+        .replace(/&#?apos;/g, "'")
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
 
 export default defineComponent({
-    name: '',
+    name: 'blog-card',
     props: {
         num: {
             type: Number,
@@ -32,40 +43,40 @@ export default defineComponent({
             required: true
         }
     },
-    filters: {
-        dateFormatter(date: string) {
-            return format(new Date(date), 'LLL dd, yyyy')
-        },
-        entityDecoder(str: string) {
-            const dummyElement = document.createElement('textarea')
-            dummyElement.innerHTML = str
-            return dummyElement.value
-        },
-        deleteContentTag(str: string) {
+    setup(props) {
+        const runtimeConfig = useRuntimeConfig()
+
+        const formattedDate = computed(() =>
+            format(new Date(props.blogData.createdAt), 'LLL dd, yyyy'))
+
+        const category = computed(() => props.blogData.tags[0]?.name ?? '')
+
+        const title = computed(() => decodeEntities(props.blogData.title))
+
+        const summary = computed(() => {
+            let str = decodeEntities(props.blogData.excerpt)
             str = str.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').slice(0, 110)
             if (str.slice(-1) !== '.' || str.slice(-1) !== '?') {
                 str += '...'
             }
             return str
-        }
-    },
-    setup({ blogData }) {
-
-        const category = computed(() => {
-            return blogData.tags[0].name
         })
 
-        const slug = computed(() => {
-            return `https://anonymous-frontend.dev/posts/${blogData.slug}/`
-        })
+        const postUrl = computed(() => `${BLOG_URL}/posts/${props.blogData.slug}/`)
 
+        // Strapi のサムネイル URL は相対パス(/uploads/...)で返るため
+        // strapiUrl(public runtimeConfig)をプレフィックスする
         const imageURL = computed(() => {
-            return `https://dashboard.anonymous-frontend.dev${blogData.thumbnail.url}`
+            const url = props.blogData.thumbnail?.url ?? ''
+            return url.startsWith('http') ? url : `${runtimeConfig.public.strapiUrl}${url}`
         })
 
         return {
+            formattedDate,
             category,
-            slug,
+            title,
+            summary,
+            postUrl,
             imageURL
         }
     }
