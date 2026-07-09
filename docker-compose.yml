@@ -1,0 +1,25 @@
+services:
+  masa_works:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: masa-works:latest
+    container_name: masa_works
+    restart: always
+    # runtimeConfig(Resend / reCAPTCHA / Strapi トークン等)は起動時に注入。
+    # 必要なキーは .env.example を参照
+    env_file: .env
+    # Caddy がホストの localhost:3000 へ reverse_proxy する構成用。
+    # 共有 Docker ネットワーク経由(reverse_proxy masa_works:3000)なら削除してよい
+    ports:
+      - '127.0.0.1:3000:3000'
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    # Caddy コンテナが参加している external ネットワークに接続する。
+    # 旧構成の `nginx_proxy` をデフォルトとし、異なる場合は
+    # 環境変数 CADDY_NETWORK で上書きする(例: CADDY_NETWORK=caddy docker compose up -d)
+    name: ${CADDY_NETWORK:-nginx_proxy}
+    external: true
