@@ -3,38 +3,36 @@
 </p>
 
 # Masayuki Suzuki Portfolio
-This is my personal portfolio showing my front-end development skills.   
-See actual website : <http://masa.works>
+This is my personal portfolio showcasing my front-end development skills.
+See the live website: <https://masa.works>
 
 **Notice**
-** This portfolio is only for author’s use and is NOT allow for reuse any users. This repository is only open for refering and trying on users LOCAL computers. Change, modify, redistribution and so on are NOT allow. If you want to do that, you must contact to autor. Otherwase, autor may take an regal action to the user.
+This portfolio is for the author's personal use only and may NOT be reused by anyone else. This repository is published solely for reference and for trying it out on your LOCAL computer. Changing, modifying, redistributing, etc. are NOT allowed. If you wish to do any of these, you must contact the author first; otherwise the author may take legal action.
 
 ## Skills and technologies I used
 * HTML5
 * CSS3
-* [SASS](https://sass-lang.com/) - Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
-* [Typescript](https://typesciptlang.org) - TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
-* [Vue.js](https://vuejs.org/) - The Progressive JavaScript Framework
-* [Nuxt.js](https://nuxtjs.org/) - The Progressive Vue.js Framework.
+* [Sass](https://sass-lang.com/) - Sass is the most mature, stable, and powerful professional grade CSS extension language in the world.
+* [TypeScript](https://www.typescriptlang.org/) - TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
+* [Vue.js](https://vuejs.org/) - The Progressive JavaScript Framework.
+* [Nuxt 4](https://nuxt.com/) - The Intuitive Vue Framework.
 * [Pinia](https://pinia.vuejs.org/) - The intuitive store for Vue.js (migrated from Vuex).
 * [Node.js](https://nodejs.org/) v24 LTS - JavaScript runtime; the app is served by Nuxt's Nitro server.
 * [Vite](https://vitejs.dev/) / [Nitro](https://nitro.build/) - Build tooling and server engine bundled with Nuxt 4.
-* [Pug](https://github.com/pugjs/pug) - Pug – robust, elegant, feature rich template engine for Node.js.
-* [Resend](https://resend.com/) - Email API used by the contact form (Nitro server route).
-* [ESLint 9](https://eslint.org/) / TypeScript 5 / Prettier 3 - see Development Toolchain below.
-* [GraphQL](https://graphql.org/) - GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data
-* AJAX / JSON - It is used getting blog post data from my personal blog with GraphQL.
- [Anonymous Front-end Developer in Vancouver](https://anonymous-frontend.dev/)
+* [Pug](https://github.com/pugjs/pug) - A robust, elegant, feature-rich template engine for Node.js.
+* [Resend](https://resend.com/) - Email API used by the contact form (via a Nitro server route).
+* [ESLint 9](https://eslint.org/) / TypeScript 5 / Prettier 3 - see the Development Toolchain section below.
+* [GraphQL](https://graphql.org/) - A query language for APIs and a runtime for fulfilling those queries with your existing data. It is used to fetch blog posts from my personal blog, [Anonymous Front-end Developer in Vancouver](https://anonymous-frontend.dev/).
 
 ## Applications I used
 * IntelliJ (JetBrains)
 * Sketch
 * Photoshop
-* illustrator
+* Illustrator
 
 ## Server Environment
 * VPS + Docker Compose (multi-stage `node:24-alpine` image, ~174MB)
-* [Caddy](https://caddyserver.com/) reverse proxy (`caddy_net` shared network -> `masa_works:3000`)
+* [Caddy](https://caddyserver.com/) reverse proxy with automatic HTTPS (`caddy_net` shared network -> `masa_works:3000`)
 
 ## Getting Started
 ```bash
@@ -48,48 +46,43 @@ Production (Docker):
 docker compose up -d --build
 ```
 Environment variables: see [.env.example](./.env.example) — runtimeConfig values are injected at container start (never baked into the image).
-* Nginx - For reverse proxy.
-* TLS 1.2
-* Let's Encrypt
 
 ## Design process
-### 1. Planing
+### 1. Planning
 #### Goal
-Thinking what should I exhibit my skills in this website. Also planning and choosing what technology I'll use.
+Deciding which of my skills to exhibit on this website, and planning and choosing the technologies to use.
 #### Colour
-As a main colour, I've  chosen Ivory colour because it gives chic impression. For the sub colour, I've chosen dark gray (it's almost black but not). It gives calm impression that is combined with Ivory colour.
+As the main colour I chose ivory because it gives a chic impression. For the sub colour I chose dark grey (almost black, but not quite), which gives a calm impression when combined with ivory.
 
 ### 2. Design
 #### Wireframe
-I usually use paper and pen to make wireframe, sometimes use Tablet(iPad) and Stylus pen. Because it can make wireframe more quickly than applications before my inspiration and passion is vanished.
+I usually use paper and pen to draw wireframes, and sometimes a tablet (iPad) with a stylus, because they let me sketch ideas faster than design applications — before my inspiration and passion fade away.
 #### Logo
-Made by SVG with Adobe illustrator.
+Created as SVG with Adobe Illustrator.
 #### Mockup
-Using Sketch App.
+Created with the Sketch app.
 #### Animation
-I haven't used a library like GSAP because I've wanted to code from scratch in order to improve my javascript skills. Also I haven't used Fullpage.js.
-  
+I didn't use libraries like GSAP or Fullpage.js on purpose — I wanted to code the animations from scratch to improve my JavaScript skills.
+
 ### 3. Development
 #### Coding
-I've used IntelliJ.
+I use IntelliJ IDEA.
 #### Vue.js
-**Why Vue.js ?** - These days, Javascript framework demand is increasing and javascript developers are required knowledge and experience them. 
-The typical frameworks are Angular and React but Vue is getting more and more popular moreover Vue is getting Star and Watch more than Angular in Github. Vue is simpler than React and Angular and very light weight and fast and it's easier to learn than another framework. Actually, I had no experience and knowledge of JS framework, so I have needed to learn them and I've chosen Vue to my first time JS framework. 
+**Why Vue.js?** - Demand for JavaScript frameworks keeps growing, and JavaScript developers are expected to have knowledge of and experience with them.
+The typical frameworks are Angular and React, but Vue has been getting more and more popular — it even has more stars and watchers than Angular on GitHub. Vue is simpler than React and Angular, very lightweight and fast, and easier to learn than the other frameworks. I had no prior experience with any JS framework, so I needed to learn one, and I chose Vue as my first.
 #### Node.js
-**Why Node.js ?** - Almost Node user would say that "Node.js is faster than another server". But I reckon it isn't a strong motive to choose Node. So why have I chosen Node? Of course, one of the reasons is that it's fast but it's not only. Because Node is built by Javascript, so we are possible to make apps with only using one programming language although front-end or back-end. And then, Javascript developer can work in both fields and It would make communication smooth between developers. Finally, It would lead to reducing labor cost.
+**Why Node.js?** - Most Node users would say "Node.js is faster than other servers", but I don't think that alone is a strong reason to choose it. So why did I choose Node? Speed is certainly one reason, but not the only one. Because Node runs JavaScript, you can build the entire app — front end and back end — in a single programming language. JavaScript developers can then work across both fields, which makes communication between developers smoother and ultimately helps reduce labour costs.
 
 #### CSS Architecture
-BEM(<http://getbem.com/naming/>)  
-OOCSS(<http://oocss.org/>)
-  
+BEM (<http://getbem.com/naming/>)
+OOCSS (<http://oocss.org/>)
+
 ### 4. Performance Optimization
-* Images - Compressed and responsive image size. Also, use webp format.
-* CSS - Combined to one file and minified.
-* Gzip - Compressed website's data before sending those data from server.
-* Server Location - Located in Oregon, US which is physically close to my target users living in Vancouver, BC Canada.
+* Images - Compressed, with responsive sizes and the WebP format.
+* CSS - Combined into one file and minified.
+* Compression - Responses are compressed (gzip) before being sent from the server.
 
 ### 5. Development Toolchain (Nuxt 4 / 2026-)
 * **Lint** - ESLint 9 (flat config via `@nuxt/eslint`): `yarn lint` / `yarn lint:fix`
 * **Type Check** - TypeScript 5 + vue-tsc: `yarn typecheck`
 * **Format** - Prettier 3 (`.prettierrc`)
-* **Testing** - テストランナーは未導入。追加する場合は Vite ベースの [Vitest](https://vitest.dev/)(+ `@vue/test-utils` v2 / `@nuxt/test-utils`)を推奨(旧 Jest 構成は Nuxt 4 移行時に撤去済み)
