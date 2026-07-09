@@ -1,6 +1,5 @@
 import { directPageController } from '~/libs/scrollEventHandler'
-import type { ISmoothScroll } from '~/libs/smooth-scroll';
-import smoothScroll from '~/libs/smooth-scroll'
+import smoothScroll, { type ISmoothScroll } from '~/libs/smooth-scroll'
 
 // navToggle: ナビゲーションを閉じる必要がある場合に呼ばれるコールバック
 // (旧 $nuxt.$emit('nav-toggle') の置き換え。#36 でストア化予定)

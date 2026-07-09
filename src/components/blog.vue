@@ -20,7 +20,7 @@ import { usePageLocationStore } from '~/stores/pageLocation'
 import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
-    name: 'blog',
+    name: 'Blog',
     components: {
         BlogCard,
         ScrollNav
@@ -45,7 +45,7 @@ export default defineComponent({
             checkPageActivation(delayedActivePage.value, 'blog'))
 
          
-        /* eslint-enable no-console */
+         
 
         return {
             pageLocation,

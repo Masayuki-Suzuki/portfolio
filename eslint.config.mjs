@@ -12,5 +12,18 @@ export default withNuxt(
             // 既存コードベースの慣習に合わせた調整
             'vue/multi-word-component-names': 'off'
         }
+    },
+    {
+        // 型 import の規約: 同一モジュールからの value import があれば
+        // `import { foo, type Bar }` のインライン形式に統合する。
+        // 型のみのモジュールは従来通り `import type { ... }` を維持
+        files: ['**/*.ts', '**/*.tsx', '**/*.vue'],
+        rules: {
+            '@typescript-eslint/consistent-type-imports': [
+                'error',
+                { fixStyle: 'inline-type-imports' }
+            ],
+            'import/no-duplicates': ['error', { 'prefer-inline': true }]
+        }
     }
 )
