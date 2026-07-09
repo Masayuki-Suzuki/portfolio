@@ -43,7 +43,7 @@ section.contact.common-container(:class="{'contact--active': pageActive}")
         p.submit-msg(v-if="submitted") Success!! Your message sent properly. Cheers!!
 
         //- Error messages
-        p.submit-msg.submit-msg--error(v-if="errorMsg.length") ERORR: {{ errorMsg }}
+        p.submit-msg.submit-msg--error(v-if="errorMsg.length") ERROR: {{ errorMsg }}
             //- | Oops!! Sorry, couldn't send your message. please try again.
 
 </template>
@@ -51,12 +51,15 @@ section.contact.common-container(:class="{'contact--active': pageActive}")
 <script lang="ts">
 import { computed, defineComponent, ref } from 'vue'
 import { storeToRefs } from 'pinia'
+import { useReCaptcha } from 'vue-recaptcha-v3'
 import { checkPageActivation } from '~/libs/checkPageActivation'
 import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
     name: 'contact',
     setup() {
+        const recaptcha = useReCaptcha()
+
         // --------------------------------------
         // Local state
         const senderName = ref('')
@@ -90,9 +93,16 @@ export default defineComponent({
             errorMsg.value = ''
             connecting.value = true
 
-            // TODO(#41): vue-recaptcha-v3 で reCAPTCHA token を取得する。
-            // それまでサーバ側の siteverify で必ず弾かれる(=フォームは #41 完了で復旧)
-            const token = ''
+            let token = ''
+            try {
+                await recaptcha?.recaptchaLoaded()
+                token = await recaptcha?.executeRecaptcha('contact') ?? ''
+            } catch (err) {
+                console.error('reCAPTCHA error', err)
+                errorMsg.value = 'reCAPTCHA failed to load. Please try again later.'
+                connecting.value = false
+                return
+            }
 
             try {
                 await $fetch('/api/contact-form', {
