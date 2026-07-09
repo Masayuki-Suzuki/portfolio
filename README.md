@@ -66,7 +66,7 @@ I didn't use libraries like GSAP or Fullpage.js on purpose — I wanted to code 
 
 ### 3. Development
 #### Coding
-I use IntelliJ.
+I use IntelliJ IDEA.
 #### Vue.js
 **Why Vue.js?** - Demand for JavaScript frameworks keeps growing, and JavaScript developers are expected to have knowledge of and experience with them.
 The typical frameworks are Angular and React, but Vue has been getting more and more popular — it even has more stars and watchers than Angular on GitHub. Vue is simpler than React and Angular, very lightweight and fast, and easier to learn than the other frameworks. I had no prior experience with any JS framework, so I needed to learn one, and I chose Vue as my first.
@@ -81,10 +81,8 @@ OOCSS (<http://oocss.org/>)
 * Images - Compressed, with responsive sizes and the WebP format.
 * CSS - Combined into one file and minified.
 * Compression - Responses are compressed (gzip) before being sent from the server.
-* Server Location - Japan.
 
 ### 5. Development Toolchain (Nuxt 4 / 2026-)
 * **Lint** - ESLint 9 (flat config via `@nuxt/eslint`): `yarn lint` / `yarn lint:fix`
 * **Type Check** - TypeScript 5 + vue-tsc: `yarn typecheck`
 * **Format** - Prettier 3 (`.prettierrc`)
-* **Testing** - No test runner is set up yet. If tests are added in the future, the Vite-based [Vitest](https://vitest.dev/) (with `@vue/test-utils` v2 / `@nuxt/test-utils`) is the recommended choice — the old Jest setup was removed during the Nuxt 4 migration.
