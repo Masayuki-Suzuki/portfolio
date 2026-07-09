@@ -17,6 +17,9 @@ const link = [
 ]
 
 export const head = {
+    htmlAttrs: {
+        lang: 'en'
+    },
     title: 'Masayuki Suzuki Portfolio Website',
     meta: [
         { charset: 'utf-8' },
