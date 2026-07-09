@@ -11,8 +11,20 @@ export default defineNuxtConfig({
 
     modules: [
         '@pinia/nuxt',
-        '@nuxtjs/apollo'
+        '@nuxtjs/apollo',
+        'nuxt-gtag'
     ],
+
+    // 測定 ID は実行時に NUXT_PUBLIC_GTAG_ID で注入(runtimeConfig.public.gtag.id)。
+    // 計測は本番ビルドのみ有効($production / $development は Nuxt の環境別設定)
+    gtag: {
+        enabled: false
+    },
+    $production: {
+        gtag: {
+            enabled: true
+        }
+    },
 
     apollo: {
         // 認証トークンは plugins/apollo-auth.ts の apollo:auth フックで
@@ -55,8 +67,10 @@ export default defineNuxtConfig({
         public: {
             recaptchaSiteKey: '',    // NUXT_PUBLIC_RECAPTCHA_SITE_KEY
             scrollThreshold: 0,      // NUXT_PUBLIC_SCROLL_THRESHOLD
-            ga4MeasurementId: '',    // NUXT_PUBLIC_GA4_MEASUREMENT_ID(#42 で使用)
-            strapiUrl: STRAPI_URL    // サムネイル画像の相対 URL 解決に使用
+            strapiUrl: STRAPI_URL,   // サムネイル画像の相対 URL 解決に使用
+            gtag: {
+                id: ''               // NUXT_PUBLIC_GTAG_ID(GA4 測定 ID)
+            }
         }
     },
 
