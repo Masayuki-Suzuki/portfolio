@@ -1,8 +1,13 @@
 import { head } from './src/config/head'
 
-// Strapi(ブログCMS)のオリジン。GraphQL とサムネイル画像の両方で使う。
+// Strapi(ブログCMS)の公開オリジン。サムネイル画像の URL 解決に使う(ブラウザが参照)。
 // ビルド時に NUXT_PUBLIC_STRAPI_URL で上書き可能
 const STRAPI_URL = process.env.NUXT_PUBLIC_STRAPI_URL || 'https://dashboard.anonymous-frontend.dev'
+
+// SSR(サーバ側)が使う GraphQL エンドポイント。ブログ取得はサーバ専用のため分離。
+// 本番は Strapi と同一ホストのため、公開ドメイン経由(ヘアピン)だと ECONNREFUSED になる。
+// コンテナ間直結を推奨: NUXT_STRAPI_GRAPHQL_ENDPOINT=http://strapi:1337/graphql(ビルド時に焼き込み)
+const STRAPI_GRAPHQL_ENDPOINT = process.env.NUXT_STRAPI_GRAPHQL_ENDPOINT || `${STRAPI_URL}/graphql`
 
 export default defineNuxtConfig({
     compatibilityDate: '2026-07-07',
@@ -32,7 +37,7 @@ export default defineNuxtConfig({
         // サーバ専用 runtimeConfig から注入する(クライアントには渡さない)
         clients: {
             default: {
-                httpEndpoint: `${STRAPI_URL}/graphql`
+                httpEndpoint: STRAPI_GRAPHQL_ENDPOINT
             }
         }
     },

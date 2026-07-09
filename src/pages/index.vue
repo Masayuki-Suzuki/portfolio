@@ -63,8 +63,14 @@ export default defineComponent({
 
         // ---------------------------------------------------------
         // Blog posts (SSR で取得し payload 経由でクライアントへ)
-        const { data: blogRes } = await useAsyncQuery<{ posts: BlogData }>(BLOG_ROW_DATA)
+        const { data: blogRes, error: blogError } = await useAsyncQuery<{ posts: BlogData }>(BLOG_ROW_DATA)
         const posts = computed(() => blogRes.value?.posts ?? null)
+
+        // 取得失敗はブログ枠が空になるだけで画面は壊さない。ただし原因調査の
+        // ためサーバログには必ず残す(沈黙失敗の防止)
+        if (import.meta.server && blogError.value) {
+            console.error('[blog] Failed to fetch posts via GraphQL:', blogError.value.message ?? blogError.value)
+        }
 
         // Local computed
         const wrapperClasses = computed(() => {
