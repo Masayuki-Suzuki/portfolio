@@ -16,14 +16,12 @@ See actual website : <http://masa.works>
 * [Typescript](https://typesciptlang.org) - TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
 * [Vue.js](https://vuejs.org/) - The Progressive JavaScript Framework
 * [Nuxt.js](https://nuxtjs.org/) - The Progressive Vue.js Framework.
-* [Vue Composition API RFC](https://composition-api.vuejs.org/) - `@vue/composition-api` provides a way to use `Vue 3.0`'s Composition api in `Vue 2.x`.
-* [Vuex](https://vuex.vuejs.org/) - Centralized State Management for Vue.js.
-* [Node.js](https://nodejs.org/ja/) - A JavaScript runtime built on Chrome's V8 JavaScript engine for a back-end.
-* [Express.js](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for node.
+* [Pinia](https://pinia.vuejs.org/) - The intuitive store for Vue.js (migrated from Vuex).
+* [Node.js](https://nodejs.org/) v24 LTS - JavaScript runtime; the app is served by Nuxt's Nitro server.
+* [Vite](https://vitejs.dev/) / [Nitro](https://nitro.build/) - Build tooling and server engine bundled with Nuxt 4.
 * [Pug](https://github.com/pugjs/pug) - Pug – robust, elegant, feature rich template engine for Node.js.
-* [axios](https://github.com/mzabriskie/axios) - Promise based HTTP client for the browser and node.js.
-* [babel](https://babeljs.io/) - The compiler for writing next generation JavaScript.
-* [ESlint](https://eslint.org/) - Find and fix problems in your JavaScript code.
+* [Resend](https://resend.com/) - Email API used by the contact form (Nitro server route).
+* [ESLint 9](https://eslint.org/) / TypeScript 5 / Prettier 3 - see Development Toolchain below.
 * [GraphQL](https://graphql.org/) - GraphQL is a query language for APIs and a runtime for fulfilling those queries with your existing data
 * AJAX / JSON - It is used getting blog post data from my personal blog with GraphQL.
  [Anonymous Front-end Developer in Vancouver](https://anonymous-frontend.dev/)
@@ -35,9 +33,21 @@ See actual website : <http://masa.works>
 * illustrator
 
 ## Server Environment
-* Ubuntu 16.04 on VPS.
-* Running with docker-compose
-* Node.js - Web server.
+* VPS + Docker Compose (multi-stage `node:24-alpine` image, ~174MB)
+* [Caddy](https://caddyserver.com/) reverse proxy (`caddy_net` shared network -> `masa_works:3000`)
+
+## Getting Started
+```bash
+corepack enable            # yarn 4 (packageManager)
+yarn install
+cp .env.example .env       # fill in the required values
+yarn dev                   # http://localhost:3000
+```
+Production (Docker):
+```bash
+docker compose up -d --build
+```
+Environment variables: see [.env.example](./.env.example) — runtimeConfig values are injected at container start (never baked into the image).
 * Nginx - For reverse proxy.
 * TLS 1.2
 * Let's Encrypt

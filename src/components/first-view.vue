@@ -4,15 +4,15 @@ section.first
     //- Logo image
     .main-logo
         .main-logo__image
-            img(src="/images/mainLogo.svg")
+            img(src="/images/mainLogo.svg" alt="Masayuki Suzuki logo")
             //object(data="/images/mainLogo.svg" type="image/svg+xml")
 
     //- sns link and icons
     ul.sns
         li.sns__list
-            a.sns__link.github(href="https://github.com/Masayuki-Suzuki" target="_blank")
+            a.sns__link.github(href="https://github.com/Masayuki-Suzuki" target="_blank" aria-label="GitHub")
         li.sns__list
-            a.sns__link.linkedin(href="https://www.linkedin.com/in/masayuki-suzuki/" target="_blank")
+            a.sns__link.linkedin(href="https://www.linkedin.com/in/masayuki-suzuki/" target="_blank" aria-label="LinkedIn")
         li.sns__list
             span.sns__link.email(@click="")
 

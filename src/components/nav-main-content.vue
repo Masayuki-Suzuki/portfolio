@@ -10,9 +10,9 @@ ul.gNav__main(:style="{'visibility': isOpen ? 'visible' : 'hidden'}")
     li.gNav__list.gNav__list--sns
         ul.sns
             li.sns__list
-                a.sns__link.github(href="https://github.com/Masayuki-Suzuki" target="_blank")
+                a.sns__link.github(href="https://github.com/Masayuki-Suzuki" target="_blank" aria-label="GitHub")
             li.sns__list
-                a.sns__link.linkedin(href="https://www.linkedin.com/in/masayuki-suzuki/" target="_blank")
+                a.sns__link.linkedin(href="https://www.linkedin.com/in/masayuki-suzuki/" target="_blank" aria-label="LinkedIn")
             li.sns__list
                 span.sns__link.email(@click="")
 </template>

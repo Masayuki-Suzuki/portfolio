@@ -19,9 +19,9 @@ nav.gNav(:class="navClass")
         :class="{'nav-sns--active': activeNavSns, 'is-hidden': isHidden}"
     )
         li.nav-sns__list
-            a.sns__link.github(href="https://github.com/Masayuki-Suzuki" target="_blank")
+            a.sns__link.github(href="https://github.com/Masayuki-Suzuki" target="_blank" aria-label="GitHub")
         li.nav-sns__list
-            a.sns__link.linkedin(href="https://www.linkedin.com/in/masayuki-suzuki/" target="_blank")
+            a.sns__link.linkedin(href="https://www.linkedin.com/in/masayuki-suzuki/" target="_blank" aria-label="LinkedIn")
         li.nav-sns__list
             span.sns__link.email(@click="")
 

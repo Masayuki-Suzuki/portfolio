@@ -1,6 +1,6 @@
 <template lang="pug">
 div.app-container(ref="rootEl")
-    article.main-frame(
+    main.main-frame(
         @wheel="scrollController($event)"
         @touchstart="touchStart($event)"
         @touchmove="touchMove($event)"
