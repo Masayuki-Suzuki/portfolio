@@ -85,15 +85,35 @@ export default defineComponent({
             body.value = ''
         }
 
-        // TODO(#40): Nitro サーバルート(/api/contact-form)への $fetch 送信に置き換える
-        // TODO(#41): vue-recaptcha-v3 で reCAPTCHA token を取得して params に含める
-        // 送信フローの旧実装(@nuxtjs/axios + @nuxtjs/recaptcha)は Vue 3 で動作しない
-        // ため一時停止中。resetForm は #40 で再利用する。
         const submit = async () => {
             submitted.value = false
-            connecting.value = false
-            errorMsg.value = 'Sorry, the contact form is temporarily unavailable. (migration in progress)'
-            void resetForm
+            errorMsg.value = ''
+            connecting.value = true
+
+            // TODO(#41): vue-recaptcha-v3 で reCAPTCHA token を取得する。
+            // それまでサーバ側の siteverify で必ず弾かれる(=フォームは #41 完了で復旧)
+            const token = ''
+
+            try {
+                await $fetch('/api/contact-form', {
+                    method: 'POST',
+                    body: {
+                        userName: senderName.value,
+                        company: company.value,
+                        email: email.value,
+                        body: body.value,
+                        token
+                    }
+                })
+                resetForm()
+                submitted.value = true
+            } catch (err: unknown) {
+                const fetchError = err as { data?: { data?: { errorMessage?: string } } }
+                errorMsg.value = fetchError?.data?.data?.errorMessage ||
+                    'Failed sending message. Please try again later.'
+            } finally {
+                connecting.value = false
+            }
         }
 
         return {

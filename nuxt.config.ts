@@ -47,7 +47,7 @@ export default defineNuxtConfig({
     */
     runtimeConfig: {
         recaptchaSecretKey: '',      // NUXT_RECAPTCHA_SECRET_KEY
-        sendgridApiKey: '',          // NUXT_SENDGRID_API_KEY
+        resendApiKey: '',            // NUXT_RESEND_API_KEY
         mailTo: '',                  // NUXT_MAIL_TO
         mailFrom: '',                // NUXT_MAIL_FROM
         strapiApiToken: '',          // NUXT_STRAPI_API_TOKEN
