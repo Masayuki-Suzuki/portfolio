@@ -46,7 +46,8 @@ export default defineNuxtConfig({
     ** 非 public はサーバ専用 = クライアントバンドルには含まれない
     */
     runtimeConfig: {
-        recaptchaSecretKey: '',      // NUXT_RECAPTCHA_SECRET_KEY
+        recaptchaSecretKey: '',      // NUXT_RECAPTCHA_SECRET_KEY(レガシー秘密鍵)
+        recaptchaScoreThreshold: 0.5, // NUXT_RECAPTCHA_SCORE_THRESHOLD
         resendApiKey: '',            // NUXT_RESEND_API_KEY
         mailTo: '',                  // NUXT_MAIL_TO
         mailFrom: '',                // NUXT_MAIL_FROM

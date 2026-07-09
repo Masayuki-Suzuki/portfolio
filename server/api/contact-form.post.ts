@@ -67,7 +67,8 @@ export default defineEventHandler(async (event) => {
         }
     ).catch(() => null)
 
-    if (!verify || !verify.success || (verify.score ?? 0) < 0.5) {
+    const scoreThreshold = Number(config.recaptchaScoreThreshold) || 0.5
+    if (!verify || !verify.success || (verify.score ?? 0) < scoreThreshold) {
         throw createError({
             statusCode: 400,
             statusMessage: 'Bad Request',

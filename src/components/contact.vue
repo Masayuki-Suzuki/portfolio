@@ -43,20 +43,23 @@ section.contact.common-container(:class="{'contact--active': pageActive}")
         p.submit-msg(v-if="submitted") Success!! Your message sent properly. Cheers!!
 
         //- Error messages
-        p.submit-msg.submit-msg--error(v-if="errorMsg.length") ERORR: {{ errorMsg }}
+        p.submit-msg.submit-msg--error(v-if="errorMsg.length") ERROR: {{ errorMsg }}
             //- | Oops!! Sorry, couldn't send your message. please try again.
 
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref } from 'vue'
+import { computed, defineComponent, onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { checkPageActivation } from '~/libs/checkPageActivation'
+import { useRecaptcha } from '~/composables/useRecaptcha'
 import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
     name: 'contact',
     setup() {
+        const recaptcha = useRecaptcha()
+
         // --------------------------------------
         // Local state
         const senderName = ref('')
@@ -90,9 +93,15 @@ export default defineComponent({
             errorMsg.value = ''
             connecting.value = true
 
-            // TODO(#41): vue-recaptcha-v3 で reCAPTCHA token を取得する。
-            // それまでサーバ側の siteverify で必ず弾かれる(=フォームは #41 完了で復旧)
-            const token = ''
+            let token = ''
+            try {
+                token = await recaptcha.execute('contact')
+            } catch (err) {
+                console.error('reCAPTCHA error', err)
+                errorMsg.value = 'reCAPTCHA failed to load. Please try again later.'
+                connecting.value = false
+                return
+            }
 
             try {
                 await $fetch('/api/contact-form', {
@@ -115,6 +124,12 @@ export default defineComponent({
                 connecting.value = false
             }
         }
+
+        // --------------------------------------
+        // Lifecycle: スクリプトを事前読込して送信時の待ち時間を短縮
+        onMounted(() => {
+            recaptcha.load().catch(() => { /* 失敗しても送信時に再試行される */ })
+        })
 
         return {
             senderName,

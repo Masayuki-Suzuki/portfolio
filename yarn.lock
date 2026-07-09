@@ -1819,13 +1819,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nuxtjs/recaptcha@npm:^0.6.2":
-  version: 0.6.2
-  resolution: "@nuxtjs/recaptcha@npm:0.6.2"
-  checksum: 10c0/7da977953f4ff6701e55948086e0e825d01405751725ee8588648ed5c60c92b8394252ed1b804f23c3eeeb74fe79fe3db0fb54b1fd56f11643c077bac53cec18
-  languageName: node
-  linkType: hard
-
 "@oxc-minify/binding-android-arm-eabi@npm:0.133.0":
   version: 0.133.0
   resolution: "@oxc-minify/binding-android-arm-eabi@npm:0.133.0"
@@ -11289,7 +11282,6 @@ __metadata:
     "@nuxtjs/axios": "npm:5.10.3"
     "@nuxtjs/eslint-config-typescript": "npm:1.0.2"
     "@nuxtjs/google-analytics": "npm:^2.2.3"
-    "@nuxtjs/recaptcha": "npm:^0.6.2"
     "@pinia/nuxt": "npm:^0.11.3"
     "@types/jest": "npm:25.2.1"
     "@types/lodash.debounce": "npm:^4.0.6"
