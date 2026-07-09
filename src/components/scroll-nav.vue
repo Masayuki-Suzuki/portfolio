@@ -11,7 +11,7 @@ import { usePageLocationStore } from '~/stores/pageLocation'
 import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
-    name: 'scroll-nav',
+    name: 'ScrollNav',
     props: {
         location: {
             type: String,

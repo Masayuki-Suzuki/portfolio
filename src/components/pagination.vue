@@ -32,7 +32,7 @@ import { usePageLocationStore } from '~/stores/pageLocation'
 import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
-    name: 'pagination',
+    name: 'Pagination',
     setup() {
         // -----------------------------------------
         // Local State

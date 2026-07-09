@@ -21,7 +21,7 @@ article.works__details.works__details--right
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'world-wise',
+    name: 'WorldWise',
     setup() {
         // --------------------------------
         // Local State

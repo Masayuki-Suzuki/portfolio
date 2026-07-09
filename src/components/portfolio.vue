@@ -22,7 +22,7 @@ article.works__details.works__details--right
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'portfolio',
+    name: 'Portfolio',
     setup() {
         // --------------------------------
         // Local State

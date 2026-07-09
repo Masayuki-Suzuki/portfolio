@@ -19,7 +19,7 @@ article.works__details.works__details--right
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'yelp-camp',
+    name: 'YelpCamp',
     setup() {
         // --------------------------------
         // Local State

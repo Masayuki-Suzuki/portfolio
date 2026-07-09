@@ -1,4 +1,4 @@
-import { usePageLocationStore, WorksLocation, WorksSide } from '~/stores/pageLocation'
+import { usePageLocationStore, type WorksLocation } from '~/stores/pageLocation'
 import { useScrollsStore } from '~/stores/scrolls'
 import { useWorksStore } from '~/stores/works'
 

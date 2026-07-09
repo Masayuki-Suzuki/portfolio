@@ -56,7 +56,7 @@ import { useRecaptcha } from '~/composables/useRecaptcha'
 import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
-    name: 'contact',
+    name: 'Contact',
     setup() {
         const recaptcha = useRecaptcha()
 

@@ -18,7 +18,7 @@ import { usePageLocationStore } from '~/stores/pageLocation'
 import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
-    name: 'logo',
+    name: 'Logo',
     props: {
         colourClass: {
             type: String,

@@ -15,7 +15,7 @@ div.app-container(ref="rootEl")
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
+import { defineComponent, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
 import { storeToRefs } from 'pinia'
 import _debounce from 'lodash.debounce'
 import Logo from '~/components/logo.vue'
@@ -29,7 +29,7 @@ import { useScrollsStore } from '~/stores/scrolls'
 import { useWorksStore } from '~/stores/works'
 
 export default defineComponent({
-    name: 'default-layout',
+    name: 'DefaultLayout',
     components: {
         Logo,
         Pagination,
@@ -190,15 +190,17 @@ export default defineComponent({
         }
 
         const touchStart = ({ touches }: TouchEvent): void => {
-            if (!isMobile.value && isTouchDevice.value) {
+            const touch = touches[0]
+            if (touch && !isMobile.value && isTouchDevice.value) {
                 swipe.flag = true
-                swipe.start.y = touches[0].pageY
+                swipe.start.y = touch.pageY
             }
         }
 
         const touchMove = ({ touches }: TouchEvent): void => {
-            if (!isMobile.value && isTouchDevice.value) {
-                swipe.current.y = touches[0].pageY
+            const touch = touches[0]
+            if (touch && !isMobile.value && isTouchDevice.value) {
+                swipe.current.y = touch.pageY
                 swipe.distance.y = swipe.current.y - swipe.start.y
                 if (swipe.flag && swipe.distance.y > 0 && swipe.distance.y >= swipe.threshold) {
                     swipe.flag = false

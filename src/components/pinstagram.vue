@@ -20,7 +20,7 @@ article.works__details.works__details--left
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'pinstagram',
+    name: 'Pinstagram',
     setup() {
         // --------------------------------
         // Local State

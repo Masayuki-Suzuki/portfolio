@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, type PropType } from 'vue'
 import { format } from 'date-fns'
-import { BlogNode } from '~/types/global'
+import type { BlogNode } from '~/types/global'
 
 const BLOG_URL = 'https://anonymous-frontend.dev'
 
@@ -32,7 +32,7 @@ const decodeEntities = (str: string): string =>
         .replace(/&amp;/g, '&')
 
 export default defineComponent({
-    name: 'blog-card',
+    name: 'BlogCard',
     props: {
         num: {
             type: Number,
