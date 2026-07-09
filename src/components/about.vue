@@ -35,7 +35,7 @@ import { usePageLocationStore } from '~/stores/pageLocation'
 import { useScrollsStore } from '~/stores/scrolls'
 
 export default defineComponent({
-    name: 'about',
+    name: 'About',
     components: {
         ScrollNav
     },

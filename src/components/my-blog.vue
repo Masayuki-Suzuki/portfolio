@@ -24,7 +24,7 @@ article.works__details.works__details--left
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'my-blog',
+    name: 'MyBlog',
     setup() {
         // --------------------------------
         // Local State

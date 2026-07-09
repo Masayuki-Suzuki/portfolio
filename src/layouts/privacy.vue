@@ -7,7 +7,7 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-    name: 'privacy-layout'
+    name: 'PrivacyLayout'
 })
 </script>
 

@@ -38,7 +38,7 @@ import { useScrollsStore } from '~/stores/scrolls'
 import { useUiStore } from '~/stores/ui'
 
 export default defineComponent({
-    name: 'navigation',
+    name: 'Navigation',
     components: {
         NavMainContent
     },

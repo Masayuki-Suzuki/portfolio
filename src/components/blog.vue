@@ -9,13 +9,12 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable */
-import { computed, defineComponent, PropType } from 'vue'
+import { computed, defineComponent, type PropType } from 'vue'
 import { storeToRefs } from 'pinia'
 import { checkPageActivation } from '~/libs/checkPageActivation'
 import BlogCard from '~/components/blog-card.vue'
 import ScrollNav from '~/components/scroll-nav.vue'
-import { BlogData } from '~/types/global'
+import type { BlogData } from '~/types/global'
 import { useDevicesStore } from '~/stores/devices'
 import { usePageLocationStore } from '~/stores/pageLocation'
 import { useScrollsStore } from '~/stores/scrolls'
@@ -45,7 +44,7 @@ export default defineComponent({
         const pageActive = computed((): boolean =>
             checkPageActivation(delayedActivePage.value, 'blog'))
 
-        /* eslint-disable no-console */
+         
         /* eslint-enable no-console */
 
         return {

@@ -27,7 +27,7 @@ import Another from '~/components/another.vue'
 import ScrollNav from '~/components/scroll-nav.vue'
 
 export default defineComponent({
-    name: 'works',
+    name: 'Works',
     components: {
         WorldWise,
         MyBlog,

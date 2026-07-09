@@ -10,6 +10,7 @@ export default defineNuxtConfig({
     srcDir: 'src/',
 
     modules: [
+        '@nuxt/eslint',
         '@pinia/nuxt',
         '@nuxtjs/apollo',
         'nuxt-gtag'

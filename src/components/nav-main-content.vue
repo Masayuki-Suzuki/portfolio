@@ -25,7 +25,7 @@ import { useDevicesStore } from '~/stores/devices'
 import { useUiStore } from '~/stores/ui'
 
 export default defineComponent({
-    name: 'nav-main-content',
+    name: 'NavMainContent',
     props: {
         isOpen: {
             type: Boolean,

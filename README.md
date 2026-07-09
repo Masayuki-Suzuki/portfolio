@@ -77,3 +77,9 @@ OOCSS(<http://oocss.org/>)
 * CSS - Combined to one file and minified.
 * Gzip - Compressed website's data before sending those data from server.
 * Server Location - Located in Oregon, US which is physically close to my target users living in Vancouver, BC Canada.
+
+### 5. Development Toolchain (Nuxt 4 / 2026-)
+* **Lint** - ESLint 9 (flat config via `@nuxt/eslint`): `yarn lint` / `yarn lint:fix`
+* **Type Check** - TypeScript 5 + vue-tsc: `yarn typecheck`
+* **Format** - Prettier 3 (`.prettierrc`)
+* **Testing** - テストランナーは未導入。追加する場合は Vite ベースの [Vitest](https://vitest.dev/)(+ `@vue/test-utils` v2 / `@nuxt/test-utils`)を推奨(旧 Jest 構成は Nuxt 4 移行時に撤去済み)

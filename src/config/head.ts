@@ -1,14 +1,14 @@
 const preLoad = [
-    { rel: 'preload', href: 'https://fonts.googleapis.com/css?family=Lato:300,400,700', as: 'style' },
-    { rel: 'preload', href: '/images/mainLogo.svg', as: 'image' },
-    { rel: 'preload', href: '/images/topBg.jpg', as: 'image' },
-    { rel: 'preload', href: '/images/topBg.webp', as: 'image' },
-    { rel: 'preload', href: '/images/camping.jpg', as: 'image' },
-    { rel: 'preload', href: '/images/camping.webp', as: 'image' },
-    { rel: 'preload', href: '/images/blogImage.jpg', as: 'image' },
-    { rel: 'preload', href: '/images/blogImage.webp', as: 'image' },
-    { rel: 'preload', href: '/images/pinstagram.jpg', as: 'image' },
-    { rel: 'preload', href: '/images/pinstagram.webp', as: 'image' }
+    { rel: 'preload', href: 'https://fonts.googleapis.com/css?family=Lato:300,400,700', as: 'style' as const },
+    { rel: 'preload', href: '/images/mainLogo.svg', as: 'image' as const },
+    { rel: 'preload', href: '/images/topBg.jpg', as: 'image' as const },
+    { rel: 'preload', href: '/images/topBg.webp', as: 'image' as const },
+    { rel: 'preload', href: '/images/camping.jpg', as: 'image' as const },
+    { rel: 'preload', href: '/images/camping.webp', as: 'image' as const },
+    { rel: 'preload', href: '/images/blogImage.jpg', as: 'image' as const },
+    { rel: 'preload', href: '/images/blogImage.webp', as: 'image' as const },
+    { rel: 'preload', href: '/images/pinstagram.jpg', as: 'image' as const },
+    { rel: 'preload', href: '/images/pinstagram.webp', as: 'image' as const }
 ]
 
 const link = [

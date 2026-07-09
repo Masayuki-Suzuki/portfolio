@@ -20,7 +20,7 @@ import About from '~/components/about.vue'
 import Works from '~/components/works.vue'
 import Blog from '~/components/blog.vue'
 import Contact from '~/components/contact.vue'
-import { BlogData } from '~/types/global'
+import type { BlogData } from '~/types/global'
 
 const BLOG_ROW_DATA = gql`
    query blogRowData {
@@ -46,7 +46,7 @@ const BLOG_ROW_DATA = gql`
 `
 
 export default defineComponent({
-    name: 'index-page',
+    name: 'IndexPage',
     components: {
         FirstView,
         About,
