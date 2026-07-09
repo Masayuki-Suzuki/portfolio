@@ -12,9 +12,11 @@ COPY package.json yarn.lock .yarnrc.yml ./
 RUN yarn install --immutable
 
 COPY . .
-# NUXT_PUBLIC_STRAPI_URL はビルド時に Apollo エンドポイントへ焼き込まれる。
-# 変更する場合: docker build --build-arg NUXT_PUBLIC_STRAPI_URL=...
+# ビルド時に焼き込まれる値(compose の build.args 経由で .env から注入される):
+# - NUXT_PUBLIC_STRAPI_URL: 画像 URL 解決用の公開オリジン
+# - NUXT_STRAPI_GRAPHQL_ENDPOINT: SSR 用 GraphQL(同一ホスト構成ではコンテナ直結を指定)
 ARG NUXT_PUBLIC_STRAPI_URL
+ARG NUXT_STRAPI_GRAPHQL_ENDPOINT
 RUN yarn build
 
 # ---------- runtime stage ----------

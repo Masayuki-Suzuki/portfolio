@@ -3,6 +3,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # compose が同ディレクトリの .env から補間してビルドへ渡す
+        NUXT_PUBLIC_STRAPI_URL: ${NUXT_PUBLIC_STRAPI_URL:-}
+        NUXT_STRAPI_GRAPHQL_ENDPOINT: ${NUXT_STRAPI_GRAPHQL_ENDPOINT:-}
     image: masa-works:latest
     container_name: masa_works
     restart: always
