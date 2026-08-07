@@ -21,7 +21,7 @@
         "graphql": "^16",
         "graphql-tag": "^2.12.6",
         "lodash.debounce": "^4.0.8",
-        "nuxt": "^4.4.8",
+        "nuxt": "^4.5.1",
         "nuxt-gtag": "^4.1.0",
         "pinia": "^3.0.4",
         "ress": "^2.0.4",
